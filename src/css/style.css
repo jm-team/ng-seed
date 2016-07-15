@@ -1,0 +1,59 @@
+body {
+	background: #fff;
+}
+
+.demo {
+	width: 500px;
+	height: 500px;
+	background: url("/dist/img/spritesheet.png");
+	background-position: -0px -0px;
+}
+
+.demo2 {
+	width: 500px;
+	height: 500px;
+	background: url("/dist/img/spritesheet.png");
+	background-position: -424px -448px;
+}
+
+.demo3 {
+	width: 500px;
+	height: 500px;
+	background: url("/dist/img/spritesheet.png");
+	background-position: -0px -448px;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td {
+	border: 1px solid #ccc;
+	width: 34px;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+}
+
+th {
+	width: 34px;
+	height: 34px;
+	border: 1px solid #ccc;
+	text-align: center;
+	line-height: 34px;
+}
+
+.date {
+	margin: 50px;
+	background: #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+.current {
+	background: orange;
+	color: #fff;
+}
