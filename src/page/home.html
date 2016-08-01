@@ -1,8 +1,362 @@
-<h2>{{ title }}</h2>
+<div class="bannerWrap">
+  <div class="banners">
+    <!-- <carousel interval="myInterval">
+      <slide ng-repeat="slide in slides" active="slide.active">
+        <img ng-src="{{slide.image}}">
+      </slide>
+    </carousel> -->
+    <img src="/dist/img/banner.png" alt="" />
+  </div>
+
+  <section class="layout">
+    <div class="sub-nav-wrap"  head-fixed start="startFixed">
+      <div class="sub-nav-bg"></div>
+      <nav class="subNav">
+          <h2>栏目列表</h2>
+          <ul>
+              <li class="icon-index"><a href="#">聚运通首页</a></li>
+              <li class="icon-order"><a href="#">我要下单</a></li>
+              <li class="icon-freight"><a ui-sref="specials">运费特惠</a></li>
+              <li class="icon-advice"><a href="#">仓储特惠</a></li>
+              <li class="icon-logis"><a href="#">物流跟踪</a></li>
+              <li class="icon-service"><a href="#">服务中心</a></li>
+          </ul>
+      </nav>
+    </div>
+
+
+    <p class="banner-desc">轻松实现<strong class="hlight">一站式</strong>服务!</p>
+    <section class="bannerSearchWrap index-search">
+        <form class="clearFix">
+            <div class="search-input">
+              <input type="text" placeholder="只需轻轻输入您的需求 成交物流买卖SO简单！">
+            </div>
+            <button class="search-btn">我要查询</button>
+        </form>
+        <p class="search-hot">
+            <span>热门关键词：</span>
+            <a href="" ng-repeat="k in keys track by $index" bindonce bo-text="k"></a>
+        </p>
+    </section>
+  </section>
+</div>
+<!-- 列表信息 -->
+<div class="layout clearFix indexLists">
+    <!-- 运力信息 -->
+    <article class="capacityWrap">
+        <header class="listBoxTitle">
+            <h2>运力信息</h2>
+        </header>
+        <div class="boxContent">
+            <header class="listTop">
+                <span class="span1">始发地</span>
+                <span class="span2">目的地</span>
+                <span class="span3">物流方式</span>
+                <span class="span4">发布时间</span>
+            </header>
+            <div class="listContent" >
+              <div class="jSlideWrap">
+                <ul ng-repeat="f in capacity track by $index"  list-slide>
+                    <li ng-repeat="s in f track by $index">
+                        <a href="">
+                          <span class="span1">{{s.departure}}</span>
+                          <span class="arrow-right"></span>
+                          <span class="span2">{{s.destination}}</span>
+                          <span class="span3">{{s.lineType}}</span>
+                          <span class="span4">{{s.createTime}}</span>
+                        </a>
+                    </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+    </article>
+    <article class="storageWrap active">
+        <header class="listBoxTitle">
+            <h2>仓储出租</h2>
+        </header>
+        <div class="boxContent">
+            <header class="listTop">
+                <span>地址</span>
+                <span>仓库类型</span>
+                <span>可用面积</span>
+            </header>
+            <div class="listContent">
+              <div class="jSlideWrap">
+                <ul ng-repeat="f in stroage track by $index" list-slide>
+                    <li ng-repeat="s in f track by $index">
+                      <a href="">
+                        <span>{{s.address}}</span>
+                        <span>{{s.stroageType}}</span>
+                        <span>{{s.space}}</span>
+                      </a>
+                    </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+    </article>
+    <article class="auctionWrap">
+        <header class="listBoxTitle">
+            <h2>竞拍信息</h2>
+        </header>
+        <div class="boxContent">
+            <header class="listTop">
+              <span class="span1">产品</span>
+              <span class="span2">始发地 </span>
+              <span class="span3">目的地</span>
+              <span class="span4">运输方式</span>
+              <span class="span5">发布时间</span>
+            </header>
+            <div class="listContent">
+              <div class="jSlideWrap">
+                <ul ng-repeat="f in auction track by $index" list-slide>
+                  <li ng-repeat="s in f track by $index">
+                    <a href="">
+                      <span class="span1">{{s.product}}</span>
+                      <span class="span2">{{s.destination}}</span>
+                      <span class="arrow-right"></span>
+                      <span class="span3">{{s.departure}}</span>
+                      <span class="span4">{{s.transportMode}}</span>
+                      <span class="span5">{{s.plushDate}}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- <div class="listContent" list-slide="">
+                <ul ng-repeat="f in auction track by $index" ng-class="{'active': $index === 0}">
+                    <li ng-repeat="s in f track by $index">
+                      <a href="">
+                        <span class="span1">{{s.product}}</span>
+                        <span class="span2">{{s.destination}}</span>
+                        <span class="arrow-right"></span>
+                        <span class="span3">{{s.departure}}</span>
+                        <span class="span4">{{s.transportMode}}</span>
+                        <span class="span5">{{s.plushDate}}</span>
+                      </a>
+                    </li>
+                </ul>
+            </div> -->
+
+        </div>
+    </article>
+</div>
+
+<!-- 我们能为你做什么 -->
+<section class="index-desc adv-wrap">
+  <article class=" layout">
+    <header>
+        <h2>我们能为你做什么</h2>
+        <p class="desc-info">提供专业优质的B2B物流服务，满足您不同行业运输需求</p>
+    </header>
+    <ul class="adv-lists">
+        <li>
+            <div class="icon-bg icon-adv1"></div>
+            <p class="icon-desc">大宗商品</p>
+        </li>
+        <li>
+            <div class="icon-bg icon-adv2"></div>
+            <p class="icon-desc">供应链资源优化</p>
+        </li>
+        <li>
+            <div class="icon-bg icon-adv3"></div>
+            <p class="icon-desc">跨境物流</p>
+        </li>
+        <li>
+            <div class="icon-bg icon-adv4"></div>
+            <p class="icon-desc">供应链全程可视化</p>
+        </li>
+        <li>
+            <div class="icon-bg icon-adv5"></div>
+            <p class="icon-desc">保险通关，商检，法律专项</p>
+        </li>
+        <li>
+            <div class="icon-bg icon-adv6"></div>
+            <p class="icon-desc">万物互联</p>
+        </li>
+
+    </ul>
+  </article>
+</section>
+
+<section class="index-desc range-wrap">
+  <article class="layout">
+    <header>
+        <h2>全球全覆盖</h2>
+        <p class="desc-info">在综合服务区里我们有物流园区、报税区、供应商、物流企业...等你所需要的一切物流服务，聚运通均能以业界领先的技术的服务为你提供高效，快捷的服务体验</p>
+    </header>
+    <div class="wordmap-wrap">
+      <a href="#" class="region r1">中国大陆</a>
+      <a href="#" class="region r2">港澳台</a>
+      <a href="#" class="region r3">亚洲</a>
+      <a href="#" class="region r4">欧洲</a>
+      <a href="#" class="region r5">非洲</a>
+      <a href="#" class="region r6">南美洲</a>
+      <a href="#" class="region r7">北美洲</a>
+      <a href="#" class="region r8">澳洲</a>
+    </div>
+    <ul class="logis-type">
+        <li>
+          <a href="#">
+            <div class="img-wrap">
+              <img src="/dist/img/area-icon1.png" alt="">
+            </div>
+            <p>海运</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="img-wrap">
+              <img src="/dist/img/area-icon2.png" alt="">
+            </div>
+            <p>铁路</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="img-wrap">
+              <img src="/dist/img/area-icon3.png" alt="">
+            </div>
+            <p>空运</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="img-wrap">
+              <img src="/dist/img/area-icon4.png" alt="">
+            </div>
+            <p>联运</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="img-wrap">
+              <img src="/dist/img/area-icon5.png" alt="">
+            </div>
+            <p>仓储</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="img-wrap">
+              <img src="/dist/img/area-icon6.png" alt="">
+            </div>
+            <p>内河航运</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="img-wrap">
+              <img src="/dist/img/area-icon7.png" alt="">
+            </div>
+            <p>公路</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <div class="img-wrap">
+              <img src="/dist/img/area-icon8.png" alt="">
+            </div>
+            <p>供应链</p>
+          </a>
+        </li>
+    </ul>
+  </article>
+</section>
+
+<section class="index-desc artner-warap">
+  <article class="layout">
+      <header>
+          <h2>合作伙伴</h2>
+      </header>
+      <ul class="artner-lists clearfix">
+        <li ng-repeat="l in artner" bindonce>
+            <a bo-href="l.href">
+                <img bo-src="l.logo" bo-alt="l.name">
+            </a>
+        </li>
+      </ul>
+  </article>
+</section>
+
+<div class="shop-wrap">
+  <div class="shop-wrap-bg"></div>
+  <div class="shop-lists">
+    <a href="#" class="shop-item">
+      <p class="cn">口岸馆</p>
+      <p class="en">Port Museum</p>
+    </a>
+
+    <a href="#" class="shop-item">
+      <p class="cn">园区馆</p>
+      <p class="en">Park Pavilion</p>
+    </a>
+
+    <a href="#" class="shop-item">
+      <p class="cn">物流品牌馆</p>
+      <p class="en">Logistics brand Pavilion</p>
+    </a>
+  </div>
+</div>
+
+
+<!--
+<div class="row">
+        <div class="col-md-6">
+            <p class="input-group">
+              <input type="text"
+                class="form-control"
+                datepicker-popup="{{format}}"
+                ng-model="dt"
+                datepicker-mode="year"
+                is-open="opened"
+                min-date="minDate"
+                max-date="'2016-08-22'"
+                datepicker-options="dateOptions"
+                date-disabled="disabled(date, mode)"
+                ng-required="true"
+                close-text="Close" />
+
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+    </div> -->
+
+<!-- <h2>{{ title }}</h2>
+
+<div select-address></div>
 
 <div class="demo"></div>
 <div class="demo2"></div>
 <div class="demo3"></div>
+
+<div class="row">
+        <div class="col-md-6">
+            <p class="input-group">
+              <input type="text"
+                class="form-control"
+                datepicker-popup="{{format}}"
+                ng-model="dt"
+                datepicker-mode="year"
+                is-open="opened"
+                min-date="minDate"
+                max-date="'2016-08-22'"
+                datepicker-options="dateOptions"
+                date-disabled="disabled(date, mode)"
+                ng-required="true"
+                close-text="Close" />
+
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+    </div>
 
 <button ng-click="get()">GET</button>
 <button ng-click="post()">POST</button>
@@ -14,10 +368,10 @@
 
 
 <input type="text" ng-model="date"/>
-<button ng-click="getDate()">获取时间</button>
 
 <p>
   <input type="text" ng-model="sessionStorage">
   <button type="button" name="button" ng-click="setSessionStroage()">设置sessionStorage</button>
   <button type="button" name="button" ng-click="getsessionStroage()">获取sessionStorage</button>
-</p>
+</p> -->
+<!-- <div silder data="datas"></div> -->

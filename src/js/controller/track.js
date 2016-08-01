@@ -3,6 +3,6 @@
  */
 var app = require('app');
 
-app.registerController('TrackCtrl', ['$scope', ($scope) => {
+app.registerController('TrackCtrl', ['$scope', function($scope) {
     $scope.title = "Track Page";
 }]);

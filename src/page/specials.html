@@ -1,1 +1,229 @@
-<h2>{{ title }}</h2>
+<!-- 面包屑 -->
+<!-- <div class="layout ">
+<div class="crumbs">
+<span class="crumbs-item">聚运通栏目列表</span>
+<span class="crumbs-item-current">
+<a href="" class="current-page">运费特惠</a>
+<nav class="subNav" ng-show="checked">
+<ul>
+    <li class="icon-index"><a href="#">聚运通首页</a></li>
+    <li class="icon-order"><a href="#">我要下单</a></li>
+    <li class="icon-freight"><a ui-sref="specials">运费特惠</a></li>
+    <li class="icon-advice"><a href="#">仓储特惠</a></li>
+    <li class="icon-logis"><a href="#">物流跟踪</a></li>
+    <li class="icon-service"><a href="#">服务中心</a></li>
+</ul>
+</nav>
+</span>
+</div>
+</div> -->
+<div crumbs></div>
+
+<!-- 搜索条件选择 -->
+<div class="layout select-filter-wrap">
+  <div 
+    select-filter 
+    title="特惠类型" 
+    model="search.prefType" 
+    options="prefTypes" 
+    on-select="onSelect(list)">
+  </div>
+  
+  <div 
+    select-filter 
+    title="装载类型" 
+    model="search.loadType" 
+    options="loadTypes" 
+    on-select="onSelect(list)">
+  </div>
+  
+  <div 
+    select-filter 
+    title="区域" 
+    model="search.area" 
+    options="areas" 
+    on-select="onSelect(list)">
+  </div>
+</div>
+
+<!-- 输入搜索和表格列表 -->
+<div class="layout select-search-main">
+  <div class="select-search-warp clearFix">
+    <div input-muilts-search class="pull-left">
+      <h2>线路信息 <small>共<span class="nums">{{ totalItems }}</span>条</small></h2>
+        <div class="inputs">
+            <input type="text"> -
+            <input type="text">
+        </div>
+
+        <div class="inputs date-pick">
+            <input 
+              type="text" 
+              datepicker-popup="yyyy/MM/dd" 
+              ng-model="search.startDate" 
+              datepicker-mode="year" 
+              ng-focus="open1()" 
+              is-open="opened1" 
+              datepicker-options="startDateOptions" 
+              close-text="Close" /> -
+            <input 
+              type="text" 
+              datepicker-popup="yyyy/MM/dd" 
+              ng-model="search.endDate" 
+              datepicker-mode="year" 
+              ng-focus="open2()" 
+              min-date="search.startDate" 
+              is-open="opened2" 
+              datepicker-options="endDateOptions" 
+              close-text="关闭" />
+        </div>
+
+        <!-- 字段排序 -->
+        <div class="sort-items">
+            <span 
+              ng-click="sort('level')" 
+              class="sort-item" 
+              ng-class="{'active': sortFiled === 'level'}">级别
+            </span>
+            
+            <span 
+              ng-click="sort('price')" 
+              class="sort-item"
+              ng-class="{'active': sortFiled === 'price'}">价格
+            </span>
+        </div>
+        <button class="searchBtn" ng-click="getSpecials()">查询</button>
+    </div>
+  </div>
+  <div class="select-search-data">
+    <div class="lists-heade-page">
+        <span>{{ currentPage }}/{{totalPage}}</span>
+        <button 
+          ng-click="selectPage(currentPage - 1)" 
+          ng-disabled="currentPage === 1">&lt;
+        </button>
+        
+        <button 
+          ng-click="selectPage(currentPage + 1)"
+          ng-disabled="currentPage === totalPage">&gt;
+
+        </button>
+    </div>
+    <!-- 模拟表格 -->
+    <div class="data-table-wrap" style="display:table">
+      <header class="data-table-header">
+        <ul>
+          <li class="span1">供应商</li>
+          <li class="span2">区域</li>
+          <li class="span12">线路</li>
+          <li class="span5">级别</li>
+          <li ng-class="{'span6': search.prefType === 0, 'span16': search.prefType === 1}">特惠类型</li>
+          <li class="span13" ng-if="search.prefType === 1">特惠时间</li>
+          <li class="span15" ng-if="search.prefType === 1">转载类型</li>
+          <li class="span7" ng-if="search.prefType === 0">车型+车长</li>
+          <li class="span8" ng-if="search.prefType === 0">价格</li>
+          <li class="span9" ng-if="search.prefType === 0">有效时间</li>
+          <li class="span10" ng-if="search.prefType === 0">数量</li>
+          <li ng-class="{'span11': search.prefType === 0, 'span17': search.prefType === 1}">操作</li>
+        </ul>
+      </header>
+
+      <div class="data-table-cont">
+        <ul>
+          <li 
+            ng-repeat="item in specials" 
+            bindonce 
+            ng-class="{'last':  $last}">
+            <a href="" tr-show-detail item="item">
+              <!-- 供应商 -->
+              <span class="span1 ">
+                <i class="toggle plus"></i>
+                <img bo-src="item.supplier">
+              </span>
+
+              <!-- 区域 -->
+              <span class="span2" bo-text="item.area"></span>
+
+
+              <!-- 线路折扣线路 -->
+              <span class="span12">
+                <p><i>始发地：</i><i bo-text="item.departure"></i></p>
+                <p><i>目的地：</i><i bo-text="item.destination"></i></p>
+                <p bo-text="item.discount"></p>
+              </span>
+              
+              <!-- 级别 -->
+              <span class="span5">
+                <p bo-text="item.level"></p>
+                <p bo-text="item.level"></p>
+              </span>
+
+              <!-- 特惠类型 -->
+              <span 
+                ng-class="{'span6': search.prefType === 0, 'span16': search.prefType === 1}">
+                <p bo-text="item.preferenceType"></p>
+                <p ng-if="search.prefType === 1" bo-text="item.preferenceTypeRemarker"></p>
+              </span>
+
+              <!-- 回程车车型车长 -->
+              <span class="span7" ng-if="search.prefType === 0" bo-text="item.car"></span>
+      
+              <!-- 回程车价格 -->
+              <span 
+                class="span8 item-price" 
+                ng-if="search.prefType === 0" 
+                bo-text="item.price">
+              </span>
+
+              <!-- 回程车有效时间 -->
+              <span class="span9" ng-if="search.prefType === 0">
+                <i bo-text="item.startDate"></i> - <i bo-text="item.endDate"></i>
+              </span>
+              
+              <!-- 回程车数量 -->
+              <span class="span10" ng-if="search.prefType === 0" bo-text="item.carNum"></span>
+              
+              <!-- 线路折扣特惠时间 -->
+              <span class="span13"  ng-if="search.prefType === 1">
+                <time bo-text="item.startDate"></time> - 
+                <time bo-text="item.endDate"></time>
+              </span>
+              
+              
+              <!-- 线路折扣转载类型 -->
+              <span class="span15" ng-if="search.prefType === 1" bo-text="item.loadType"></span>
+              
+              <!-- 操作 -->
+              <span class="last" ng-class="{'span11': search.prefType === 0, 'span17': search.prefType === 1}">
+                <button ng-click="sendGoods()" class="sendBtn">发货 &gt;</button>
+                <i href="#" class="icon-qq"></i>
+                <i href="#" class="icon-qq"></i>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+        
+
+        <!-- 分页 -->
+      <div class="page-list-wrap clearfix">
+
+        <div 
+          pagination 
+           total-items="totalItems" 
+           ng-model="currentPage" 
+           previous-text="&lt;" 
+           next-text="&gt;" 
+           ng-change="pageChanged()"
+           max-size="maxSize" 
+           class="page-list pagination-sm" 
+           direction-links="true"
+           num-pages="totalPage">
+        </div>
+
+        <div class="select-page-wrap">
+          第<input type="text" ng-model="page" ng-blur="selectPage(page)">页/共{{ totalPage }}页
+        </div>
+    </div>
+  </div>
+</div>

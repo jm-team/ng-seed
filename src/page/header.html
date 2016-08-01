@@ -1,18 +1,49 @@
-<header>头部</header>
+<header class="siteNav">
+  <div class="layout clearFix">
+    <div class="pullLeft siteNav-l">
+      <span><span class="home-icon"></span>xxxxxxx您好，欢迎来到聚贸物流！</span>
+      <a href="#">请登录</a>
+      <a href="http://lg-center.jm.com/user/toRegister">注册</a>
+    </div>
+    <div class="pullRight siteNav-r">
+      <a class="guide" href="#">新手指南</a>|
+      <a class="person" href="#">个人管理</a>|
+      <a class="message" href="#">消息中心</a>|
+      <a class="service" href="#">客服中心</a>|
+      <span class="phone">400-990-3355</span>
+    </div>
+  </div>
+</header>
 
-<section>
+<section class="topWrap" head-fixed start="startFixed">
+  <div class="layout clearFix">
+    <a ui-sref="home">
+      <h1 id="mainLogo">
+        <img src="/dist/img/LOGO.png" alt="">
+      </h1>
+    </a>
 
-    <h1>LOGO</h1>
-
-    <nav>
-        <ul>
-            <li><a ui-sref-active="active" ui-sref="home">首页</a></li>
-            <li><a ui-sref-active="active" ui-sref="specials">运费特惠</a></li>
-            <li><a ui-sref-active="active" ui-sref="orders">我要下单</a></li>
-            <li><a ui-sref-active="active" ui-sref="enquiry">我要询价</a></li>
-            <li><a ui-sref-active="active" ui-sref="bid">物流竞价</a></li>
-            <li><a ui-sref-active="active" ui-sref="track">物流跟踪</a></li>
-            <li><a ui-sref-active="active" ui-sref="service">服务介绍</a></li>
-        </ul>
+    <div class="top-wrap-r">
+    <nav class="mainNav">
+      <ul>
+        <li><a ui-sref-active="active" ui-sref="home">聚贸首页</a></li>
+        <li><a ui-sref-active="active" ui-sref="specials">国家馆</a></li>
+        <li><a ui-sref-active="active" ui-sref="orders">省馆</a></li>
+        <li><a ui-sref-active="active" ui-sref="enquiry">品牌馆</a></li>
+        <li><a ui-sref-active="active" ui-sref="bid">聚达通</a></li>
+        <li><a ui-sref-active="active" ui-sref="track">聚运通</a></li>
+        <li><a ui-sref-active="active" ui-sref="service">聚融通</a></li>
+        <li><a ui-sref-active="active" ui-sref="service">行业资讯</a></li>
+      </ul>
     </nav>
+    <section class="index-search">
+        <form class="clearFix">
+            <div class="search-input">
+              <input type="text" placeholder="只需轻轻输入您的需求 成交物流买卖SO简单！">
+            </div>
+            <button class="search-btn">我要查询</button>
+        </form>
+    </section>
+    </div>
+  </div>
 </section>

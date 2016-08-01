@@ -20,11 +20,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname)));
 
-app.get('*', function(req, res){
+app.get('/', function(req, res){
   var url = req.url
   var oPath = path.parse(req.url);
   console.log(req.url)
-  if(['.js', '.png','.css', 'api'].indexOf(oPath.ext) !== -1){
+  if(['.js', '.png','.css', 'api', '.json'].indexOf(oPath.ext) !== -1){
+    // res.send(oPath);
     next();
   }else{
     res.render('home');

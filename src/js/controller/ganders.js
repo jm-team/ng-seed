@@ -4,6 +4,6 @@
 
 var app = require('app');
 
-app.registerController('GandersCtrl', ['$scope', ($scope) => {
+app.registerController('GandersCtrl', ['$scope', function($scope)  {
     $scope.title = "Ganders Page";
 }]);

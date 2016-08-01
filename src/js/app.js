@@ -3,26 +3,12 @@
  */
 
 
-let app = angular.module('jytApp', ['ui.router', 'ngResource']);
-//var css = require("css")
-//cosnole.log(css)
-// head上的title
-app.constant('TITLE', {
-  "home": "首页",
-  "specials": "运费特惠",
-  "orders": "我要下单",
-  "enquiry": "我要询价",
-  "bid": "物流竞价",
-  "track": "物流跟踪",
-  "service": "服务介绍",
-  "enterprises": "企业信息",
-  "ganders": "园区信息"
-});
+var app = angular.module('jytApp', ['ui.router', 'ngResource', 'ui.bootstrap', 'pasvaz.bindonce']);
 
 
 //请求服务器地址
 // app.constant('SERVER_ADDRESS', 'http://192.168.23.234\:8080/webapi');
-app.constant('SERVER_ADDRESS', 'http://192.168.23.218\:8080/webapi');
+app.constant('SERVER_ADDRESS', 'http://www.jyt.com/src');
 // app.constant('SERVER_ADDRESS', 'http://192.168.23.218\:8080/webapi');
 // app.value('TOKEN', '');
 
@@ -30,10 +16,10 @@ app.constant('SERVER_ADDRESS', 'http://192.168.23.218\:8080/webapi');
 
 //  拦截器
 app.factory('httpInterceptor', ['$q', '$injector', 'Cookie', 'requestService', 'TokenHandler',
-  ($q, $injector, Cookie, requestService, TokenHandler) => {
+  function ($q, $injector, Cookie, requestService, TokenHandler) {
     var httpInterceptor;
     httpInterceptor = {
-      responseError: (response) => {
+      responseError: function(response) {
         switch (response.status) {
           case 401:
             location.href = "http://192.168.23.218:8080/webapi/user/login?successful=http://192.168.23.208:3000";
@@ -42,12 +28,12 @@ app.factory('httpInterceptor', ['$q', '$injector', 'Cookie', 'requestService', '
         return $q.reject(response);
       },
 
-      response: (response) => {
+      response: function(response){
         return response;
       },
 
-      request: (config) => {
-        console.log(config);
+      request: function(config){
+        // console.log(config);
         var shiroJID = Cookie.getCookie('shiroJID');
         config.headers['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -63,7 +49,7 @@ app.factory('httpInterceptor', ['$q', '$injector', 'Cookie', 'requestService', '
         // 用于在路由跳转后 取消上一个路由的
         // 中还在请求的request
         if (angular.isObject(config.params) && config.params.canCancel) {
-          let defer = $q.defer();
+          var defer = $q.defer();
           config.timeout = defer.promise;
           requestService.requests.push(defer);
         }
@@ -71,11 +57,12 @@ app.factory('httpInterceptor', ['$q', '$injector', 'Cookie', 'requestService', '
         return config;
       },
 
-      requestError: (config) => {return $q.reject(config);}
+      requestError: function(config) {return $q.reject(config);}
     };
     return httpInterceptor;
   }
 ]);
+
 
 app.run([
   '$rootScope',
@@ -83,13 +70,12 @@ app.run([
   '$stateParams',
   '$location',
   'Cookie',
-  'TITLE',
   'requestService',
   'Public',
   'TokenHandler',
   '$timeout',
   'SERVER_ADDRESS',
-  ($rootScope, $state, $stateParams, $location, Cookie, TITLE, requestService, Public, TokenHandler, $timeout, SERVER_ADDRESS) => {
+  function($rootScope, $state, $stateParams, $location, Cookie, requestService, Public, TokenHandler, $timeout, SERVER_ADDRESS) {
     window.C = Cookie;
     $rootScope.serverAddress = SERVER_ADDRESS;
     var jCookie = $location.search();
@@ -101,14 +87,14 @@ app.run([
     $rootScope.$stateParams = $stateParams;
 
     if (jCookie) {
-      $timeout(() => {
+      $timeout(function(){
         $location.search('');
       }, 100);
     }
 
     var shiroJID = Cookie.getCookie('shiroJID');
     if (shiroJID) {
-      Public.Token().get({}, (data) => {
+      Public.Token().get({}, function(data) {
         TokenHandler.set(data.data);
         Public.token = data.data;
       });
@@ -117,13 +103,13 @@ app.run([
 
     // 路由切换成功
     // , toParams, formState, formParams, options
-    $rootScope.$on('$stateChangeSuccess', (event, toState) => {
-      $rootScope.title = TITLE[toState.name]
+    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+      $rootScope.startFixed = toState.name === 'home' ? '.bannerWrap' : '.crumbs';
     });
 
     // 路由切换开始
     // event, toState, toParams, formState, formParams, options
-    $rootScope.$on('$stateChangeStart', () => {
+    $rootScope.$on('$stateChangeStart', function() {
       // 取消上一个路由中还在请求的XHR
       requestService.clearAll();
     });
@@ -132,7 +118,7 @@ app.run([
 
 // 将 controllerProvider 挂载到app 上
 app.config(['$controllerProvider', '$compileProvider', '$provide',
-  ($controllerProvider, $compileProvider, $provide) => {
+  function($controllerProvider, $compileProvider, $provide) {
     app.registerController = $controllerProvider.register;
     app.directiveProvider = $compileProvider.directive;
     app.serviceProvider = $provide.service;
@@ -140,8 +126,9 @@ app.config(['$controllerProvider', '$compileProvider', '$provide',
 ]);
 
 // 拦截器
-app.config(['$httpProvider', ($httpProvider) => $httpProvider.interceptors.push('httpInterceptor')]);
-
+app.config(['$httpProvider', function($httpProvider) {
+   $httpProvider.interceptors.push('httpInterceptor')
+ }]);
 
 // 配置路由
 app.config([
@@ -149,10 +136,10 @@ app.config([
   '$locationProvider',
   '$urlRouterProvider',
   '$stateProvider',
-  ($httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) => {
-    $locationProvider.html5Mode(true);
+  function($httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
+    // $locationProvider.html5Mode(true);
     $urlRouterProvider.when('', '/');
-    // 登录页面
+    // 首页
     $stateProvider
       .state('home', {
         title: "首页",
@@ -160,20 +147,60 @@ app.config([
         templateUrl: '/dist/page/home.html',
         controller: 'HomeCtrl',
         resolve: {
-          loadCtrl: ['$q', ($q) => {
-            let defer = $q.defer();
-
-            require.ensure([], (require) => {
+          loadCtrl: ['$q', function($q) {
+            var defer = $q.defer();
+            require.ensure([], function(require) {
               defer.resolve(require('../js/controller/home.js'));
             });
+            return defer.promise;
+          }]
+          ,data:['API', '$q', function(API, $q){
+            function getData(url){
+              var defer = $q.defer();
+              API[url]().get({ page:1, pageSize: 18},function(data){
+                var data = data.result || [];
+                var arr = [];
+                for(var i = 0; i<data.length; i+=6){
+                  arr.push(data.slice(i, i+6));
+                }
+                defer.resolve(arr)
+              })
+              return defer.promise;
+            }
+            return $q.all([
+              getData('Capacity'), 
+              getData('Stroage'), 
+              getData('Auction')])
+            .then(function(data){
+              return {
+                capacity: data[0],
+                stroage: data[1],
+                auction: data[2]
+              }
+            });
+          }]
+        }
+      })
 
+      .state('register', {
+        url:'/register',
+        templateUrl: '/dist/page/register.html',
+        controller:'registerCtrl',
+        resolve:{
+          loadCtrl: ['$q', function($q)  {
+            var defer = $q.defer();
+            require.ensure([], function(require) {
+              defer.resolve(require('../js/controller/register.js'));
+            })
             return defer.promise;
           }]
         }
       })
 
-    /*
-     *  运费特惠
+    
+    /**
+     * [ 运费特惠路由 ]
+     * @return {[type]}                 [description]
      */
     .state('specials', {
       title: "运费特惠",
@@ -181,12 +208,36 @@ app.config([
       templateUrl: '/dist/page/specials.html',
       controller: 'SpecialsCtrl',
       resolve: {
-        loadCtrl: ['$q', ($q) => {
-          let defer = $q.defer();
-          require.ensure([], (require) => {
+
+        // 动态加载控制器 
+        loadCtrl: ['$q', function($q)  {
+          var defer = $q.defer();
+          require.ensure([], function(require) {
             defer.resolve(require('../js/controller/specials.js'));
           });
+          return defer.promise;
+        }]
+      }
+    })
 
+    /**
+     * [ 运费特惠详情 ]
+     * @param  {[type]}     [description]
+     * @return {[type]}     [description]
+     */
+    .state('specialsDetail', {
+      title: "运费特惠",
+      url: '/specials/:id',
+      templateUrl: '/dist/page/specials_detail.html',
+      controller: 'SpecialsCtrl',
+      resolve: {
+
+        // 动态加载控制器
+        loadCtrl: ['$q', function($q)  {
+          var defer = $q.defer();
+          require.ensure([], function(require) {
+            defer.resolve(require('../js/controller/specials.detail.js'));
+          });
           return defer.promise;
         }]
       }
@@ -201,8 +252,8 @@ app.config([
       templateUrl: '/dist/page/orders.html',
       controller: 'OrderCtrl',
       resolve: {
-        loadCtrl: ['$q', ($q) => {
-          let defer = $q.defer();
+        loadCtrl: ['$q', function($q)  {
+          var defer = $q.defer();
           require.ensure([], function(require) {
             defer.resolve(require('../js/controller/order.js'));
           });
@@ -220,9 +271,9 @@ app.config([
       templateUrl: '/dist/page/enquiry.html',
       controller: 'EnquiryCtrl',
       resolve: {
-        loadCtrl: ['$q', ($q) => {
-          let defer = $q.defer();
-          require.ensure([], (require) => {
+        loadCtrl: ['$q', function($q)  {
+          var defer = $q.defer();
+          require.ensure([], function(require) {
             defer.resolve(require('../js/controller/enquiry.js'));
           });
           return defer.promise;
@@ -238,9 +289,9 @@ app.config([
       templateUrl: '/dist/page/bid.html',
       controller: 'BidCtrl',
       resolve: {
-        loadCtrl: ['$q', ($q) => {
+        loadCtrl: ['$q', function($q) {
           var defer = $q.defer();
-          require.ensure([], (require) => {
+          require.ensure([], function(require)  {
             defer.resolve(require('../js/controller/bid.js'));
           });
           return defer.promise;
@@ -256,9 +307,9 @@ app.config([
       templateUrl: '/dist/page/track.html',
       controller: 'TrackCtrl',
       resolve: {
-        loadCtrl: ['$q', ($q) => {
+        loadCtrl: ['$q', function($q)  {
           var defer = $q.defer();
-          require.ensure([], (require) => {
+          require.ensure([], function(require)  {
             defer.resolve(require('../js/controller/track.js'));
           });
           return defer.promise;
@@ -274,9 +325,9 @@ app.config([
       templateUrl: '/dist/page/service.html',
       controller: 'ServiceCtrl',
       resolve: {
-        loadCtrl: ['$q', ($q) => {
+        loadCtrl: ['$q', function($q)  {
           var defer = $q.defer();
-          require.ensure([], (require) => {
+          require.ensure([], function(require)  {
             defer.resolve(require('../js/controller/service.js'));
           });
           return defer.promise;
@@ -292,9 +343,9 @@ app.config([
       templateUrl: '/dist/page/enterpris.html',
       controller: 'EnterprisCtrl',
       resolve: {
-        loadCtrl: ['$q', ($q) => {
+        loadCtrl: ['$q', function($q) {
           var defer = $q.defer();
-          require.ensure([], (require) => {
+          require.ensure([], function(require)  {
             defer.resolve(require('../js/controller/enterpris.js'));
           });
           return defer.promise;
@@ -310,9 +361,9 @@ app.config([
       templateUrl: '/dist/page/ganders.html',
       controller: 'GandersCtrl',
       resolve: {
-        loadCtrl: ['$q', ($q) => {
+        loadCtrl: ['$q', function($q) {
           var defer = $q.defer();
-          require.ensure([], (require) => {
+          require.ensure([], function(require) {
             defer.resolve(require('../js/controller/gander.js'));
           });
           return defer.promise;

@@ -1,47 +1,56 @@
-<section class="jyt-desc">
-    <div>
+<footer id="footer">
+<section class="jyt-desc layout">
+    <div class="desc-item">
         <dl>
-            <dt>线路/运单查询</dt>
-            <dd><a href="#">如何在线查询线路？</a></dd>
-            <dd><a href="#">如何在物流平台下单？</a></dd>
-            <dd><a href="#">首次下单 如何注册？</a></dd>
-            <dd><a href="#">如何委托交易</a></dd>
-            <dd><a href="#">如何自己找货</a></dd>
+            <dt>Operation <br />guide</dt>
+            <dt class="line">操作指南</dt>
+            <dd ng-repeat="l in guide" bindonce><a bo-href="l.href" bo-text="l.title"></a></dd>
         </dl>
     </div>
 
-    <div>
+    <div class="desc-item">
         <dl>
-            <dt>物流常识</dt>
-            <dd><a href="#">什么是重货？什么是轻货？</a></dd>
-            <dd><a href="#">什么是最低一票？</a></dd>
-            <dd><a href="#">什么是是签单返还？</a></dd>
-            <dd><a href="#">供应商合作洽谈</a></dd>
-            <dd><a href="#">合作热线</a></dd>
+            <dt>Logistics <br/> Institute</dt>
+            <dt class="line">物流学院</dt>
+            <dd ng-repeat="l in logisInst" bindonce><a bo-href="l.href" bo-text="l.title"></a></dd>
         </dl>
     </div>
 
-    <div>
-        <dl>
-            <dt>在线帮助</dt>
-            <dd><a href="#">注册流程</a></dd>
-            <dd><a href="#">无法登录/忘记密码</a></dd>
-            <dd><a href="#">修改账户信息</a></dd>
-        </dl>
+    <div class="desc-item desc-vip">
+      <dl>
+        <dt>Free <br/> contact</dt>
+        <dt class="line">免费会员咨询热线：</dt>
+        <dd>400-6360-888(免长途费)</dd>
+        <dd>010-80706099</dd>
+        <dd>传真：010-80706099-9</dd>
+      </dl>
     </div>
 
-    <div>
-        <h3>免费会员咨询热线：</h3>
-        <p>400-6360-888(免长途费)</p>
-        <p>010-80706099</p>
-        <p>传真：010-80706099-9</p>
-        <p>QQ</p>
-    </div>
+    <section class="qrCodes">
+        <h2>轻松实现<br />一站式服务</h2>
+        <div class="code-item">
+          <img src="/dist/img/appCode.png" alt="">
+          <p>聚运通app二维码</p>
+        </div>
 
-    <div>
-        <p><img src="" alt=""/></p>
-        <p>扫描聚贸物流平台二维码</p>
-    </div>
+        <div class="code-item weixinCode">
+          <img src="/dist/img/weixinCode.png" alt="">
+          <p>聚运通微信二维码</p>
+        </div>
+    </section>
 </section>
 
-<div class="footer-b"></div>
+<div class="footer-b">
+    <p>
+      <a href="#">聚贸官网</a>|
+      <a href="#">聚贸电商总平台</a>|
+      <a href="#">聚贸化工(卖塑郎)</a>|
+      <a href="#">聚贸有色(卖铜郎)</a>|
+      <a href="#">聚贸传媒</a>|
+    </p>
+    <p>
+      <em class="copyright">COPYRIGHT &copy; 聚贸 www.jumore.com </em>
+      <span>浙公网安备 33010602003495号</span>
+    </p>
+</div>
+</footer>

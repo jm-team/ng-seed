@@ -1,0 +1,115 @@
+{
+    "totalPage":15,
+    "totalResult":14,
+    "result":[{
+        "id": 1,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      }, {
+        "id": 2,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      }, {
+        "id": 3,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      }, {
+        "id": 4,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      }, {
+        "id": 5,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      }, {
+        "id": 6,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      }, {
+        "id": 7,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      },
+      {
+        "id": 8,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      },
+      {
+        "id": 9,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      },{
+        "id": 10,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      },{
+        "id": 11,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      },{
+        "id": 12,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      },{
+        "id": 13,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      },{
+        "id": 14,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      },{
+        "id": 15,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      },{
+        "id": 16,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      },{
+        "id":17,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+      },{
+        "id": 18,
+        "departure": "湖南长沙",
+        "destination": "浙江杭州市",
+        "transportMode": "公路",
+        "plushDate": "2016-07-06"
+    }]
+}

@@ -14,7 +14,14 @@ console.log(path.join(__dirname, './src/js/app.js'));
 module.exports = {
   entry: {
     entry: path.join(__dirname, './src/js/entry.js'),
-    vendors: [path.join(__dirname, './src/dep/angular.js'), path.join(__dirname, './src/dep/angular-resource.js'), path.join(__dirname, './src/dep/angular-ui-router.js')]
+    vendors: [
+              // path.join(__dirname, './src/dep/sizzle.min'),
+              // path.join(__dirname, './src/dep/velocity.js'),
+              path.join(__dirname, './src/dep/angular.js'),
+              path.join(__dirname, './src/dep/angular-resource.js'),
+              path.join(__dirname, './src/dep/bindonce.js'),
+              path.join(__dirname, './src/dep/ui-bootstrap-tpls.js'),
+              path.join(__dirname, './src/dep/angular-ui-router.js')]
   },
 
   resolve: {
@@ -22,6 +29,7 @@ module.exports = {
       page: path.join(__dirname, './src/page/page.js'),
       app: path.join(__dirname, './src/js/app.js'),
       service: path.join(__dirname, './src/js/service/service.js'),
+      directive: path.join(__dirname, './src/js/directive/directive.js'),
       specials: path.join(__dirname, './src/js/controller/specials.js')
     }
   },
@@ -36,8 +44,8 @@ module.exports = {
     // html 中引用资源的位置
     publicPath: 'http://www.jyt.com/dist/',
 
-    // 生成的js文件 名称 + hash
-    chunkFilename: 'js/[name][chunkhash:8].js'
+    // 生成的js文件 名称 + hash   [chunkhash:8]
+    chunkFilename: 'js/[name].[chunkhash:8].js'
   },
   module: {
     loaders: [
@@ -48,27 +56,27 @@ module.exports = {
       }
       // 处理html图片
       ,{
-        test: /\.png$/,
+        test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
         loader: "file-loader?name=img/[name].[ext]"
       }
       // 将es6代码编译成es5
-      ,{
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude:/node_module|dep/,
-        query: {
-          presets: ['es2015']
-        }
-      }
+      // ,{
+      //   test: /\.js$/,
+      //   loader: 'babel-loader',
+      //   exclude:/node_module|dep/,
+      //   query: {
+      //     presets: ['es2015']
+      //   }
+      // }
     ]
   },
   plugins: [
 
-    //  合并生成公用文件
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.[hash:8].js'),
+    //  合并生成公用文件 .[hash:8]
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js'),
 
-    // 单独使用link标签加载css并设置路径，相对于output配置中的publickPath
-    new ExtractTextPlugin('css/[name].[hash:8].css'),
+    // 单独使用link标签加载css并设置路径，相对于output配置中的publickPath  .[hash:8]
+    new ExtractTextPlugin('css/[name].css'),
 
     // html 插件
     // 自动插入js引用
@@ -89,7 +97,7 @@ module.exports = {
 
     // 将es6代码编译成es3
     // 兼容IE8
-    //,new es3ifyPlugin()
+    //  ,new es3ifyPlugin()
 
     // 代码压缩
     // ,new webpack.optimize.UglifyJsPlugin({

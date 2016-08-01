@@ -4,5 +4,5 @@
 require('app');
 require('page');
 require('service');
-require('./directive/directive.js');
+require('directive');
 require('../css/style.css');

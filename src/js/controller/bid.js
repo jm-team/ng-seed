@@ -1,8 +1,7 @@
 /**
  * Created by Administrator on 2016/7/4 0004.
  */
-import app from "app";
-
-app.registerController('BidCtrl', ['$scope', ($scope) => {
+var app = require('app');
+app.registerController('BidCtrl', ['$scope', function($scope) {
   $scope.title = "Bid Page";
 }]);

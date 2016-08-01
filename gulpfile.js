@@ -62,15 +62,18 @@
   //     style: '_sprite.scss',
   //     cssPath: './img'
   //   }))
-  //   .pipe(gulpif('*.png', gulp.dest('./dist/img/'), gulp.dest('./dist/scss/')))
+  //   .pipe(gulpif('*.png', gulp.dest('./dist/img/'), gulp.dest('./dist /scss/')))
   // });
 
   // copy css
   gulp.task('cssSprite', function() {
-    return gulp.src(['src/css/**/*.css'])
+    return gulp.src(['src/css/**/css.css'])
       .pipe(spriter({
         spriteSheet:'./dist/img/spritesheet.png',
-        pathToSpriteSheetFromCSS:'/dist/img/spritesheet.png'
+        pathToSpriteSheetFromCSS:'/dist/img/spritesheet.png',
+        spritesmithOptions:{
+          padding:12
+        }
       }))
       .pipe(rename('style.css'))
       .pipe(gulp.dest('src/css/'));
@@ -78,8 +81,8 @@
 
   // copy images
   gulp.task('copy:images', ['cssSprite'],function() {
-    return gulp.src(['src/img/**/*.*'])
-      .pipe(gulp.dest('dist/img/'))
+    return gulp.src(['./src/img/**/*.*'])
+      .pipe(gulp.dest('./dist/img/'))
   });
 
   // copy index.html
@@ -116,5 +119,7 @@
   gulp.task('watch', function() {
     return gulp.watch(['./src/js/**/*.js', './src/**/*.html', './src/css/*.css'], ['webpack']);
   });
+
+  gulp.task('dev', ['webpack', 'watch']);
 
 })();

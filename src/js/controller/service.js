@@ -3,6 +3,6 @@
  */
 var app = require('app');
 
-app.registerController('ServiceCtrl', ['$scope', ($scope) => {
+app.registerController('ServiceCtrl', ['$scope', function($scope)  {
     $scope.title = "Service Page";
 }]);

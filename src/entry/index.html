@@ -12,25 +12,38 @@
 	<meta name="fragment" content="!">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="format-detection" content="address=no">
-	<!-- <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js">	</script> -->
+	<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css">
+	<!-- 最新編譯和最佳化的 CSS -->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> -->
 	<!--<link rel="shortcut icon" href="/favicon.icon" type="image/x-icon"/>-->
 	<!--<link rel="icon" href="/favicon.icon" type="image/x-icon"/>-->
 
 	<!--[if lte IE 9]>
 	<script src="http://www.maisulang.com/dist/dep/ie8supports.js"></script><![endif]-->
+
+
 	<base href="/"/>
 </head>
-<body ng-class="pageName">
+<body ng-class="{'index-page': $state.url === '/', 'other-page':  $state.url !== '/'}">
 
-	<div jyt-tobar ng-include="'/dist/page/header.html'"></div>
+	<div jyt-tobar></div>
 
 	<!-- <a href="http://192.168.23.218:8080/webapi/user/login?successful=http://192.168.23.208:3000">登陆</a> -->
 
-	<a ng-href="{{serverAddress}}/user/login?successful=http://192.168.23.208:3000">登陆</a>
-	<div ui-view=""></div>
+	<!-- <a ng-href="{{serverAddress}}/user/login?successful=http://192.168.23.208:3000">登陆</a> -->
+	<div ui-view="" class="main-cont" ></div>
 
-	<div ng-include="'/dist/page/footer.html'"></div>
+	<!-- <div ng-include="'/dist/page/footer.html'"></div> -->
 
+	<div jyt-footer></div>
+	<div class="side-tools">
+		<div class="feedback"></div>
+		<div class="service-phone" tooltip="400-990-3355"  tooltip-trigger="mouseenter" tooltip-popup-delay="300" tooltip-placement="left"></div>
+		<div class="backtop" to-top></div>
+	</div>
+
+
+	<!-- <script src="http://apps.bdimg.com/libs/jquery/1.7.0/jquery.min.js"></script> -->
 <!--[if lt IE 8]>
 <p class="browsehappy">
 	你正在使用一个<strong>过时</strong>的浏览器。请<a class="link" target="_blank" href="http://browsehappy.com">升级你的浏览器</a>以查看此页面。
