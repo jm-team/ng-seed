@@ -18,3 +18,11 @@
   "build": "NODE_ENV=production  webpack"
 }
 ```
+
+### 开发环境 
+`npm run dev`
+
+### build
+`npm run build`
+
+ 
