@@ -1,0 +1,23 @@
+*{
+	box-sizing: content-box;
+}
+
+.a{
+	transform: translateX(25px);
+}
+
+@keyframes myfirst{
+	from {background: red;}
+	to {background: yellow;}
+}
+.div1
+{
+	transition: width 2s;
+}
+
+.div2
+{
+	transition: width 2s;
+  width: 100px;
+  height: 100px;
+}
