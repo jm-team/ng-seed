@@ -6,6 +6,9 @@ var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var config = require('./config/index.js')
+var Dashboard = require('webpack-dashboard')
+var DashboardPlugin = require('webpack-dashboard/plugin')
+var dashboard = new Dashboard()
 
 // 获取执行环境
 var env = (process.env.NODE_ENV || '').trim()
@@ -88,6 +91,7 @@ module.exports = merge({
 
   // 插件
   plugins:[
+    new DashboardPlugin(dashboard.setData),
     // 合并生成公用文件 .[hash:8]
     new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js')
 

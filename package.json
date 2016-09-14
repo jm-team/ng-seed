@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "set NODE_ENV=dev && webpack-dev-server --progress --inline --hot",
+    "dev": "set NODE_ENV=dev && webpack-dev-server --quiet",
     "build": "set NODE_ENV=production  && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,6 +27,7 @@
     "webpack-merge": "^0.14.1",
     "source-map": "^0.5.6",
     "loader-utils": "^0.2.15",
-    "baggage-loader": "^0.2.4"
+    "baggage-loader": "^0.2.4",
+    "webpack-dashboard": "^0.1.8"
   }
 }
