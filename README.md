@@ -4,13 +4,17 @@
 
 ### windows:
 ```
-"dev": "set NODE_ENV=dev && webpack-dev-server --progress --hot",
-"build": "set NODE_ENV=production && webpack",
+{ 
+  "dev": "set NODE_ENV=dev && webpack-dev-server --progress --hot",
+  "build": "set NODE_ENV=production && webpack"
+}
 ```
 
 ### linux or osx:
 
 ```
-"dev": "NODE_ENV=dev webpack-dev-server --progress --hot",
-"build": "NODE_ENV=production  webpack",
+{
+  "dev": "NODE_ENV=dev webpack-dev-server --progress --hot",
+  "build": "NODE_ENV=production  webpack"
+}
 ```
