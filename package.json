@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "set NODE_ENV=dev && webpack-dev-server --quiet",
+    "dev": "set NODE_ENV=dev && webpack-dev-server --hot --inline --quiet",
     "build": "set NODE_ENV=production  && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

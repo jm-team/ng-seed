@@ -6,9 +6,9 @@ var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var config = require('./config/index.js')
-var Dashboard = require('webpack-dashboard')
-var DashboardPlugin = require('webpack-dashboard/plugin')
-var dashboard = new Dashboard()
+// var Dashboard = require('webpack-dashboard')
+// var DashboardPlugin = require('webpack-dashboard/plugin')
+// var dashboard = new Dashboard()
 
 // 获取执行环境
 var env = (process.env.NODE_ENV || '').trim()
@@ -30,13 +30,14 @@ module.exports = merge({
     // 公共文件
     vendors: [
       './src/dep/angular.js',
-      './src/dep/angular-ui-router.js'
+      './src/dep/angular-ui-router.js',
+      './src/dep/angular-resource.js'
     ]
   },
 
   // 构建之后的文件目录配置
   output:{
-    path: config.build.assetsRoot,//'static',
+    path: './dist/',
     publicPath:env === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,//'../static',
     filename: '[name].[hash:8].js',
     chunkFilename: 'js/[name].[hash:3].js'
@@ -91,7 +92,7 @@ module.exports = merge({
 
   // 插件
   plugins:[
-    new DashboardPlugin(dashboard.setData),
+    // new DashboardPlugin(dashboard.setData),
     // 合并生成公用文件 .[hash:8]
     new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js')
 
@@ -124,9 +125,11 @@ module.exports = merge({
       title:'webpack App',
 
       // 输出的文件名称 默认index.html 可以带有子目录
+      // filename: './dist/index.html',
       filename: './dist/entry/index.html',
 
       // 源文件
+      // template: './src/index.ejs',
       template: './src/entry/index.html',
 
       // 注入资源

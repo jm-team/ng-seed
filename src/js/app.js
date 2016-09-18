@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router'])
+var app = angular.module('app', ['ui.router', 'ngResource'])
 var tmp = require('../page/home/home.html')
 var tmp2 = require('../page/about/about.html')
 

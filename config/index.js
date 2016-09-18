@@ -13,7 +13,6 @@ module.exports = {
 
 	// dev 配置
 	dev:{
-		port: 8081,
 		assetsSubDirectory: 'static',
 		assetsPublicPath:'/',
 		proxyTable:{},
