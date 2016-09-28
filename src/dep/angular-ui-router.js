@@ -598,7 +598,6 @@ function $TemplateFactory(  $http,   $templateCache,   $injector) {
    * that string,or `null` if no template is configured.
    */
   this.fromConfig = function (config, params, locals) {
-    console.log(config)
     return (
       isDefined(config.template) ? this.fromString(config.template, params) :
       isDefined(config.templateUrl) ? this.fromUrl(config.templateUrl, params) :

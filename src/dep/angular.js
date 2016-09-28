@@ -7528,6 +7528,7 @@ function $HttpProvider() {
    *     - **`defaults.headers.put`**
    *     - **`defaults.headers.patch`**
    **/
+
   var defaults = this.defaults = {
     // transform incoming response data
     transformResponse: [function(data) {
@@ -8140,7 +8141,6 @@ function $HttpProvider() {
       extend(config, requestConfig);
       config.headers = headers;
       config.method = uppercase(config.method);
-
       var serverRequest = function(config) {
         headers = config.headers;
         var reqData = transformData(config.data, headersGetter(headers), config.transformRequest);
@@ -8524,6 +8524,7 @@ function createXhr(method) {
     //if it is available
     if (msie <= 8 && (!method.match(/^(get|post|head|put|delete|options)$/i) ||
       !window.XMLHttpRequest)) {
+
       return new window.ActiveXObject("Microsoft.XMLHTTP");
     } else if (window.XMLHttpRequest) {
       return new window.XMLHttpRequest();
@@ -12386,7 +12387,6 @@ function $RootScopeProvider(){
         }
 
         if (typeof watchExp == 'string' && get.constant) {
-
           var originalFn = watcher.fn;
           watcher.fn = function(newVal, oldVal, scope) {
             originalFn.call(this, newVal, oldVal, scope);
