@@ -129,7 +129,7 @@ entry.js: (webpack 入口文件)
 1. Controller文件夹中的文件名称应是相对应模版名称 + ctrl
 2. 文件名有多个单词使用驼峰式
 3. JS 代码中应使用匈牙利命名法
-4. 参考百度：https://github.com/ecomfe/spec/blob/master/javascript-style-guide.md
+4. 参考百度：https://github.com/jm-team/spec/blob/master/javascript-style-guide.md
 
 ## 八、浏览器兼容性要求
 1. 兼容所有主流标准浏览器，IE8及以上IE浏览器。
