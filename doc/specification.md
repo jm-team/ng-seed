@@ -50,7 +50,8 @@ entry.js: (webpack 入口文件)
 2. [ui-router](http://angular-ui.github.io/ui-router/site/#/api/ui.router) v0.2.10
 3. [ngResource](https://docs.angularjs.org/api/ngResource/service/$resource) v1.2.29
 4. [bindOnce](https://github.com/Pasvaz/bindonce) v0.3.3
-5. [ui-bootstrap](https://angular-ui.github.io/bootstrap/) v0.12.0
+5. [ui-bootstrap](http://angular-ui.github.io/bootstrap/versioned-docs/0.12.0/) v0.12.0
+注意：查阅api的时候，需要（翻墙）找对应的版本，不然有些方法在老本里都是没有的。
 
 ### 2.Css：bootstrap(ui-bootstrap 依赖)
 ### 3.打包构建工具：webpack
