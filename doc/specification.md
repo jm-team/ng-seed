@@ -53,7 +53,7 @@ entry.js: (webpack 入口文件)
 5. [ui-bootstrap](http://angular-ui.github.io/bootstrap/versioned-docs/0.12.0/) v0.12.0
 注意：查阅api的时候，需要（翻墙）找对应的版本，不然有些方法在老本里都是没有的。
 
-### 2.Css：bootstrap(ui-bootstrap 依赖)
+### 2.Css：bootstrap v3.3.1(ui-bootstrap 依赖)
 ### 3.打包构建工具：webpack
 ### 4.测试：krama, jasmine
 ### 5.SEO：prerender.io
