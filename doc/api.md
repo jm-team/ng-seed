@@ -2,7 +2,7 @@
 > 使用RESTful API规范 如：
 
 
-1.获取新闻列表 GET请求 
+1.获取新闻列表 GET请求  
 /webapi/版本/路径  
 /webapi/v1/news  
 
