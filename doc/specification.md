@@ -88,6 +88,7 @@ entry.js: (webpack 入口文件)
 6. 异步加载控制器
 7. 使用ng-show 显示隐藏搜索时的列表 避免频繁创建删除 如在输入框过滤本地数据的时候
 8. 尽可能不使用`ng-mousemove`、`ng-mouseenter`、`ng-mouseleave`...这些高频率触发的事件 或使用定时器定时触发
+
 ### 6.与服务端间的交互（注意）
 1. Angular 在post请求数据的时候传递的参数是通过body体传送的 因此后端那边接收数据的时候需要注意
 2. 数据请求使用restful 规范， 使用angular ngResource 模块
