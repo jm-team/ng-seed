@@ -63,7 +63,7 @@ Code: 400 /4XX
 }
 ```
 
-3.批量接口请求 POST请求（注意head里的content-type 为application/json）
+3.批量接口请求 POST请求（注意head里的content-type 为application/json）  
 /webapi/batch
 
 请求参数JSON
