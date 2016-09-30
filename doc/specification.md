@@ -90,14 +90,14 @@ entry.js: (webpack 入口文件)
 8. 尽可能不使用`ng-mousemove`、`ng-mouseenter`、`ng-mouseleave`...这些高频率触发的事件 或使用定时器定时触发
 
 ### 6.与服务端间的交互（注意）
-1. Angular 在post请求数据的时候传递的参数是通过body体传送的 因此后端那边接收数据的时候需要注意
-2. 数据请求使用restful 规范， 使用angular ngResource 模块
+1. Angular在post请求数据的时候传递的参数是通过body体传送的，因此后端那边接收数据的时候需要注意
+2. 数据请求使用restful规范，使用angular ngResource 模块
 3. Restful详细参考地址：http://www.ruanyifeng.com/blog/2014/05/restful_api.html
 4. ngResource使用参考地址：http://www.cnblogs.com/liulangmao/p/3906721.html
 
 ### 7.其他注意事项
-1. 全局监听事件放在 angular启动模块的run方法中因为run 方法在整个angular项目的生命周期中只 执行一次
-2. 利用拦截器对某一类请求状态做统一处理 如401 需要登录 则跳转到登陆页面
+1. 全局监听事件放在angular启动模块的run方法中，因为run方法在整个angular项目的生命周期中只执行一次
+2. 利用拦截器对某一类请求状态做统一处理。如：401需要登录，则跳转到登陆页面
 3. 所有的依赖注入需要显示声明,防止依赖压缩找不到。如：
     ```
     app.controller('xxCtrl', ['$scope', 'Service', function($scope, Service){}])
