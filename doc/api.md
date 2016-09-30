@@ -2,7 +2,7 @@
 > 使用RESTful API规范 如：
 
 
-1. 获取新闻列表 GET请求 
+1.获取新闻列表 GET请求 
 /webapi/版本/路径  
 /webapi/v1/news  
 
@@ -35,7 +35,7 @@ Status code 200
 ]
 ```
 
-2. 获取一条新闻内容 GET请求  
+2.获取一条新闻内容 GET请求  
 /webapi/版本/路径/ID  
 /webapi/v1/news/10086  
 
@@ -63,9 +63,9 @@ Code: 400 /4XX
 }
 ```
 
-3. 批量接口请求 POST请求（注意head里的content-type 为application/json）
-
+3.批量接口请求 POST请求（注意head里的content-type 为application/json）
 /webapi/batch
+
 请求参数JSON
 
 ```
