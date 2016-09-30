@@ -61,16 +61,16 @@ entry.js: (webpack 入口文件)
 
 ##三、Angular代码规范及建议
 ### 1.Controller
-1. Controller 中不应该出现dom操作 dom 操作应该在directive中出现
-2. Controller 中不应该出现`$http.get()`、`$ngResource`这些类似的代码 这些应该放在Service中当作服务 然后再controller 中调用这些服务
-3. 尽可能的精简您的controller 避免controller 臃肿
+1. Controller 中不应该出现DOM操作, DOM操作应该在Directive中出现
+2. Controller 中不应该出现`$http.get()`、`$ngResource`这些类似的代码 这些应该放在Service中当作服务 然后再Controller 中调用这些服务
+3. 尽可能的精简您的Controller 避免Controller 臃肿
 4. 控制器异步加载
 
 ### 2.Service
-1. Service一般用于controller 之间的数据交互、请求服务端的数据、编写公用方法
+1. Service一般用于Controller 之间的数据交互、请求服务端的数据、编写公用方法
 
 ### 3.Filter
-1. Filter 用于数据的格式化 可在html模板中直接使用或在Controller中调用Filter 方法
+1. Filter 用于数据的格式化 可在HTML模板中直接使用或在Controller中调用Filter 方法
 2. Filter 应尽量在Controller中使用 防止不稳定的过滤器导致程序出错
 
 ### 4.Directive
@@ -98,9 +98,10 @@ entry.js: (webpack 入口文件)
 1. 全局监听事件放在 angular启动模块的run方法中因为run 方法在整个angular项目的生命周期中只 执行一次
 2. 利用拦截器对某一类请求状态做统一处理 如401 需要登录 则跳转到登陆页面
 3. 所有的依赖注入需要显示声明,防止依赖压缩找不到。如：
-```
-app.controller('xxCtrl', ['$scope', 'Service', function($scope, Service){}])
-```
+    ```
+    app.controller('xxCtrl', ['$scope', 'Service', function($scope, Service){}])
+    ```
+    
 4. 顶级作用域`$rootScope` 尽量不要挂载属性或方法，使用服务`Service`去解决
 5. 大的数据列表注意性能
 
