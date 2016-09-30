@@ -12,25 +12,25 @@ Status code 200
 ```
 [
 	{
-	“id”:  10086,
-	“title”:  “新闻标题1”,
-	“url”:  “/news-1.html”,
-	“time”:  “2016-05-11”,
-	“category”: “化工行情”
+		“id”:  10086,
+		“title”:  “新闻标题1”,
+		“url”:  “/news-1.html”,
+		“time”:  “2016-05-11”,
+		“category”: “化工行情”
 	},
 	{
-	“id”:  10087,
-	“title”:  “新闻标题2”,
-	“url”:  “/news-2.html”,
-	“time”:  “2016-05-11”,
-	“category”: “化工行情”
+		“id”:  10087,
+		“title”:  “新闻标题2”,
+		“url”:  “/news-2.html”,
+		“time”:  “2016-05-11”,
+		“category”: “化工行情”
 	},
 	{
-	“id”:  10088,
-	“title”:  “新闻标题3”,
-	“url”:  “/news-3.html”,
-	“time”:  “2016-05-11”,
-	“category”: “化工行情”
+		“id”:  10088,
+		“title”:  “新闻标题3”,
+		“url”:  “/news-3.html”,
+		“time”:  “2016-05-11”,
+		“category”: “化工行情”
 	}
 ]
 ```
