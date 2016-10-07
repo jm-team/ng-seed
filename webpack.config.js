@@ -31,6 +31,8 @@ module.exports = merge({
     vendors: [
       './src/dep/angular.js',
       './src/dep/angular-ui-router.js',
+      './src/dep/jm-login-module.js',
+      './src/dep/ui-bootstrap-tpls.js',
       './src/dep/angular-resource.js'
     ]
   },

@@ -1,7 +1,130 @@
-*{
-	box-sizing: content-box;
+.nav-main{
+	margin-top: 20px;
+}
+.jm-form {
+	width: 900px;
+	padding: 38px 50px;
 }
 
+.pop-form {
+	font-size: 12px;
+	text-align: left;
+	/*overflow: hidden;*/
+	/*width: 782px;*/
+	/*border: 1px solid #d8d8d8;*/
+	/*margin: 20px auto;*/
+}
+
+.pop-form-header {
+	position: relative;
+	padding: 12px 0;
+	border-bottom: 2px solid #2f8ae5;
+}
+
+
+.pop-form .pop-form-title {
+	height: 33px;
+	line-height: 33px;
+	font-size: 16px;
+	color: #646464;
+	text-align: center;
+	margin: 0;
+}
+
+.pop-form .pop-form-title {
+	height: 33px;
+	line-height: 33px;
+	font-size: 16px;
+	color: #646464;
+	text-align: center;
+}
+.login-modal .modal-dialog{
+	width: 425px;
+}
+#login-form{
+	width: 100%;
+}
+#login-form .jmform-control-group{
+	margin-left: 0;
+}
+
+#login-form .jmform-control-group{
+	margin-bottom: 23px;
+}
+#login-form input.half{
+	width: 200px;
+}
+#login-form .verification-code{
+	width: 100px;
+	height: 40px;
+}
+
+.error-group{
+	border:1px solid red;
+	color: red;
+	line-height: 30px;
+	padding-left: 8px;
+	height: 30px;
+	overflow: hidden;
+}
+.jmform-control {
+	height: 28px;
+	/*line-height: 28px;*/
+	border: 1px solid #d8d8d8;
+	padding: 5px 8px;
+	outline: none;
+	width: 100%;
+	vertical-align: middle;
+	position: relative;
+}
+#login-form .login-user,
+#login-form .login-pass{
+	position: relative;
+}
+#login-form .login-user input,
+#login-form .login-pass input{
+	padding-left: 45px;
+}
+
+#login-form .login-user:before,
+#login-form .login-pass:before{
+	font-family: 'Glyphicons Halflings';
+	position: absolute;
+	top:50%;
+	font-size: 14px;
+	color: #999;
+	left: 15px;
+	z-index: 2;
+	transform: translateY(-50%);
+}
+#login-form .login-user:before{
+	content: "\e008";
+}
+#login-form .login-pass:before{
+	content: "\e033";
+}
+
+
+.verification-code{ height: 100%; }
+#login-form a{
+	color: #999;
+}
+#login-form .reg{
+	color: #fc6921;
+}
+
+#loginFrame{
+	display: none;
+}
+.jm-close {
+	font-size: 27px;
+	position: absolute;
+	cursor: pointer;
+	color: #b7b7b7;
+	font-weight: bold;
+	top: 10px;
+	right: 25px;
+}
 .a{
 	transform: translateX(25px);
 }
