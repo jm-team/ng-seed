@@ -15,7 +15,7 @@ module.exports = {
             // shows views/subpage.html for all routes starting with /subpage
             // { from: /^\/subpage/, to: '/dist/entry/index.html' },
             // shows views/404.html on all other pages
-            // { from: /./, to: '/dist/entry/index.html' }
+           // { from: /./, to: '/dist/entry/index.html' }
         ]
     },
 

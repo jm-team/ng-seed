@@ -1,4 +1,6 @@
 var app = require('./app.js')
+require('../css/bootstrap/css/bootstrap.min.css')
 require('../css/style.css')
 require('../css/icon.css')
+require('../js/directive/directive.js')
 require('../js/controller/testCtrl')

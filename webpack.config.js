@@ -112,7 +112,7 @@ module.exports = merge({
       spritesmithOptions :{
         padding:20
       },
-      retina: config.build.retina
+      //retina: config.build.retina
     })
 
     // 单独使用link标签加载css并设置路径，

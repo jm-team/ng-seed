@@ -6,7 +6,7 @@ module.exports = {
 		assetsSubDirectory: 'static',
 		assetsPublicPath:'/',
 		productionSourceMap: true,
-
+		retina:2,
 		productionGzip: false,
 		productionGzipExtensions:['js', 'css']
 	},
@@ -16,7 +16,7 @@ module.exports = {
 		assetsSubDirectory: 'static',
 		assetsPublicPath:'/',
 		proxyTable:{},
-
+		retina:2,
 		cssSourceMap: false
 	}
 }
