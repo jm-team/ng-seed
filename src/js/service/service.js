@@ -1,8 +1,6 @@
-var app = require('../app')
+var app = require('../app');
 
-app.factory('Util', ['$modal', '$sce', '$q', '$location',  function($modal, $sce, $q, $location) {
-  var proviceTm = 0;
-
+app.factory('Util', [ function() {
   return {
 
     trim: function() {
@@ -15,6 +13,24 @@ app.factory('Util', ['$modal', '$sce', '$q', '$location',  function($modal, $sce
         return angular.isString(value) ? value.trim() : value;
       };
     },
+
+    getByClassName: function(className, context){
+      var re=new RegExp("\\b" + className + "\\b","g");
+      var context = context || document.body;
+      var aEle = context.getElementsByTagName('*');
+      var aResult = [];
+      if(!angular.isString(className) || angular.equals('', className)){
+        return ;
+      }
+      for(var i=0;i<aEle.length;i++){
+        /*字符串search方法判断是否存在匹配*/
+        if(aEle[i].className.search(re) != -1){
+          aResult.push(aEle[i]);
+        }
+      }
+      return aResult;
+
+    }
 
   };
 }]);
@@ -66,13 +82,13 @@ app.factory('Login', ['Address', '$http', function(Address, $http){
       return $http.jsonp(Address.USERCENTER_ADDRESS + '/cas/c/loginController?action=validateVerifyCode&callback=JSON_CALLBACK', {params:data});
     }
   }
-}])
+}]);
 
 app.factory('Address', ['$location',function($location){
   return {
-    API_ADDRESS: $location.protocol() +'://'+ $location.host()+':'+$location.port() +'/webapi/v1',
+    API_ADDRESS: $location.protocol() +'://'+ $location.host()+':'+$location.port() +'/webapi/v1'
   }
-}])
+}]);
 
 app.factory('Api', ['$resource', 'Address', function($resource, Address){
   return {
@@ -80,4 +96,4 @@ app.factory('Api', ['$resource', 'Address', function($resource, Address){
       return $resource(Address.API_ADDRESS + '/line/:id', {id: '@id'});
     }
   }
-}])
+}]);

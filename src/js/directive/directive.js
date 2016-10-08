@@ -1,9 +1,12 @@
 var app = require('../app');
-var tmp = require('../../page/directive/header.html');
+var tmpHeader = require('../../page/directive/header.html');
+var tmpFooter = require('../../page/directive/footer.html');
+
 app.directive('jmHeader', [function(){
     return {
         restrict:'AE',
-        templateUrl: tmp,
+        templateUrl: tmpHeader,
+        replace: true,
         controller:['$modal','$scope', function($modal, $scope){
             $scope.modal= function($event) {
                 $event.preventDefault();
@@ -18,3 +21,27 @@ app.directive('jmHeader', [function(){
         }]
     }
 }]);
+
+app.directive('jmFooter', [function(){
+    return {
+        restrict:'AE',
+        replace: true,
+        templateUrl: tmpFooter,
+        controller:['$scope', function($scope){
+        }]
+    }
+}]);
+
+app.directive('toggle', ['Util', function(Util){
+    return {
+        restrict:'AE',
+        link: function(scope, element, attrs){
+            var target = angular.element(Util.getByClassName(attrs.toggle));
+            element.on('click', function(){
+                target.toggleClass('animate-hidden');
+            });
+        }
+    }
+}])
+
+

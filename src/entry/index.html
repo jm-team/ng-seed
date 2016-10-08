@@ -2,6 +2,8 @@
 <html ng-app="app">
   <head>
     <title></title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
 
       var SERVER_ADDRESS = "http://dev-webapi.jm.com";
@@ -13,9 +15,11 @@
 
   <body>
 
-    <jm-header></jm-header>
+    <div jm-header></div>
 
 
-    <div ui-view></div>
+    <div class="main-area" ui-view></div>
+
+    <div jm-footer></div>
   </body>
 </html>

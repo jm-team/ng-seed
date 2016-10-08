@@ -6,69 +6,76 @@
 
     <div>
         <form
-                id='login-form'
-                name='loginnormal'
-                class="jm-form"
-                method='post'
+            id='login-form'
+            name='loginnormal'
+            class="jm-form form-horizontal"
+            method='post'
 
-                target='loginFrame'
-                jm-login-login
-                serverUrl="https://uc.dev.com/cas/v1/muteLogin"
-                sessionId="shiroJID"
-                novalidate>
+            target='loginFrame'
+            jm-login-login
+            serverUrl="https://uc.dev.com/cas/v1/muteLogin"
+            sessionId="shiroJID"
+            novalidate>
 
             <input id='service' class="ng-hide" name='service' value='{{serverAddress}}/webapi/shiro-cas' />
 
             <input id='bizcode' class="ng-hide" name='bizcode' value='1004'/>
 
             <div class="form-group error-group" ng-show="(loginnormal.$invalid || errTip) && submitted">
-                <div class=" text-red" ng-show="userInValid">Phone Number or Password error</div>
-                <div class=" text-red" ng-show="verifyCode">VerifyCode Error</div>
-                <div class=" text-red" ng-show="loginnormal.username.$error.required">Phone Required</div>
-                <div class=" text-red" ng-show="loginnormal.password.$error.required">Password Required</div>
-                <div class=" text-red" ng-show="loginnormal.checkcode.$error.required">VerifyCode Required</div>
+                <div class=" text-danger" ng-show="userInValid">Phone Number or Password error</div>
+                <div class=" text-danger" ng-show="verifyCode">VerifyCode Error</div>
+                <div class=" text-danger" ng-show="loginnormal.username.$error.required">Phone Required</div>
+                <div class=" text-danger" ng-show="loginnormal.password.$error.required">Password Required</div>
+                <div class=" text-danger" ng-show="loginnormal.checkcode.$error.required">VerifyCode Required</div>
 
             </div>
 
 
             <!-- 用户名 -->
-            <div class="jmform-control-group login-user">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Phone Number"
-                       name="username"
+            <div class="form-group">
+                <div class="login-user">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Phone Number"
+                           name="username"
 
-                       ng-blur="checkIsRequiredCode()"
-                       ng-model="userName"
-                       required>
+                           ng-blur="checkIsRequiredCode()"
+                           ng-model="userName"
+                           required>
 
-                <!-- ng-pattern="/0?(13|14|15|18)[0-9]{9}/" -->
+                    <!-- ng-pattern="/0?(13|14|15|18)[0-9]{9}/" -->
+                </div>
             </div>
 
             <!-- 密码 -->
-            <div class="jmform-control-group login-pass">
-                <input type="password"
-                       name="password"
-                       placeholder="Password"
-                       ng-model="password"
-                       class="form-control"
-                       required>
+            <div class="form-group">
+                <div class="login-pass">
+                    <input type="password"
+                           name="password"
+                           placeholder="Password"
+                           ng-model="password"
+                           class="form-control"
+                           required>
+                </div>
             </div>
 
             <!-- 验证码 -->
-            <div class="jmform-control-group" ng-show="isRequiredCode">
-                <div class="clearfix">
-                    <input type="text" ng-model="checkcode" name="checkcode" class="jmform-control jmform-control-md half pull-left" ng-required="isRequiredCode" placeholder="Code">
-                    <img ng-src="{{verifiCodeSrc}}" alt="" class="half pull-right verification-code" ng-click="changeCode()">
+              <!-- ng-show="isRequiredCode" -->
+            <div class="form-group" >
+                <div class=" input-group  verfication-code-wrap">
+                    <input type="text" ng-model="checkcode" name="checkcode" class="form-control" ng-required="isRequiredCode" placeholder="Code">
+                    <div class="input-group-btn verfication-code">
+                        <img ng-src="{{verifiCodeSrc}}" alt="" ng-click="changeCode()">
+                    </div>
                 </div>
-
             </div>
 
-
-            <div class="checkbox">
-                <label>
-                    <input ng-model="rememberMe"  type="checkbox" name="rememberMe"> Remember me
-                </label>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="rememberMe"  type="checkbox" name="rememberMe"> Remember me
+                    </label>
+                </div>
             </div>
 
             <!-- 登录 -->
