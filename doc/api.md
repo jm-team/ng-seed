@@ -6,8 +6,8 @@
 /webapi/版本/路径  
 /webapi/v1/news  
 
-请求成功返回：  
-Status code 200
+请求成功返回：   
+Status Code: 200
 
 ```
 [
@@ -39,8 +39,8 @@ Status code 200
 /webapi/版本/路径/ID  
 /webapi/v1/news/10086  
 
-请求成功返回： 
-Status code 200
+请求成功返回：   
+Status Code: 200
 
 ```
 {
@@ -53,8 +53,8 @@ Status code 200
 }
 ```
 
-失败：
-Status code: 400 /4XX
+失败：  
+Status Code: 400 /4XX
 
 ```
 {
@@ -75,7 +75,7 @@ Status code: 400 /4XX
 6.批量接口请求 POST请求（注意head里的content-type 为application/json）  
 /webapi/batch
 
-请求参数JSON
+请求参数JSON:
 
 ```
 {
@@ -93,7 +93,7 @@ Status code: 400 /4XX
 }
 ```
 
-返回数据 JSON
+返回数据 JSON:
 
 ```
 [
