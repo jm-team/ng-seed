@@ -149,15 +149,21 @@
                     var sessionId =  attrs.sessionid || 'shiroJID';
                     var iframeName = attrs.target;
 
+                    //angular.element(document.getElementById(iframeName))
+
                     iframe.attr({
                         name:iframeName,
                         id:iframeName
                     });
 
                     iframe.css('display', 'none')
-
                     angular.element(document.body).append(iframe);
                     element.attr('action', attrs.serverurl);
+
+                    // 作用域删除 删除掉iframe
+                    scope.$on('$destroy', function(){
+                        iframe.remove();
+                    });
 
                     // 表单提交成功结果
                     iframe.on('load', function(){

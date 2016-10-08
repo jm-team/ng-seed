@@ -15,6 +15,7 @@
             jm-login-login
             serverUrl="https://uc.dev.com/cas/v1/muteLogin"
             sessionId="shiroJID"
+            on-close="close()"
             novalidate>
 
             <input id='service' class="ng-hide" name='service' value='{{serverAddress}}/webapi/shiro-cas' />
