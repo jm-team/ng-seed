@@ -42,6 +42,6 @@ app.directive('toggle', ['Util', function(Util){
             });
         }
     }
-}])
+}]);
 
 

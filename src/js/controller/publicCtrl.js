@@ -1,15 +1,15 @@
-var app = require('../app')
-console.log(app)
-app.controller('loginCtrl', ['$scope', '$modalInstance', 'Util',  '$q', 'Login', 'CENTER_ADDRESS', 'USERCENTER_ADDRESS', 'SERVER_ADDRESS', 'JmLoginService','$log',
-    function($scope, $modalInstance, Util, $q, Login,CENTER_ADDRESS, USERCENTER_ADDRESS, SERVER_ADDRESS, JmLoginService, $log) {
-        $scope.$on('getSessionIdSuccess', function() {
+var app = require('../app');
+console.log(app);
+app.controller('loginCtrl', ['$scope', '$modalInstance', 'Util', '$q', 'Login', 'CENTER_ADDRESS', 'USERCENTER_ADDRESS', 'SERVER_ADDRESS', 'JmLoginService', '$log',
+    function ($scope, $modalInstance, Util, $q, Login, CENTER_ADDRESS, USERCENTER_ADDRESS, SERVER_ADDRESS, JmLoginService, $log) {
+        $scope.$on('getSessionIdSuccess', function () {
             $log.info('获取shirJID 成功');
             $modalInstance.close();
         });
 
-        $scope.$on('getSessionIdError', function(){
-            $scope.$apply(function(){
-                if($scope.clickNums === 3){
+        $scope.$on('getSessionIdError', function () {
+            $scope.$apply(function () {
+                if ($scope.clickNums === 3) {
                     $scope.isRequiredCode = true;
                 }
                 $scope.errTip = true;
@@ -24,74 +24,67 @@ app.controller('loginCtrl', ['$scope', '$modalInstance', 'Util',  '$q', 'Login',
         $scope.serverAddress = SERVER_ADDRESS;
         $scope.close = $modalInstance.close;
 
-        // $scope.$watch('clickNums', function(newValue, oldValue){
-        //     if(newValue === 3 && newValue !== oldValue){
-        //         $scope.isRequiredCode = true;
-        //     }
-        // });
-
         angular.extend($scope, {
-            // ±íµ¥Ìá½»×´Ì¬  ÊÇ·ñÓÐÌá½»
+            // 表单是否提交过
             submitted: false,
 
-            // ÊÇ·ñÐèÒªÑéÖ¤Âë
+            // 是否需要验证码
             isRequiredCode: false,
 
-            // ÓÃ»§Ìá½»ÁË¼¸´Î
-            clickNums:0,
+            // 点击次数
+            clickNums: 0,
 
-            // ÓÃ»§ÖÐÐÄµØÖ·
+            // 认证中心请求地址
             USERCENTER_ADDRESS: USERCENTER_ADDRESS,
 
-            // ÖØÐÂ»ñÈ¡ÑéÖ¤Âë
-            changeCode: function() {
-                if($scope.isRequiredCode){
-                    $scope.verifiCodeSrc = JmLoginService.getVerfiCode(USERCENTER_ADDRESS+'/cas/c/verifyCodeController?action=init&t='+ new Date());
+            // 切换验证码
+            changeCode: function () {
+                if ($scope.isRequiredCode) {
+                    $scope.verifiCodeSrc = JmLoginService.getVerfiCode(USERCENTER_ADDRESS + '/cas/c/verifyCodeController?action=init&t=' + new Date());
                 }
             },
 
-            // ¼ì²âÊÇ·ñÐèÒªÑéÖ¤Âë·½·¨
-            checkIsRequiredCode: function() {
+            //检测是否需要验证码
+            checkIsRequiredCode: function () {
                 var userName = Util.trim()($scope.userName);
-                if(userName){
+                if (userName) {
                     JmLoginService.checkIsRequiredVerfiCode({
-                        serverUrl:USERCENTER_ADDRESS + '/cas/c/loginController?action=checkLoginNeedVerifyCode&callback=JSON_CALLBACK',
-                        data:{username: userName}
-                    }).then(function(data){
-                        // ��?要验证码
+                        serverUrl: USERCENTER_ADDRESS + '/cas/c/loginController?action=checkLoginNeedVerifyCode&callback=JSON_CALLBACK',
+                        data: {username: userName}
+                    }).then(function (data) {
+                        // 判断是否要验证码
                         var isNeed = data.LOGIN_NEED_VERIFYCODE_BOOL;
                         $scope.isRequiredCode = isNeed;
-                        if(isNeed){
+                        if (isNeed) {
                             $scope.changeCode();
                         }
-                    }, function(){
+                    }, function () {
                         $scope.changeCode();
                         $scope.isRequiredCode = true;
                     });
                 }
             },
 
-            // ¼ì²âÑéÖ¤ÂëÊÇ·ñÕýÈ·
-            checkCode: function(){
+            // 检测验证码
+            checkCode: function () {
                 var defer = $q.defer();
                 var code = Util.trim()($scope.checkcode); //Util.trim($scope.checkcode);
-                debugger
-                if(code){
+                if (code) {
                     JmLoginService.checkValidVerfiCode({
-                        data:{
+                        data: {
                             checkcode: code
                         },
-                        serverUrl: USERCENTER_ADDRESS +'/cas/c/loginController?action=validateVerifyCode&callback=JSON_CALLBACK',
-                    }).then(function(data){
-                        defer.resolve();
-                    }, function(){
+                        serverUrl: USERCENTER_ADDRESS + '/cas/c/loginController?action=validateVerifyCode&callback=JSON_CALLBACK'
+                    }).then(function (data) {
+                        defer.resolve(data);
+                    }, function () {
                         defer.reject();
                     });
                 }
                 return defer.promise;
             },
 
-            submit: function($event){
+            submit: function ($event) {
                 $scope.errTip = false;
                 $scope.userInValid = false;
                 $scope.verifyCode = false;
@@ -104,18 +97,18 @@ app.controller('loginCtrl', ['$scope', '$modalInstance', 'Util',  '$q', 'Login',
                 $scope.loging = true;
                 $scope.clickNums++;
 
-                if($scope.isRequiredCode){
+                if ($scope.isRequiredCode) {
                     $scope.checkCode()
-                        .then(function(data){
+                        .then(function () {
                             $event.target.form.submit();
-                        }, function(){
+                        }, function () {
                             $scope.errTip = true;
                             $scope.verifyCode = true;
                             $scope.loging = false;
                             $scope.changeCode();
                             $scope.checkcode = '';
                         });
-                }else{
+                } else {
                     $event.target.form.submit();
                 }
             }
