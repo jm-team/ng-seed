@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10c2e668-39e6-4b65-bb06-ad0f1763c3c8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/icon.css" afterPath="$PROJECT_DIR$/src/css/icon.css" />
     </list>
@@ -166,12 +165,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1475904376743</updated>
-      <workItem from="1475904379128" duration="18000" />
+      <workItem from="1475904379128" duration="55000" />
     </task>
+    <task id="LOCAL-00001" summary="delete .idea">
+      <created>1475904416504</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1475904416504</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18000" />
+    <option name="totallyTimeSpent" value="55000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1696" height="1026" extended-state="6" />
@@ -199,6 +206,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="delete .idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete .idea" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
