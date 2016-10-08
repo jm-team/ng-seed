@@ -93,7 +93,7 @@ app.factory('Address', ['$location',function($location){
 app.factory('Api', ['$resource', 'Address', function($resource, Address){
   return {
     Lines: function(){
-      return $resource(Address.API_ADDRESS + '/line/:id', {id: '@id'});
+      return $resource(Address.API_ADDRESS + '/auction/:id', {id: '@id'});
     }
   }
 }]);

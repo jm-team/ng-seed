@@ -39,9 +39,9 @@ module.exports = merge({
 
   // 构建之后的文件目录配置
   output:{
-    path: './dist/',
+    path: path.join(__dirname, 'dist'),
     publicPath:env === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,//'../static',
-    filename: '[name].[hash:8].js',
+    filename: 'js/[name].[hash:8].js',
     chunkFilename: 'js/[name].[hash:3].js'
   },
 
@@ -96,13 +96,13 @@ module.exports = merge({
   plugins:[
     // new DashboardPlugin(dashboard.setData),
     // 合并生成公用文件 .[hash:8]
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js')
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.[hash:8].js')
 
     // 图片合并 支持retina
     ,new SpritesmithPlugin({
       src:{
           cwd: path.resolve(__dirname, './src/img/'),
-          glob: '*.png',
+          glob: '*.png'
       },
       target: {
           image: './dist/img/sprite.[hash].png',
@@ -128,7 +128,7 @@ module.exports = merge({
 
       // 输出的文件名称 默认index.html 可以带有子目录
       // filename: './dist/index.html',
-      filename: './dist/entry/index.html',
+      filename: './entry/index.html',
 
       // 源文件
       // template: './src/index.ejs',

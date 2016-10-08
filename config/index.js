@@ -4,7 +4,8 @@ module.exports = {
 	build:{
 		assetsRoot: path.resolve(__dirname, '../dist'),
 		assetsSubDirectory: 'static',
-		assetsPublicPath:'/',
+		// html 中引用资源的位置
+		assetsPublicPath: 'http://static.jumoreyun.com/dist/',
 		productionSourceMap: true,
 		retina:2,
 		productionGzip: false,
@@ -14,7 +15,7 @@ module.exports = {
 	// dev 配置
 	dev:{
 		assetsSubDirectory: 'static',
-		assetsPublicPath:'/',
+		assetsPublicPath:'/dist/',
 		proxyTable:{},
 		retina:2,
 		cssSourceMap: false

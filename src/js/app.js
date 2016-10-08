@@ -22,7 +22,7 @@ app.config([
 		.state('home', {
 			title: "首页",
 			url: '/',
-			templateUrl: require('../page/home/home.html'),
+			templateUrl: tmp,
 			controller: 'HomeCtrl',
 			resolve: {
 			  loadCtrl: ['$q', function($q) {
@@ -40,6 +40,7 @@ app.config([
   			title: "关于我们",
   			url: '/about',
   			templateUrl:tmp2,
+			controller: 'AboutCtrl',
 			resolve: {
 				loadCtrl: ['$q', function($q) {
 					var defer = $q.defer();
