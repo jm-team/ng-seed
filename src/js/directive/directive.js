@@ -1,6 +1,6 @@
 var app = require('../app');
-var tmpHeader = require('../../page/directive/header.html');
-var tmpFooter = require('../../page/directive/footer.html');
+var tmpHeader = require('../../page/common/header.html');
+var tmpFooter = require('../../page/common/footer.html');
 
 app.directive('jmHeader', [function(){
     return {

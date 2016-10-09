@@ -1,7 +1,7 @@
 var app = angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'jm.login']);
 var tmp = require('../page/home/home.html');
 var tmp2 = require('../page/about/about.html');
-var loginTmp = require('../page/service/login.html');
+var loginTmp = require('../page/common/login.html');
 
 app.tmps = {
     loginTmp: loginTmp

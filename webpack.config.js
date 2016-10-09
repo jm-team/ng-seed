@@ -1,4 +1,3 @@
-
 var webpack = require('webpack');
 var merge = require('webpack-merge');
 var SpritesmithPlugin = require('webpack-spritesmith');
@@ -33,7 +32,8 @@ module.exports = merge({
             './src/dep/jm-login-module.js',
             './src/dep/ui-bootstrap-tpls.js',
             './src/dep/angular-resource.js'
-        ]
+        ],
+        ie8supports: './src/dep/ie8supports.js'
     },
 
     // 构建之后的文件目录配置
