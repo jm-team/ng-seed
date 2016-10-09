@@ -3,6 +3,7 @@ var merge = require('webpack-merge');
 var SpritesmithPlugin = require('webpack-spritesmith');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var config = require('./config/index.js');
 var webpackConfig;
@@ -32,8 +33,7 @@ module.exports = merge({
             './src/dep/jm-login-module.js',
             './src/dep/ui-bootstrap-tpls.js',
             './src/dep/angular-resource.js'
-        ],
-        ie8supports: './src/dep/ie8supports.js'
+        ]
     },
 
     // 构建之后的文件目录配置
@@ -125,7 +125,10 @@ module.exports = merge({
         // 相对于output配置中的publickPath  .[hash:8]
         , extractCSS
         , extractLESS
-
+        , new CopyWebpackPlugin([{
+            from: './src/dep/ie8supports.js',
+            to: './dep'
+        }])
         // new HtmlWebpackPlugin(),
         , new HtmlWebpackPlugin({
             // 生成title

@@ -1,9 +1,4 @@
-// https://github.com/shelljs/shelljs
-require('shelljs/global');
-rm('-rf', './dist');
-mkdir('./dist');
-cp('-R', './src/entry', './dist/entry');
-cp('-R', './src/img', './dist/img');
+var webpack = require('webpack');
 
 module.exports = {
 
