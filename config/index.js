@@ -1,4 +1,4 @@
-var path = require('path')
+var path = require('path');
 module.exports = {
 	// build 配置
 	build:{
@@ -20,4 +20,4 @@ module.exports = {
 		retina:2,
 		cssSourceMap: false
 	}
-}
+};

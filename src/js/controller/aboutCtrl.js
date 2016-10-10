@@ -9,5 +9,5 @@ app.registerController('AboutCtrl', ['$scope', 'Api', function($scope, Api){
 
 
 
-    Api.Lines().get({id:2})
-}])
+    Api.Lines().get({id:2});
+}]);
