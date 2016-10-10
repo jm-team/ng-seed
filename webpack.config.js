@@ -5,11 +5,12 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var WebpackMd5Hash = require('webpack-md5-hash');
 var config = require('./config/index.js');
 var webpackConfig;
 // multiple extract instances
-var extractCSS = new ExtractTextPlugin('css/[name].[hash:8].css');
-var extractLESS = new ExtractTextPlugin('css/less.[hash:8].css');
+var extractCSS = new ExtractTextPlugin('css/[name].[contenthash:8].css');
+var extractLESS = new ExtractTextPlugin('css/less.[contenthash:8].css');
 
 // 获取执行环境
 var env = (process.env.NODE_ENV || '').trim();
@@ -40,8 +41,8 @@ module.exports = merge({
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: env === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,//'../static',
-        filename: 'js/[name].[hash:8].js',
-        chunkFilename: 'js/[name].[hash:3].js'
+        filename: 'js/[name].[chunkhash:8].js',
+        chunkFilename: 'js/[name].[chunkhash:8].js'
     },
 
     // webpack 开始执行之前的处理
@@ -122,7 +123,7 @@ module.exports = merge({
         })
 
         // 单独使用link标签加载css并设置路径，
-        // 相对于output配置中的publickPath  .[hash:8]
+        // 相对于output配置中的publickPath  .[chunkhash:8]
         , extractCSS
         , extractLESS
         , new CopyWebpackPlugin([{
@@ -158,5 +159,6 @@ module.exports = merge({
             }
 
         })
+        ,new WebpackMd5Hash()
     ]
 }, webpackConfig);

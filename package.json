@@ -30,6 +30,7 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.15.1",
+    "webpack-md5-hash": "0.0.5",
     "webpack-merge": "^0.14.1",
     "webpack-spritesmith": "^0.2.6"
   }
