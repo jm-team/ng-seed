@@ -23,7 +23,7 @@ module.exports = {
         historyApiFallback: {
             rewrites: [
                 // shows views/landing.html as the landing page
-                // { from: /^\/$/, to: '/dist/entry/index.html' },
+                { from: /^\/$/, to: '/dist/entry/index.html' },
                 // shows views/subpage.html for all routes starting with /subpage
                 // { from: /^\/subpage/, to: '/dist/entry/index.html' },
                 // shows views/404.html on all other pages

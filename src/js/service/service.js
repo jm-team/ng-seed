@@ -97,3 +97,7 @@ app.factory('Api', ['$resource', 'Address', function ($resource, Address) {
         }
     }
 }]);
+
+app.factory('News', ['$resource', function($resource){
+    return $resource('/dist/mock/news.json');
+}]);

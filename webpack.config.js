@@ -128,6 +128,9 @@ module.exports = merge({
         , new CopyWebpackPlugin([{
             from: './src/dep/ie8supports.js',
             to: './dep'
+        },{
+            from: './src/mock',
+            to: './mock'
         }])
         // new HtmlWebpackPlugin(),
         , new HtmlWebpackPlugin({
