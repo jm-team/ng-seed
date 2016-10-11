@@ -1,7 +1,6 @@
 <div class="container">
-  <h2>{{news.title}}</h2>
+  <h2 class="text-center">{{news.title}}</h2>
 
-  <div>
-    {{news.content}}
-  </div>
+  <article ng-bind-html="news.content|to_trusted" class="news-article">
+  </article>
 </div>

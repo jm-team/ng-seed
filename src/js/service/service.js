@@ -98,6 +98,6 @@ app.factory('Api', ['$resource', 'Address', function ($resource, Address) {
     }
 }]);
 
-app.factory('News', ['$resource', function($resource){
-    return $resource('/dist/mock/news.json');
+app.factory('News', ['$resource', 'API_SERVER', 'API_KEY', function($resource, API_SERVER, API_KEY){
+    return $resource(API_SERVER + '/news/:id', {id:'@id',  apiKey: API_KEY}, {update: { method: 'PUT'} });
 }]);

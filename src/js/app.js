@@ -11,9 +11,10 @@ var loginTmp = require('../page/common/login.html');
 app.tmps = {
     loginTmp: loginTmp
 };
-app.constant('SERVER_ADDRESS', SERVER_ADDRESS);
-app.constant('CENTER_ADDRESS', CENTER_ADDRESS);
-app.constant('USERCENTER_ADDRESS', USERCENTER_ADDRESS);
+app.constant('API_SERVER', 'https://api.mongolab.com/api/1/databases/ng-seed/collections');
+app.constant('API_KEY', 'mcnzRO1RdVBHxWEOVbtiIxD04i8H0syJ');
+
+
 
 app.config([
     '$httpProvider',
@@ -88,11 +89,10 @@ app.config([
                     news: ['$stateParams', 'News', function($stateParams, News){
 
                         // 从服务端获取数据
-                        // return News.get({id: $stateParams.id}, function(data){
-                        //     return data;
-                        // });
+                        return News.get({id: $stateParams.id}, function(data){
+                            return data;
+                        });
                         
-                        return require('json!../mock/new.json');
                     }]
                 }
             })
@@ -107,14 +107,16 @@ app.config([
 
                         // 修改
                         if(id){
-                            // 从服务端获取数据
-                            // return News.get({id: $stateParams.id}, function(data){
-                            //     return data;
-                            // });
-                            return require('json!../mock/new.json');
+                            return News.get({id: $stateParams.id}, function(data){
+                                delete data._id;
+                                return data;
+                            });
+                            
                         }else{
                             // 新增
-                            return {};
+                            return {
+
+                            };
                         }
                     }]
                 }

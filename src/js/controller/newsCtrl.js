@@ -23,9 +23,8 @@ app.registerController('newsDetailCtrl', ['$scope', 'news', 'News', function($sc
   $scope.news = news;
 }]);
 
-app.registerController('newsSaveCtrl', ['$scope', 'news', 'News', function($scope, news, News){
+app.registerController('newsSaveCtrl', ['$scope', 'news', 'News', '$state', function($scope, news, News, $state){
   $scope.news = news;
-
   $scope.save = function($event){
     $scope.newsForm.submited = true;
 
@@ -33,9 +32,13 @@ app.registerController('newsSaveCtrl', ['$scope', 'news', 'News', function($scop
       return ;
     }else{
       // POST 数据
-      News.save({}, $scope.news, function(data){
-        console.log(data);
-      });
+      // 
+      console.log($scope.news);
+      News.update({}, 
+        angular.extend({},{title:$scope.news.title, content:$scope.news.content}), 
+        function(data){
+          $state.go('news.list')
+        });
     }
   };
 }]);

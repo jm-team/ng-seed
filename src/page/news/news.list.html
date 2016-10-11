@@ -1,14 +1,13 @@
-  <h3 class="clearfix">
+<h3 class="clearfix">
     <p class="pull-left">news list</p> 
     <button class="btn btn-sm btn-info pull-right" ui-sref="news.save()">Add</button>
   </h3>
-  <ul class="list-unstyled news-list">
-    <li ng-repeat="new in news track by new.id" class="row">
-      <a ui-sref="news.detail({id: new.id})" class="title col-sm-9 col-xs-12">{{new.title}}</a>
-
-      <div class="col-sm-3 text-right col-xs-12">
-        <button class="btn btn-xs btn-info" ui-sref="news.save({id: new.id})">Update</button>
-        <button class="btn btn-xs btn-info" ng-click="remove($event, new)">Remove</button>
-      </div>
+<ul class="list-unstyled news-list">
+    <li ng-repeat="new in news track by new._id.$oid" class="row">
+        <a ui-sref="news.detail({id: new._id.$oid})" class="title col-sm-9 col-xs-12">{{new.title}}</a>
+        <div class="col-sm-3 text-right col-xs-12">
+            <button class="btn btn-xs btn-info" ui-sref="news.save({id: new._id.$oid})">Update</button>
+            <button class="btn btn-xs btn-info" ng-click="remove($event, new)">Remove</button>
+        </div>
     </li>
-  </ul>
+</ul>
