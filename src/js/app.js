@@ -68,7 +68,7 @@ app.config([
                         var defer = $q.defer();
                         require.ensure([], function (require) {
                             defer.resolve(require('../js/controller/newsCtrl.js'));
-                        }, 'about');
+                        }, 'news');
                         return defer.promise;
                     }]
                 }
