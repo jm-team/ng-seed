@@ -101,40 +101,40 @@ module.exports = merge({
     plugins: [
         // new DashboardPlugin(dashboard.setData),
         // 合并生成公用文件 .[hash:8]
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.[hash:8].js')
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.[hash:8].js'),
 
         // 图片合并 支持retina
-        , new SpritesmithPlugin({
+        new SpritesmithPlugin({
             src: {
-                cwd: path.resolve(__dirname, './src/img/'),
+                cwd: path.resolve(__dirname, './src/img/icon'),
                 glob: '*.png'
             },
             target: {
-                image: './dist/img/sprite.[hash].png',
+                image: './src/img/sprite.[hash].png',
                 css: './src/css/icon.css'
             },
             apiOptions: {
-                cssImageRef: "/img/sprite.[hash].png"
+                cssImageRef: "../img/sprite.[hash].png"
             },
             spritesmithOptions: {
                 padding: 20
             }
             //retina: config.build.retina
-        })
+        }),
 
         // 单独使用link标签加载css并设置路径，
-        // 相对于output配置中的publickPath  .[chunkhash:8]
-        , extractCSS
-        , extractLESS
-        , new CopyWebpackPlugin([{
+        // 相对于output配置中的publickPath
+        extractCSS,
+        extractLESS,
+        new CopyWebpackPlugin([{
             from: './src/dep/ie8supports.js',
             to: './dep'
         },{
             from: './src/mock',
             to: './mock'
-        }])
+        }]),
         // new HtmlWebpackPlugin(),
-        , new HtmlWebpackPlugin({
+        new HtmlWebpackPlugin({
             // 生成title
             title: 'webpack App',
 
@@ -158,7 +158,7 @@ module.exports = merge({
                 removeRedundantAttributes: true
             }
 
-        })
-        ,new WebpackMd5Hash()
+        }),
+        new WebpackMd5Hash()
     ]
 }, webpackConfig);
