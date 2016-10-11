@@ -35,7 +35,7 @@ app.registerController('newsSaveCtrl', ['$scope', 'news', 'News', '$state', func
       // 
       console.log($scope.news);
       News.update({}, 
-        angular.extend({},{title:$scope.news.title, content:$scope.news.content}), 
+        angular.extend({},$scope.news, {_id: undefined}), 
         function(data){
           $state.go('news.list')
         });

@@ -108,7 +108,6 @@ app.config([
                         // 修改
                         if(id){
                             return News.get({id: $stateParams.id}, function(data){
-                                delete data._id;
                                 return data;
                             });
                             
