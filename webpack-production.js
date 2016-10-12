@@ -1,8 +1,9 @@
 var webpack = require('webpack');
+var RemoveWebpackPlugin = require('remove-webpack-plugin');
 
 module.exports = {
 
-    // // 插件
+    // 插件
     plugins: [
 
         // 启用文件压缩混淆
@@ -14,7 +15,8 @@ module.exports = {
             compress: {
                 warnings: false
             }
-        })
+        }),
+        new RemoveWebpackPlugin('./dist/')
 
     ]
 };
