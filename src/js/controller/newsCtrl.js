@@ -34,7 +34,7 @@ app.registerController('newsSaveCtrl', ['$scope', 'news', 'News', '$state', func
       // POST 数据
       // 
       console.log($scope.news);
-      News.update({}, 
+      News.update({id:news._id.$oid}, 
         angular.extend({},$scope.news, {_id: undefined}), 
         function(data){
           $state.go('news.list')

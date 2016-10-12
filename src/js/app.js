@@ -11,9 +11,15 @@ var loginTmp = require('../page/common/login.html');
 app.tmps = {
     loginTmp: loginTmp
 };
+
+// 鏈接mongo配置
 app.constant('API_SERVER', 'https://api.mongolab.com/api/1/databases/ng-seed/collections');
 app.constant('API_KEY', 'mcnzRO1RdVBHxWEOVbtiIxD04i8H0syJ');
 
+
+app.constant('SERVER_ADDRESS', SERVER_ADDRESS);
+app.constant('CENTER_ADDRESS', CENTER_ADDRESS);
+app.constant('USERCENTER_ADDRESS',USERCENTER_ADDRESS);
 
 
 app.config([
@@ -114,7 +120,7 @@ app.config([
                         }else{
                             // 新增
                             return {
-
+                                _id:{}
                             };
                         }
                     }]
