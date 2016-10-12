@@ -1,4 +1,4 @@
-var app = require('app');
+var app = require('../app')
 app.filter('cdn', ['$sce',function($sce){
    return function(input, url, cdnAddr){
     if(url){
@@ -12,3 +12,10 @@ app.filter('cdn', ['$sce',function($sce){
     }
    }
 }]);
+
+app.filter('to_trusted', ['$sce', function ($sce) {  
+        return function (text) {  
+            return $sce.trustAsHtml(text);  
+        }  
+    }]  
+)  
