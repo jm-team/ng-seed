@@ -6,10 +6,10 @@ var newsList = require('../page/news/news.list.html');
 var newsDetail = require('../page/news/news.detail.html');
 var newsSave = require('../page/news/news.save.html');
 
-var loginTmp = require('../page/common/login.html');
 
 app.tmps = {
-    loginTmp: loginTmp
+    loginTmp: require('../page/common/login.html'),
+    notFoundTmp: require('../page/error/404.html')
 };
 
 // 鏈接mongo配置
@@ -29,8 +29,28 @@ app.config([
     '$stateProvider',
     function ($httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
         $locationProvider.html5Mode(true).hashPrefix('!');
+        $urlRouterProvider.when('', '/');
+        $urlRouterProvider.otherwise('/404');
+
 
         $stateProvider
+            .state('notFound', {
+                url: '/404',
+                templateUrl: app.tmps.notFoundTmp,
+                controller: 'HomeCtrl',
+                data:{
+                    displayName:''
+                },
+                resolve: {
+                    loadCtrl: ['$q', function ($q) {
+                        var defer = $q.defer();
+                        require.ensure([], function (require) {
+                            defer.resolve(require('../js/controller/homeCtrl.js'));
+                        }, 'home');
+                        return defer.promise;
+                    }]
+                }
+            })
             .state('home', {
                 title: "首页",
                 url: '/',
@@ -52,6 +72,7 @@ app.config([
                 title: "关于我们",
                 url: '/about',
                 templateUrl: tmp2,
+                name:'关于我们',
                 controller: 'AboutCtrl',
                 resolve: {
                     loadCtrl: ['$q', function ($q) {
@@ -70,6 +91,10 @@ app.config([
                 title:'新闻列表页',
                 url:'/news',
                 templateUrl: news,
+                data:{
+                    breadcrumbProxy: 'news.list',
+                    displayName: '新闻列表页'
+                },
                 resolve:{
                     loadCtrl: ['$q', function ($q) {
                         var defer = $q.defer();
@@ -91,14 +116,18 @@ app.config([
                 url:'/:id',
                 templateUrl: newsDetail,
                 controller:'newsDetailCtrl',
+                data:{
+                    displayName: '{{news.title}}'
+                },
                 resolve:{
-                    news: ['$stateParams', 'News', function($stateParams, News){
-
+                    
+                    news: ['$stateParams', 'News', '$q',function($stateParams, News,$q){
+                        var defer = $q.defer();
                         // 从服务端获取数据
-                        return News.get({id: $stateParams.id}, function(data){
-                            return data;
+                        News.get({id: $stateParams.id}, function(data){
+                            defer.resolve(data) ;
                         });
-                        
+                        return defer.promise;
                     }]
                 }
             })
@@ -108,34 +137,21 @@ app.config([
                 templateUrl:newsSave,
                 controller:'newsSaveCtrl',
                 resolve:{
-                    news: ['$stateParams', 'News', function ($stateParams, News) {
+                    news: ['$stateParams', 'News', '$q', function ($stateParams, News, $q) {
                         var id = $stateParams.id;
-
+                        var defer  = $q.defer();
                         // 修改
                         if(id){
-                            return News.get({id: $stateParams.id}, function(data){
-                                return data;
+                            News.get({id: $stateParams.id}, function(data){
+                                defer.resolve(data);
                             });
                             
                         }else{
                             // 新增
-                            return {
-                                _id:{}
-                            };
+                            return $q.when({})
                         }
-                    }]
-                }
-            })
 
-            // 详情
-            .state('item', {
-                title: '详情页',
-                url: '/item/:id',
-                templateUrl: '/dist/page/bid_detail.html',
-                controller: 'DetailsCtrl',
-                resolve: {
-                    item: ['Api', '$stateParams', function (Api, $stateParams) {
-                        return Api.Lines().get({id: 1})
+                        return defer.promise;
                     }]
                 }
             })

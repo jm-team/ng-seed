@@ -28,7 +28,7 @@
     <base target="/" />
 </head>
 
-<body>
+<body ng-class="{'index-page': $state.current.url === '/', 'other-page':  $state.current.url !== '/'}">
 <!--[if lt IE 8]>
 <p class="browsehappy">
     你正在使用一个<strong>过时</strong>的浏览器。请<a class="link" target="_blank" href="http://browsehappy.com">升级你的浏览器</a>以查看此页面。
@@ -37,7 +37,7 @@
 
 <div jm-header></div>
 
-<div class="main-area" ui-view></div>
+<div class="main-area" a="{{$state}}" ui-view></div>
 
 <div jm-footer></div>
 

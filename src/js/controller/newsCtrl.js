@@ -1,19 +1,59 @@
-var app = require('../app')
+var app = require('../app');
 
 // 调用Api 服务
-app.registerController('newsCtrl', ['$scope', 'News', function($scope, News){
-  News.query(function(data){
-    $scope.news = data;
-  });
+app.registerController('newsCtrl', ['$scope', 'News', '$modal', 'dialogs',  function($scope, News, $modal, dialogs){
+  
+
+  $scope.query = function(){
+    return News.query(function(data){
+      $scope.news = data;
+      return data;
+    });
+  };
+
+  $scope.query();
 
   // 删除数据
-  $scope.remove = function($event, news){
-    //..... 确认删除
-    //
-    
-    // 删除请求
-    News.remove({id: news.id}, function(data){
-      console.log(data);
+  // $scope.remove = function($event, news){
+  //   console.log(news)
+  //   //..... 确认删除
+  //   $modal.open({
+  //     controller:['$scope', '$modalInstance', function($scope, $modalInstance){
+  //       $scope.ok = function () {
+  //         $modalInstance.close();
+  //       };
+
+  //       $scope.cancel = function () {
+  //         $modalInstance.dismiss('cancel');
+  //       };
+  //     }],
+  //     template: '<div class="row"><header class="col-lg-12">\
+  //                   <h3>提示</h3>\
+  //                 </header>\
+  //                 <div class="col-lg-12 content">\
+  //                   <p>确认删除</p>\
+  //                 </div>\
+  //                 <footer class="col-lg-12">\
+  //                   <button class="btn btn-danger" ng-click="ok()">确定</button>\
+  //                   <button class="btn btn-primary" ng-click="cancel()">取消</button>\
+  //                 </footer></div>',
+  //     size: 'sm',
+  //   }).result.then(function(){
+  //     News.remove({id:news._id.$oid}, function(data){
+  //       console.log(data);
+  //     });
+  //   }, function(){
+
+  //   })
+  //   // 删除请求
+  // };
+
+  // 删除新闻
+  $scope.remove = function($event,news){
+    dialogs.confirm({template:'<p class="text-center text-default">确认删除？</p>'}).then(function(){
+      News.remove({id:news._id.$oid}, function(data){
+        $scope.query();
+      });
     });
   };
 }]);
@@ -31,14 +71,21 @@ app.registerController('newsSaveCtrl', ['$scope', 'news', 'News', '$state', func
     if($scope.newsForm.$invalid){
       return ;
     }else{
-      // POST 数据
-      // 
-      console.log($scope.news);
-      News.update({id:news._id.$oid}, 
+      // PUT 数据
+      if($scope.news._id){
+        News.update({id:news._id.$oid}, 
         angular.extend({},$scope.news, {_id: undefined}), 
         function(data){
           $state.go('news.list')
         });
+      // POST 数据
+      }else{
+        News.save({}, 
+        angular.extend({},$scope.news), 
+        function(data){
+          $state.go('news.list');
+        });
+      }
     }
   };
 }]);

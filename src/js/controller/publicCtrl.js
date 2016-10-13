@@ -1,5 +1,5 @@
 var app = require('../app');
-console.log(app);
+
 app.controller('loginCtrl', ['$scope', '$modalInstance', 'Util', '$q', 'Login', 'CENTER_ADDRESS', 'USERCENTER_ADDRESS', 'SERVER_ADDRESS', 'JmLoginService', '$log',
     function ($scope, $modalInstance, Util, $q, Login, CENTER_ADDRESS, USERCENTER_ADDRESS, SERVER_ADDRESS, JmLoginService, $log) {
         $scope.$on('getSessionIdSuccess', function () {

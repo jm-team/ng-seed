@@ -202,3 +202,77 @@ form{
 .news-article img{
 	max-width: 100%;
 }
+
+.modal-content{
+	padding: 8px;
+}
+.modal-content .content{
+	text-align: center;
+	padding: 12px;
+	line-height: 26px;
+}
+
+.modal-content header{
+	border-bottom: 1px solid #ccc;
+}
+.modal-content footer{
+	padding:12px;
+	text-align: right;
+	border-top: 1px solid #ccc;
+}
+
+/*=====================================  测试自定义dialogs */
+.dialog-bg{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.7);
+	z-index: 9;
+}
+
+.dialog-box{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+}
+.dialog-header{
+	border-bottom: 1px solid #ccc;
+	position: relative;
+	padding: 0 12px;
+}
+.dialog-header .dialog-title{
+	color: #666;
+	font-size: 16px;
+}
+.dialog-icon-close{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.dialog-content{
+	padding: 12px;
+	line-height: 24px;
+	font-size: 14px;
+	min-width: 200px;
+}
+
+.dialog-footer{
+	padding: 6px;
+	text-align: right;
+	/*border-top: 1px solid #ccc;*/
+}
+.dialog-footer .btn{
+	margin-left: 8px;
+}
+
+.not-found{
+	font-size: 50px;
+}
+
