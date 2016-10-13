@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
     // 本地服务器配置
     devServer: {
@@ -38,5 +40,10 @@ module.exports = {
         stats: {
             colors: true
         }
-    }
+    },
+    // 插件
+    plugins: [
+        // 合并生成公用文件 .[hash:8]
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.[chunkhash:8].js')
+    ]
 };

@@ -15,9 +15,11 @@ var extractLESS = new ExtractTextPlugin('css/less.[contenthash:8].css');
 // 获取执行环境
 var env = (process.env.NODE_ENV || '').trim();
 if (env === 'dev') {
-    webpackConfig = require('./webpack-dev.js')
+    webpackConfig = require('./webpack-dev.js');
+    config = config.dev;
 } else if (env === 'production') {
-    webpackConfig = require('./webpack-production.js')
+    webpackConfig = require('./webpack-production.js');
+    config = config.build;
 }
 
 module.exports = merge({
@@ -25,22 +27,21 @@ module.exports = merge({
     // 这里的文件在使用html-webpack-plugin的时候
     // 会自动将这些资源插入到html中
     entry: {
-        entry: './src/js/entry.js',
-
         // 公共文件
-        vendors: [
+        vendor: [
             './src/dep/angular.js',
             './src/dep/angular-ui-router.js',
             './src/dep/jm-login-module.js',
             './src/dep/ui-bootstrap-tpls.js',
             './src/dep/angular-resource.js'
-        ]
+        ],
+        entry: './src/js/entry.js'
     },
 
     // 构建之后的文件目录配置
     output: {
         path: path.join(__dirname, 'dist'),
-        publicPath: env === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,//'../static',
+        publicPath: config.assetsPublicPath, //'../static',
         filename: 'js/[name].[chunkhash:8].js',
         chunkFilename: 'js/[name].[chunkhash:8].js'
     },
@@ -99,10 +100,6 @@ module.exports = merge({
 
     // 插件
     plugins: [
-        // new DashboardPlugin(dashboard.setData),
-        // 合并生成公用文件 .[hash:8]
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.[hash:8].js'),
-
         // 图片合并 支持retina
         new SpritesmithPlugin({
             src: {

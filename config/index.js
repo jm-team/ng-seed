@@ -5,7 +5,7 @@ module.exports = {
 		assetsRoot: path.resolve(__dirname, '../dist'),
 		assetsSubDirectory: 'static',
 		// html 中引用资源的位置
-		assetsPublicPath: 'http://static.jumoreyun.com/dist/',
+		assetsPublicPath: 'http://static.jumoreyun.com/dist/', // TODO: CDN地址
 		productionSourceMap: true,
 		retina:2,
 		productionGzip: false,
