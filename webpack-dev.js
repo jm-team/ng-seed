@@ -44,6 +44,6 @@ module.exports = {
     // 插件
     plugins: [
         // 合并生成公用文件 .[hash:8]
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.[chunkhash:8].js')
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.js')
     ]
 };
