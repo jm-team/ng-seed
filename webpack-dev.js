@@ -1,16 +1,16 @@
 var webpack = require('webpack');
+var config = require('./config/env.config.js').dev;
 
 module.exports = {
     // 本地服务器配置
     devServer: {
-        // 本地服务器端口配置
-        port: 8081,
+        port: config.devServer.port, // 本地服务器端口配置 e.g. 8081
         hot: true,
         inline: true,
         // api 接口反向代理 解决跨域问题
         proxy: {
             '/webapi': {
-                target: 'http://dev-webapi.jm.com',
+                target: config.devServer.proxyTarget, // api服务器地址 e.g. 'http://dev-webapi.jm.com'
                 bypass: function (req, res, proxyOptions) {
                     console.log(req.url)
                 },

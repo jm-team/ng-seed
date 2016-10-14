@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
-var config = require('./config/index.js');
+var config = require('./config/env.config.js');
 var webpackConfig;
 // multiple extract instances
 var extractCSS = new ExtractTextPlugin('css/[name].[contenthash:8].css');
@@ -41,7 +41,7 @@ module.exports = merge({
     // 构建之后的文件目录配置
     output: {
         path: path.join(__dirname, 'dist'),
-        publicPath: config.assetsPublicPath, //'../static',
+        publicPath: config.assetsPublicPath, // html 中引用资源的位置
         filename: 'js/[name].[chunkhash:8].js',
         chunkFilename: 'js/[name].[chunkhash:8].js'
     },
