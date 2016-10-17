@@ -1,0 +1,11 @@
+.icon-home {
+  background-image: url(../img/icon/home.png);
+  width: 31px;
+  height: 35px;
+}
+
+.icon-about {
+  background-image: url(../img/icon/about.png);
+  width: 31px;
+  height: 35px;
+}

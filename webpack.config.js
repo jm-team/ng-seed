@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var merge = require('webpack-merge');
-var SpritesmithPlugin = require('webpack-spritesmith');
+// var SpritesmithPlugin = require('webpack-spritesmith');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -79,7 +79,7 @@ module.exports = merge({
             // 这里使用自动添加CSS3 浏览器前缀
             {
                 test: /\.css$/i,
-                loader: extractCSS.extract('style-loader', 'css!autoprefixer?{browsers:["last 6 version"]}')
+                loader: extractCSS.extract('style-loader', 'css!postcss')
             },
 
             {
@@ -90,9 +90,23 @@ module.exports = merge({
             // 处理html图片
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-                loader: "file-loader?name=img/[name].[ext]"
+                loader: "file-loader?name=img/[name].[hash:8].[ext]"
             }
         ]
+    },
+    postcss: function () {
+        return [
+            require('postcss-sprites')({
+                stylesheetPath: './src/css',
+                spritePath: './dist/img/',
+                spritesmith: {
+                    padding: 20
+                }
+            }),
+            require('autoprefixer')({
+                browsers: ["last 6 version"]
+            })
+        ];
     },
 
     // sourceMap
@@ -101,7 +115,7 @@ module.exports = merge({
     // 插件
     plugins: [
         // 图片合并 支持retina
-        new SpritesmithPlugin({
+        /*new SpritesmithPlugin({
             src: {
                 cwd: path.resolve(__dirname, './src/img/icon'),
                 glob: '*.png'
@@ -117,7 +131,7 @@ module.exports = merge({
                 padding: 20
             }
             //retina: config.build.retina
-        }),
+        }),*/
 
         // 单独使用link标签加载css并设置路径，
         // 相对于output配置中的publickPath
@@ -126,7 +140,7 @@ module.exports = merge({
         new CopyWebpackPlugin([{
             from: './src/dep/ie8supports.js',
             to: './dep'
-        },{
+        }, {
             from: './src/mock',
             to: './mock'
         }]),
