@@ -1,13 +1,13 @@
 ## API设计
-> 使用RESTful API规范 如：
+> 使用RESTful API规范：
 
 
 1.获取新闻列表 GET请求  
 /webapi/版本/路径  
 /webapi/v1/news  
 
-请求成功返回： 
-Status code 200
+请求成功返回：   
+Status Code: 200
 
 ```
 [
@@ -35,12 +35,12 @@ Status code 200
 ]
 ```
 
-2.获取一条新闻内容 GET请求  
+2.获取指定ID的新闻 GET请求  
 /webapi/版本/路径/ID  
 /webapi/v1/news/10086  
 
-请求成功返回： 
-Status code 200
+请求成功返回：   
+Status Code: 200
 
 ```
 {
@@ -53,8 +53,8 @@ Status code 200
 }
 ```
 
-失败：
-Code: 400 /4XX
+失败：  
+Status Code: 400 /4XX
 
 ```
 {
@@ -63,10 +63,19 @@ Code: 400 /4XX
 }
 ```
 
-3.批量接口请求 POST请求（注意head里的content-type 为application/json）  
+3.添加一条新闻  POST  
+/webapi/v1/news
+
+4.更新指定的新闻 PUT  
+/webapi/v1/news/ID
+
+5.删除指定的新闻 DELETE  
+/webapi/v1/news/ID
+
+6.批量接口请求 POST请求（注意head里的content-type 为application/json）  
 /webapi/batch
 
-请求参数JSON
+请求参数JSON:
 
 ```
 {
@@ -84,7 +93,7 @@ Code: 400 /4XX
 }
 ```
 
-返回数据 JSON
+返回数据 JSON:
 
 ```
 [
@@ -98,6 +107,8 @@ Code: 400 /4XX
     }
 ]
 ```
+
+
 
 
 HTTP请求方法  

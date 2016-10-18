@@ -23,5 +23,4 @@ app.registerController('HomeCtrl', ['$scope', 'Api', '$modal',
 
 
 
-  Api.Lines().get({id:1})
-}])
+}]);

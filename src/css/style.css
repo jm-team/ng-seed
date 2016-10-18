@@ -1,18 +1,28 @@
+html{
+	height: 100%;
+}
+.container{
+	width: 100%;
+}
+body {
+	min-height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: Source Sans Pro, Helvetica, sans-serif;
+	font-size: 16px;
+	flex-direction:column;
+	color: #2c3e50;
+	overflow-x: hidden;
+}
+i,em{
+	font-style: normal;
+}
 .nav-main{
-	margin-top: 20px;
+	
 }
 .jm-form {
-	width: 900px;
 	padding: 38px 50px;
-}
-
-.pop-form {
-	font-size: 12px;
-	text-align: left;
-	/*overflow: hidden;*/
-	/*width: 782px;*/
-	/*border: 1px solid #d8d8d8;*/
-	/*margin: 20px auto;*/
 }
 
 .pop-form-header {
@@ -38,25 +48,20 @@
 	color: #646464;
 	text-align: center;
 }
-.login-modal .modal-dialog{
-	width: 425px;
+
+.verfication-code{
+	width: 100px;
+	height: 34px;
+	padding-left: 15px;
 }
-#login-form{
+.verfication-code img{
 	width: 100%;
-}
-#login-form .jmform-control-group{
-	margin-left: 0;
+	height: 100%;
 }
 
-#login-form .jmform-control-group{
-	margin-bottom: 23px;
-}
-#login-form input.half{
-	width: 200px;
-}
-#login-form .verification-code{
-	width: 100px;
-	height: 40px;
+.verfication-code-wrap{
+	display: table;
+	width: 100%;
 }
 
 .error-group{
@@ -66,16 +71,6 @@
 	padding-left: 8px;
 	height: 30px;
 	overflow: hidden;
-}
-.jmform-control {
-	height: 28px;
-	/*line-height: 28px;*/
-	border: 1px solid #d8d8d8;
-	padding: 5px 8px;
-	outline: none;
-	width: 100%;
-	vertical-align: middle;
-	position: relative;
 }
 #login-form .login-user,
 #login-form .login-pass{
@@ -105,10 +100,10 @@
 }
 
 
-.verification-code{ height: 100%; }
-#login-form a{
-	color: #999;
+.verification-code{ 
+	height: 100%; 
 }
+
 #login-form .reg{
 	color: #fc6921;
 }
@@ -125,22 +120,172 @@
 	top: 10px;
 	right: 25px;
 }
-.a{
-	transform: translateX(25px);
+
+#header{
+	width: 100%;
+	z-index: 2;
+}
+#header header{
+	display: flex;
+	align-items: center;
+}
+#header .menu{
+	font-size: 24px;
+}
+.nav-menu{
+	position: absolute;
+	top: 69px;
+	left: 0;
+	width: 100%;
+	opacity: 1;
+	display: block;
+	transform: translateY(0);
+	transition: all .5s ease;
+	z-index: -1;
+	background: #fff;
+	border-bottom: 1px solid #ccc;
+}
+.nav-menu.animate-hidden{
+	opacity: 0;
+	transform: translateY(-100%);
+}
+.nav-menu li{
+	width: 100%;
+	line-height: 28px;
 }
 
-@keyframes myfirst{
-	from {background: red;}
-	to {background: yellow;}
+.logo h1{
+	margin:10px 0 ;
 }
-.div1
-{
-	transition: width 2s;
+.main-area{
+	width: 100%;
+	background: #f5f5f5;
+	flex: 1;
+	display: flex;
+	align-items: center;
 }
 
-.div2
-{
-	transition: width 2s;
-  width: 100px;
-  height: 100px;
+#footer{
+	width: 100%;
+	padding:30px 0;
+	line-height: 28px;
 }
+
+
+.news-list li{
+	line-height: 28px;
+	border-bottom: 1px solid #ccc;
+}
+.news-list li:last-child{
+	border-bottom: none;
+}
+
+.news-list .title{
+	padding-left: 16px;
+	font-size: 12px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.news-list a.title:hover{
+	text-decoration: none;
+}
+
+#Content{
+	resize: none;
+}
+
+form{
+	margin-top: 15px;
+}
+
+.news-article{
+	padding: 25px 0; 
+}
+.news-article img{
+	max-width: 100%;
+}
+
+/* page */
+.jm-page{
+	margin-bottom: 10px;
+}
+.jm-page .p-wrap{
+	float: right;
+}
+.jm-page .p-nums{
+	float: left;
+}
+
+.jm-page .p-skip{
+	float: left;
+	margin-left: 20px;
+}
+.jm-page .p-skip .jm-form-control{
+	float: left;
+	width: 32px;
+	height: 32px;
+	margin:0 3px;
+	line-height: 32px;
+	font-size: 14px;
+	text-align: center;
+	border: 1px solid #ddd; 
+}
+.jm-page .pn-break{
+	  float: left;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 14px;
+    margin-right: 5px;
+    font-size: 14px;
+    color: #ccc;
+    font-family: Arial;
+}
+
+.jm-page .p-nums a{
+	color: #333;
+	border: 1px solid #ddd;
+	background: #f7f7f7;
+	float: left;
+	padding: 0 14px;
+	line-height: 30px;
+	font-size: 14px;
+	margin-right: 5px;
+}
+.jm-page .p-nums a.active{
+	border: 0 none;
+  padding: 1px 15px;
+  background: 0 0;
+  filter: none;
+  color: #e4393c;
+  cursor: default;
+}
+.jm-page .p-nums i{
+	color: #aaa;
+	font-size: 14px;
+}
+
+.jm-page .p-skip .btn{
+	float: left;
+  height: 30px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.jm-page .p-skip em{
+	float: left;
+	line-height: 32px;
+}
+.jm-page .p-skip .btn-default{
+		display: inline-block;
+    border-radius: 2px;
+    background: #F7F7F7;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid #DDD;
+    padding: 4px 13px 5px;
+    color: #666;
+    background-color: #f7f7f7;
+    background-repeat: repeat-x;
+  }

@@ -1,0 +1,32 @@
+<div id="header" class="bg-info">
+    <header class="container">
+
+        <div class="col-xs-5 col-sm-4 col-lg-3 logo">
+            <h1><img height="42" src="../../img/logo.png" alt="jumore 聚贸" title="jumore 聚贸" /></h1>
+        </div>
+
+
+        <div class="col-xs-7 col-sm-8 col-lg-9 nav-main pull-right">
+            <div class="hidden-xs">
+                <ul class="nav nav-pills pull-right" role="tablist">
+                    <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+                    <li ui-sref-active="active"><a ui-sref="about">About</a></li>
+                    <li ui-sref-active="active"><a ui-sref="news.list">News</a></li>
+                    <li><a href="" ng-click="modal($event)">Login</a></li>
+                </ul>
+            </div>
+
+            <div class="visible-xs text-right text-primary">
+               <i class="menu glyphicon glyphicon-align-justify" toggle="nav-menu"></i>
+            </div>
+        </div>
+
+        <div class="col-xs-12 nav-menu animate-hidden">
+            <ul class="list-unstyled nav nav-pills nav-stacked">
+                <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+                <li ui-sref-active="active"><a ui-sref="about">About</a></li>
+                <li><a href="" ng-click="modal($event)">LOGIN</a></li>
+            </ul>
+        </div>
+    </header>
+</div>

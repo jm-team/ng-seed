@@ -1,7 +1,7 @@
 var app = require('../app')
 
 // 调用Api 服务
-app.registerController('HomeCtrl', ['$scope', 'Api', function($scope, Api){
+app.registerController('AboutCtrl', ['$scope', 'Api', function($scope, Api){
     angular.extend($scope, {
         title:'About Page',
         desc:'关于。。。。'
@@ -9,5 +9,5 @@ app.registerController('HomeCtrl', ['$scope', 'Api', function($scope, Api){
 
 
 
-    Api.Lines().get({id:1})
-}])
+    Api.Lines().get({id:2});
+}]);
