@@ -1,7 +1,8 @@
 var app = require('../app')
 // var loginTmp = require('../../page/service/login.html');
 // 调用Api 服务
-app.registerController('HomeCtrl', ['$scope', 'Api', '$modal',
+app.registerController('HomeCtrl', 
+  /*@ngInject*/
   function($scope, Api, $modal){
 
   angular.extend($scope, {
@@ -20,7 +21,4 @@ app.registerController('HomeCtrl', ['$scope', 'Api', '$modal',
       });
     }
   });
-
-
-
-}]);
+});

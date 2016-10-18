@@ -1,0 +1,35 @@
+.icon-home {
+  background-image: url(../img/sprite/icon/home.png);
+  width: 31px;
+  height: 35px;
+}
+
+.icon-about {
+  background-image: url(../img/sprite/icon/about.png);
+  width: 31px;
+  height: 35px;
+}
+
+.icon-logo {
+  background-image: url(../img/logo.png);
+  width: 102px;
+  height: 90px;
+}
+
+.sprite-plane {
+  background-image: url(../img/sprite/plane.png);
+  width: 102px;
+  height: 90px;
+}
+
+.sprite-home {
+  background-image: url(../img/sprite/home.png);
+  width: 31px;
+  height: 35px;
+}
+
+.sprite-about {
+  background-image: url(../img/sprite/about.png);
+  width: 31px;
+  height: 35px;
+}

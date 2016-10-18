@@ -1,6 +1,6 @@
 var app = require('../app');
 
-app.factory('Util', [function () {
+app.factory('Util', function () {
     return {
 
         trim: function () {
@@ -33,13 +33,13 @@ app.factory('Util', [function () {
         }
 
     };
-}]);
+});
 
 /**
  * Address - 环境地址配置
  *
  */
-app.factory('Address', ['$location', 'SERVER_ADDRESS', '$q', 'USERCENTER_ADDRESS', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRESS) {
+app.factory('Address', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRESS) {
     return {
 
         localAddress: $location.absUrl(),
@@ -69,9 +69,9 @@ app.factory('Address', ['$location', 'SERVER_ADDRESS', '$q', 'USERCENTER_ADDRESS
 
 
     };
-}]);
+});
 
-app.factory('Login', ['Address', '$http', function (Address, $http) {
+app.factory('Login', function (Address, $http) {
     return {
         checkIsRequiredCode: function (data) {
             console.log(data);
@@ -82,22 +82,22 @@ app.factory('Login', ['Address', '$http', function (Address, $http) {
             return $http.jsonp(Address.USERCENTER_ADDRESS + '/cas/c/loginController?action=validateVerifyCode&callback=JSON_CALLBACK', {params: data});
         }
     }
-}]);
+});
 
-app.factory('Address', ['$location', function ($location) {
+app.factory('Address',  function ($location) {
     return {
         API_ADDRESS: $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/webapi/v1'
     }
-}]);
+});
 
-app.factory('Api', ['$resource', 'Address', function ($resource, Address) {
+app.factory('Api',  function ($resource, Address) {
     return {
         Lines: function () {
             return $resource(Address.API_ADDRESS + '/auction/:id', {id: '@id'});
         }
     }
-}]);
+});
 
-app.factory('News', ['$resource', 'API_SERVER', 'API_KEY', function($resource, API_SERVER, API_KEY){
+app.factory('News',  function($resource, API_SERVER, API_KEY){
     return $resource(API_SERVER + '/news/:id', {id:'@id',  apiKey: API_KEY}, {update: { method: 'PUT'} });
-}]);
+});

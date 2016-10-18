@@ -1,23 +1,27 @@
 var webpack = require('webpack');
 var merge = require('webpack-merge');
-var SpritesmithPlugin = require('webpack-spritesmith');
+// var SpritesmithPlugin = require('webpack-spritesmith');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
-var config = require('./config/index.js');
+var config = require('./config/env.config.js');
 var webpackConfig;
 // multiple extract instances
 var extractCSS = new ExtractTextPlugin('css/[name].[contenthash:8].css');
 var extractLESS = new ExtractTextPlugin('css/less.[contenthash:8].css');
 
+var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
+
 // 获取执行环境
 var env = (process.env.NODE_ENV || '').trim();
 if (env === 'dev') {
-    webpackConfig = require('./webpack-dev.js')
+    webpackConfig = require('./webpack-dev.js');
+    config = config.dev;
 } else if (env === 'production') {
-    webpackConfig = require('./webpack-production.js')
+    webpackConfig = require('./webpack-production.js');
+    config = config.build;
 }
 
 module.exports = merge({
@@ -25,22 +29,21 @@ module.exports = merge({
     // 这里的文件在使用html-webpack-plugin的时候
     // 会自动将这些资源插入到html中
     entry: {
-        entry: './src/js/entry.js',
-
         // 公共文件
-        vendors: [
+        vendor: [
             './src/dep/angular.js',
             './src/dep/angular-ui-router.js',
             './src/dep/jm-login-module.js',
             './src/dep/ui-bootstrap-tpls.js',
             './src/dep/angular-resource.js'
-        ]
+        ],
+        entry: './src/js/entry.js'
     },
 
     // 构建之后的文件目录配置
     output: {
         path: path.join(__dirname, 'dist'),
-        publicPath: env === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,//'../static',
+        publicPath: config.assetsPublicPath, // html 中引用资源的位置
         filename: 'js/[name].[chunkhash:8].js',
         chunkFilename: 'js/[name].[chunkhash:8].js'
     },
@@ -78,7 +81,7 @@ module.exports = merge({
             // 这里使用自动添加CSS3 浏览器前缀
             {
                 test: /\.css$/i,
-                loader: extractCSS.extract('style-loader', 'css!autoprefixer?{browsers:["last 6 version"]}')
+                loader: extractCSS.extract('style-loader', 'css!postcss')
             },
 
             {
@@ -89,9 +92,40 @@ module.exports = merge({
             // 处理html图片
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-                loader: "file-loader?name=img/[name].[ext]"
+                loader: "file-loader?name=img/[name].[hash:8].[ext]"
             }
         ]
+    },
+    postcss: function () {
+        return [
+            require('postcss-sprites')({
+                stylesheetPath: './src/css',
+                spritePath: './dist/img/sprite',
+                filterBy: function(image) {
+                    //添加雪碧图规则 只有在sprite文件夹下的图片进行合并
+                    if (!/\/sprite\//.test(image.url)) {
+                        console.log(image.url);
+                        return Promise.reject();
+                    }
+
+                    return Promise.resolve();
+                },
+                groupBy: function(image) {
+                    //添加雪碧图规则 在icon文件夹下的图片单独进行合并
+                    if (image.url.indexOf('/icon/') === -1) {
+                        return Promise.reject();
+                    }
+
+                    return Promise.resolve('icon'); // 'sprite.' + icon + '.png'
+                },
+                spritesmith: {
+                    padding: 20
+                }
+            }),
+            require('autoprefixer')({
+                browsers: ["last 6 version"]
+            })
+        ];
     },
 
     // sourceMap
@@ -99,12 +133,8 @@ module.exports = merge({
 
     // 插件
     plugins: [
-        // new DashboardPlugin(dashboard.setData),
-        // 合并生成公用文件 .[hash:8]
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.[hash:8].js'),
-
         // 图片合并 支持retina
-        new SpritesmithPlugin({
+        /*new SpritesmithPlugin({
             src: {
                 cwd: path.resolve(__dirname, './src/img/icon'),
                 glob: '*.png'
@@ -120,7 +150,7 @@ module.exports = merge({
                 padding: 20
             }
             //retina: config.build.retina
-        }),
+        }),*/
 
         // 单独使用link标签加载css并设置路径，
         // 相对于output配置中的publickPath
@@ -129,7 +159,7 @@ module.exports = merge({
         new CopyWebpackPlugin([{
             from: './src/dep/ie8supports.js',
             to: './dep'
-        },{
+        }, {
             from: './src/mock',
             to: './mock'
         }]),
@@ -158,6 +188,10 @@ module.exports = merge({
                 removeRedundantAttributes: true
             }
 
+        }),
+
+        new ngAnnotatePlugin({
+            add: true
         }),
         new WebpackMd5Hash()
     ]
