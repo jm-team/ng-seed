@@ -100,7 +100,24 @@ module.exports = merge({
         return [
             require('postcss-sprites')({
                 stylesheetPath: './src/css',
-                spritePath: './dist/img/',
+                spritePath: './dist/img/sprite',
+                filterBy: function(image) {
+                    //添加雪碧图规则 只有在sprite文件夹下的图片进行合并
+                    if (!/\/sprite\//.test(image.url)) {
+                        console.log(image.url);
+                        return Promise.reject();
+                    }
+
+                    return Promise.resolve();
+                },
+                groupBy: function(image) {
+                    //添加雪碧图规则 在icon文件夹下的图片单独进行合并
+                    if (image.url.indexOf('/icon/') === -1) {
+                        return Promise.reject();
+                    }
+
+                    return Promise.resolve('icon'); // 'sprite.' + icon + '.png'
+                },
                 spritesmith: {
                     padding: 20
                 }
