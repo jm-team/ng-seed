@@ -40,15 +40,6 @@ app.config([
                 controller: 'HomeCtrl',
                 data:{
                     displayName:''
-                },
-                resolve: {
-                    loadCtrl: ['$q', function ($q) {
-                        var defer = $q.defer();
-                        require.ensure([], function (require) {
-                            defer.resolve(require('../js/controller/homeCtrl.js'));
-                        }, 'home');
-                        return defer.promise;
-                    }]
                 }
             })
             .state('home', {
@@ -159,9 +150,10 @@ app.config([
     }
 ]);
 
-app.config(['$controllerProvider', function ($controllerProvider) {
+app.config( function ($controllerProvider) {
     app.registerController = $controllerProvider.register;
-}]);
+    app.$controllerProvider = $controllerProvider;
+});
 
 app.run(['$templateCache', '$rootScope',
     function ($templateCache, $rootScope) {

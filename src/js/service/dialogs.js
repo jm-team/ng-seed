@@ -1,13 +1,13 @@
 // module
-var app = require('../app')
+var app = require('../app');
 
 function Dialogs(){
-  this.resolveKeys = []
-  this.scope = {}
-  this.locals = {}
-  this.element = null
-  this.resolves = []
-  this.controllerName = ''
+  this.resolveKeys = [];
+  this.scope = {};
+  this.locals = {};
+  this.element = null;
+  this.resolves = [];
+  this.controllerName = '';
 }
 
 /**
@@ -16,34 +16,34 @@ function Dialogs(){
  * @return {[Promise]}        [description]
  */
 Dialogs.prototype.creatHTML = function(config){
-  var header = ''
-  var footer = ''
-  var _template = '<div class="dialog-content">' + (config.template)+'</div>'
-  var _templateUrl = config.templateUrl
-  var templateCache = this.$templateCache
-  var q = this.$q
-  var defer = q.defer()
+  var header = '';
+  var footer = '';
+  var _template = '<div class="dialog-content">' + (config.template)+'</div>';
+  var _templateUrl = config.templateUrl;
+  var templateCache = this.$templateCache;
+  var q = this.$q;
+  var defer = q.defer();
 
   if(config.dialogHeader){
-    header = '<div class="dialog-header">'+config.dialogHeader+'</div>'
+    header = '<div class="dialog-header">'+config.dialogHeader+'</div>';
   }
 
   if(config.dialogFooter){
-    footer = '<div class="dialog-footer">'+config.dialogFooter+'</div>'
+    footer = '<div class="dialog-footer">'+config.dialogFooter+'</div>';
   }
 
   if(_templateUrl){
     http.get(_templateUrl, {
       cache: templateCache
     }).then(function(response){
-      defer.resolve(response.data)
+      defer.resolve(response.data);
     })
   }else{
     return q.when('<div class="dialog-bg '+config.backdropClass+'" ng-click="DropCloseDialogs($event)"><div ng-click="$event.stopPropagation()" class="dialog-box '+config.className+'">'+
       (header + _template + footer)+
-      '<i ng-click="close($event)" class="dialog-icon-close">&times;</i></div></div>')
+      '<i ng-click="close($event)" class="dialog-icon-close">&times;</i></div></div>');
   }
-  return defer.promise
+  return defer.promise;
 }
 
 /**
@@ -52,14 +52,17 @@ Dialogs.prototype.creatHTML = function(config){
  * @return {[type]}        [description]
  */
 Dialogs.prototype.resolve = function(config){
-  var q = this.$q
-  if(angular.isObject(config.resolve)){
-    for(var attr in config.resolve){
-      this.resolveKeys.push(attr)
-      this.resolves.push(config.resolve[attr]())
+  var q = this.$q;
+  var resolves = config.resolve;
+  if(angular.isObject(resolves)){
+    for(var attr in resolves){
+      if(resolves.hasOwnProperty(attr)){
+        this.resolveKeys.push(attr);
+        this.resolves.push(config.resolve[attr]());
+      }
     }
   }
-  return q.all(this.resolves)
+  return q.all(this.resolves);
 }
 
 
@@ -70,27 +73,26 @@ Dialogs.prototype.resolve = function(config){
  * @return {[type]}        [description]
  */
 Dialogs.prototype.render = function(data,config){
-  var scope = this.scope
-  var animate = this.$animate
-  var controller = this.$controller
-  var compile = this.$compile
+  var scope = this.scope;
+  var animate = this.$animate;
+  var controller = this.$controller;
+  var compile = this.$compile;
 
-  this.element = angular.element(data)
+  this.element = angular.element(data);
 
   if (this.controllerName) {
     this.locals.$scope = scope;
     var ctrl = controller(this.controllerName, this.locals);
     if (this.controllerAs) {
-      scope[this.controllerAs] = ctrl
+      scope[this.controllerAs] = ctrl;
     }else if (this.locals) {
       for (var prop in this.locals) {
         scope[prop] = this.locals[prop];
       }
     }
   }
-  compile(this.element)(scope)
-  console.log(this.container)
-  return animate.enter(this.element, this.container)
+  compile(this.element)(scope);
+  return animate.enter(this.element, this.container);
 }
 
 /**
@@ -99,60 +101,60 @@ Dialogs.prototype.render = function(data,config){
  * @return {[type]}        [description]
  */
 Dialogs.prototype.modal = function(config){
-  var config = config || {}
-  var http = this.$http
-  var q = this.$q
-  var rootScope = this.$rootScope
-  var controller = this.$controller
+  var config = config || {};
+  var http = this.$http;
+  var q = this.$q;
+  var rootScope = this.$rootScope;
+  var controller = this.$controller;
 
   var scope = this.scope = rootScope.$new();
-  var defer = q.defer()
-  var self = this
+  var defer = q.defer();
+  var self = this;
 
-  this.container = angular.element(config.container || document.body)
-  this.controllerAs = config.controllerAs
-  this.controllerName = config.controller || null
-  this.locals = config.locals || {}
+  this.container = angular.element(config.container || document.body);
+  this.controllerAs = config.controllerAs;
+  this.controllerName = config.controller || null;
+  this.locals = config.locals || {};
 
   this.resolve(config).then(function(data){
     angular.forEach(data, function(item, index){
       scope[self.resolveKeys[index]] = item;
     });
-    return self.creatHTML(config)
+    return self.creatHTML(config);
   }).then(function(data){
     // if(!self.element){
-      self.render(data,config)
+      self.render(data,config);
     // }
   })
 
   scope.ok = function($event){
-    self.element.remove()
-    scope.$destroy()
+    self.element.remove();
+    scope.$destroy();
 
     if(angular.isFunction(config.okCallback)){
-      config.okCallback($event,scope)
+      config.okCallback($event,scope);
     }
-    defer.resolve(scope)
+    defer.resolve(scope);
   }
 
   scope.DropCloseDialogs = function(){
     if(angular.isUndefined(config.isBackdropClickClose) || config.isBackdropClickClose){
-      scope.close()
+      scope.close();
     }
   }
 
   scope.close = function(){
-    self.element.remove()
-    self.element = null
-    scope.$destroy()
+    self.element.remove();
+    self.element = null;
+    scope.$destroy();
   }
 
   scope.cancel = function($event){
-    scope.close()
-    defer.reject()
+    scope.close();
+    defer.reject();
 
     if(angular.isFunction(config.cancelCallback)){
-      config.cancelCallback($event,scope)
+      config.cancelCallback($event,scope);
     }
   }
 
@@ -166,12 +168,12 @@ Dialogs.prototype.modal = function(config){
  * @return {[type]}        [description]
  */
 Dialogs.prototype.alert = function(config){
-  var config = config || {}
+  var config = config || {};
   var cof = angular.extend(config, {
     dialogHeader: '<h3 class="dialog-title">'+(config.title || '温馨提示')+'</h3>',
     dialogFooter: '<button class="btn btn-sm btn-primary " ng-click="ok($event)">确定</button>'
   })
-  return this.modal(cof)
+  return this.modal(cof);
 }
 
 /**
@@ -180,12 +182,12 @@ Dialogs.prototype.alert = function(config){
  * @return {[type]}        [description]
  */
 Dialogs.prototype.confirm = function(config){
-  var config = config || {}
+  var config = config || {};
   var cof = angular.extend(config, {
     dialogHeader: '<h3 class="dialog-title">'+(config.title || '温馨提示')+'</h3>',
     dialogFooter: '<button class="btn btn-sm btn-primary " ng-click="ok($event)">确定</button><button class="btn btn-sm btn-primary " ng-click="cancel($event)">取消</button>'
   })
-  return this.modal(cof)
+  return this.modal(cof);
 }
 
 // 注册弹出框服务
@@ -194,14 +196,14 @@ app.provider('dialogs', {
 
   $get:['$document', '$compile', '$q', '$http', '$rootScope', '$controller', '$animate', '$templateCache',
   function($document, $compile, $q, $http, $rootScope, $controller, $animate, $templateCache){
-    this.instance.$document = $document
-    this.instance.$compile = $compile
-    this.instance.$q = $q
-    this.instance.$http = $http
-    this.instance.$controller = $controller
-    this.instance.$rootScope = $rootScope
-    this.instance.$animate = $animate
-    this.templateCache = $templateCache
-    return this.instance
+    this.instance.$document = $document;
+    this.instance.$compile = $compile;
+    this.instance.$q = $q;
+    this.instance.$http = $http;
+    this.instance.$controller = $controller;
+    this.instance.$rootScope = $rootScope;
+    this.instance.$animate = $animate;
+    this.templateCache = $templateCache;
+    return this.instance;
   }]
 })

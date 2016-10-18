@@ -1,6 +1,7 @@
 var app = require('../app');
 
-app.controller('loginCtrl', ['$scope', '$modalInstance', 'Util', '$q', 'Login', 'CENTER_ADDRESS', 'USERCENTER_ADDRESS', 'SERVER_ADDRESS', 'JmLoginService', '$log',
+app.controller('loginCtrl', 
+    /*@ngInject*/
     function ($scope, $modalInstance, Util, $q, Login, CENTER_ADDRESS, USERCENTER_ADDRESS, SERVER_ADDRESS, JmLoginService, $log) {
         $scope.$on('getSessionIdSuccess', function () {
             $log.info('获取shirJID 成功');
@@ -114,5 +115,4 @@ app.controller('loginCtrl', ['$scope', '$modalInstance', 'Util', '$q', 'Login', 
             }
 
         });
-    }
-]);
+    });

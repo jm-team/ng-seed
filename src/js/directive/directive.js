@@ -3,12 +3,12 @@ var tmpHeader = require('../../page/common/header.html');
 var tmpFooter = require('../../page/common/footer.html');
 var tmpCrumbs = require('../../page/common/crumbs.html');
 
-app.directive('jmHeader', [function () {
+app.directive('jmHeader', function () {
     return {
         restrict: 'AE',
         templateUrl: tmpHeader,
         replace: true,
-        controller: ['$modal', '$scope', function ($modal, $scope) {
+        controller:  function ($modal, $scope) {
             $scope.modal = function ($event) {
                 $event.preventDefault();
                 $modal.open({
@@ -19,35 +19,35 @@ app.directive('jmHeader', [function () {
                     windowClass: 'login-modal'
                 });
             }
-        }]
+        }
     }
-}]);
+});
 
-app.directive('jmFooter', [function () {
+app.directive('jmFooter', function () {
     return {
         restrict: 'AE',
         replace: true,
         templateUrl: tmpFooter,
-        controller: ['$scope', function ($scope) {
-        }]
+        controller:  function ($scope) {
+        }
     }
-}]);
+});
 
-app.directive('toggle', ['Util', function (Util) {
+app.directive('toggle',  function (Util) {
     return {
         restrict: 'AE',
         link: function (scope, element, attrs) {
             var target = angular.element(Util.getByClassName(attrs.toggle));
             element.on('click', function () {
                 target.toggleClass('animate-hidden');
-            });
+            }); 
         }
     }
-}]);
+});
 
 
 // 面包屑
-app.directive('jmCrumbs', ['$state', '$interpolate', '$timeout',function($state, $interpolate,$timeout){
+app.directive('jmCrumbs',function($state, $interpolate,$timeout){
     return {
         restrict:'AE',
         templateUrl: function(element, attrs){
@@ -107,13 +107,16 @@ app.directive('jmCrumbs', ['$state', '$interpolate', '$timeout',function($state,
                 return false
             }
 
+            // 获取可以工作的state 
             function getWorkingSatate(currentState){
                 var proxyStateName ;
                 var workingState = currentState;
+
+                // 当前是抽象状态
                 if(currentState.abstract === true){
                     // scope.abstractProxyProperty == 'data.breadcrumbProxy'
                     // currentState = {data:{breadcrumbProxy:'news.lists'}}
-                    // 
+                    // 判断是否有代理 可以在抽象状态中代理到某一个状态
                     if(typeof scope.abstractProxyProperty !== 'undefined'){
                         proxyStateName = getValueInObject(scope.abstractProxyProperty, currentState);
                         if(proxyStateName){
@@ -122,10 +125,10 @@ app.directive('jmCrumbs', ['$state', '$interpolate', '$timeout',function($state,
                                 workingState.locals = currentState.locals;
                             }
                         }else{
-                            workingState = false
+                            workingState = false;
                         }
                     }else{
-                        workingState = false
+                        workingState = false;
                     }
                 }
             
@@ -147,8 +150,6 @@ app.directive('jmCrumbs', ['$state', '$interpolate', '$timeout',function($state,
                     }
                 });
 
-
-
                 return propertyObject;
             }
 
@@ -157,11 +158,11 @@ app.directive('jmCrumbs', ['$state', '$interpolate', '$timeout',function($state,
                 var tmp = $state.data.displayName;
                 var data = $state.locals.globals;
 
-                return $interpolate(tmp)($state.locals.globals)
-
+                // 解析插值字符串 
+                return $interpolate(tmp)($state.locals.globals);
             }
         }
     }
-}]);
+});
 
 

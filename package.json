@@ -33,6 +33,8 @@
     "webpack-dev-server": "^1.15.1",
     "webpack-md5-hash": "0.0.5",
     "webpack-merge": "^0.14.1",
-    "webpack-spritesmith": "^0.2.6"
+    "webpack-spritesmith": "^0.2.6",
+    "ng-annotate": "^1.2.1",
+    "ng-annotate-webpack-plugin": "^0.1.3"
   }
 }

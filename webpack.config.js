@@ -12,6 +12,8 @@ var webpackConfig;
 var extractCSS = new ExtractTextPlugin('css/[name].[contenthash:8].css');
 var extractLESS = new ExtractTextPlugin('css/less.[contenthash:8].css');
 
+var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
+
 // 获取执行环境
 var env = (process.env.NODE_ENV || '').trim();
 if (env === 'dev') {
@@ -169,6 +171,10 @@ module.exports = merge({
                 removeRedundantAttributes: true
             }
 
+        }),
+
+        new ngAnnotatePlugin({
+            add: true
         }),
         new WebpackMd5Hash()
     ]
