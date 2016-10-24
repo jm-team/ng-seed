@@ -2,7 +2,9 @@ var app = require('../app');
 
 app.controller('loginCtrl', 
     /*@ngInject*/
-    function ($scope, $modalInstance, Util, $q, Login, CENTER_ADDRESS, USERCENTER_ADDRESS, SERVER_ADDRESS, JmLoginService, $log) {
+    function ($scope, $modalInstance, Util, $q, Login, CENTER_ADDRESS, USERCENTER_ADDRESS, SERVER_ADDRESS, JmLoginService, $log, Address) {
+        var localAddr =Address.localHost;
+
         $scope.$on('getSessionIdSuccess', function () {
             $log.info('获取shirJID 成功');
             $modalInstance.close();
@@ -26,6 +28,8 @@ app.controller('loginCtrl',
         $scope.close = $modalInstance.close;
 
         angular.extend($scope, {
+            // 来源 successful 指向同域的某一个资源{/dist/img/icon-open.png} 以便服务端回跳到客户端获取信息
+            from: SERVER_ADDRESS + '/webapi/v1/login?successful='+localAddr+'/dist/img/icon-open.png?t='+new Date,
             // 表单是否提交过
             submitted: false,
 

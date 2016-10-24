@@ -17,11 +17,11 @@
             sessionId="shiroJID"
             on-close="close()"
             novalidate>
-
             <input id='service' class="ng-hide" name='service' value='{{serverAddress}}/webapi/shiro-cas' />
-
+            <!-- 来源 -->
+            <input name="from" class="ng-hide" value="{{from}}"/>
+            <!-- 1004： 聚运通 -->
             <input id='bizcode' class="ng-hide" name='bizcode' value='1004'/>
-
             <div class="form-group error-group" ng-show="(loginnormal.$invalid || errTip) && submitted">
                 <div class=" text-danger" ng-show="userInValid">Phone Number or Password error</div>
                 <div class=" text-danger" ng-show="verifyCode">VerifyCode Error</div>
@@ -30,7 +30,6 @@
                 <div class=" text-danger" ng-show="loginnormal.checkcode.$error.required">VerifyCode Required</div>
 
             </div>
-
 
             <!-- 用户名 -->
             <div class="form-group">
