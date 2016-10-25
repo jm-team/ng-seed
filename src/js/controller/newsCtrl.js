@@ -1,24 +1,4 @@
-<<<<<<< HEAD
-var app = require('../app')
 
-// 调用Api 服务
-app.registerController('newsCtrl', ['$scope', 'News', function($scope, News){
-  News.query(function(data){
-    $scope.news = data;
-  });
-
-  $scope.numPages = 8;
-  $scope.currentPage = 1;
-
-  // 删除数据
-  $scope.remove = function($event, news){
-    //..... 确认删除
-    //
-    
-    // 删除请求
-    News.remove({id: news.id}, function(data){
-      console.log(data);
-=======
 var app = require('../app');
 var $controllerProvider = app.$controllerProvider
     // 调用Api 服务
@@ -81,7 +61,6 @@ $controllerProvider.register('newsCtrl',
                 });
             });
         };
->>>>>>> e9cce57e533dc37f13c91f50d52797fa3e0014c4
     });
 
 
