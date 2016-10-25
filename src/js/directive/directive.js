@@ -1,11 +1,9 @@
 var app = require('../app');
 var tmpHeader = require('../../page/common/header.html');
 var tmpFooter = require('../../page/common/footer.html');
-<<<<<<< HEAD
 var tmpPage = require('../../page/common/page.html');
-=======
 var tmpCrumbs = require('../../page/common/crumbs.html');
->>>>>>> e9cce57e533dc37f13c91f50d52797fa3e0014c4
+
 
 app.directive('jmHeader', function () {
     return {
