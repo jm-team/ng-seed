@@ -171,7 +171,9 @@ i,em{
 	line-height: 28px;
 }
 
-
+.news-list{
+	margin-bottom: 25px;
+}
 .news-list li{
 	line-height: 28px;
 	border-bottom: 1px solid #ccc;

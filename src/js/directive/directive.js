@@ -20,9 +20,9 @@ app.directive('jmHeader', function () {
 
                     windowClass: 'login-modal'
                 });
-            }
+            };
         }
-    }
+    };
 });
 
 app.directive('jmFooter', function () {
@@ -32,7 +32,7 @@ app.directive('jmFooter', function () {
         templateUrl: tmpFooter,
         controller:  function ($scope) {
         }
-    }
+    };
 });
 
 app.directive('toggle',  function (Util) {
@@ -44,7 +44,7 @@ app.directive('toggle',  function (Util) {
                 target.toggleClass('animate-hidden');
             }); 
         }
-    }
+    };
 });
 
 
@@ -77,11 +77,11 @@ app.directive('jmCrumbs',function($state, $interpolate,$timeout){
                 var $currentState = $state.$current;
                 var self = $currentState.self || {};
                 while($currentState && self.name){
-                    console.log($currentState)
-                    workingState = getWorkingSatate($currentState)
+                    console.log($currentState);
+                    workingState = getWorkingSatate($currentState);
                     if(workingState){
-                        displayName = getStateDisplayName(workingState)
-                        console.log(displayName)
+                        displayName = getStateDisplayName(workingState);
+                        console.log(displayName);
                         if(displayName && !isWorkingStateInArray(displayName, breadcrumbs)){
                             breadcrumbs.push({
                                 displayName: displayName,
@@ -93,7 +93,7 @@ app.directive('jmCrumbs',function($state, $interpolate,$timeout){
                     self = $currentState.self;
                 }
 
-                breadcrumbs.push({displayName: '首页', router:'home'})
+                breadcrumbs.push({displayName: '首页', router:'home'});
                 breadcrumbs.reverse();
                 scope.breadcrumbs = breadcrumbs;
             }
@@ -106,7 +106,7 @@ app.directive('jmCrumbs',function($state, $interpolate,$timeout){
                         return true;
                     }
                 }
-                return false
+                return false;
             }
 
             // 获取可以工作的state 
@@ -164,7 +164,7 @@ app.directive('jmCrumbs',function($state, $interpolate,$timeout){
                 return $interpolate(tmp)($state.locals.globals);
             }
         }
-    }
+    };
 });
 
 // 分页
@@ -173,7 +173,7 @@ app.directive('jmPage', function(){
         restrict:'AE',
         templateUrl:tmpPage,
         scope:{
-            numPages:'=',
+            totalPage:'=',
             currentPage:'=',
             onSelectPage:'&'
         },
@@ -181,8 +181,8 @@ app.directive('jmPage', function(){
             
             function createPage(currentPage, totalPages){
                 scope.pages = [];
-                var start = 1;
-                var end = 5;
+                var start = 2;
+                var end = 6;
 
                 // 总页码小于8页  全部显示
                 if(totalPages < 8){
@@ -190,12 +190,12 @@ app.directive('jmPage', function(){
                 // 最后的页码
                 }else{
                     if(currentPage <= 5){
-                        start = currentPage-2;
-                        start = (start<1)?1:start;
-                        end = currentPage + 2;
-                    }else if(currentPage > totalPages - 5){
                         start = currentPage-3;
-                        end = totalPages;
+                        start = (start<2)?2:start;
+                        end = start < 7 ? 7:currentPage + 3;
+                    }else if(currentPage +4 > totalPages){
+                        start = totalPages-5;
+                        end = totalPages-1;
                     // 中间的页码
                     }else if(currentPage > 5){
                         start = currentPage - 3;
@@ -208,14 +208,19 @@ app.directive('jmPage', function(){
                 }
             }
 
-            scope.$watch('numPages', function(value){
-                createPage(1,value)
-
+            scope.$watch('totalPage', function(value){
+                createPage(scope.currentPage, scope.totalPage);
             });
+
+            scope.setPage = function($event, p){
+                $event.preventDefault();
+                scope.currentPage = p;
+                createPage(p, scope.totalPage)
+            }
 
 
         }
-    }
+    };
 });
 
 

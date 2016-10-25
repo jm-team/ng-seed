@@ -1,6 +1,6 @@
 
 var app = require('../app');
-var $controllerProvider = app.$controllerProvider
+var $controllerProvider = app.$controllerProvider;
     // 调用Api 服务
 $controllerProvider.register('newsCtrl',
     /*@ngInject*/
@@ -8,7 +8,8 @@ $controllerProvider.register('newsCtrl',
 
         //app.registerController('newsCtrl', ['$scope', 'News', '$modal', 'dialogs',  function($scope, News, $modal, dialogs){
 
-
+        $scope.numPages = 11;
+        $scope.currentPage = 6;
         $scope.query = function() {
             return News.query(function(data) {
                 $scope.news = data;
