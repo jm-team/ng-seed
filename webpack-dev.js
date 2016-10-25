@@ -11,8 +11,8 @@ module.exports = {
         proxy: {
             '/webapi': {
                 target: config.devServer.proxyTarget, // api服务器地址 e.g. 'http://dev-webapi.jm.com'
-                bypass: function (req, res, proxyOptions) {
-                    console.log(req.url)
+                bypass: function(req, res, proxyOptions) {
+                    console.log(req.url);
                 },
                 // ignorePath: false,
                 changeOrigin: true,
@@ -23,19 +23,26 @@ module.exports = {
         // historyApiFallback: true,
         // historyApiFallback: false,
         historyApiFallback: {
-            rewrites: [
+            rewrites: [{
+                    from: /^\/dist\/.*$/,
+                    to: function(context) {
+                        console.log(context);
+                        return  context.parsedUrl.pathname;
+                        //return '/dist/entry/index.html';
+                    }
+                },
                 // shows views/landing.html as the landing page
-                { from: /^\/$/, to: '/dist/entry/index.html' },
+                // { from: /^\/$/, to: '/dist/entry/index.html' },
                 // shows views/subpage.html for all routes starting with /subpage
                 // { from: /^\/subpage/, to: '/dist/entry/index.html' },
                 // shows views/404.html on all other pages
-                {from: /./, to: '/dist/entry/index.html'}
+                { from: /./, to: '/dist/entry/index.html' }
             ]
         },
 
 
         // 指定服务根目录
-        contentBase: './dist',
+        contentBase: './',
 
         stats: {
             colors: true
