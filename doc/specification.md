@@ -48,7 +48,7 @@ entry.js: (webpack 入口文件)
 ### 1.Js: 
 1. [angualrjs](https://code.angularjs.org/1.2.29/docs/api) v1.2.29
 2. [ui-router](http://angular-ui.github.io/ui-router/site/#/api/ui.router) v0.2.10
-3. [ngResource](https://docs.angularjs.org/api/ngResource/service/$resource) v1.2.29
+3. [ngResource](https://code.angularjs.org/1.2.29/docs/api/ngResource/service/$resource) v1.2.29
 4. [bindOnce](https://github.com/Pasvaz/bindonce) v0.3.3
 5. [ui-bootstrap](http://angular-ui.github.io/bootstrap/versioned-docs/0.12.0/) v0.12.0
 
