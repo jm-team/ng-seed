@@ -11,7 +11,7 @@ module.exports = {
         proxy: {
             '/webapi': {
                 target: config.devServer.proxyTarget, // api服务器地址 e.g. 'http://dev-webapi.jm.com'
-                bypass: function(req, res, proxyOptions) {
+                bypass: function (req, res, proxyOptions) {
                     console.log(req.url);
                 },
                 // ignorePath: false,
@@ -19,24 +19,21 @@ module.exports = {
                 secure: false
             }
         },
-        // 启用html5 3种方式
-        // historyApiFallback: true,
-        // historyApiFallback: false,
+        // 启用html5
         historyApiFallback: {
-            rewrites: [{
+            rewrites: [
+                // 解决非webpack dev内存中的文件无法访问的问题
+                {
                     from: /^\/dist\/.*$/,
-                    to: function(context) {
-                        console.log(context);
-                        return  context.parsedUrl.pathname;
-                        //return '/dist/entry/index.html';
+                    to: function (context) {
+                        console.log(context); // TODO: 404判断 开发环境暂时可忽略
+                        return context.parsedUrl.pathname;
                     }
                 },
-                // shows views/landing.html as the landing page
-                // { from: /^\/$/, to: '/dist/entry/index.html' },
-                // shows views/subpage.html for all routes starting with /subpage
-                // { from: /^\/subpage/, to: '/dist/entry/index.html' },
-                // shows views/404.html on all other pages
-                { from: /./, to: '/dist/entry/index.html' }
+                {
+                    from: /./,
+                    to: '/dist/entry/index.html'
+                }
             ]
         },
 
