@@ -10,6 +10,18 @@
   height: 35px;
 }
 
+.icon-home-echo {
+  background-image: url(../img/sprite/echo/home.png);
+  width: 31px;
+  height: 35px;
+}
+
+.icon-about-echo {
+  background-image: url(../img/sprite/echo/about.png);
+  width: 31px;
+  height: 35px;
+}
+
 .icon-logo {
   background-image: url(../img/logo.png);
   width: 102px;

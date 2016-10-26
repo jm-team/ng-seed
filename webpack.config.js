@@ -111,12 +111,13 @@ module.exports = merge({
                     return Promise.resolve();
                 },
                 groupBy: function(image) {
-                    //添加雪碧图规则 在icon文件夹下的图片单独进行合并
-                    if (image.url.indexOf('/icon/') === -1) {
+                    //添加雪碧图规则 在sprite下，如果包含文件夹则单独进行合并
+                    var regex = /\/sprite\/([^/]+)\//g;
+                    var m = regex.exec(image.url);
+                    if(!m) {
                         return Promise.reject();
                     }
-
-                    return Promise.resolve('icon'); // 'sprite.' + icon + '.png'
+                    return Promise.resolve(m[1]); // 'sprite.' + icon + '.png'
                 },
                 spritesmith: {
                     padding: 20
