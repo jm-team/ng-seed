@@ -139,13 +139,13 @@ app.config([
                             
                         }else{
                             // 新增
-                            return $q.when({})
+                            return $q.when({});
                         }
 
                         return defer.promise;
                     }]
                 }
-            })
+            });
 
     }
 ]);

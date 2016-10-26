@@ -86,7 +86,7 @@ app.registerController('newsSaveCtrl',
                 News.update({ id: news._id.$oid },
                     angular.extend({}, $scope.news, { _id: undefined }),
                     function(data) {
-                        $state.go('news.list')
+                        $state.go('news.list');
                     });
                 // POST 数据
             } else {
