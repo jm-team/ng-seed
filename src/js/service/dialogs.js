@@ -37,14 +37,14 @@ Dialogs.prototype.creatHTML = function(config){
       cache: templateCache
     }).then(function(response){
       defer.resolve(response.data);
-    })
+    });
   }else{
     return q.when('<div class="dialog-bg '+config.backdropClass+'" ng-click="DropCloseDialogs($event)"><div ng-click="$event.stopPropagation()" class="dialog-box '+config.className+'">'+
       (header + _template + footer)+
       '<i ng-click="close($event)" class="dialog-icon-close">&times;</i></div></div>');
   }
   return defer.promise;
-}
+};
 
 /**
  * [resolve 依赖方法 弹出框依赖的数据在没有得到的时候将不会显示弹出框]
@@ -63,7 +63,7 @@ Dialogs.prototype.resolve = function(config){
     }
   }
   return q.all(this.resolves);
-}
+};
 
 
 /**
@@ -93,15 +93,15 @@ Dialogs.prototype.render = function(data,config){
   }
   compile(this.element)(scope);
   return animate.enter(this.element, this.container);
-}
+};
 
 /**
  * [modal 弹出框方法]
  * @param  {[type]} config [配置文件]
  * @return {[type]}        [description]
  */
-Dialogs.prototype.modal = function(config){
-  var config = config || {};
+Dialogs.prototype.modal = function(conf){
+  var config = conf || {};
   var http = this.$http;
   var q = this.$q;
   var rootScope = this.$rootScope;
@@ -125,7 +125,7 @@ Dialogs.prototype.modal = function(config){
     // if(!self.element){
       self.render(data,config);
     // }
-  })
+  });
 
   scope.ok = function($event){
     self.element.remove();
@@ -135,19 +135,19 @@ Dialogs.prototype.modal = function(config){
       config.okCallback($event,scope);
     }
     defer.resolve(scope);
-  }
+  };
 
   scope.DropCloseDialogs = function(){
     if(angular.isUndefined(config.isBackdropClickClose) || config.isBackdropClickClose){
       scope.close();
     }
-  }
+  };
 
   scope.close = function(){
     self.element.remove();
     self.element = null;
     scope.$destroy();
-  }
+  };
 
   scope.cancel = function($event){
     scope.close();
@@ -156,10 +156,10 @@ Dialogs.prototype.modal = function(config){
     if(angular.isFunction(config.cancelCallback)){
       config.cancelCallback($event,scope);
     }
-  }
+  };
 
   return defer.promise;
-}
+};
 
 
 /**
@@ -167,28 +167,28 @@ Dialogs.prototype.modal = function(config){
  * @param  {[JSON]} config [弹出框配置]
  * @return {[type]}        [description]
  */
-Dialogs.prototype.alert = function(config){
-  var config = config || {};
+Dialogs.prototype.alert = function(confg){
+  var config = confg || {};
   var cof = angular.extend(config, {
     dialogHeader: '<h3 class="dialog-title">'+(config.title || '温馨提示')+'</h3>',
     dialogFooter: '<button class="btn btn-sm btn-primary " ng-click="ok($event)">确定</button>'
-  })
+  });
   return this.modal(cof);
-}
+};
 
 /**
  * [confirm 确认弹出框]
  * @param  {[JSON]} config [弹出框配置]
  * @return {[type]}        [description]
  */
-Dialogs.prototype.confirm = function(config){
-  var config = config || {};
+Dialogs.prototype.confirm = function(confg){
+  var config = confg || {};
   var cof = angular.extend(config, {
     dialogHeader: '<h3 class="dialog-title">'+(config.title || '温馨提示')+'</h3>',
     dialogFooter: '<button class="btn btn-sm btn-primary " ng-click="ok($event)">确定</button><button class="btn btn-sm btn-primary " ng-click="cancel($event)">取消</button>'
-  })
+  });
   return this.modal(cof);
-}
+};
 
 // 注册弹出框服务
 app.provider('dialogs', {
@@ -206,4 +206,4 @@ app.provider('dialogs', {
     this.templateCache = $templateCache;
     return this.instance;
   }]
-})
+});

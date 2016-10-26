@@ -244,6 +244,11 @@ form{
     color: #ccc;
     font-family: Arial;
 }
+.jm-page .pn-prev,.jm-page .pn-next{
+	vertical-align: middle;
+}
+
+
 
 .jm-page .p-nums a{
 	color: #333;
@@ -255,8 +260,12 @@ form{
 	font-size: 14px;
 	margin-right: 5px;
 }
+.jm-page .p-nums a[disabled]{
+	color: #ccc;
+	border-color:#ddd;
+}
 .jm-page .p-nums a.active{
-	border: 0 none;
+  border: 0 none;
   padding: 1px 15px;
   background: 0 0;
   filter: none;
@@ -265,7 +274,15 @@ form{
 }
 .jm-page .p-nums i{
 	color: #aaa;
-	font-size: 14px;
+	font-family: "宋体";
+	font-size: 16px;
+	padding:0 5px;
+}
+.jm-page .pn-prev i{
+	padding-left: 0;
+}
+.jm-page .pn-next i{
+	padding-right: 0;
 }
 
 .jm-page .p-skip .btn{

@@ -8,7 +8,7 @@ $controllerProvider.register('newsCtrl',
 
         //app.registerController('newsCtrl', ['$scope', 'News', '$modal', 'dialogs',  function($scope, News, $modal, dialogs){
 
-        $scope.numPages = 11;
+        $scope.numPages = 15;
         $scope.currentPage = 6;
         $scope.query = function() {
             return News.query(function(data) {

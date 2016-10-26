@@ -178,35 +178,50 @@ app.directive('jmPage', function(){
             onSelectPage:'&'
         },
         link: function(scope, element, attrs){
-            
+            scope.maxPage = 4;
             function createPage(currentPage, totalPages){
-                scope.pages = [];
+                var maxPage = scope.maxPage;
                 var start = 2;
-                var end = 6;
+                var end = start+scope.maxPage;
+
+                scope.pages = [];
 
                 // 总页码小于8页  全部显示
-                if(totalPages < 8){
-                    end = totalPages;
+                if(totalPages < scope.maxPage){
+                    end = totalPages - 1;
                 // 最后的页码
                 }else{
-                    if(currentPage <= 5){
-                        start = currentPage-3;
+                    if(currentPage <= maxPage){
                         start = (start<2)?2:start;
-                        end = start < 7 ? 7:currentPage + 3;
-                    }else if(currentPage +4 > totalPages){
-                        start = totalPages-5;
-                        end = totalPages-1;
+                    }else if(currentPage > totalPages-maxPage){
+                        start = totalPages-maxPage;
                     // 中间的页码
-                    }else if(currentPage > 5){
-                        start = currentPage - 3;
-                        end = currentPage + 2;
+                    // }else if(currentPage > scope.maxPage - 3){
+                    }else{
+                        start = currentPage - Math.floor(scope.maxPage/2);
                     }
                 }
 
-                for(;start <= end; start++){
-                    scope.pages.push({index: start, isActive: currentPage == start});
+                while(maxPage--){
+                    if(start < totalPages){
+                        scope.pages.push({index: start, isActive: currentPage == start});
+                    }
+                    start++;
                 }
             }
+
+
+            scope.selectPrevious = function($event){
+                var p = scope.currentPage-1;
+                scope.setPage($event, p < 1 ? 1 : p);
+                (scope.onSelectPrevious||angular.noop)({event: $event});
+            };
+
+            scope.selectNext = function($event){
+                var p = scope.currentPage+1;
+                scope.setPage($event, p >scope.totalPage ? scope.totalPage : p);
+                (scope.onSelectNext||angular.noop)({event: $event});
+            };
 
             scope.$watch('totalPage', function(value){
                 createPage(scope.currentPage, scope.totalPage);
@@ -214,10 +229,12 @@ app.directive('jmPage', function(){
 
             scope.setPage = function($event, p){
                 $event.preventDefault();
+                if(p !== scope.currentPage){
                 scope.currentPage = p;
-                createPage(p, scope.totalPage)
-            }
-
+                    (scope.onSelectPage||angular.noop)({event: $event});
+                    createPage(p, scope.totalPage);
+                }
+            };
 
         }
     };
