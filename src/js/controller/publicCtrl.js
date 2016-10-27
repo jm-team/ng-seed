@@ -34,7 +34,7 @@ app.controller('loginCtrl',
 
         angular.extend($scope, {
             // 来源 successful 指向同域的某一个资源{/dist/img/icon-open.png} 以便服务端回跳到客户端获取信息
-            from: SERVER_ADDRESS + '/webapi/v1/login?successful='+localAddr+'/dist/img/icon-open.png?t='+new Date,
+            from: SERVER_ADDRESS + '/webapi/v1/login?successful='+localAddr+'/dist/img/icon-open.png?t='+new Date(),
 
             // 表单是否提交过
             submitted: false,

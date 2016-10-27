@@ -194,8 +194,7 @@ Dialogs.prototype.confirm = function(confg){
 app.provider('dialogs', {
   instance: new Dialogs(),
 
-  $get:['$document', '$compile', '$q', '$http', '$rootScope', '$controller', '$animate', '$templateCache',
-  function($document, $compile, $q, $http, $rootScope, $controller, $animate, $templateCache){
+  $get: function($document, $compile, $q, $http, $rootScope, $controller, $animate, $templateCache){
     this.instance.$document = $document;
     this.instance.$compile = $compile;
     this.instance.$q = $q;
@@ -205,5 +204,5 @@ app.provider('dialogs', {
     this.instance.$animate = $animate;
     this.templateCache = $templateCache;
     return this.instance;
-  }]
+  }
 });

@@ -1,4 +1,4 @@
-var app = require('../app')
+var app = require('../app');
 app.filter('cdn',  function($sce) {
     return function(input, url, cdnAddr) {
         if (url) {
@@ -10,11 +10,11 @@ app.filter('cdn',  function($sce) {
                 return $sce.trustAsResourceUrl('http://static.jumoreyun.com' + input);
             }
         }
-    }
+    };
 });
 
 app.filter('to_trusted', function($sce) {
     return function(text) {
         return $sce.trustAsHtml(text);
-    }
+    };
 });

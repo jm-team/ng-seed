@@ -5,54 +5,16 @@ var $controllerProvider = app.$controllerProvider;
 $controllerProvider.register('newsCtrl',
     /*@ngInject*/
     function($scope, News, $modal, dialogs) {
-
-        //app.registerController('newsCtrl', ['$scope', 'News', '$modal', 'dialogs',  function($scope, News, $modal, dialogs){
-
-        $scope.numPages = 15;
+        console.log(News);
         $scope.currentPage = 6;
         $scope.query = function() {
-            return News.query(function(data) {
+            return News.query({pageSize:1},function(data) {
                 $scope.news = data;
                 return data;
             });
         };
 
         $scope.query();
-
-        // 删除数据
-        // $scope.remove = function($event, news){
-        //   console.log(news)
-        //   //..... 确认删除
-        //   $modal.open({
-        //     controller:['$scope', '$modalInstance', function($scope, $modalInstance){
-        //       $scope.ok = function () {
-        //         $modalInstance.close();
-        //       };
-
-        //       $scope.cancel = function () {
-        //         $modalInstance.dismiss('cancel');
-        //       };
-        //     }],
-        //     template: '<div class="row"><header class="col-lg-12">\
-        //                   <h3>提示</h3>\
-        //                 </header>\
-        //                 <div class="col-lg-12 content">\
-        //                   <p>确认删除</p>\
-        //                 </div>\
-        //                 <footer class="col-lg-12">\
-        //                   <button class="btn btn-danger" ng-click="ok()">确定</button>\
-        //                   <button class="btn btn-primary" ng-click="cancel()">取消</button>\
-        //                 </footer></div>',
-        //     size: 'sm',
-        //   }).result.then(function(){
-        //     News.remove({id:news._id.$oid}, function(data){
-        //       console.log(data);
-        //     });
-        //   }, function(){
-
-        //   })
-        //   // 删除请求
-        // };
 
         // 删除新闻
         $scope.remove = function($event, news) {
