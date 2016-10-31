@@ -1,6 +1,6 @@
 # Angularjs 项目规范
 ### 基本说明：
-> 项目根目录为webapp 文件夹，开发阶段使用webpack-dev-server/node/nginx作为本地服务，线上使用nginx。  
+> 项目根目录为webapp 文件夹，开发阶段使用webpack-dev-server/node/[nginx](./nginx.conf)作为本地服务，线上使用nginx。  
 > 接口服务需做反向代理，以解决跨域问题。  
 > html文件引用静态资源（js，css，img）时，必须使用CDN绝对路径。  
 > 文件版本号：框架、类库、第三方插件等需在引用路径中体现版本号，业务代码发布上线时使用文件名+MD5形式。  
