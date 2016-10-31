@@ -20,7 +20,8 @@ module.exports = {
                 warnings: false
             }
         }),
-        new RemoveWebpackPlugin('./dist/')
+        new RemoveWebpackPlugin('./dist/'),
+        new WebpackMd5Hash()
 
     ]
 };

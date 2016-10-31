@@ -193,7 +193,6 @@ module.exports = merge({
 
         new ngAnnotatePlugin({
             add: true
-        }),
-        new WebpackMd5Hash()
+        })
     ]
 }, webpackConfig);
