@@ -1,27 +1,22 @@
 <div class="jm-page clearfix" ng-if="totalPage>1">
 	<div class="p-wrap">
 		<span class="p-nums">
-			<a href=""  class="pn-prev" ng-disabled="currentPage == 1" ng-click="selectPrevious($event)">
-				<i>&lt;</i>
-				<em>上一页</em>
+			<a ng-show="directionLinks" href=""  class="pn-prev" ng-disabled="currentPage == 1" ng-click="selectPrevious($event)">
+				<em ng-bind="previousText || '&lt; 上一页'"></em>
 			</a>
 
+			<a href=""  ng-click="setPage($event, 1)" ng-class="{active: currentPage == 1}">1</a>
 
-	
-			<a href=""  ng-click="setPage($event, 1)" ng-class="{active: currentPage == 1}">1</a>	
-
-			<b class="pn-break" ng-show="totalPage > maxPage && maxPage-currentPage<0">...</b>
+			<b class="pn-break" ng-show="totalPage > maxSize && maxSize-currentPage<0">...</b>
 
 			<a ng-click="setPage($event, p.index)" href="" ng-class="{active: currentPage == p.index}" ng-repeat="p in pages">{{p.index}}</a>
 
-			<b class="pn-break" ng-if="totalPage > maxPage && (!(currentPage+maxPage> totalPage) || !(currentPage>maxPage))">...</b>
-
+			<b class="pn-break" ng-if="totalPage > maxSize && (!(currentPage+maxSize > totalPage) || !(currentPage>maxSize))">...</b>
 
 			<a href=""  ng-click="setPage($event, totalPage)" ng-class="{active: currentPage == totalPage}">{{totalPage}}</a>
 
-			<a href="" class="pn-next" ng-if="totalPage>1" ng-disabled="currentPage == totalPage" ng-click="selectNext($event)">
-				<em>下一页</em>
-				<i>&gt;</i>
+			<a ng-show="directionLinks" href="" class="pn-next" ng-if="totalPage>1" ng-disabled="currentPage == totalPage" ng-click="selectNext($event)">
+				<em ng-bind="nextText || '下一页 &gt;'"></em>
 			</a>
 		</span>
 

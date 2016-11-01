@@ -6,7 +6,7 @@
  *  需要认证中心
  *  接口服务提供商
  *  客户端
- * 
+ *
  * 正常步骤:
  * 1.光标离开用户输入框 使用jsonp到认证中心判断是否需要验证码
  *     a). 返回出错也判断为需要验证码
@@ -15,7 +15,7 @@
  * 3.点击登录 判断表单填写是否正确
  *     a). 正确 走第4步
  *     b). 错误 显示表单填写错误
- *     
+ *
  * // 需要验证码
  * 4.使用jsonp去认证中心判断验证码是否正确
  *     a). 正确提交表单
@@ -23,7 +23,7 @@
  *
  * // 不需要验证码
  * 4.表单提交登录到认证中心
- * 
+ *
  * 5.认证中心处理完毕根据表单的from字段会跳到相应平台的登录接口
  * 6.接口根据表单中action地址中successful中的url参数返回到客户端
  *     a). 接口会创建shiroJID 并拼接到successful中的url上
@@ -41,7 +41,7 @@
             name='loginnormal'
             class="jm-form form-horizontal"
             method='post'
-            
+
             // iframe ID
             target='loginFrame'
 
@@ -61,11 +61,11 @@
             <!-- 服务端需要 {serverAddress：根据各个平台 各自匹配}-->
             <!-- example: serverAddress : "http://dev-webapi.jm.com/webapi/shiro-cas" -->
             <input id='service' class="ng-hide" name='service' value='{{serverAddress}}/webapi/shiro-cas' />
-            
+
             <!-- 来源 {form: 登录发起点}-->
             <!-- example: form : "http://dev-webapi.jm.com/webapi/v1/login?successful=http://192.168.23.208:80/dist/img/icon-open.png?t=Mon Oct 24 2016 10:15:39 GMT+0800 (中国标准时间)" -->
             <input name="from" class="ng-hide" value="{{from}}"/>
-            
+
             <!-- 平台代码 {bizcode: 服务端判断平台}-->
             <!-- example: bizcode : 1004 -->
             <input id='bizcode' class="ng-hide" name='bizcode' value='1004'/>
@@ -133,7 +133,7 @@
             var arr = sCookies.split('; ');
             for (var i = 0; i < arr.length; i++) {
                 var arr2 = arr[i].split('=');
-                if (arr2[0] = name) {
+                if (arr2[0] == name) {
                     return arr2[1];
                 }
             }

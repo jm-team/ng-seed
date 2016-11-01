@@ -1,5 +1,5 @@
 <h3 class="clearfix">
-    <p class="pull-left">news list</p> 
+    <p class="pull-left">news list</p>
     <button class="btn btn-sm btn-info pull-right" ui-sref="news.save()">Add</button>
 </h3>
 <hr>
@@ -13,4 +13,4 @@
     </li>
 </ul>
 
-<jm-page total-page="numPages" current-page="currentPage"></jm-page>
+<jm-pagination total-page="numPages" total-items="150" items-per-page="itemsPerPage" boundary-links="1" on-select-page="selectPage(page)" previous-text="Previous" next-text="Next" max-size="5" current-Page="currentPage"></jm-pagination>

@@ -7,6 +7,9 @@ $controllerProvider.register('newsCtrl',
     function($scope, News, $modal, dialogs) {
         console.log(News);
         $scope.currentPage = 6;
+        $scope.numPages = 20;
+        $scope.maxSize = 5;
+        $scope.itemsPerPage = 6;
         $scope.query = function() {
             return News.query({pageSize:1},function(data) {
                 $scope.news = data;
@@ -24,6 +27,10 @@ $controllerProvider.register('newsCtrl',
                 });
             });
         };
+
+        $scope.selectPage = function(page){
+            console.log(page);
+        }
     });
 
 
@@ -33,7 +40,7 @@ app.registerController('newsDetailCtrl',
     $scope.news = news;
 });
 
-app.registerController('newsSaveCtrl', 
+app.registerController('newsSaveCtrl',
   /*@ngInject*/
   function($scope, news, News, $state) {
     $scope.news = news;
