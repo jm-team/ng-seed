@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var WebpackMd5Hash = require('webpack-md5-hash');
 var RemoveWebpackPlugin = require('remove-webpack-plugin');
 
 module.exports = {

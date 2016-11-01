@@ -1,18 +1,13 @@
+var path = require('path');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
-// var SpritesmithPlugin = require('webpack-spritesmith');
-var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var WebpackMd5Hash = require('webpack-md5-hash');
 var config = require('./config/env.config.js');
 var webpackConfig;
-// multiple extract instances
-var extractCSS = new ExtractTextPlugin('css/[name].[contenthash:8].css');
-var extractLESS = new ExtractTextPlugin('css/less.[contenthash:8].css');
-
-var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
+var hash = chunkhash = contenthash = '';
 
 // 获取执行环境
 var env = (process.env.NODE_ENV || '').trim();
@@ -22,7 +17,13 @@ if (env === 'dev') {
 } else if (env === 'production') {
     webpackConfig = require('./webpack-production.js');
     config = config.build;
+    hash = '[hash:8].';
+    chunkhash = '[chunkhash:8].';
+    contenthash = '[contenthash:8].';
 }
+// multiple extract instances
+var extractCSS = new ExtractTextPlugin('css/[name].'+ contenthash +'css');
+var extractLESS = new ExtractTextPlugin('css/less.[name].'+ contenthash +'css');
 
 module.exports = merge({
     // 源文件入口文件
@@ -44,8 +45,8 @@ module.exports = merge({
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: config.assetsPublicPath, // html 中引用资源的位置
-        filename: 'js/[name].[chunkhash:8].js',
-        chunkFilename: 'js/[name].[chunkhash:8].js'
+        filename: 'js/[name].'+ chunkhash +'js',
+        chunkFilename: 'js/[name].'+ chunkhash +'js'
     },
 
     // webpack 开始执行之前的处理
@@ -92,7 +93,7 @@ module.exports = merge({
             // 处理html图片
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-                loader: "file-loader?name=img/[name].[hash:8].[ext]"
+                loader: 'file-loader?name=img/[name].'+ hash +'[ext]'
             }
         ]
     },
@@ -134,25 +135,6 @@ module.exports = merge({
 
     // 插件
     plugins: [
-        // 图片合并 支持retina
-        /*new SpritesmithPlugin({
-            src: {
-                cwd: path.resolve(__dirname, './src/img/icon'),
-                glob: '*.png'
-            },
-            target: {
-                image: './src/img/sprite.[hash].png',
-                css: './src/css/icon.css'
-            },
-            apiOptions: {
-                cssImageRef: "../img/sprite.[hash].png"
-            },
-            spritesmithOptions: {
-                padding: 20
-            }
-            //retina: config.build.retina
-        }),*/
-
         // 单独使用link标签加载css并设置路径，
         // 相对于output配置中的publickPath
         extractCSS,
