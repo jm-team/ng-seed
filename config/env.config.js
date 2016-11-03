@@ -13,6 +13,7 @@ module.exports = {
 		assetsPublicPath: '/dist/',
 		// retina: 2,
 		devServer: {
+			host: 'localhost', // 默认localhost <hostname/ip>: hostname or IP. 0.0.0.0 binds to all hosts.
 			port: 8081, // http://localhost:8081/
 			proxyTarget: 'http://dev-webapi.jm.com' // api服务器地址
 		}

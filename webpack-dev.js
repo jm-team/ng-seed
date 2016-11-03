@@ -4,7 +4,8 @@ var config = require('./config/env.config.js').dev;
 module.exports = {
     // 本地服务器配置
     devServer: {
-        port: config.devServer.port, // 本地服务器端口配置 e.g. 8081
+        host: config.devServer.host || '',
+        port: config.devServer.port || 8081, // 本地服务器端口配置 e.g. 8081
         hot: true,
         inline: true,
         // api 接口反向代理 解决跨域问题
