@@ -1,3 +1,7 @@
+*{
+	margin: 0;
+	padding: 0;
+}
 html{
 	height: 100%;
 }
@@ -5,6 +9,7 @@ html{
 	width: 100%;
 }
 body {
+	background: #eee;
 	min-height: 100%;
 	display: flex;
 	justify-content: center;
@@ -15,11 +20,14 @@ body {
 	color: #2c3e50;
 	overflow-x: hidden;
 }
+li{
+	list-style: none;
+}
 i,em{
 	font-style: normal;
 }
 .nav-main{
-	
+
 }
 .jm-form {
 	padding: 38px 50px;
@@ -100,8 +108,8 @@ i,em{
 }
 
 
-.verification-code{ 
-	height: 100%; 
+.verification-code{
+	height: 100%;
 }
 
 #login-form .reg{
@@ -159,7 +167,7 @@ i,em{
 }
 .main-area{
 	width: 100%;
-	background: #f5f5f5;
+	background: #eee;
 	flex: 1;
 	display: flex;
 	align-items: center;
@@ -202,7 +210,7 @@ form{
 }
 
 .news-article{
-	padding: 25px 0; 
+	padding: 25px 0;
 }
 .news-article img{
 	max-width: 100%;
@@ -232,7 +240,7 @@ form{
 	line-height: 32px;
 	font-size: 14px;
 	text-align: center;
-	border: 1px solid #ddd; 
+	border: 1px solid #ddd;
 }
 .jm-page .pn-break{
 	  float: left;
@@ -381,4 +389,79 @@ form{
 
 .not-found{
 	font-size: 50px;
+}
+
+
+/*tab*/
+.jm-tabs{
+    width: 600px;
+    margin: 50px auto;
+}
+
+.jm-tabs .jm-tabs-header{
+
+}
+
+
+.jm-tabs-header ul{
+	margin-bottom: 0;
+}
+.jm-tabs-header li{
+    display: inline-block;
+    background: #f4f4f4;
+    margin-right: 8px;
+}
+/*.tab-header li:first-child{
+    border-left:1px solid #ccc;
+}*/
+.jm-tabs-header li.active{
+	background: #fff;
+}
+.jm-tabs-header a{
+    display: block;
+	color: #555;
+	padding:10px 15px;
+	text-decoration: none;
+	text-align: center;
+	cursor: default;
+}
+
+.jm-tabs-content{
+    padding: 30px;
+	background: #fff;
+    border-top: none;
+}
+.jm-tabs-content section{
+    display: none;
+}
+.jm-tabs-content section.active{
+    display: block;
+}
+
+/* 从右往左排列*/
+.jm-tabs .jm-tabs-header-right{
+	text-align: right;
+}
+.jm-tabs .jm-tabs-header-right li{
+	margin-left: 8px;
+	margin-right: 0;
+}
+
+/* 垂直的tab */
+.jm-tabs.jm-tabs-vertical{
+	display: table;
+}
+.jm-tabs.jm-tabs-vertical .jm-tabs-header{
+	display: table-cell;
+	width: 150px;
+	min-width: 120px;
+	vertical-align:top;
+}
+.jm-tabs.jm-tabs-vertical .jm-tabs-header li{
+	width: 100%;
+	margin-bottom: 8px;
+}
+
+.jm-tabs.jm-tabs-vertical .jm-tabs-content{
+	display: table-cell;
 }

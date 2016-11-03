@@ -1,10 +1,9 @@
 var app = require('../app')
 // var loginTmp = require('../../page/service/login.html');
 // 调用Api 服务
-app.registerController('HomeCtrl', 
+app.registerController('HomeCtrl',
   /*@ngInject*/
-  function($scope, Api, $modal){
-
+  function($scope, Api, $modal, $state){
   angular.extend($scope, {
     title:'HOME Page',
     desc:'这是主页',

@@ -5,6 +5,7 @@ var news = require('../page/news/news.html');
 var newsList = require('../page/news/news.list.html');
 var newsDetail = require('../page/news/news.detail.html');
 var newsSave = require('../page/news/news.save.html');
+var tab = require('../page/tab.html');
 
 
 app.tmps = {
@@ -145,8 +146,20 @@ app.config([
                     return defer.promise;
                 }
             }
-        });
+        })
 
+        .state('tab', {
+            url:'/tab',
+            templateUrl:tab,
+            controller:function($scope, $window){
+
+                  $scope.alertMe = function() {
+                    setTimeout(function() {
+                      $window.alert('You\'ve selected the alert tab!');
+                    });
+                  };
+            }
+        })
     }
 ]);
 
