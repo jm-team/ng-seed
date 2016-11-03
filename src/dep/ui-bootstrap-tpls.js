@@ -2981,7 +2981,7 @@ angular.module('ui.bootstrap.tabs', [])
 .controller('TabsetController', ['$scope', function TabsetCtrl($scope) {
   var ctrl = this,
       tabs = ctrl.tabs = $scope.tabs = [];
-
+      $scope.name = 'tabset'
   ctrl.select = function(selectedTab) {
     angular.forEach(tabs, function(tab) {
       if (tab.active && tab !== selectedTab) {
@@ -3162,7 +3162,8 @@ angular.module('ui.bootstrap.tabs', [])
                           //once it inserts the tab's content into the dom
       onDeselect: '&deselect'
     },
-    controller: function() {
+    controller: function($scope) {
+        $scope.name = "tab"
       //Empty controller so other directives can require being 'under' a tab
     },
     compile: function(elm, attrs, transclude) {
@@ -3203,6 +3204,9 @@ angular.module('ui.bootstrap.tabs', [])
   return {
     restrict: 'A',
     require: '^tab',
+    controller: function($scope){
+        $scope.name = 'tabHeadingTransclude'
+    },
     link: function(scope, elm, attrs, tabCtrl) {
       scope.$watch('headingElement', function updateHeadingElement(heading) {
         if (heading) {
@@ -3218,11 +3222,15 @@ angular.module('ui.bootstrap.tabs', [])
   return {
     restrict: 'A',
     require: '^tabset',
+    controller:function($scope){
+        $scope.name = 'tabContentTransclude'
+    },
     link: function(scope, elm, attrs) {
       var tab = scope.$eval(attrs.tabContentTransclude);
 
       //Now our tab is ready to be transcluded: both the tab heading area
       //and the tab content area are loaded.  Transclude 'em both.
+      console.log(tab.$parent)
       tab.$transcludeFn(tab.$parent, function(contents) {
         angular.forEach(contents, function(node) {
           if (isTabHeading(node)) {
@@ -3676,7 +3684,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
       //we need to propagate user's query so we can higlight matches
       scope.query = undefined;
 
-      //Declare the timeout promise var outside the function scope so that stacked calls can be cancelled later 
+      //Declare the timeout promise var outside the function scope so that stacked calls can be cancelled later
       var timeoutPromise;
 
       var scheduleSearchWithTimeout = function(inputValue) {

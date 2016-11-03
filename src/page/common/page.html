@@ -20,7 +20,7 @@
 			</a>
 		</span>
 
-		<span class="p-skip">
+		<span class="p-skip" ng-if="inputLinks">
 			<em>共 <b>{{ totalPage }}</b> 页 &nbsp;&nbsp; 到第</em>
 			<input type="text" class="jm-form-control" ng-model="currentPage"><em>页</em>
 			<a href="" class="btn btn-default" ng-click="selectPage($event)">确定</a>

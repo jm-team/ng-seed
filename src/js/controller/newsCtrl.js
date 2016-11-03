@@ -30,8 +30,21 @@ $controllerProvider.register('newsCtrl',
 
         $scope.selectPage = function(page){
             console.log(page);
-        }
-    });
+        };
+
+
+        $scope.select = function(arg){
+            var tab = arg.tab;
+        };
+
+        // tab2
+        $scope.tabs = [
+            {title: "Home", content:'ring be appetite it declared. High eyes kept so busy feel call in. Would day nor ask walls known. But preserved advantage are but and certainty earnestly enjoyment. Passage weather as up am exposed. And natural related man subject. Eagerness get situation his was delighted. '},
+            {title: "Profile", selected: true, content:'Fulfilled direction use continual set him propriety continued. Saw met applauded favourite deficient engrossed concealed and her. Concluded boy perpetual old supposing. Farther related bed and passage comfort civilly. Dashwoods see frankness objection abilities the. As hastened oh produced prospect formerly up am. Placing forming nay looking old married few has. Margaret disposed add screened rendered six say his striking confined. '},
+            {title: "Message", content:'When be draw drew ye. Defective in do recommend suffering. House it seven in spoil tiled court. Sister others marked fat missed did out use. Alteration possession dispatched collecting instrument travelling he or on. Snug give made at spot or late that mr. '},
+            {title: "Setting", content:'Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns dwelling graceful six humoured. Whether mr up savings talking an. Active mutual nor father mother exeter change six did all. '}
+        ];
+});
 
 
 app.registerController('newsDetailCtrl',

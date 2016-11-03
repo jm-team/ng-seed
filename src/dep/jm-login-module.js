@@ -249,16 +249,17 @@
                     // 表单提交成功结果
                     iframe.on('load', function(){
                         try {
-
+                            var oLocationMsg;
+                            var session;
                             str = parent.document.getElementById(iframeName).contentWindow.location.href;
-
                             str = str.substr(str.indexOf('?')+1);
-                            str = trim(getUrlSearch(str,sessionId));
+                            oLocationMsg = getUrlSearch(str) ||{};
+                            session = oLocationMsg[sessionId];
 
-                            if(str){
-                                Cookie.setCookie(sessionId, str);
-                                $log.info(str);
-                                $rootScope.$broadcast('getSessionIdSuccess', {sessionId: str})
+                            if(session){
+                                Cookie.setCookie(sessionId, session);
+                                $log.info(oLocationMsg);
+                                $rootScope.$broadcast('getSessionIdSuccess', oLocationMsg)
                             }else{
                                 $log.error("没有shiroJID");
                                 $rootScope.$broadcast('getSessionIdError');
