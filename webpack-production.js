@@ -14,11 +14,12 @@ module.exports = {
         // 启用文件压缩混淆
         new webpack.optimize.UglifyJsPlugin({
             output: {
-                // 移除所有注释
-                comments: false
+                comments: false, // 移除所有注释
+                screw_ie8: false // 默认为true，不支持ie8及以下
             },
             compress: {
-                warnings: false
+                warnings: false,
+                screw_ie8: false // 默认为true，不支持ie8及以下
             }
         }),
         new RemoveWebpackPlugin('./dist/'),
