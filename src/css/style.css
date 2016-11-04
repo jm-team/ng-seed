@@ -399,18 +399,23 @@ form{
 }
 
 .jm-tabs .jm-tabs-header{
-
+	height: 42px;
+	line-height: 42px;
 }
 
-
+.jm-tabs .jm-tabs-header .jm-tabs-title{
+	float: right;
+}
 .jm-tabs-header ul{
 	margin-bottom: 0;
+	float: left;
 }
 .jm-tabs-header li{
     display: inline-block;
     background: #f4f4f4;
     margin-right: 8px;
 }
+
 /*.tab-header li:first-child{
     border-left:1px solid #ccc;
 }*/
@@ -420,7 +425,7 @@ form{
 .jm-tabs-header a{
     display: block;
 	color: #555;
-	padding:10px 15px;
+	padding:0 15px;
 	text-decoration: none;
 	text-align: center;
 	cursor: default;
@@ -439,8 +444,11 @@ form{
 }
 
 /* 从右往左排列*/
-.jm-tabs .jm-tabs-header-right{
-	text-align: right;
+.jm-tabs.jm-tabs-right .jm-tabs-header ul{
+	float: right;
+}
+.jm-tabs.jm-tabs-right .jm-tabs-title{
+	float: left;
 }
 .jm-tabs .jm-tabs-header-right li{
 	margin-left: 8px;
@@ -465,3 +473,16 @@ form{
 .jm-tabs.jm-tabs-vertical .jm-tabs-content{
 	display: table-cell;
 }
+
+
+/* 手风琴*/
+.jm-accordions{ width: 600px; margin: 20px auto; }
+.jm-accordions .jm-accordion{ background: #fff; margin-bottom: 2px; padding: 20px 30px; }
+.jm-accordions .jm-accordion-title{ cursor: default;}
+.jm-accordions .jm-accordion-content{  display:none; overflow: hidden;}
+.jm-accordions .jm-accordion-content p{padding: 20px;}
+.jm-accordions .jm-accordion.open{  }
+.jm-accordions .jm-accordion.open .jm-accordion-content{ }
+
+
+.jm-accordions.jm-accordions-vertical{ width: 800px;}

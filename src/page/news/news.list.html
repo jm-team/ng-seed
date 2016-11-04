@@ -1,4 +1,7 @@
-<!-- <jm-tabset  direction="right">
+<jm-tabset>
+
+    <div jm-tabset-title class="jm-tabs-title">tabset title <i class="glyphicon glyphicon-signal"></i></div>
+
     <jm-tab  ui-sref="home">
         <jm-tab-header style="margin-right:5px;">go Home</jm-tab-header>
         <jm-tab-header><i class="glyphicon glyphicon-home"></i></jm-tab-header>
@@ -9,23 +12,115 @@
     <jm-tab on-select="select(arg)"  href="http://baidu.com">
         <span jm-tab-header style="margin-right:5px;">go Baidu</span>
         <p>Fulfilled direction use continual set him propriety continued. Saw met applauded favourite deficient engrossed concealed and her. Concluded boy perpetual old supposing. Farther related bed and passage comfort civilly. Dashwoods see frankness objection abilities the. As hastened oh produced prospect formerly up am. Placing forming nay looking old married few has. Margaret disposed add screened rendered six say his striking confined. </p>
-    </jm-tab>
-
-    <jm-tab title="Message">
         <p>When be draw drew ye. Defective in do recommend suffering. House it seven in spoil tiled court. Sister others marked fat missed did out use. Alteration possession dispatched collecting instrument travelling he or on. Snug give made at spot or late that mr. </p>
     </jm-tab>
 
-    <jm-tab title="Setting">
+    <jm-tab heading="Setting">
         <p>Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns dwelling graceful six humoured. Whether mr up savings talking an. Active mutual nor father mother exeter change six did all. </p>
     </jm-tab>
-</jm-tabset> -->
+</jm-tabset>
 
 
-<jm-tabset type="vertical"  direction="right">
-    <jm-tab title="{{tab.title}}" ng-repeat="tab in tabs" selected="tab.selected">
+<jm-tabset  direction="right">
+
+    <div jm-tabset-title class="jm-tabs-title">tabset title <i class="glyphicon glyphicon-signal"></i></div>
+
+    <jm-tab  ui-sref="home">
+        <jm-tab-header style="margin-right:5px;">go Home</jm-tab-header>
+        <jm-tab-header><i class="glyphicon glyphicon-home"></i></jm-tab-header>
+		<p>Carriage quitting securing be appetite it declared. High eyes kept so busy feel call in. Would day nor ask walls known. But preserved advantage are but and certainty earnestly enjoyment. Passage weather as up am exposed. And natural related man subject. Eagerness get situation his was delighted. </p>
+		<p>Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns dwelling graceful six humoured. Whether mr up savings talking an. Active mutual nor father mother exeter change six did all. </p>
+    </jm-tab>
+
+    <jm-tab on-select="select(arg)"  href="http://baidu.com">
+        <span jm-tab-header style="margin-right:5px;">go Baidu</span>
+        <p>Fulfilled direction use continual set him propriety continued. Saw met applauded favourite deficient engrossed concealed and her. Concluded boy perpetual old supposing. Farther related bed and passage comfort civilly. Dashwoods see frankness objection abilities the. As hastened oh produced prospect formerly up am. Placing forming nay looking old married few has. Margaret disposed add screened rendered six say his striking confined. </p>
+        <p>When be draw drew ye. Defective in do recommend suffering. House it seven in spoil tiled court. Sister others marked fat missed did out use. Alteration possession dispatched collecting instrument travelling he or on. Snug give made at spot or late that mr. </p>
+    </jm-tab>
+
+    <jm-tab heading="Setting">
+        <p>Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns dwelling graceful six humoured. Whether mr up savings talking an. Active mutual nor father mother exeter change six did all. </p>
+    </jm-tab>
+</jm-tabset>
+
+
+<jm-tabset type="vertical"  direction="left">
+    <jm-tab heading="" ng-repeat="tab in tabs" selected="tab.selected">
+        <jm-tab-header><span style="margin-right:8px;">{{tab.title}}</span><i class="glyphicon glyphicon-home"></i></jm-tab-header>
         <div>{{tab.content}}</div>
     </jm-tab>
 </jm-tabset>
+
+<jm-tabset type="vertical"  direction="right">
+    <jm-tab heading="" ng-repeat="tab in tabs" selected="tab.selected">
+        <jm-tab-header><span style="margin-right:8px;">{{tab.title}}</span><i class="glyphicon glyphicon-home"></i></jm-tab-header>
+        <div>{{tab.content}}</div>
+    </jm-tab>
+</jm-tabset>
+
+
+
+
+<h2>手风琴</h2>
+<jm-accordions>
+    <jm-accordion>
+        <header class="jm-accordion-title">Collapsible Group1</header>
+        <section class="jm-accordion-content">
+            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+        </section>
+    </jm-accordion>
+
+    <jm-accordion>
+        <header class="jm-accordion-title">Collapsible Group1</header>
+        <section class="jm-accordion-content">
+            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+        </section>
+    </jm-accordion>
+
+    <jm-accordion>
+        <header class="jm-accordion-title">Collapsible Group1 <i class="pull-right glyphicon glyphicon-plus"></i></header>
+        <section class="jm-accordion-content">
+            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+        </section>
+    </jm-accordion>
+
+    <jm-accordion>
+        <header class="jm-accordion-title">Collapsible Group1</header>
+        <section class="jm-accordion-content">
+            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+        </section>
+    </jm-accordion>
+</jm-accordions>
+
+<jm-accordions>
+    <jm-accordion>
+        <header class="jm-accordion-title">Collapsible Group1</header>
+        <section class="jm-accordion-content">
+            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+        </section>
+    </jm-accordion>
+
+    <jm-accordion>
+        <header class="jm-accordion-title">Collapsible Group1</header>
+        <section class="jm-accordion-content">
+            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+        </section>
+    </jm-accordion>
+
+    <jm-accordion>
+        <header class="jm-accordion-title">Collapsible Group1 <i class="pull-right glyphicon glyphicon-plus"></i></header>
+        <section class="jm-accordion-content">
+            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+        </section>
+    </jm-accordion>
+
+    <jm-accordion>
+        <header class="jm-accordion-title">Collapsible Group1</header>
+        <section class="jm-accordion-content">
+            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+        </section>
+    </jm-accordion>
+</jm-accordions>
 
 
 <h3 class="clearfix">
