@@ -9,15 +9,15 @@
 ## 一、目录规范
 ### 1.一级目录
 ```
-dist:  (包含项目构建后的代码)
 config: 环境配置文件
+dist:  (包含项目构建后的代码)
 node_modules:  (包含服务依赖模块、gulpfile、webpack依赖模块)
 src:  (包含源码文件)
 test:  (测试文件, 子目录应该和src目录相对应)(暂无测试)
 package.json:  (运行、构建项目依赖的模块列表)
 webpack.config.js:  (webpack 基础配置文件)
 webpack-dev.js : webpack开发环境
-webpack-production.js: webpack 生成环境
+webpack-production.js: webpack生产环境
 ```
 
 ### 2.src二级目录
