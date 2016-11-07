@@ -9,11 +9,11 @@
 ## 一、目录规范
 ### 1.一级目录
 ```
-config: 环境配置文件
-dist:  (包含项目构建后的代码)
-node_modules:  (包含服务依赖模块、gulpfile、webpack依赖模块)
-src:  (包含源码文件)
-test:  (测试文件, 子目录应该和src目录相对应)(暂无测试)
+config/: 环境配置文件
+dist/:  (包含项目构建后的代码)
+node_modules/:  (包含服务依赖模块、gulpfile、webpack依赖模块)
+src/:  (包含源码文件)
+test/:  (测试文件, 子目录应该和src目录相对应)(暂无测试)
 package.json:  (运行、构建项目依赖的模块列表)
 webpack.config.js:  (webpack 基础配置文件)
 webpack-dev.js : webpack开发环境
@@ -22,21 +22,21 @@ webpack-production.js: webpack生产环境
 
 ### 2.src二级目录
 ```
-css:  (包含样式文件)
-dep:  (包含第三方文件 如：angularjs、ui-router...)
-entry:  (包含项目主文件)
-font:  (包含字体)
-img:  (包含图片)
-js:  (包含js文件 里面分controller、directive、service、filter、app.js)
-page: (项目模板文件)
+css/:  (包含样式文件)
+dep/:  (包含第三方文件 如：angularjs、ui-router...)
+entry/:  (包含项目主文件)
+font/:  (包含字体)
+img/:  (包含图片)
+js/:  (包含js文件 里面分controller、directive、service、filter、app.js)
+page/: (项目模板文件)
 ```
 
 ### 3.js文件夹目录
 ```
-controller:  (包含angular项目自定义控制器文件)
-directive:  (包含angular项目自定义指令文件)
-filter:  (包含angular项目自定义过滤器文件)
-service:  (包含angular项目自定义服务文件)
+controller/:  (包含angular项目自定义控制器文件)
+directive/:  (包含angular项目自定义指令文件)
+filter/:  (包含angular项目自定义过滤器文件)
+service/:  (包含angular项目自定义服务文件)
 app.js:  (angular 项目配置启动文件)
 entry.js: (webpack 入口文件)
 ```
@@ -57,7 +57,9 @@ entry.js: (webpack 入口文件)
 ### 2.Css：bootstrap v3.3.1(ui-bootstrap 依赖)
 ### 3.打包构建工具：webpack
 ### 4.测试：krama, jasmine
-### 5.SEO：prerender.io
+### 5.SEO：[prerender.io](https://github.com/prerender/prerender)
+- Prerender Middleware nginx配置参考[nginx](./nginx.conf)
+- Prerender Service配置参考[server.js](./server.js)
 
 ##三、Angular代码规范及建议
 ### 1.Controller
