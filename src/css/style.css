@@ -172,6 +172,7 @@ i,em{
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	justify-content: center;
 }
 
 #footer{
@@ -487,3 +488,15 @@ form{
 
 
 .jm-accordions.jm-accordions-vertical{ width: 800px;}
+
+
+/* lazy image */
+.demo-repeat-list {
+	 width: 200px;
+	 margin-left: 0;
+ }
+.demo-repeat-list--items {
+	list-style: none;
+	margin-top: 10px;
+
+}
