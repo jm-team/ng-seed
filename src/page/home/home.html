@@ -5,3 +5,21 @@
     <p>Welcome to your Angular.js app!</p>
   </header>
 </div>
+<div style="height: 1080px"></div>
+<div class="img-list">
+  <p>
+    <select ng-model="searchText">
+      <option value="1">filter 1</option>
+      <option value="2">filter 2</option>
+      <option value="3">none</option>
+    </select>
+    <span ng-bind="filtered.length">0</span> item(s)
+  </p>
+
+
+  <ul class="demo-repeat-list">
+    <li class="demo-repeat-list--items" ng-repeat="image in filtered =(collection | filter:{'type': searchText})">
+      <span afkl-lazy-image="{{image.srcset}}" class="afkl-lazy-wrapper afkl-img-ratio-3-2"></span>
+    </li>
+  </ul>
+</div>

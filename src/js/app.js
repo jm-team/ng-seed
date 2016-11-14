@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'jm.login']);
+var app = angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'jm.login', 'afkl.lazyImage']);
 var tmp = require('../page/home/home.html');
 var tmp2 = require('../page/about/about.html');
 var news = require('../page/news/news.html');

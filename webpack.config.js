@@ -36,7 +36,8 @@ module.exports = merge({
             './src/dep/angular-ui-router.js',
             './src/dep/jm-login-module.js',
             './src/dep/ui-bootstrap-tpls.js',
-            './src/dep/angular-resource.js'
+            './src/dep/angular-resource.js',
+            './src/dep/lazy-image.js'
         ],
         entry: './src/js/entry.js'
     },
