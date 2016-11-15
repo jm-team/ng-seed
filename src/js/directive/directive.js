@@ -3,6 +3,7 @@ var tmpHeader = require('../../page/common/header.html');
 var tmpFooter = require('../../page/common/footer.html');
 var tmpPage = require('../../page/common/page.html');
 var tmpCrumbs = require('../../page/common/crumbs.html');
+var loginTmp = require('../../page/common/login.html');
 
 
 app.directive('jmHeader', function() {
@@ -14,7 +15,7 @@ app.directive('jmHeader', function() {
             $scope.modal = function($event) {
                 $event.preventDefault();
                 $modal.open({
-                    templateUrl: app.tmps.loginTmp,
+                    templateUrl: loginTmp,
 
                     controller: 'loginCtrl',
 
@@ -445,7 +446,7 @@ app.directive('jmTabsetTitle', function(){
             // console.log(ele)
         }
     }
-})
+});
 app.directive('jmTab', function() {
     return {
         restrict: 'AE',
@@ -533,7 +534,7 @@ app.directive('jmAccordions', function(){
         link: function(scope, ele, attrs){
         }
     }
-})
+});
 
 app.directive('jmAccordion', function(){
     return {
