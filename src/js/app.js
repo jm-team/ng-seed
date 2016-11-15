@@ -19,6 +19,7 @@ app.constant('API_KEY', 'mcnzRO1RdVBHxWEOVbtiIxD04i8H0syJ');
 app.constant('SERVER_ADDRESS', SERVER_ADDRESS);
 app.constant('CENTER_ADDRESS', CENTER_ADDRESS);
 app.constant('USERCENTER_ADDRESS', USERCENTER_ADDRESS);
+app.constant('CDN_ADDRESS', CDN_ADDRESS);
 
 // ng配置
 app.config(function ($controllerProvider, $httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {

@@ -1,5 +1,6 @@
 var app = require('../app');
-app.filter('cdn',  function($sce) {
+// 资源CDN路径
+app.filter('cdn',  function($sce, CDN_ADDRESS) {
     return function(input, url, cdnAddr) {
         if (url) {
             return $sce.trustAsResourceUrl(url + input);
@@ -7,7 +8,7 @@ app.filter('cdn',  function($sce) {
             if (cdnAddr) {
                 return $sce.trustAsResourceUrl(cdnAddr + input);
             } else {
-                return $sce.trustAsResourceUrl('http://static.jumoreyun.com' + input);
+                return $sce.trustAsResourceUrl(CDN_ADDRESS + input);
             }
         }
     };
