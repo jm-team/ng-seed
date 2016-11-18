@@ -353,6 +353,7 @@ app.directive('jmTabset', function() {
         scope: {
             type: '@',
             direction: '@',
+            contentClass:'@',
             trigger: '@'
         },
         replace: true,
@@ -360,7 +361,7 @@ app.directive('jmTabset', function() {
                     <header class="jm-tabs-header">\
                         <ul ng-transclude></ul>\
                     </header>\
-                    <div class="jm-tabs-content">\
+                    <div class="jm-tabs-content {{contentClass}}">\
                         <section ng-class="{active: tab.selected}" ng-repeat="tab in tabs" jm-tab-content-transclude="tab"></section>\
                     </div>\
                 </div> ',
@@ -556,7 +557,6 @@ app.directive('jmAccordion', function(){
                 angular.element(accordionContent).css({'display': 'block'});
                 var height = accordionContent.scrollHeight;
                 angular.element(accordionContent).css({'height': '0'})
-                console.log(height)
                 setTimeout(function(){
                     angular.element(accordionContent).css({'transition':'height .3s ease','height': height + 'px' });
                 },0);
