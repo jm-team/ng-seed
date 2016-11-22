@@ -26,9 +26,10 @@ var extractCSS = new ExtractTextPlugin('css/[name].'+ contenthash +'css');
 var extractLESS = new ExtractTextPlugin('css/less.[name].'+ contenthash +'css');
 
 module.exports = merge({
-    // 源文件入口文件
-    // 这里的文件在使用html-webpack-plugin的时候
-    // 会自动将这些资源插入到html中
+    /**
+     * 源文件入口文件
+     * 这里的文件在使用html-webpack-plugin的时候会自动将这些资源插入到html中
+     */
     entry: {
         // 公共文件
         vendor: [
@@ -138,7 +139,7 @@ module.exports = merge({
     },
 
     // sourceMap
-    // devtool: config.build.productionSourceMap ? '#source-map' : false,
+    devtool: config.debug ? '#source-map' : false,
 
     // 插件
     plugins: [
