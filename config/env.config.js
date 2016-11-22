@@ -3,7 +3,7 @@ var path = require('path');
 module.exports = {
 	// build 配置
 	build: {
-		assetsPublicPath: 'https://jm-team.github.io/dist/' // html 中引用资源的位置 // TODO: CDN地址
+		assetsPublicPath: '/dist/' // html 中引用资源的位置 // TODO: CDN地址 https://jm-team.github.io/dist/
 		// productionSourceMap: true,
 		// retina: 2
 	},

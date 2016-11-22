@@ -1,4 +1,4 @@
-var templateUrl = require('../../page/news/news.detail.html');
+var templateUrl = require('../../../page/news/news.detail.html');
 
 module.exports = {
     url: '/:id',
@@ -8,7 +8,7 @@ module.exports = {
         displayName: '{{news.title}}'
     },
     resolve: {
-
+        /*@ngInject*/
         news: function ($stateParams, News, $q) {
             var defer = $q.defer();
             // 从服务端获取数据

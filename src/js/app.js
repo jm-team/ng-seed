@@ -1,13 +1,13 @@
 var app = angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'jm.login', 'afkl.lazyImage']);
 // 路由配置
 var router = [
-    ["notFound", require("./router/404.js")],
-    ["home", require("./router/home.js")],
-    ["about", require("./router/about.js")],
-    ["news", require("./router/news.js")],
-    ["news.list", require("./router/news.list.js")],
-    ["news.detail", require("./router/news.detail.js")],
-    ["news.save", require("./router/news.save.js")],
+    ["notFound", require("./router/error/404.js")],
+    ["home", require("./router/home/home.js")],
+    ["about", require("./router/about/about.js")],
+    ["news", require("./router/news/news.js")],
+    ["news.list", require("./router/news/news.list.js")],
+    ["news.detail", require("./router/news/news.detail.js")],
+    ["news.save", require("./router/news/news.save.js")],
     ["tab", require("./router/tab.js")]
 ];
 

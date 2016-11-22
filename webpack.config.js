@@ -32,12 +32,15 @@ module.exports = merge({
     entry: {
         // 公共文件
         vendor: [
-            './src/dep/angular.js',
-            './src/dep/angular-ui-router.js',
-            './src/dep/jm-login-module.js',
-            './src/dep/ui-bootstrap-tpls.js',
-            './src/dep/angular-resource.js',
-            './src/dep/lazy-image.js'
+            './src/dep/angular/angular.js',
+            './src/dep/angular/angular-sanitize.js',
+            './src/dep/angular/angular-resource.js',
+            './src/dep/angular/ui-bootstrap-tpls.js',
+            './src/dep/angular/angular-locale_zh-cn.js',
+            './src/dep/angular/angular-ui-router.js',
+            './src/dep/bindonce.js',
+            './src/dep/ng-lazy-image/lazy-image.js',
+            './src/dep/ng-jmui/jm-login-module.js'
         ],
         entry: './src/js/entry.js'
     },
@@ -141,7 +144,7 @@ module.exports = merge({
         extractCSS,
         extractLESS,
         new CopyWebpackPlugin([{
-            from: './src/dep/ie8supports.js',
+            from: './src/dep/ie8support/ie8supports.js',
             to: './dep'
         }, {
             from: './src/mock',
