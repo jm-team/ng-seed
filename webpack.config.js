@@ -57,7 +57,10 @@ module.exports = merge({
     resolve: {
 
         // 配置别名
-        alias: {},
+        alias: {
+            'page': path.join(__dirname, './src/page'),
+            'controller': path.join(__dirname, './src/js/controller'),
+        },
 
         fallback: [path.join(__dirname, './node_modules')],
 

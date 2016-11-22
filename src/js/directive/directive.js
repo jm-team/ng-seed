@@ -1,9 +1,9 @@
 var app = require('../app');
-var tmpHeader = require('../../page/common/header.html');
-var tmpFooter = require('../../page/common/footer.html');
-var tmpPage = require('../../page/common/page.html');
-var tmpCrumbs = require('../../page/common/crumbs.html');
-var loginTmp = require('../../page/common/login.html');
+var tmpHeader = require('page/common/header.html');
+var tmpFooter = require('page/common/footer.html');
+var tmpPage = require('page/common/page.html');
+var tmpCrumbs = require('page/common/crumbs.html');
+var loginTmp = require('page/common/login.html');
 
 
 app.directive('jmHeader', function() {

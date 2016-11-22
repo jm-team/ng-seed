@@ -1,4 +1,4 @@
-var templateUrl = require('../../../page/about/about.html');
+var templateUrl = require('page/about/about.html');
 
 module.exports = {
     title: "关于我们",
@@ -11,7 +11,7 @@ module.exports = {
         loadCtrl: function ($q) {
             var defer = $q.defer();
             require.ensure([], function (require) {
-                defer.resolve(require('../../controller/aboutCtrl.js'));
+                defer.resolve(require('controller/aboutCtrl.js'));
             }, 'about');
             return defer.promise;
         }

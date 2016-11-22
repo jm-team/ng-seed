@@ -1,4 +1,4 @@
-var templateUrl = require('../../../page/news/news.list.html');
+var templateUrl = require('page/news/news.list.html');
 
 module.exports = {
     url: '/list',

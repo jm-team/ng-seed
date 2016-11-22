@@ -1,4 +1,4 @@
-var templateUrl = require('../../../page/news/news.html');
+var templateUrl = require('page/news/news.html');
 
 module.exports = {
     abstract: true,
@@ -14,7 +14,7 @@ module.exports = {
         loadCtrl: function ($q) {
             var defer = $q.defer();
             require.ensure([], function (require) {
-                defer.resolve(require('../../controller/newsCtrl.js'));
+                defer.resolve(require('controller/newsCtrl.js'));
             }, 'news');
             return defer.promise;
         }

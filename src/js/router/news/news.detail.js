@@ -1,4 +1,4 @@
-var templateUrl = require('../../../page/news/news.detail.html');
+var templateUrl = require('page/news/news.detail.html');
 
 module.exports = {
     url: '/:id',

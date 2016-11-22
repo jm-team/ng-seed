@@ -1,4 +1,4 @@
-var templateUrl = require('../../page/tab.html');
+var templateUrl = require('page/tab.html');
 
 module.exports = {
     url: '/tab',

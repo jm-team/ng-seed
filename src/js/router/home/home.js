@@ -1,4 +1,4 @@
-var templateUrl = require('../../../page/home/home.html');
+var templateUrl = require('page/home/home.html');
 
 module.exports = {
     title: "首页",
@@ -10,7 +10,7 @@ module.exports = {
         loadCtrl: function ($q) {
             var defer = $q.defer();
             require.ensure([], function (require) {
-                defer.resolve(require('../../controller/homeCtrl.js'));
+                defer.resolve(require('controller/homeCtrl.js'));
             }, 'home');
             return defer.promise;
         }
