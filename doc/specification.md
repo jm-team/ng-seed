@@ -9,15 +9,16 @@
 ## 一、目录规范
 ### 1.一级目录
 ```
-config/: 环境配置文件
+config/: (环境配置文件)
 dist/:  (包含项目构建后的代码)
+doc/:  (包含项目说明文档)
 node_modules/:  (包含服务依赖模块、gulpfile、webpack依赖模块)
 src/:  (包含源码文件)
 test/:  (测试文件, 子目录应该和src目录相对应)(暂无测试)
 package.json:  (运行、构建项目依赖的模块列表)
 webpack.config.js:  (webpack 基础配置文件)
-webpack-dev.js : webpack开发环境
-webpack-production.js: webpack生产环境
+webpack-dev.js : (webpack开发环境)
+webpack-production.js: (webpack生产环境)
 ```
 
 ### 2.src二级目录
@@ -28,16 +29,18 @@ entry/:  (包含项目主文件)
 font/:  (包含字体)
 img/:  (包含图片)
 js/:  (包含js文件 里面分controller、directive、service、filter、app.js)
+mock/: (模拟接口返回数据)
 page/: (项目模板文件)
 ```
 
 ### 3.js文件夹目录
 ```
-controller/:  (包含angular项目自定义控制器文件)
-directive/:  (包含angular项目自定义指令文件)
-filter/:  (包含angular项目自定义过滤器文件)
-service/:  (包含angular项目自定义服务文件)
-app.js:  (angular 项目配置启动文件)
+controller/:  (控制器文件)
+directive/:  (指令文件)
+filter/:  (过滤器文件)
+router/:  (页面路由文件)
+service/:  (服务文件)
+app.js:  (项目配置启动文件)
 entry.js: (webpack 入口文件)
 ```
 
@@ -54,8 +57,8 @@ entry.js: (webpack 入口文件)
 
 注意：查阅api的时候，需要（翻墙）找对应的版本，不然有些方法在老本里都是没有的。
 
-### 2.Css：bootstrap v3.3.1(ui-bootstrap 依赖)
-### 3.打包构建工具：webpack
+### 2.Css：[bootstrap](http://v3.bootcss.com/) v3.3.1(ui-bootstrap 依赖)
+### 3.打包构建工具：[webpack](http://webpack.github.io/docs/)
 ### 4.测试：krama, jasmine
 ### 5.SEO：[prerender.io](https://github.com/prerender/prerender)
 - Prerender Middleware nginx配置参考[nginx](./nginx.conf)
@@ -75,13 +78,17 @@ entry.js: (webpack 入口文件)
 1. Filter 用于数据的格式化 可在HTML模板中直接使用或在Controller中调用Filter 方法
 2. Filter 应尽量在Controller中使用 防止不稳定的过滤器导致程序出错
 
-### 4.Directive
+### 4.Router
+1. Router配置文件拆分，每个页面的路由拆分为单独的模块，以免页面过长导阅读不变，不易维护
+2. 页面依赖的Controller在页面加载前，异步加载
+
+### 5.Directive
 1. Directive 用于扩展HTML 使自己定义的HTML具有交互性
 2. Directive 一般用属性指令 元素指令在IE低版本浏览器要额外创建这个指令元素
 3. 指令中当元素被移除后 要同步删除这个指令的作用域 `$destroy`
 4. `ng-repeat`指令使用 `track by` ,参考：http://www.codelord.net/2014/04/15/improving-ng-repeat-performance-with-track-by
 
-### 5.性能优化
+### 6.性能优化
 1. 在数据不需要双向绑定的地方使用单向绑定 以减少watch数 (使用bindOnce这个库)
 2. 按需加载数据 如： 鼠标滚动加载、分页加载
 3. 对于一些字典类的数据 可以存放在`Service`或在支持`localstroage`中应放在这些地方 避免多次加载相同数据 (如省市区这些大而且基本不会更改的数据)
@@ -91,13 +98,13 @@ entry.js: (webpack 入口文件)
 7. 使用ng-show 显示隐藏搜索时的列表 避免频繁创建删除 如在输入框过滤本地数据的时候
 8. 尽可能不使用`ng-mousemove`、`ng-mouseenter`、`ng-mouseleave`...这些高频率触发的事件 或使用定时器定时触发
 
-### 6.与服务端间的交互（注意）
+### 7.与服务端间的交互（注意）
 1. Angular在post请求数据的时候传递的参数是通过body体传送的，因此后端那边接收数据的时候需要注意
 2. 数据请求使用restful规范，使用angular ngResource 模块
 3. Restful详细参考地址：http://www.ruanyifeng.com/blog/2014/05/restful_api.html
 4. ngResource使用参考地址：http://www.cnblogs.com/liulangmao/p/3906721.html
 
-### 7.其他注意事项
+### 8.其他注意事项
 1. 全局监听事件放在angular启动模块的run方法中，因为run方法在整个angular项目的生命周期中只执行一次
 2. 利用拦截器对某一类请求状态做统一处理。如：401需要登录，则跳转到登陆页面
 3. 所有的依赖注入需要显示声明,防止依赖压缩找不到。如：
