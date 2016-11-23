@@ -69,14 +69,8 @@
 5. js js目前根据功能进行目录划分，后期将考虑根据组件划分    
 5.1. app.js 配置项目使用常量、页面路由    
 5.2. entry.js 页面入口js文件，用于引入页面使用的样式，脚本   
-5.3. 文件夹按angular功能划分为  
-```
-controller/
-directive/
-filter/
-router/
-service/
-```
+5.3. 文件夹按angular功能划分为 `controller/ directive/ filter/ router/ service/`
+
 6. mock json文件  
 6.1. 用于开发阶段模拟接口数据  
 6.2. 在前端固定将来会开发成接口的数据  
@@ -87,7 +81,7 @@ service/
 1. webpack.config.js webpack通用配置项，根据开发、生产环境配置`./config/env.config.js`添加文件hash
 2. webpack-dev.js 提供开发环境热更新服务，指定vendor模文件名为vendor.js，将不包含hash
 3. webpack-production.js 生产环境打包，打包前删除dist目录，启用文件压缩混淆，未指定vendor模块文件名，将包含hash  
-> UglifyJsPlugin注意在2.7.0以上默认不支持ie8,需配置screw_ie8为false [issues12](https://github.com/jm-team/Bugs/issues/12)
+	> UglifyJsPlugin注意在2.7.0以上默认不支持ie8,需配置screw_ie8为false [issues12](https://github.com/jm-team/Bugs/issues/12)
 
 #### end
 欢迎提出任何问题及建议
