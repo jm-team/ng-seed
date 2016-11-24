@@ -24,6 +24,7 @@ if (env === 'dev') {
 // multiple extract instances
 var extractCSS = new ExtractTextPlugin('css/[name].'+ contenthash +'css');
 var extractLESS = new ExtractTextPlugin('css/less.[name].'+ contenthash +'css');
+var extractSASS = new ExtractTextPlugin('css/sass.[name].'+ contenthash +'css');
 
 module.exports = merge({
     /**
@@ -98,6 +99,11 @@ module.exports = merge({
                 loader: extractLESS.extract(['css', 'less'])
             },
 
+            {
+                test: /\.scss$/i,
+                loader: extractSASS.extract(['css', 'sass'])
+            },
+
             // 处理html图片
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
@@ -147,6 +153,7 @@ module.exports = merge({
         // 相对于output配置中的publickPath
         extractCSS,
         extractLESS,
+        extractSASS,
         new CopyWebpackPlugin([{
             from: './src/dep/ie8support/ie8supports.js',
             to: './dep'
