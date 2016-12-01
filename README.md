@@ -78,7 +78,7 @@
 8. 注意一级子目录结构不可随意修改，二级子目录可根据项目复杂度设置多级目录
 
 #### webpack
-1. webpack.config.js - webpack通用配置项，根据开发、生产环境配置`./config/env.config.js`添加文件hash
+1. webpack.config.js - webpack通用配置项，根据开发、生产环境配置`./config/build.config.js`添加文件hash
 2. webpack-dev.js - 提供开发环境热更新服务，指定vendor模文件名为vendor.js，将不包含hash
 3. webpack-production.js - 生产环境打包，打包前删除dist目录，启用文件压缩混淆，未指定vendor模块文件名，将包含hash  
 	> UglifyJsPlugin注意在2.7.0以上默认不支持ie8,需配置screw_ie8为false [issues12](https://github.com/jm-team/Bugs/issues/12)

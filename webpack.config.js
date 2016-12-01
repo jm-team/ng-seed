@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var config = require('./config/env.config.js');
+var config = require('./config/build.config.js');
 var webpackConfig;
 var hash = chunkhash = contenthash = '';
 
@@ -60,8 +60,9 @@ module.exports = merge({
 
         // 配置别名
         alias: {
+            'address': path.join(__dirname, './config/address.config'),
             'page': path.join(__dirname, './src/page'),
-            'controller': path.join(__dirname, './src/js/controller'),
+            'controller': path.join(__dirname, './src/js/controller')
         },
 
         fallback: [path.join(__dirname, './node_modules')],
@@ -73,12 +74,12 @@ module.exports = merge({
 
     //
     module: {
-        preLoaders: [
+/*        preLoaders: [
             {
                 test: /\.js$/,
                 loader: 'baggage?[file].html&[file].css'
             }
-        ],
+        ],*/
         loaders: [
             // 处理angularjs 模版片段
             {

@@ -1,3 +1,4 @@
+var address = require('address');
 var app = angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'jm.login', 'afkl.lazyImage']);
 // 路由配置
 var router = [
@@ -17,10 +18,10 @@ app.constant('API_SERVER', 'https://api.mongolab.com/api/1/databases/ng-seed/col
 app.constant('API_KEY', 'mcnzRO1RdVBHxWEOVbtiIxD04i8H0syJ');
 
 // 服务地址配置
-app.constant('SERVER_ADDRESS', SERVER_ADDRESS);
-app.constant('CENTER_ADDRESS', CENTER_ADDRESS);
-app.constant('USERCENTER_ADDRESS', USERCENTER_ADDRESS);
-app.constant('CDN_ADDRESS', CDN_ADDRESS);
+app.constant('SERVER_ADDRESS', address.SERVER_ADDRESS);
+app.constant('CENTER_ADDRESS', address.CENTER_ADDRESS);
+app.constant('USERCENTER_ADDRESS', address.USERCENTER_ADDRESS);
+app.constant('CDN_ADDRESS', address.CDN_ADDRESS);
 
 // ng配置
 app.config(function ($controllerProvider, $httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
