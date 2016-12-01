@@ -1,6 +1,6 @@
 {
   "name": "ng-seed",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "scripts": {
     "dev": "set NODE_ENV=dev && webpack-dev-server --hot --inline --quiet",
