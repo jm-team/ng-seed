@@ -83,5 +83,9 @@
 3. webpack-production.js - 生产环境打包，打包前删除dist目录，启用文件压缩混淆，未指定vendor模块文件名，将包含hash  
 	> UglifyJsPlugin注意在2.7.0以上默认不支持ie8,需配置screw_ie8为false [issues12](https://github.com/jm-team/Bugs/issues/12)
 
+#### webStorm 使用细节
+1. webpack热更新需要将自动保存功能取消，setting> system setting > use "safe write"
+2. node_modules文件夹包含文件过多时，WS会卡死 需右键将该文件夹Mark Directory As > Excluded
+
 #### end
 欢迎提出任何问题及建议
