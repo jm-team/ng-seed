@@ -1,4 +1,4 @@
-var templateUrl = require('../../page/news/news.html');
+var templateUrl = require('page/news/news.html');
 
 module.exports = {
     abstract: true,
@@ -10,10 +10,11 @@ module.exports = {
         displayName: '新闻列表页'
     },
     resolve: {
+        /*@ngInject*/
         loadCtrl: function ($q) {
             var defer = $q.defer();
             require.ensure([], function (require) {
-                defer.resolve(require('../controller/newsCtrl.js'));
+                defer.resolve(require('controller/newsCtrl.js'));
             }, 'news');
             return defer.promise;
         }

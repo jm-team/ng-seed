@@ -1,9 +1,9 @@
 var app = require('../app');
-var tmpHeader = require('../../page/common/header.html');
-var tmpFooter = require('../../page/common/footer.html');
-var tmpPage = require('../../page/common/page.html');
-var tmpCrumbs = require('../../page/common/crumbs.html');
-var loginTmp = require('../../page/common/login.html');
+var tmpHeader = require('page/common/header.html');
+var tmpFooter = require('page/common/footer.html');
+var tmpPage = require('page/common/page.html');
+var tmpCrumbs = require('page/common/crumbs.html');
+var loginTmp = require('page/common/login.html');
 
 
 app.directive('jmHeader', function() {
@@ -223,7 +223,7 @@ app.directive('jmPagination', function($parse) {
             onSelectPage: '&'
         },
         controller: function($scope, $element, $attrs) {
-            console.log($attrs);
+            var ngInput = null;
             // 配置屬性
             angular.extend($scope, {
                 pages: [],
@@ -235,13 +235,15 @@ app.directive('jmPagination', function($parse) {
                 firstText: $attrs.firstText,
                 lastText: $attrs.lastText,
                 inputLinks: $attrs.inputLinks || true,
-                directionLinks: $attrs.directionLinks || true
+                directionLinks: $attrs.directionLinks || true,
+                isKeyUp: $attrs.directionLinks || 13
             });
 
 
 
             // 迴調方法
             angular.extend($scope, {
+                // 初始化
                 init: function() {
                     var self = this;
                     if ($attrs.itemsPerPage) {
@@ -250,15 +252,19 @@ app.directive('jmPagination', function($parse) {
 
                     // 每页大小改变
                     this.$parent.$watch($parse($attrs.itemsPerPage), function(value) {
-                        self.itemsPerPage = parseInt(value, 10);
-                        $scope.totalPage = self.calculateTotalPage();
+                        if(value){
+                            self.itemsPerPage = parseInt(value, 10);
+                            $scope.totalPage = self.calculateTotalPage();
+                        }
                     });
                 },
 
+                // 计算总页数
                 calculateTotalPage: function() {
                     var totalPage = $scope.itemsPerPage < 1 ? 1 : Math.ceil($scope.totalItems / this.itemsPerPage);
                     return Math.max(totalPage || 0, 1);
                 },
+                
                 // 初始化分頁
                 makePage: function(currentPage, totalPages) {
                     var maxSize = $scope.maxSize;
@@ -289,6 +295,8 @@ app.directive('jmPagination', function($parse) {
                         start++;
                     }
                 },
+                
+                // 选择上一页
                 selectPrevious: function($event) {
                     var p = $scope.currentPage - 1;
                     $scope.setPage($event, p < 1 ? 1 : p);
@@ -297,6 +305,7 @@ app.directive('jmPagination', function($parse) {
                     });
                 },
 
+                // 选择下一页
                 selectNext: function($event) {
                     var p = $scope.currentPage + 1;
                     $scope.setPage($event, p > $scope.totalPage ? $scope.totalPage : p);
@@ -304,7 +313,8 @@ app.directive('jmPagination', function($parse) {
                         event: $event
                     });
                 },
-
+                
+                // 选择分页
                 setPage: function($event, p) {
                     $event.preventDefault();
                     if (p !== $scope.currentPage) {
@@ -316,10 +326,22 @@ app.directive('jmPagination', function($parse) {
                             }
                         });
                         $scope.makePage(p, $scope.totalPage);
+                        $scope.currentPage = p;
+                        ngInput.val(p);
+                    }
+                },
+                
+                // keyup
+                inputKeyUp: function ($event, p) {
+                    var keyCode = $event.keyCode;
+                    if (keyCode === 13) {
+                        $scope.setPage($event, p);
                     }
                 }
             });
+            
             $scope.init();
+            
             // 监视总页数改变 总页数改变初始化分页
             $scope.$watch('totalPage', function(value) {
                 console.log('totalPage change' + $scope.totalPage)

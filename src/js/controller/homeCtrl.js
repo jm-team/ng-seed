@@ -1,5 +1,5 @@
-var app = require('../app')
-// var loginTmp = require('../../page/service/login.html');
+var app = require('../app');
+
 // 调用Api 服务
 app.registerController('HomeCtrl',
     /*@ngInject*/

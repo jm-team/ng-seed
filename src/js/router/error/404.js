@@ -1,4 +1,4 @@
-var templateUrl = require('../../page/error/404.html');
+var templateUrl = require('page/error/404.html');
 
 module.exports = {
     url: '/404',

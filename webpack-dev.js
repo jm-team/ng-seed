@@ -1,5 +1,5 @@
 var webpack = require('webpack');
-var config = require('./config/env.config.js').dev;
+var config = require('./config/build.config.js').dev;
 
 module.exports = {
     // 本地服务器配置

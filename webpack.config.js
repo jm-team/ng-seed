@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var config = require('./config/env.config.js');
+var config = require('./config/build.config.js');
 var webpackConfig;
 var hash = chunkhash = contenthash = '';
 
@@ -24,20 +24,25 @@ if (env === 'dev') {
 // multiple extract instances
 var extractCSS = new ExtractTextPlugin('css/[name].'+ contenthash +'css');
 var extractLESS = new ExtractTextPlugin('css/less.[name].'+ contenthash +'css');
+var extractSASS = new ExtractTextPlugin('css/sass.[name].'+ contenthash +'css');
 
 module.exports = merge({
-    // 源文件入口文件
-    // 这里的文件在使用html-webpack-plugin的时候
-    // 会自动将这些资源插入到html中
+    /**
+     * 源文件入口文件
+     * 这里的文件在使用html-webpack-plugin的时候会自动将这些资源插入到html中
+     */
     entry: {
         // 公共文件
         vendor: [
-            './src/dep/angular.js',
-            './src/dep/angular-ui-router.js',
-            './src/dep/jm-login-module.js',
-            './src/dep/ui-bootstrap-tpls.js',
-            './src/dep/angular-resource.js',
-            './src/dep/lazy-image.js'
+            './src/dep/angular/angular.js',
+            './src/dep/angular/angular-sanitize.js',
+            './src/dep/angular/angular-resource.js',
+            './src/dep/angular/ui-bootstrap-tpls.js',
+            './src/dep/angular/angular-locale_zh-cn.js',
+            './src/dep/angular/angular-ui-router.js',
+            './src/dep/bindonce.js',
+            './src/dep/ng-lazy-image/lazy-image.js',
+            './src/dep/ng-jmui/jm-login-module.js'
         ],
         entry: './src/js/entry.js'
     },
@@ -54,7 +59,11 @@ module.exports = merge({
     resolve: {
 
         // 配置别名
-        alias: {},
+        alias: {
+            'address': path.join(__dirname, './config/address.config'),
+            'page': path.join(__dirname, './src/page'),
+            'controller': path.join(__dirname, './src/js/controller')
+        },
 
         fallback: [path.join(__dirname, './node_modules')],
 
@@ -65,12 +74,12 @@ module.exports = merge({
 
     //
     module: {
-        preLoaders: [
+/*        preLoaders: [
             {
                 test: /\.js$/,
                 loader: 'baggage?[file].html&[file].css'
             }
-        ],
+        ],*/
         loaders: [
             // 处理angularjs 模版片段
             {
@@ -89,6 +98,11 @@ module.exports = merge({
             {
                 test: /\.less$/i,
                 loader: extractLESS.extract(['css', 'less'])
+            },
+
+            {
+                test: /\.scss$/i,
+                loader: extractSASS.extract(['css', 'sass'])
             },
 
             // 处理html图片
@@ -132,7 +146,7 @@ module.exports = merge({
     },
 
     // sourceMap
-    // devtool: config.build.productionSourceMap ? '#source-map' : false,
+    devtool: config.debug ? '#source-map' : false,
 
     // 插件
     plugins: [
@@ -140,8 +154,9 @@ module.exports = merge({
         // 相对于output配置中的publickPath
         extractCSS,
         extractLESS,
+        extractSASS,
         new CopyWebpackPlugin([{
-            from: './src/dep/ie8supports.js',
+            from: './src/dep/ie8support/ie8supports.js',
             to: './dep'
         }, {
             from: './src/mock',

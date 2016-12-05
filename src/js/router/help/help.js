@@ -1,16 +1,16 @@
-var templateUrl = require('../../page/home/home.html');
+var templateUrl = require('page/help/help.html');
 
 module.exports = {
-    title: "首页",
-    url: '/',
+    title: '帮助中心',
+    url: '/help',
     templateUrl: templateUrl,
-    controller: 'HomeCtrl',
+    controller: 'HelpCtrl',
     resolve: {
         loadCtrl: function ($q) {
             var defer = $q.defer();
             require.ensure([], function (require) {
-                defer.resolve(require('../controller/homeCtrl.js'));
-            }, 'home');
+                defer.resolve(require('controller/helpCtrl.js'));
+            }, 'help');
             return defer.promise;
         }
     }
