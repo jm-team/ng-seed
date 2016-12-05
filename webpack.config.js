@@ -97,12 +97,12 @@ module.exports = merge({
 
             {
                 test: /\.less$/i,
-                loader: extractLESS.extract(['css', 'less'])
+                loader: extractLESS.extract(['css', 'less!postcss'])
             },
 
             {
                 test: /\.scss$/i,
-                loader: extractSASS.extract(['css', 'sass'])
+                loader: extractSASS.extract(['css', 'sass!postcss'])
             },
 
             // 处理html图片
