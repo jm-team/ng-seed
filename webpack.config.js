@@ -161,7 +161,13 @@ module.exports = merge({
         }, {
             from: './src/mock',
             to: './mock'
-        }]),
+        }, {
+            from: './src/img',
+            to: './img',
+            ignore: ['/sprite']
+        }], {
+            copyUnmodified: true
+        }),
         // new HtmlWebpackPlugin(),
         new HtmlWebpackPlugin({
             // 生成title

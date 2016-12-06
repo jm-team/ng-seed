@@ -22,6 +22,7 @@ app.constant('SERVER_ADDRESS', address.SERVER_ADDRESS);
 app.constant('CENTER_ADDRESS', address.CENTER_ADDRESS);
 app.constant('USERCENTER_ADDRESS', address.USERCENTER_ADDRESS);
 app.constant('CDN_ADDRESS', address.CDN_ADDRESS);
+app.constant('IMG_ADDRESS', address.IMG_ADDRESS);
 
 // ng配置
 app.config(function ($controllerProvider, $httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
