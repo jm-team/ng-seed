@@ -97,12 +97,12 @@ module.exports = merge({
 
             {
                 test: /\.less$/i,
-                loader: extractLESS.extract(['css', 'less'])
+                loader: extractLESS.extract(['css', 'less!postcss'])
             },
 
             {
                 test: /\.scss$/i,
-                loader: extractSASS.extract(['css', 'sass'])
+                loader: extractSASS.extract(['css', 'sass!postcss'])
             },
 
             // 处理html图片
@@ -165,6 +165,7 @@ module.exports = merge({
             from: './src/img/system',
             to: './img/system'
         }]),
+
         // new HtmlWebpackPlugin(),
         new HtmlWebpackPlugin({
             // 生成title
