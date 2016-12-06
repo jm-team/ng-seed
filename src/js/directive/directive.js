@@ -219,11 +219,14 @@ app.directive('jmPagination', function($parse) {
 
             // 当前页
             currentPage: '=',
+
             // 页码改变回调方法
             onSelectPage: '&'
         },
         controller: function($scope, $element, $attrs) {
+            // 分页输入框
             var ngInput = null;
+
             // 配置屬性
             angular.extend($scope, {
                 pages: [],
@@ -241,9 +244,9 @@ app.directive('jmPagination', function($parse) {
 
 
 
-            // 迴調方法
+            // 挂载属性
             angular.extend($scope, {
-                // 初始化
+                // 分页初始化
                 init: function() {
                     var self = this;
                     if ($attrs.itemsPerPage) {
@@ -259,13 +262,22 @@ app.directive('jmPagination', function($parse) {
                     });
                 },
 
-                // 计算总页数
+                /**
+                 * 计算总页码
+                 * @author zhoul
+                 * @returns {number} 计算后的总页码
+                 */
                 calculateTotalPage: function() {
                     var totalPage = $scope.itemsPerPage < 1 ? 1 : Math.ceil($scope.totalItems / this.itemsPerPage);
                     return Math.max(totalPage || 0, 1);
                 },
                 
-                // 初始化分頁
+                /**
+                 * 创建分页
+                 * @author zhoul
+                 * @param {number} currentPage 当前页码
+                 * @param {number} totalPages  总页码
+                 */
                 makePage: function(currentPage, totalPages) {
                     var maxSize = $scope.maxSize;
                     var start = 2;
@@ -296,7 +308,11 @@ app.directive('jmPagination', function($parse) {
                     }
                 },
                 
-                // 选择上一页
+                /**
+                 * 选择上一页
+                 * @author zhoul
+                 * @param {object} $event 事件对象
+                 */
                 selectPrevious: function($event) {
                     var p = $scope.currentPage - 1;
                     $scope.setPage($event, p < 1 ? 1 : p);
@@ -305,7 +321,11 @@ app.directive('jmPagination', function($parse) {
                     });
                 },
 
-                // 选择下一页
+                /**
+                 * 选择下一页
+                 * @author zhoul
+                 * @param {object} $event 事件对象
+                 */
                 selectNext: function($event) {
                     var p = $scope.currentPage + 1;
                     $scope.setPage($event, p > $scope.totalPage ? $scope.totalPage : p);
@@ -314,7 +334,12 @@ app.directive('jmPagination', function($parse) {
                     });
                 },
                 
-                // 选择分页
+                /**
+                 * 设置页码
+                 * @author zhoul
+                 * @param {object} $event 事件对象
+                 * @param {number} p      页码
+                 */
                 setPage: function($event, p) {
                     $event.preventDefault();
                     if (p !== $scope.currentPage) {
@@ -331,7 +356,12 @@ app.directive('jmPagination', function($parse) {
                     }
                 },
                 
-                // keyup
+                /**
+                 * 页码输入框回车事件
+                 * @author zhoul
+                 * @param {object} $event 事件对象
+                 * @param {number} p      输入框中的页码
+                 */
                 inputKeyUp: function ($event, p) {
                     var keyCode = $event.keyCode;
                     if (keyCode === 13) {
@@ -351,8 +381,9 @@ app.directive('jmPagination', function($parse) {
     };
 });
 
+
+
 // tab选项卡
-//
 function isHeaderForContent(node) {
     return node.tagName && (
         node.hasAttribute('jm-tab-header') ||
