@@ -104,6 +104,11 @@ app.filter('light', function () {
      * @returns {string}    处理后的字符串
      */
     function fn(value, str) {
+        // 没有关键字就直接返回之前的字符
+        if(!str){
+            return value;
+        }
+
         var reg = new RegExp(str, 'gi');
         return value.replace(reg, function (word) {
             return "<span class='text-light'>" + word + "</span>";
