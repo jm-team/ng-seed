@@ -3,12 +3,12 @@ require('../dep/ng-lazy-image/lazy-image-style.css');
 require('../css/style.css');
 require('../css/postcss-demo.css');
 require('../css/less-demo.less');
-<<<<<<< HEAD
-require('../css/post.css');
-=======
-require('../css/sass-demo.scss');
 
->>>>>>> e1920e4b782d0b23d1e78da073e1b974735fd9dd
+require('../css/post.css');
+
+//require('../css/sass-demo.scss');
+
+
 require('../js/directive/directive.js');
 require('../js/filter/filter.js');
 require('../js/service/service.js');
