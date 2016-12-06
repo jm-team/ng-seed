@@ -47,4 +47,27 @@ app.config(function ($controllerProvider, $httpProvider, $locationProvider, $url
     });
 });
 
+app.run(function($state, $rootScope, $location, Cookie, Util, Address){
+    var params = $location.search();
+    var shiroJID;
+
+    if (angular.isObject(params)) {
+        shiroJID = $location.search().shiroJID;
+    }
+
+
+
+    // 判断是否登录  注意： 这里服务端重定向到的地址一定是你的from上的一个静态资源 而且不能是页面上的某个路由
+//    Util.createIframe(Address.SERVER_ADDRESS + '/webapi/v1/init?from=' + Address.localHost + '/dist/img/logo.png').then(function(data) {
+//        // 如果有就代表已经登录
+//        // data的值就是sessionID
+//        if (data) {
+//            Cookie.setCookie('shiroJID', data);
+//            // 获取用户接口
+//        }
+//    }, function() {
+//
+//    });
+});
+
 module.exports = app;

@@ -230,8 +230,6 @@
                     var sessionId =  attrs.sessionid || 'shiroJID';
                     var iframeName = attrs.target;
 
-                    //angular.element(document.getElementById(iframeName))
-
                     iframe.attr({
                         name:iframeName,
                         id:iframeName
@@ -253,7 +251,7 @@
                             var session;
                             str = parent.document.getElementById(iframeName).contentWindow.location.href;
                             str = str.substr(str.indexOf('?')+1);
-                            oLocationMsg = getUrlSearch(str) ||{};
+                            oLocationMsg = getUrlSearch(decodeURI(str)) ||{};
                             session = oLocationMsg[sessionId];
 
                             if(session){

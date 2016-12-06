@@ -161,6 +161,9 @@ module.exports = merge({
         }, {
             from: './src/mock',
             to: './mock'
+        },{
+            from: './src/img/system',
+            to: './img/system'
         }]),
         // new HtmlWebpackPlugin(),
         new HtmlWebpackPlugin({
