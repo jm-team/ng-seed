@@ -24,6 +24,21 @@ app.filter('cdn', function ($sce, CDN_ADDRESS) {
     return fn;
 });
 
+// 图片服务器地址
+app.filter('imgOrigin',  function($sce, IMG_ADDRESS) {
+    return function(input, url, imgAddr) {
+        if (url) {
+            return $sce.trustAsResourceUrl(url + input);
+        } else {
+            if (imgAddr) {
+                return $sce.trustAsResourceUrl(imgAddr + input);
+            } else {
+                return $sce.trustAsResourceUrl(IMG_ADDRESS + input);
+            }
+        }
+    };
+});
+
 // HTML 代码检测
 app.filter('to_trusted', function ($sce) {
     /**
