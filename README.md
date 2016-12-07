@@ -83,9 +83,18 @@
 3. webpack-production.js - 生产环境打包，打包前删除dist目录，启用文件压缩混淆，未指定vendor模块文件名，将包含hash  
 	> UglifyJsPlugin注意在2.7.0以上默认不支持ie8,需配置screw_ie8为false [issues12](https://github.com/jm-team/Bugs/issues/12)
 
-#### webStorm 使用细节
+## 注意事项（坑）
+### svn git 使用细节
+1. .idea 文件夹需要设为ignore，避免影响到其他开发人员的WebStorm面板
+2. node_modules 文件夹需要设为ignore，该文件夹包含文件过多，应由开发人员本地安装
+
+### webStorm 使用细节
 1. webpack热更新需要将自动保存功能取消，setting> system setting > use "safe write"
 2. node_modules文件夹包含文件过多时，WS会卡死 需右键将该文件夹Mark Directory As > Excluded
 
-#### end
+### webpack热更新配置
+1. build.config.js - `host`修改后不可随意提交，会导致其他开发人员更新后无法启动
+2. build.config.js - `port`多个项目启动时注意设置不同端口
+
+## end
 欢迎提出任何问题及建议
