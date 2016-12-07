@@ -43,9 +43,10 @@
 ### 目录文件说明
 
 #### config/
-1. `assetsPublicPath` - 配置引用资源的位置，用于配置CDN地址，与`index.html`头部的`CDN_ADDRESS`相同
-2. dev `devServer` - webpack热更新服务器配置，用于配置host访问地址，端口，服务接口反向代理(解决跨域问题)
-3. build `debug` - 用于配置调试压缩后的代码，true为开启调试模式，浏览器开发工具可查看到未压缩代码
+1. address.config.js - 配置项目依赖服务器地址
+2. build.config.js - `assetsPublicPath` - 配置引用资源的位置，用于配置CDN地址，读取address.config.js配置项 `CDN_ADDRESS`
+3. build.config.js - dev `devServer` - webpack热更新服务器配置，用于配置host访问地址，端口，服务接口反向代理(解决跨域问题)
+4. build.config.js - build `debug` - 用于配置调试压缩后的代码，true为开启调试模式，浏览器开发工具可查看到未压缩代码
 
 #### dist/
 1. dist文件夹将放于CND服务器，所有引用dist目录下资源的地方，都需要可以动态配置域名：  
@@ -57,7 +58,7 @@
 
 #### doc/
 1. api.md - RESTful API设计规范的demo
-2. nginx.conf - nginx配置，用于在本地测试生产环境下的代码
+2. nginx.conf - nginx配置，用于在本地测试生产环境下代码
 3. server.js - Prerender.io的服务器配置，用于解决前台页面SEO的问题。注意单线程
 4. specification.md - 为angular项目规范
 
