@@ -1,8 +1,8 @@
 var address = require('./address.config.js');
 
 module.exports = {
-	// build 配置
-	build: {
+	// production 配置
+	production: {
 		assetsPublicPath: address.CDN_ADDRESS + '/dist/', // html 中引用资源的位置 // TODO: CDN地址 https://jm-team.github.io/dist/
 		debug: false // debug:true devtool:"#source-map"
 	},

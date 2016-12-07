@@ -16,7 +16,7 @@ if (env === 'dev') {
     config = config.dev;
 } else if (env === 'production') {
     webpackConfig = require('./webpack-production.js');
-    config = config.build;
+    config = config.production;
     hash = '[hash:8].';
     chunkhash = '[chunkhash:8].';
     contenthash = '[contenthash:8].';
