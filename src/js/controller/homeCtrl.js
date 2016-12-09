@@ -1,4 +1,4 @@
-var app = require('../app');
+var app = require('app');
 
 // 调用Api 服务
 app.registerController('HomeCtrl',

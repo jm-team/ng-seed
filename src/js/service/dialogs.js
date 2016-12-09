@@ -1,5 +1,5 @@
 // module
-var app = require('../app');
+var app = require('app');
 
 function Dialogs() {
     this.resolveKeys = [];

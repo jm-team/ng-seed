@@ -1,5 +1,6 @@
 var address = require('address');
-var app = angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'jm.login', 'afkl.lazyImage']);
+var jmui = require('component/jmui');
+var app = angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
 // 路由配置
 var router = [
     ["notFound", require("./router/error/404.js")],
@@ -9,7 +10,6 @@ var router = [
     ["news.list", require("./router/news/news.list.js")],
     ["news.detail", require("./router/news/news.detail.js")],
     ["news.save", require("./router/news/news.save.js")],
-    ["tab", require("./router/tab.js")],
     ["help", require("./router/help/help.js")]
 ];
 
@@ -48,14 +48,13 @@ app.config(function ($controllerProvider, $httpProvider, $locationProvider, $url
     });
 });
 
-app.run(function($state, $rootScope, $location, Cookie, Util, Address){
+app.run(function ($state, $rootScope, $location, Cookie, Util, Address) {
     var params = $location.search();
     var shiroJID;
 
     if (angular.isObject(params)) {
         shiroJID = $location.search().shiroJID;
     }
-
 
 
     // 判断是否登录  注意： 这里服务端重定向到的地址一定是你的from上的一个静态资源 而且不能是页面上的某个路由

@@ -41,8 +41,7 @@ module.exports = merge({
             './src/dep/angular/angular-locale_zh-cn.js',
             './src/dep/angular/angular-ui-router.js',
             './src/dep/bindonce.js',
-            './src/dep/ng-lazy-image/lazy-image.js',
-            './src/dep/ng-jmui/jm-login-module.js'
+            './src/dep/ng-lazy-image/lazy-image.js'
         ],
         entry: './src/js/entry.js'
     },
@@ -61,6 +60,8 @@ module.exports = merge({
         // 配置别名
         alias: {
             'address': path.join(__dirname, './config/address.config'),
+            'app': path.join(__dirname, './src/js/app.js'),
+            'component': path.join(__dirname, './src/component'),
             'page': path.join(__dirname, './src/page'),
             'controller': path.join(__dirname, './src/js/controller')
         },
@@ -84,7 +85,7 @@ module.exports = merge({
             // 处理angularjs 模版片段
             {
                 test: /\.html$/,
-                loader: 'ngtemplate?module=app&relativeTo=/src!html',
+                loader: 'ngtemplate?module=ng&relativeTo=/src!html',
                 exclude: /(entry)/
             },
 

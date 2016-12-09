@@ -1,4 +1,4 @@
-var app = require('../app');
+var app = require('app');
 
 // 资源CDN路径
 app.filter('cdn', function ($sce, CDN_ADDRESS) {
