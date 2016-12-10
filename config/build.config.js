@@ -15,5 +15,10 @@ module.exports = {
 			port: 8081, // http://localhost:8081/
 			proxyTarget: address.SERVER_ADDRESS //'http://dev-webapi.jm.com' // api服务器地址
 		}
+	},
+
+	// echarts 配置
+	echarts: {
+		enabled: true
 	}
 };

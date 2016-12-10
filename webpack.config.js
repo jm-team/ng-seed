@@ -9,6 +9,25 @@ var config = require('./config/build.config.js');
 var webpackConfig;
 var hash = chunkhash = contenthash = '';
 
+// 公共類庫文件
+var vendorFiles = [
+            './src/dep/angular/angular.js',
+            './src/dep/angular/angular-sanitize.js',
+            './src/dep/angular/angular-resource.js',
+            './src/dep/angular/ui-bootstrap-tpls.js',
+            './src/dep/angular/angular-locale_zh-cn.js',
+            './src/dep/angular/angular-ui-router.js',
+            './src/dep/bindonce.js',
+            './src/dep/ng-lazy-image/lazy-image.js',
+            './src/dep/ng-jmui/jm-login-module.js'
+        ];
+
+
+if (config.echarts.enabled) {
+    vendorFiles.push('echarts');
+    vendorFiles.push('zrender');
+}
+
 // 获取执行环境
 var env = (process.env.NODE_ENV || '').trim();
 if (env === 'dev') {
@@ -26,6 +45,7 @@ var extractCSS = new ExtractTextPlugin('css/[name].'+ contenthash +'css');
 var extractLESS = new ExtractTextPlugin('css/less.[name].'+ contenthash +'css');
 var extractSASS = new ExtractTextPlugin('css/sass.[name].'+ contenthash +'css');
 
+
 module.exports = merge({
     /**
      * 源文件入口文件
@@ -33,17 +53,7 @@ module.exports = merge({
      */
     entry: {
         // 公共文件
-        vendor: [
-            './src/dep/angular/angular.js',
-            './src/dep/angular/angular-sanitize.js',
-            './src/dep/angular/angular-resource.js',
-            './src/dep/angular/ui-bootstrap-tpls.js',
-            './src/dep/angular/angular-locale_zh-cn.js',
-            './src/dep/angular/angular-ui-router.js',
-            './src/dep/bindonce.js',
-            './src/dep/ng-lazy-image/lazy-image.js',
-            './src/dep/ng-jmui/jm-login-module.js'
-        ],
+        vendor: vendorFiles,
         entry: './src/js/entry.js'
     },
 
