@@ -11,6 +11,7 @@
 - SPA页面路由（ui-router）
 - SPA页面historyApi（webpack-dev-server、nginx配置）
 - SPA解决SEO方案(Prerender.io)
+- 添加云詞例子[echart-wordCloud](https://github.com/ecomfe/echarts-wordcloud)
 
 ## webpack
 > pacekage 中的scripts 设置环境变量
@@ -47,6 +48,7 @@
 2. build.config.js - `assetsPublicPath` - 配置引用资源的位置，用于配置CDN地址，读取address.config.js配置项 `CDN_ADDRESS`
 3. build.config.js - dev `devServer` - webpack热更新服务器配置，用于配置host访问地址，端口，服务接口反向代理(解决跨域问题)
 4. build.config.js - build `debug` - 用于配置调试压缩后的代码，true为开启调试模式，浏览器开发工具可查看到未压缩代码
+5. build.config.js - echarts enabled - 是否啓用echarts模塊
 
 #### dist/
 1. dist文件夹将放于CND服务器，所有引用dist目录下资源的地方，都需要可以动态配置域名：  

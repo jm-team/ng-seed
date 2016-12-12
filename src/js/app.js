@@ -10,7 +10,8 @@ var router = [
     ["news.detail", require("./router/news/news.detail.js")],
     ["news.save", require("./router/news/news.save.js")],
     ["tab", require("./router/tab.js")],
-    ["help", require("./router/help/help.js")]
+    ["help", require("./router/help/help.js")],
+    ["chart", require("./router/chart/chart.js")]
 ];
 
 // 鏈接mongo配置
