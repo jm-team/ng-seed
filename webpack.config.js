@@ -45,7 +45,6 @@ var extractCSS = new ExtractTextPlugin('css/[name].'+ contenthash +'css');
 var extractLESS = new ExtractTextPlugin('css/less.[name].'+ contenthash +'css');
 var extractSASS = new ExtractTextPlugin('css/sass.[name].'+ contenthash +'css');
 
-
 module.exports = merge({
     /**
      * 源文件入口文件
@@ -71,6 +70,8 @@ module.exports = merge({
         // 配置别名
         alias: {
             'address': path.join(__dirname, './config/address.config'),
+            'app': path.join(__dirname, './src/js/app.js'),
+            'component': path.join(__dirname, './src/component'),
             'page': path.join(__dirname, './src/page'),
             'controller': path.join(__dirname, './src/js/controller')
         },
@@ -94,7 +95,7 @@ module.exports = merge({
             // 处理angularjs 模版片段
             {
                 test: /\.html$/,
-                loader: 'ngtemplate?module=app&relativeTo=/src!html',
+                loader: 'ngtemplate?module=ng&relativeTo=/src!html',
                 exclude: /(entry)/
             },
 

@@ -9,4 +9,4 @@ require('../js/directive/directive.js');
 require('../js/filter/filter.js');
 require('../js/service/service.js');
 require('../js/service/dialogs.js');
-require('../js/controller/publicCtrl.js');
+require('controller/loginCtrl.js');

@@ -141,7 +141,7 @@
     };
 
     //聚贸登录弹框模块
-    angular.module('jm.login', ['ng'])
+    angular.module('jmui.login', ['ng'])
 
     // 登录服务
         .factory('JmLoginService', function($q, $http, $log){
@@ -235,7 +235,7 @@
                         id:iframeName
                     });
 
-                    iframe.css('display', 'none')
+                    iframe.css('display', 'none');
                     angular.element(document.body).append(iframe);
                     element.attr('action', attrs.serverurl);
 
