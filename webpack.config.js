@@ -18,8 +18,7 @@ var vendorFiles = [
             './src/dep/angular/angular-locale_zh-cn.js',
             './src/dep/angular/angular-ui-router.js',
             './src/dep/bindonce.js',
-            './src/dep/ng-lazy-image/lazy-image.js',
-            './src/dep/ng-jmui/jm-login-module.js'
+            './src/dep/ng-lazy-image/lazy-image.js'
         ];
 
 
