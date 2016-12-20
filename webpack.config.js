@@ -180,7 +180,7 @@ module.exports = merge({
         new HtmlWebpackPlugin({
             // 生成title
             title: 'webpack App',
-
+            assetsPublicPath: config.assetsPublicPath,
             // 输出的文件名称 默认index.html 可以带有子目录
             // filename: './dist/index.html',
             filename: './entry/index.html',
