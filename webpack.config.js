@@ -11,15 +11,15 @@ var hash = chunkhash = contenthash = '';
 
 // 公共類庫文件
 var vendorFiles = [
-            './src/dep/angular/angular.js',
-            './src/dep/angular/angular-sanitize.js',
-            './src/dep/angular/angular-resource.js',
-            './src/dep/angular/ui-bootstrap-tpls.js',
-            './src/dep/angular/angular-locale_zh-cn.js',
-            './src/dep/angular/angular-ui-router.js',
-            './src/dep/bindonce.js',
-            './src/dep/ng-lazy-image/lazy-image.js'
-        ];
+    './src/dep/angular/angular.js',
+    './src/dep/angular/angular-sanitize.js',
+    './src/dep/angular/angular-resource.js',
+    './src/dep/angular/ui-bootstrap-tpls.js',
+    './src/dep/angular/angular-locale_zh-cn.js',
+    './src/dep/angular/angular-ui-router.js',
+    './src/dep/bindonce.js',
+    './src/dep/ng-lazy-image/lazy-image.js'
+];
 
 
 if (config.echarts.enabled) {
@@ -40,9 +40,9 @@ if (env === 'dev') {
     contenthash = '[contenthash:8].';
 }
 // multiple extract instances
-var extractCSS = new ExtractTextPlugin('css/[name].'+ contenthash +'css');
-var extractLESS = new ExtractTextPlugin('css/less.[name].'+ contenthash +'css');
-var extractSASS = new ExtractTextPlugin('css/sass.[name].'+ contenthash +'css');
+var extractCSS = new ExtractTextPlugin('css/[name].' + contenthash + 'css');
+var extractLESS = new ExtractTextPlugin('css/less.[name].' + contenthash + 'css');
+var extractSASS = new ExtractTextPlugin('css/sass.[name].' + contenthash + 'css');
 
 module.exports = merge({
     /**
@@ -59,8 +59,8 @@ module.exports = merge({
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: config.assetsPublicPath, // html 中引用资源的位置
-        filename: 'js/[name].'+ chunkhash +'js',
-        chunkFilename: 'js/[name].'+ chunkhash +'js'
+        filename: 'js/[name].' + chunkhash + 'js',
+        chunkFilename: 'js/[name].' + chunkhash + 'js'
     },
 
     // webpack 开始执行之前的处理
@@ -84,12 +84,12 @@ module.exports = merge({
 
     //
     module: {
-/*        preLoaders: [
-            {
-                test: /\.js$/,
-                loader: 'baggage?[file].html&[file].css'
-            }
-        ],*/
+        /*        preLoaders: [
+         {
+         test: /\.js$/,
+         loader: 'baggage?[file].html&[file].css'
+         }
+         ],*/
         loaders: [
             // 处理angularjs 模版片段
             {
@@ -118,7 +118,7 @@ module.exports = merge({
             // 处理html图片
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-                loader: 'file-loader?name=img/[name].'+ hash +'[ext]'
+                loader: 'file-loader?name=img/[name].' + hash + '[ext]'
             }
         ]
     },
@@ -127,7 +127,7 @@ module.exports = merge({
             require('postcss-sprites')({
                 stylesheetPath: './src/css',
                 spritePath: './dist/img/sprite',
-                filterBy: function(image) {
+                filterBy: function (image) {
                     //添加雪碧图规则 只有在sprite文件夹下的图片进行合并
                     if (!/\/sprite\//.test(image.url)) {
                         console.log(image.url);
@@ -136,11 +136,11 @@ module.exports = merge({
 
                     return Promise.resolve();
                 },
-                groupBy: function(image) {
+                groupBy: function (image) {
                     //添加雪碧图规则 在sprite下，如果包含文件夹则单独进行合并
                     var regex = /\/sprite\/([^/]+)\//g;
                     var m = regex.exec(image.url);
-                    if(!m) {
+                    if (!m) {
                         return Promise.reject();
                     }
                     return Promise.resolve(m[1]); // 'sprite.' + icon + '.png'
@@ -171,7 +171,7 @@ module.exports = merge({
         }, {
             from: './src/mock',
             to: './mock'
-        },{
+        }, {
             from: './src/img/system',
             to: './img/system'
         }]),
