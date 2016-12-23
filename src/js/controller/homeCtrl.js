@@ -22,8 +22,8 @@ app.registerController('HomeCtrl',
         });
 
         // lazy img
-        var changeImageUrl = function() {
-            var color = Math.floor(Math.random()*16777215).toString(16);
+        var changeImageUrl = function () {
+            var color = Math.floor(Math.random() * 16777215).toString(16);
             return '//placehold.it/768x599/' + color + '/ffffff';
         };
         angular.extend($scope, {

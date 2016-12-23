@@ -1,16 +1,16 @@
-h1{
-  display:flex;
+h1 {
+    display: flex;
 }
 
 :root {
---fontSize: 1rem;
---mainColor: #12345678;
---highlightColor: hwb(190, 35%, 20%);
+    --fontSize: 1rem;
+    --mainColor: #12345678;
+    --highlightColor: hwb(190, 35%, 20%);
 }
 
 body {
-padding: calc((var(--fontSize) / 2) + 1px);
-color: var(--mainColor);
-font-size: var(--fontSize);
-line-height: calc(var(--fontSize) * 1.5);
+    padding: calc((var(--fontSize) / 2) + 1px);
+    color: var(--mainColor);
+    font-size: var(--fontSize);
+    line-height: calc(var(--fontSize) * 1.5);
 }

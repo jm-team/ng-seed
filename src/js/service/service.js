@@ -43,7 +43,7 @@ app.factory('Util', function ($q) {
 
         },
 
-        createIframe: function(src){
+        createIframe: function (src) {
             var iframe = document.createElement('iframe');
             var _this = this;
             var oBody = document.body;
@@ -51,7 +51,7 @@ app.factory('Util', function ($q) {
             var str = '';
 
             // 删除iframe
-            function removeIframe(){
+            function removeIframe() {
                 angular.element(iframe).remove();
             }
 
@@ -59,7 +59,7 @@ app.factory('Util', function ($q) {
             iframe.style.display = 'none';
             oBody.appendChild(iframe);
 
-            iframe.onload = function(){
+            iframe.onload = function () {
                 try {
                     str = iframe.contentWindow.location.href;
                     str = str.substr(str.indexOf('?') + 1);
@@ -155,7 +155,7 @@ app.factory('News', function ($resource, API_SERVER, API_KEY) {
     });
 });
 
-app.factory('Cookie', function($q){
+app.factory('Cookie', function ($q) {
     return {
         /**
          * 设置Cookie
@@ -165,9 +165,9 @@ app.factory('Cookie', function($q){
          * @param {string} path 设置的Cookie的路径
          * @param {number} date 设置的Cookie的过期时间(天数)
          */
-        setCookie: function(name, val, path, date) {
+        setCookie: function (name, val, path, date) {
             var oDate = new Date();
-            oDate.setDate(oDate.getDate() + (date|| 30));
+            oDate.setDate(oDate.getDate() + (date || 30));
             var sDate = ";expires=" + oDate;
             var Path = ";path=" + (path || "/");
 
@@ -181,7 +181,7 @@ app.factory('Cookie', function($q){
          * @param   {string} name 需要获取的Cookie属性
          * @returns {string} 获取到的Cookie值
          */
-        getCookie: function(name) {
+        getCookie: function (name) {
             var sCookies = document.cookie;
             var arr = sCookies.split('; ');
             for (var i = 0; i < arr.length; i++) {
@@ -197,7 +197,7 @@ app.factory('Cookie', function($q){
          * @author zhoul
          * @param {string} name 需要删除的Cookie
          */
-        delCookie: function(name) {
+        delCookie: function (name) {
             this.setCookie(name, '', '', -1);
         },
 
@@ -206,7 +206,7 @@ app.factory('Cookie', function($q){
          * @author zhoul
          * @returns {number} Cookie的个数
          */
-        cookieLength: function() {
+        cookieLength: function () {
             var sCookie = document.cookie;
             var arr = sCookie.split('; ');
             if (!sCookie) {

@@ -21,12 +21,13 @@ app.filter('cdn', function ($sce, CDN_ADDRESS) {
             }
         }
     }
+
     return fn;
 });
 
 // 图片服务器地址
-app.filter('imgOrigin',  function($sce, IMG_ADDRESS) {
-    return function(input, url, imgAddr) {
+app.filter('imgOrigin', function ($sce, IMG_ADDRESS) {
+    return function (input, url, imgAddr) {
         if (url) {
             return $sce.trustAsResourceUrl(url + input);
         } else {
@@ -89,6 +90,7 @@ app.filter('cut_str', function () {
             }
         }
     }
+
     return fn;
 });
 
@@ -105,7 +107,7 @@ app.filter('light', function () {
      */
     function fn(value, str) {
         // 没有关键字就直接返回之前的字符
-        if(!str){
+        if (!str) {
             return value;
         }
 
@@ -114,5 +116,6 @@ app.filter('light', function () {
             return "<span class='text-light'>" + word + "</span>";
         });
     }
+
     return fn;
 });

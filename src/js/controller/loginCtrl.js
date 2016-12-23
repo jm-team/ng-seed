@@ -1,6 +1,6 @@
 var app = require('app');
 
-app.controller('loginCtrl', 
+app.controller('loginCtrl',
     /*@ngInject*/
     function ($scope, $modalInstance, $log, $q, Util, Login, CENTER_ADDRESS, USERCENTER_ADDRESS, SERVER_ADDRESS, JmLoginService, Address) {
         var localAddr = Address.localHost;

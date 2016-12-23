@@ -1,11 +1,12 @@
 var app = require('app');
 var tmpFooter = require('./footer.html');
 
-app.directive('jmFooter', function() {
+app.directive('jmFooter', function () {
     return {
         restrict: 'AE',
         replace: true,
         templateUrl: tmpFooter,
-        controller: function($scope) {}
+        controller: function ($scope) {
+        }
     };
 });
