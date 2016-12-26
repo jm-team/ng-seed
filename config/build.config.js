@@ -19,6 +19,6 @@ module.exports = {
 
 	// echarts 配置
 	echarts: {
-		enabled: true
+		enabled: false
 	}
 };
