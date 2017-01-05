@@ -170,6 +170,15 @@ angular.module('jmui.pagination', [])
                      */
                     setPage: function ($event, p) {
                         $event.preventDefault();
+
+                        ngInput = $element.find('input');
+                        p = p < 1 ?
+                            1 : p > $scope.totalPage ?
+                                $scope.totalPage : p;
+                        if(!+p || !angular.isNumber(+p)) {
+                            ngInput.val('');
+                            return false;
+                        }
                         if (p !== $scope.currentPage) {
                             $scope.currentPage = p;
                             ($scope.onSelectPage || angular.noop)({
