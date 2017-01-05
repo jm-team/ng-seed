@@ -1,25 +1,73 @@
 var webpack = require('webpack');
 var config = require('./config/build.config.js').dev;
 
+// 代理对象
+var objProxy = {};
+// 代理配置参数
+var proxyTarget = config.devServer.proxyTarget;
+
+/**
+ * 根据config.devServer.proxyTarget的参数，动态配置webapi代理
+ */
+ if (proxyTarget instanceof Array) {
+     /**
+      * api服务器地址
+      * example: proxyTarget: [
+      *              {pattern: '/webapi', address: address.SERVER_ADDRESS},
+      *              {pattern: '/dataserviceEN', address: address.JM_BIG_DATA_WEBAPI}
+      *            ]
+      */
+     for (var index in proxyTarget) {
+         var pattern = proxyTarget[index].pattern;
+         var proxyAddress = proxyTarget[index].address;
+         createProxy(objProxy, pattern, proxyAddress);
+     }
+ } else {
+     /**
+      * api服务器地址
+      * example: proxyTarget: {pattern: '/webapi', address: address.SERVER_ADDRESS}
+      */
+     if (proxyTarget instanceof Object) {
+         var pattern = proxyTarget.pattern;
+         var proxyAddress = proxyTarget.address;
+         createProxy(objProxy, pattern, proxyAddress);
+     } else {
+         /**
+          * api服务器地址
+          * example: proxyTarget: address.SERVER_ADDRESS
+          */
+         var pattern = '/webapi';
+         var proxyAddress = config.devServer.proxyTarget;
+         createProxy(objProxy, pattern, proxyAddress);
+     }
+ }
+
+/**
+ * 配置代理项
+ * @param objProxy
+ * @param pattern
+ * @param proxyAddress
+ */
+ function createProxy(objProxy, pattern, proxyAddress) {
+     objProxy[pattern] = {
+         target: proxyAddress,
+         bypass: function (req, res, proxyOptions) {
+             console.log(req.url);
+         },
+         changeOrigin: true,
+         secure: false
+     }
+ }
+
 module.exports = {
     // 本地服务器配置
     devServer: {
         host: config.devServer.host || '',
-        port: config.devServer.port || 8082, // 本地服务器端口配置 e.g. 8081
+        port: config.devServer.port || 8081, // 本地服务器端口配置 e.g. 8081
         hot: true,
         inline: true,
         // api 接口反向代理 解决跨域问题
-        proxy: {
-            '/webapi': {
-                target: config.devServer.proxyTarget, // api服务器地址 e.g. 'http://dev-webapi.jm.com'
-                bypass: function (req, res, proxyOptions) {
-                    console.log(req.url);
-                },
-                // ignorePath: false,
-                changeOrigin: true,
-                secure: false
-            }
-        },
+        proxy: objProxy,
         // 启用html5
         historyApiFallback: {
             rewrites: [
