@@ -21,16 +21,16 @@ angular.module('jmui.pagination', [])
  *
  *  指令方法详细
  *      1) onSelectPage(result): 选择页码的回调
- *          result:{ ev: event, currentPage: pagination}
+ *          result:{ ev: event, currentPage: page}
  *
  *
  *
  *
  * @example
  *  <jm-pagination
- *      total-pagination="numPages"
+ *      total-page="numPages"
  *      boundary-links="true"
- *      on-select-pagination="selectPage(pagination)"
+ *      on-select-page="selectPage(page)"
  *      previous-text="Previous"
  *      next-text="Next"
  *      max-size="5"
@@ -53,9 +53,6 @@ angular.module('jmui.pagination', [])
                 onSelectPage: '&'
             },
             controller: function ($scope, $element, $attrs) {
-                // 分页输入框
-                var ngInput = null;
-
                 // 配置屬性
                 angular.extend($scope, {
                     pages: [],
@@ -169,24 +166,26 @@ angular.module('jmui.pagination', [])
                      * @param {number} p      页码
                      */
                     setPage: function ($event, p) {
+                        var ngInput = $element.find('input') || null;
                         $event.preventDefault();
 
-                        ngInput = $element.find('input');
-                        p = p < 1 ?
-                            1 : p > $scope.totalPage ?
-                                $scope.totalPage : p;
-                        if(!+p || !angular.isNumber(+p)) {
-                            ngInput.val('');
-                            return false;
-                        }
                         if (p !== $scope.currentPage) {
-                            $scope.currentPage = p;
+
+                            if (!+p || p < 1) {
+                                p = 1
+                            } else if (p > $scope.totalPage) {
+                                p = $scope.totalPage
+                            }
+
+                            $scope.currentPage = p = parseInt(p, 10);
                             ($scope.onSelectPage || angular.noop)({
                                 page: {
                                     event: $event,
                                     currentPage: p
                                 }
                             });
+
+
                             $scope.makePage(p, $scope.totalPage);
                             $scope.currentPage = p;
                             ngInput.val(p);
@@ -211,7 +210,6 @@ angular.module('jmui.pagination', [])
 
                 // 监视总页数改变 总页数改变初始化分页
                 $scope.$watch('totalPage', function (value) {
-                    console.log('totalPage change' + $scope.totalPage)
                     $scope.makePage($scope.currentPage, $scope.totalPage);
                 });
             }

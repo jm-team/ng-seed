@@ -1,29 +1,34 @@
 <div class="jm-page clearfix" ng-if="totalPage>1">
-	<div class="p-wrap">
+    <div class="p-wrap">
 		<span class="p-nums">
-			<a ng-show="directionLinks" href=""  class="pn-prev" ng-disabled="currentPage == 1" ng-click="selectPrevious($event)">
+			<a ng-show="directionLinks" class="pn-prev" ng-disabled="currentPage == 1"
+               ng-click="selectPrevious($event)">
 				<em ng-bind="previousText || '&lt; 上一页'"></em>
 			</a>
 
-			<a href=""  ng-click="setPage($event, 1)" ng-class="{active: currentPage == 1}">1</a>
+			<a ng-click="setPage($event, 1)" ng-class="{active: currentPage == 1}">1</a>
 
 			<b class="pn-break" ng-show="totalPage > maxSize && maxSize-currentPage<0">...</b>
 
-			<a ng-click="setPage($event, p.index)" href="" ng-class="{active: currentPage == p.index}" ng-repeat="p in pages">{{p.index}}</a>
+			<a ng-click="setPage($event, p.index)" class="setPage" ng-class="{active: currentPage == p.index}"
+               ng-repeat="p in pages">{{p.index}}</a>
 
-			<b class="pn-break" ng-if="totalPage > maxSize && (!(currentPage+maxSize > totalPage) || !(currentPage>maxSize))">...</b>
+			<b class="pn-break"
+               ng-if="totalPage > maxSize && (!(currentPage+maxSize > totalPage) || !(currentPage>maxSize))">...</b>
 
-			<a href=""  ng-click="setPage($event, totalPage)" ng-class="{active: currentPage == totalPage}">{{totalPage}}</a>
+			<a ng-click="setPage($event, totalPage)" ng-class="{active: currentPage == totalPage}">{{totalPage}}</a>
 
-			<a ng-show="directionLinks" href="" class="pn-next" ng-if="totalPage>1" ng-disabled="currentPage == totalPage" ng-click="selectNext($event)">
+			<a ng-show="directionLinks" class="pn-next" ng-if="totalPage>1" ng-disabled="currentPage == totalPage"
+               ng-click="selectNext($event)">
 				<em ng-bind="nextText || '下一页 &gt;'"></em>
 			</a>
 		</span>
 
-		<span class="p-skip" ng-if="inputLinks">
+        <span class="p-skip" ng-if="inputLinks">
 			<em>共 <b>{{ totalPage }}</b> 页 &nbsp;&nbsp; 到第</em>
-			<input type="text" class="jm-form-control" ng-keyup="inputKeyUp($event, currentPage)" ng-model="currentPage"><em>页</em>
-			<a href="" class="btn btn-default" ng-click="setPage($event, currentPage)">确定</a>
+			<input type="text" class="jm-form-control" name="pageNum" ng-keyup="inputKeyUp($event, currentPage)"
+                   ng-model="currentPage"><em>页</em>
+			<a class="btn btn-default" ng-click="setPage($event, currentPage)">确定</a>
 		</span>
-	</div>
+    </div>
 </div>
