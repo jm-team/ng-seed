@@ -279,16 +279,3 @@
 .grid-container {
     width: 800px;
 }
-
-.scroll-container {
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-}
-
-.scroll-container > div {
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-}

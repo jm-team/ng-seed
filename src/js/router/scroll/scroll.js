@@ -14,7 +14,7 @@ module.exports = {
 
             // 内容高度大于容器高度的时候，将滚动显示
             // 根据容器高度设置相应的值
-            $scope.scrollable = data.dataList.length> 10; 
+            $scope.scrollable = data.dataList.length > 10;
             $scope.data = data;
 
         }, function errorCallback(response) {
@@ -24,8 +24,8 @@ module.exports = {
         /**
          * ng-repeat数据绑定结束
          */
-        $scope.$on('rendered', function(scope, element, attrs){
-          $scope.finishRender = true;
-      });
+        $scope.$on('rendered', function (scope, element, attrs) {
+            $scope.finishRender = true;
+        });
     }]
 };
