@@ -15,6 +15,14 @@ module.exports = {
             // 内容高度大于容器高度的时候，将滚动显示
             // 根据容器高度设置相应的值
             $scope.scrollable = data.dataList.length > 10;
+
+            var dataList = data.dataList;
+            if ($scope.scrollable) {
+                // 拷贝一份用于滚动
+                dataList = dataList.concat(dataList);
+                data.dataList = dataList;
+            }
+            
             $scope.data = data;
 
         }, function errorCallback(response) {
