@@ -132,6 +132,11 @@ app.factory('Api', function ($resource, $http, Address) {
                 id: '@id'
             });
         },
+
+        GridDataList: function () {
+            return $resource('/dist/mock/gridData.json');
+        },
+
         doLogin: function (email, password) {
             return $http.post('/webapi/doLogin', {email: email, password: password});
         },

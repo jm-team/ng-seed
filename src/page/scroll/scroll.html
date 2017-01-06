@@ -1,0 +1,26 @@
+<div class="grid-container">
+  <div class="jm-panel">
+    <h2 class="jm-panel-header mb-clear group"><span class="left">Spot Price:Daily<span class="unit">(Unit:RMB)</span></span><a class="more right" href="#">more >></a></h2>
+    <div class="jm-panel-body" bindonce="data">
+      <div class="col-header jm-padding-l-55 jm-padding-r-55 group">
+        <div class="col w30">Commodity</div>
+        <div class="col w30">Sectors</div>
+        <div class="col w15" bo-bind="data.timeBegin"></div>
+        <div class="col w15" bo-bind="data.timeEnd"></div>
+        <div class="col w10">Change</div>
+      </div>
+
+      <div scroll scrollable="scrollable" finish="finishRender" height="400">
+        <div ng-class-odd="'odd'" ng-class-even="'even'" class="data-list jm-padding-l-55 jm-padding-r-55 group" bindonce ng-repeat="row in data.dataList track by $index"
+          on-last-repeat="rendered">
+          <div class="col w30" bo-text="row.commodity" bo-title="row.commodity"></div>
+          <div class="col w30" bo-text="row.sectors"></div>
+          <div class="col w15" bo-text="row.dayPrice"></div>
+          <div class="col w15" bo-text="row.preDayPrice"></div>
+          <div class="col w10" bo-class="{'up':(row.change | trendUp), 'down':(row.change | trendDown) }" bo-text="row.change"></div>
+      </div><!-- end of "scroll" -->
+      
+    </div>
+  </div>
+</div>
+</div>
