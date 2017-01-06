@@ -6,13 +6,13 @@
 
 module.exports = {
     // api服务器
-    SERVER_ADDRESS: "http://dev-webapi.jm.com",
+    SERVER_ADDRESS: "http://webapi.jmdata-en.com",
     // 会员中心
     CENTER_ADDRESS: "http://lg-center.jm.com",
     // 单点认证中心
-    USERCENTER_ADDRESS: "https://uc.dev.com",
+    USERCENTER_ADDRESS: "http://test-uc3.dev.com",
     // CDN服务器
-    CDN_ADDRESS: "http://static-dev.jyt.com",
+    CDN_ADDRESS: "", //http://static-dev.jyt.com
     // 图片服务器
     IMG_ADDRESS: "http://image.jm.com"
 };
