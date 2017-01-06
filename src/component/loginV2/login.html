@@ -1,0 +1,65 @@
+<div class="pop-form">
+    <header class="pop-form-header">
+        <h2 class="pop-form-title">Sign In</h2>
+        <span class="jm-close" ng-click="close()">&times;</span>
+    </header>
+
+    <div>
+        <form
+            id='login-form'
+            name='loginnormal'
+            class="jm-form form-horizontal"
+            method='post'
+            on-close="close()"
+            novalidate>
+
+
+            <!-- 用户名 -->
+            <div class="form-group"
+                 ng-class="{ 'has-error' : loginnormal.username.$invalid && !loginnormal.username.$pristine }">
+                <div class="login-user">
+                    <input type="email"
+                           class="form-control"
+                           placeholder="Email"
+                           name="username"
+                           ng-model="username"
+                           ng-pattern="emailPattern.pattern"
+                           ng-focus="onfocus()"
+                           required>
+                </div>
+                <div ng-show="loginnormal.username.$dirty && loginnormal.username.$invalid">
+                    <div class=" text-danger" ng-show="loginnormal.username.$error.pattern">Email format is invalid
+                    </div>
+                    <div class=" text-danger" ng-show="loginnormal.username.$error.required">Email Required</div>
+                </div>
+            </div>
+
+            <!-- 密码 -->
+            <div class="form-group last">
+                <div class="login-pass">
+                    <input type="password"
+                           name="password"
+                           placeholder="Password"
+                           ng-model="password"
+                           class="form-control"
+                           ng-focus="onfocus()"
+                           required>
+                </div>
+                <div ng-show="loginnormal.password.$dirty && loginnormal.password.$invalid">
+                    <div class=" text-danger" ng-show="loginnormal.password.$error.required">Password Required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class=" text-danger" ng-show="userInValid">Email or Password error</div>
+                <div class=" text-danger" ng-show="inputRequired">Please input email and password</div>
+            </div>
+
+            <div class="jmform-control-group">
+                <input type="submit" ng-disabled="loging" class="btn btn-block btn-info" value="login"
+                       ng-click="submit($event)">
+            </div>
+
+        </form>
+    </div>
+</div>
