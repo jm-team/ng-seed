@@ -11,7 +11,8 @@
 - SPA页面路由（ui-router）
 - SPA页面historyApi（webpack-dev-server、nginx配置）
 - SPA解决SEO方案(Prerender.io)
-- 添加云詞例子[echart-wordCloud](https://github.com/ecomfe/echarts-wordcloud)
+- 添加云詞例子[echarts-wordCloud](https://github.com/ecomfe/echarts-wordcloud)
+- 添加滚动指令
 
 ## webpack
 > pacekage 中的scripts 设置环境变量
