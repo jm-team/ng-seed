@@ -119,3 +119,27 @@ app.filter('light', function () {
 
     return fn;
 });
+
+app.filter('trendUp', [function() {
+    return function(value) {
+        if (value) {
+            value = +value.replace('%', '')
+
+            return value > 0;
+        }
+         
+        return false;
+    }
+}]);
+
+app.filter('trendDown', [function() {
+    return function(value) {
+        if (value) {
+            value = +value.replace('%', '')
+
+            return value < 0;
+        }
+         
+        return false;
+    }
+}]);

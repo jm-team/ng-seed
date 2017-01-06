@@ -140,6 +140,10 @@ app.factory('Api', function ($resource, Address) {
             return $resource(Address.API_ADDRESS + '/auction/:id', {
                 id: '@id'
             });
+        },
+
+        GridDataList: function () {
+            return $resource('/dist/mock/gridData.json');
         }
     }
 });

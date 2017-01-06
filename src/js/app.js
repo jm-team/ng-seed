@@ -1,6 +1,6 @@
 var address = require('address');
 var jmui = require('component/jmui');
-var app = angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+var app = angular.module('app', ['ui.router', 'ngResource','pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
 // 路由配置
 var router = [
     ["notFound", require("./router/error/404.js")],
@@ -11,7 +11,8 @@ var router = [
     ["news.detail", require("./router/news/news.detail.js")],
     ["news.save", require("./router/news/news.save.js")],
     ["help", require("./router/help/help.js")],
-    ["chart", require("./router/chart/chart.js")]
+    ["chart", require("./router/chart/chart.js")],
+    ["scroll", require("./router/scroll/scroll.js")]
 ];
 
 // 鏈接mongo配置
