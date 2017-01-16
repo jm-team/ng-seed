@@ -102,7 +102,7 @@ module.exports = {
     },
     // 插件
     plugins: [
-        // 合并生成公用文件 .[hash:8]
+        // 合并生成公用文件 直接指定文件名，不带.[hash:8]值
         new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.js')
     ]
 };
