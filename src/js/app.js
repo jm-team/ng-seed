@@ -12,7 +12,8 @@ var router = [
     ["news.save", require("./router/news/news.save.js")],
     ["help", require("./router/help/help.js")],
     ["chart", require("./router/chart/chart.js")],
-    ["scroll", require("./router/scroll/scroll.js")]
+    ["scroll", require("./router/scroll/scroll.js")],
+    ["ueditor", require("./router/ueditor/ueditor.js")]
 ];
 
 // 鏈接mongo配置
