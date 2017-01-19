@@ -139,6 +139,7 @@ angular.module('jmui.pagination', [])
                      * @param {object} $event 事件对象
                      */
                     selectPrevious: function ($event) {
+                        $event.preventDefault();
                         var p = $scope.currentPage - 1;
                         $scope.setPage($event, p < 1 ? 1 : p);
                         ($scope.onSelectPrevious || angular.noop)({
@@ -152,6 +153,7 @@ angular.module('jmui.pagination', [])
                      * @param {object} $event 事件对象
                      */
                     selectNext: function ($event) {
+                        $event.preventDefault();
                         var p = $scope.currentPage + 1;
                         $scope.setPage($event, p > $scope.totalPage ? $scope.totalPage : p);
                         ($scope.onSelectNext || angular.noop)({
@@ -166,6 +168,7 @@ angular.module('jmui.pagination', [])
                      * @param {number} p      页码
                      */
                     setPage: function ($event, p) {
+                        $event.preventDefault();
                         var ngInput = $element.find('input') || null;
                         $event.preventDefault();
 
