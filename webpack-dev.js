@@ -51,6 +51,12 @@ var proxyTarget = config.devServer.proxyTarget;
  function createProxy(objProxy, pattern, proxyAddress) {
      objProxy[pattern] = {
          target: proxyAddress,
+         /**
+          * TODO: 二级域名作为代理服务器时应该去掉多余path“/api”
+          * http://www.jm.com/api/xxx => http://api.jm.com/xxx
+          * not http://api.jm.com/api/xxx
+          */
+         // pathRewrite: {'^/api' : ''},
          bypass: function (req, res, proxyOptions) {
              console.log(req.url);
          },
@@ -96,7 +102,7 @@ module.exports = {
     },
     // 插件
     plugins: [
-        // 合并生成公用文件 .[hash:8]
+        // 合并生成公用文件 直接指定文件名，不带.[hash:8]值
         new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.js')
     ]
 };

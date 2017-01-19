@@ -10,9 +10,10 @@ module.exports = {
 	// dev 配置
 	dev: {
 		assetsPublicPath: '/dist/',
+        debug: true,
 		devServer: {
 			host: 'localhost', // 默认localhost <hostname/ip>: hostname or IP. 0.0.0.0 binds to all hosts.
-			port: 8085, // http://localhost:8081/
+			port: 8081, // http://localhost:8081/
 			proxyTarget: [
 				  {pattern: '/webapi', address: address.SERVER_ADDRESS} 
                 //, {pattern: '/dataserviceEN', address: address.JM_BIG_DATA_WEBAPI}

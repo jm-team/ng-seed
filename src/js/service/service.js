@@ -117,24 +117,15 @@ app.factory('Address', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRE
     };
 });
 
-app.factory('Login', function (Address, $http) {
+app.factory('Auth', function () {
     return {
-        checkIsRequiredCode: function (data) {
-            console.log(data);
-            return $http.jsonp(Address.USERCENTER_ADDRESS + '/cas/c/loginController?action=checkLoginNeedVerifyCode&callback=JSON_CALLBACK', {
-                params: data
-            });
-        },
-
-        checkCode: function (data) {
-            return $http.jsonp(Address.USERCENTER_ADDRESS + '/cas/c/loginController?action=validateVerifyCode&callback=JSON_CALLBACK', {
-                params: data
-            });
-        }
+        // 存储用户信息
+        user: null
     }
+
 });
 
-app.factory('Api', function ($resource, Address) {
+app.factory('Api', function ($resource, $http, Address) {
     return {
         Lines: function () {
             return $resource(Address.API_ADDRESS + '/auction/:id', {
@@ -144,6 +135,19 @@ app.factory('Api', function ($resource, Address) {
 
         GridDataList: function () {
             return $resource('/dist/mock/gridData.json');
+        },
+
+        doLogin: function (email, password) {
+            return $http.post('/webapi/doLogin', {email: email, password: password});
+        },
+        checkVerifyCode: function(){
+            return $resource(Address.API_ADDRESS + '/validateVerifyCode/:id', {id: '@id'});
+        },
+        /**
+         * 获得用户信息
+         */
+        User: function () {
+            return $resource('/webapi/v1/getMsg');
         }
     }
 });
@@ -219,4 +223,25 @@ app.factory('Cookie', function ($q) {
             return arr.length;
         }
     }
+});
+
+/**
+ * [请求服务]
+ * @param  {Array}   [description]
+ * @return {[type]}  [description]
+ */
+app.factory('requestService', function () {
+    return {
+        requests: [],
+        /**
+         * [clearAll 清除所有带canCancel参数的请求]
+         * @return {[type]} [description]
+         */
+        clearAll: function () {
+            angular.forEach(this.requests, function (req) {
+                req.resolve();
+            });
+            this.requests = [];
+        }
+    };
 });
