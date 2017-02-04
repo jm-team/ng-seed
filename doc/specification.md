@@ -154,6 +154,14 @@ entry.js: (webpack 入口文件)
 <![endif]-->
 ```
 
+```html
+<!--[if lt IE 8]>  
+<p class="browsehappy">
+    You are using an <strong>outdated</strong> browser. Please <a class="link" target="_blank" href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+</p>  
+<![endif]-->
+```
+
 ## 九、浏览器分辨率适配要求
 1. 前台网站一般页面，内容固定宽度1190分辨率（电商平台、物流平台）。
 2. 前台网站满屏设计页面，内容需要考虑1920\*1080至1024\*768分辨率下的适配效果（官网、三馆、专题）。
