@@ -130,7 +130,7 @@ module.exports = merge({
                 filterBy: function (image) {
                     //添加雪碧图规则 只有在sprite文件夹下的图片进行合并
                     if (!/\/sprite\//.test(image.url)) {
-                        console.log(image.url);
+                        // console.log(image.url);
                         return Promise.reject();
                     }
 

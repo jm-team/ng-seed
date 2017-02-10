@@ -58,7 +58,7 @@ var proxyTarget = config.devServer.proxyTarget;
           */
          // pathRewrite: {'^/api' : ''},
          bypass: function (req, res, proxyOptions) {
-             console.log(req.url);
+             // console.log(req.url);
          },
          changeOrigin: true,
          secure: false
