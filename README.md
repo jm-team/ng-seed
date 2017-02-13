@@ -20,7 +20,7 @@
 ### windows:
 ``` javascript
 { 
-  "dev": "set NODE_ENV=dev && webpack-dev-server --progress --hot",
+  "dev": "set NODE_ENV=dev && webpack-dev-server --hot --inline --quiet",
   "build": "set NODE_ENV=production && webpack"
 }
 ```
@@ -29,7 +29,7 @@
 
 ``` javascript
 {
-  "dev": "NODE_ENV=dev webpack-dev-server --progress --hot",
+  "dev": "NODE_ENV=dev webpack-dev-server --hot --inline --quiet",
   "build": "NODE_ENV=production  webpack"
 }
 ```
@@ -74,6 +74,7 @@
 5.1. app.js - 配置项目使用常量、页面路由    
 5.2. entry.js - 页面入口js文件，用于引入页面使用的样式，脚本   
 5.3. 文件夹按angular功能划分为 `controller/ directive/ filter/ router/ service/`
+5.4. component - 提取公用ng组件，方便后续代码维护与复用
 
 6. mock - json文件  
 6.1. 用于开发阶段模拟接口数据  
