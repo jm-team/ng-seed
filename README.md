@@ -73,7 +73,7 @@
 5. js - js目前根据功能进行目录划分，后期将考虑根据组件划分    
 5.1. app.js - 配置项目使用常量、页面路由    
 5.2. entry.js - 页面入口js文件，用于引入页面使用的样式，脚本   
-5.3. 文件夹按angular功能划分为 `controller/ directive/ filter/ router/ service/`
+5.3. 文件夹按angular功能划分为 `controller/ directive/ filter/ router/ service/`  
 5.4. component - 提取公用ng组件，方便后续代码维护与复用
 
 6. mock - json文件  
