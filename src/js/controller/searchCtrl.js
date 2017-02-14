@@ -4,17 +4,15 @@ var app = require('app');
 app.registerController('SearchCtrl',
     /*@ngInject*/
     function($scope, $http, $q, $location) {
-        var deferred = $q.defer();
         var categoryId = '', industryId = '';
         var categoryArr = [], industryArr = [];
         $scope.lists = [];
        
         // 分类列表
         $http.get('/dist/mock/idsData.json').success(function(result) {
-            deferred.resolve(result);
             $scope.data = result;
         }).error(function(result) {
-            deferred.reject(result);
+			// todo
         });
 
         // 搜索分类
@@ -34,9 +32,9 @@ app.registerController('SearchCtrl',
             	}
             	$scope.getList(result);
             }).error(function(result) {
-                deferred.reject(result);
+				// todo
             });
-        }
+        };
 
         // 搜索行业
         $scope.searchIndustry = function (obj) {
@@ -56,9 +54,9 @@ app.registerController('SearchCtrl',
             	}
         		$scope.getList(result);
         	}).error(function(result) {
-        	    deferred.reject(result);
+        		// todo
         	});
-        }
+        };
 
         $scope.getList = function (result) {
         	var search = angular.extend({
@@ -84,10 +82,9 @@ app.registerController('SearchCtrl',
         	}
 
     		$scope.lists = arr;   	
-        }
+        };
 
         $scope.searchCategory($location.search());
         $scope.searchIndustry($location.search());
 
-       return deferred.promise;
     });
