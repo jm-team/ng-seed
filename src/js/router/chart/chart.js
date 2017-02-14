@@ -6,6 +6,7 @@ module.exports = {
     templateUrl: templateUrl,
     controller: 'ChartCtrl',
     resolve: {
+        /*@ngInject*/
         loadCtrl: function ($q) {
             var defer = $q.defer();
             require.ensure([], function (require) {
