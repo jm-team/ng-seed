@@ -11,17 +11,6 @@ app.directive('jmHeader', function () {
         templateUrl: tmpHeader,
         replace: true,
         controller: function ($modal, $scope) {
-            // $scope.modal = function ($event) {
-            //     $event.preventDefault();
-            //     $modal.open({
-            //         templateUrl: loginTmp,
-            //
-            //         controller: 'loginCtrl',
-            //
-            //         windowClass: 'login-modal'
-            //     });
-            // };
-
             $scope.modalV2 = function ($event) {
                 $event.preventDefault();
                 $modal.open({

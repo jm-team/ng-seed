@@ -566,3 +566,39 @@ form {
 
 }
 
+/* search */
+.industry-list li,
+.category-list li{
+    display: inline-block;
+}
+
+.industry-list a,
+.category-list a{
+    display: inline-block;
+    line-height: 30px;
+    color: #333;
+    padding: 0 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+a:focus, a:link, a:hover, a:active{
+    text-decoration: none;
+}
+
+.category-list a:hover,
+.industry-list a:hover{   
+    color: #fff;
+    background: #337ab7;
+}
+
+.category-list .active,
+.industry-list .active{
+    color: #fff;
+    background: #337ab7;
+}
+
+.search-list li{
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
