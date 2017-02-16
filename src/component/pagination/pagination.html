@@ -8,13 +8,13 @@
 
 			<a href="javascript:void(0)" ng-click="setPage($event, 1)" ng-class="{active: currentPage == 1}">1</a>
 
-			<b class="pn-break" ng-show="totalPage > maxSize && maxSize-currentPage<0">...</b>
+			<b class="pn-break" ng-show="(totalPage-2) >maxSize && totalPage > maxSize && maxSize-currentPage<0">...</b>
 
 			<a href="javascript:void(0)" ng-click="setPage($event, p.index)" class="setPage" ng-class="{active: currentPage == p.index}"
                ng-repeat="p in pages">{{p.index}}</a>
 
 			<b class="pn-break"
-               ng-if="totalPage > maxSize && (!(currentPage+maxSize > totalPage) || !(currentPage>maxSize))">...</b>
+               ng-if="(totalPage-2) >maxSize &&totalPage > maxSize && (!(currentPage+maxSize > totalPage) || !(currentPage>maxSize))">...</b>
 
 			<a href="javascript:void(0)" ng-click="setPage($event, totalPage)" ng-class="{active: currentPage == totalPage}">{{totalPage}}</a>
 

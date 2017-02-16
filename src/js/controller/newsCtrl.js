@@ -4,10 +4,9 @@ var app = require('app');
 app.registerController('newsCtrl',
     /*@ngInject*/
     function ($scope, News, $modal, dialogs, $timeout) {
-        console.log(News);
-        $scope.currentPage = 6;
-        $scope.numPages = 20;
-        $scope.maxSize = 5;
+        $scope.currentPage = 3;
+        $scope.numPages = 9;
+        $scope.maxSize =4;
         $scope.itemsPerPage = 6;
         $scope.query = function () {
             return News.query({pageSize: 1}, function (data) {
