@@ -4,9 +4,9 @@
   "description": "",
   "scripts": {
     "dev": "set NODE_ENV=dev && webpack-dev-server --hot --inline --quiet",
-    "build": "set NODE_ENV=production && webpack",
+    "build": "set NODE_ENV=production && webpack --progress",
     "macDev": "NODE_ENV=dev webpack-dev-server --hot --inline --quiet",
-    "macBuild": "NODE_ENV=production webpack"
+    "macBuild": "NODE_ENV=production webpack --progress"
   },
   "author": "",
   "license": "ISC",
