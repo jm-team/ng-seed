@@ -105,6 +105,9 @@ angular.module('jmui.pagination', [])
                      */
                     makePage: function (currentPage, totalPages) {
                         var maxSize = $scope.maxSize;
+                        if(maxSize < 3){
+                            maxSize = 3;
+                        }
                         var start = 2;
                         var end = start + maxSize;
                         $scope.pages = [];
@@ -120,6 +123,10 @@ angular.module('jmui.pagination', [])
                             } else {
                                 start = currentPage - Math.floor(maxSize / 2);
                             }
+                        }
+
+                        if(start < 2){
+                            start = 2;
                         }
 
                         while (maxSize--) {
@@ -170,7 +177,6 @@ angular.module('jmui.pagination', [])
                     setPage: function ($event, p) {
                         $event.preventDefault();
                         var ngInput = $element.find('input') || null;
-                        $event.preventDefault();
 
                         if (p !== $scope.currentPage) {
 
