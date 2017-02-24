@@ -3,10 +3,8 @@
   "version": "0.4.0",
   "description": "",
   "scripts": {
-    "dev": "set NODE_ENV=dev && webpack-dev-server --hot --inline --quiet",
-    "build": "set NODE_ENV=production && webpack --progress",
-    "macDev": "NODE_ENV=dev webpack-dev-server --hot --inline --quiet",
-    "macBuild": "NODE_ENV=production webpack --progress"
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet",
+    "build": "cross-env NODE_ENV=production webpack --progress"
   },
   "author": "",
   "license": "ISC",
@@ -36,10 +34,11 @@
     "webpack": "1.13.2",
     "webpack-dev-server": "^1.15.1",
     "webpack-md5-hash": "0.0.5",
-    "webpack-merge": "^0.14.1"
-  },
-  "dependencies": {
+    "webpack-merge": "^0.14.1",
     "echarts": "^3.3.2",
     "echarts-wordcloud": "^1.0.3"
+  },
+  "dependencies": {
+    "cross-env": "^3.1.4"
   }
 }
