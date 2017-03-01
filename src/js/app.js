@@ -13,7 +13,8 @@ var router = [
     ["help", require("./router/help/help.js")],
     ["chart", require("./router/chart/chart.js")],
     ["scroll", require("./router/scroll/scroll.js")],
-    ["search", require("./router/search/search.js")]
+    ["search", require("./router/search/search.js")],
+    ["ueditor", require("./router/ueditor/ueditor.js")]
 ];
 
 // 鏈接mongo配置

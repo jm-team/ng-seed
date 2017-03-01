@@ -177,9 +177,9 @@ module.exports = merge({
         }, {
             from: './src/img/system',
             to: './img/system'
-        // }, {
-        //     from: './src/component/ueditor',
-        //     to: './js'
+        }, {
+            from: './src/component/ueditor',
+            to: './js'
         }]),
 
         // new HtmlWebpackPlugin(),
