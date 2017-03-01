@@ -120,7 +120,7 @@ module.exports = merge({
 
             // 处理html图片
             {
-                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+                test: /\.(gif|jpe?g|png|woff|svg|eot|ttf)\??.*$/,
                 loader: 'file-loader?name=img/[name].' + hash + '[ext]'
             }
         ]
