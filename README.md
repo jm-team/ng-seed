@@ -10,30 +10,17 @@
 - 图片懒加载ng插件（ng-lazy-image）
 - SPA页面路由（ui-router）
 - SPA页面historyApi（webpack-dev-server、nginx配置）
-- SPA解决SEO方案(Prerender.io)
+- SPA页面SEO解决方案(Prerender.io)
 - 添加云詞例子[echarts-wordCloud](https://github.com/ecomfe/echarts-wordcloud)
-- 添加滚动指令
+- 添加滚动指令（/scroll）
+- 搜索条件保存至URL (/search)
+- 富文本编辑器（/ueditor）
 
-## webpack
-> pacekage 中的scripts 设置环境变量
-
-### windows:
-``` javascript
-{ 
-  "dev": "set NODE_ENV=dev && webpack-dev-server --hot --inline --quiet",
-  "build": "set NODE_ENV=production && webpack"
-}
-```
-
-### linux or osx:
-
-``` javascript
-{
-  "dev": "NODE_ENV=dev webpack-dev-server --hot --inline --quiet",
-  "build": "NODE_ENV=production  webpack"
-}
-```
 ## Usage
+
+### 安装依赖包
+`npm install` or `npm i` or `cnpm i`
+
 ### 开发环境 
 `npm run dev`
 

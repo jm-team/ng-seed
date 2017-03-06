@@ -7,6 +7,7 @@ var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var config = require('./config/build.config.js');
 var webpackConfig;
+var devtool;
 var hash = chunkhash = contenthash = '';
 
 // 公共類庫文件
@@ -32,9 +33,11 @@ var env = (process.env.NODE_ENV || '').trim();
 if (env === 'dev') {
     webpackConfig = require('./webpack-dev.js');
     config = config.dev;
+    devtool = config.debug ? '#eval-source-map' : false;
 } else if (env === 'production') {
     webpackConfig = require('./webpack-production.js');
     config = config.production;
+    devtool = config.debug ? '#source-map' : false;
     hash = '[hash:8].';
     chunkhash = '[chunkhash:8].';
     contenthash = '[contenthash:8].';
@@ -117,7 +120,7 @@ module.exports = merge({
 
             // 处理html图片
             {
-                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+                test: /\.(gif|jpe?g|png|woff|svg|eot|ttf)\??.*$/,
                 loader: 'file-loader?name=img/[name].' + hash + '[ext]'
             }
         ]
@@ -156,7 +159,7 @@ module.exports = merge({
     },
 
     // sourceMap
-    devtool: config.debug ? '#source-map' : false,
+    devtool: devtool,
 
     // 插件
     plugins: [
@@ -174,9 +177,9 @@ module.exports = merge({
         }, {
             from: './src/img/system',
             to: './img/system'
-        // }, {
-        //     from: './src/component/ueditor',
-        //     to: './js'
+        }, {
+            from: './src/component/ueditor',
+            to: './js'
         }]),
 
         // new HtmlWebpackPlugin(),

@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 var config = require('./config/build.config.js').dev;
 
 // 代理对象
@@ -102,7 +103,6 @@ module.exports = {
     },
     // 插件
     plugins: [
-        // 合并生成公用文件 直接指定文件名，不带.[hash:8]值
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.js')
+        new FriendlyErrorsPlugin()
     ]
 };
