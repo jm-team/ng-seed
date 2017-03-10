@@ -9,7 +9,8 @@ angular.module('jmui.tab', [])
                 type: '@',
                 direction: '@',
                 contentClass: '@',
-                trigger: '@'
+                trigger: '@',
+                delayed:'@'
             },
             replace: true,
             template: '<div class="jm-tabs jm-tabs-{{type}} jm-tabs-{{direction}}">\
@@ -23,6 +24,7 @@ angular.module('jmui.tab', [])
             controller: function ($scope) {
                 var tabs = $scope.tabs = [];
                 this.trigger = $scope.trigger;
+                this.delayed = $scope.delayed;
 
                 // 添加一个tab
                 this.addTab = function (tab) {
@@ -102,7 +104,7 @@ angular.module('jmui.tab', [])
             }
         }
     })
-    .directive('jmTab', function () {
+    .directive('jmTab', function ($timeout) {
         return {
             restrict: 'AE',
             require: '^jmTabset',
@@ -120,6 +122,7 @@ angular.module('jmui.tab', [])
             compile: function (tEle, tAttrs, transclude) {
                 return function postLink(scope, ele, attrs, tabSetController) {
                     var ngA = ele.find('a');
+                    scope.timer = null;
                     if (!scope.uiSref && scope.href) {
                         ngA.attr('href', scope.href);
                     }
@@ -134,15 +137,35 @@ angular.module('jmui.tab', [])
                     (scope.onAddTab || angular.noop)(scope);
 
                     ele.on(tabSetController.trigger || 'click', function (ev) {
-                        scope.$apply(function () {
-                            tabSetController.select(scope);
-                            (scope.onSelect || angular.noop)({
-                                arg: {
-                                    ev: ev,
-                                    tab: scope
-                                }
+                        $timeout.cancel(scope.timer);
+                        if(tabSetController.trigger === 'mouseover'){
+                            console.log(tabSetController.delayed)
+                            scope.timer = $timeout(function(){
+                                scope.$apply(function () {
+                                    tabSetController.select(scope);
+                                    (scope.onSelect || angular.noop)({
+                                        arg: {
+                                            ev: ev,
+                                            tab: scope
+                                        }
+                                    });
+                                });
+                            },tabSetController.delayed|0);
+                        }else{
+                             scope.$apply(function () {
+                                tabSetController.select(scope);
+                                (scope.onSelect || angular.noop)({
+                                    arg: {
+                                        ev: ev,
+                                        tab: scope
+                                    }
+                                });
                             });
-                        });
+                        }
+                    });
+
+                    ele.on('mouseout', function(){
+                        $timeout.cancel(scope.timer);
                     });
                 }
             }
