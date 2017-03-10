@@ -86,7 +86,6 @@
 ### webpack热更新配置
 1. build.config.js - `host`修改后不可随意提交，会导致其他开发人员更新后无法启动
 2. build.config.js - `port`多个项目启动时注意设置不同端口
-3. build.config.js - `debug`dev模式下，开启调试后热更新会异常的慢
 
 ## end
 欢迎提出任何问题及建议

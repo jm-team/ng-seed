@@ -28,7 +28,7 @@ dep/:  (包含第三方文件 如：angularjs、ui-router...)
 entry/:  (包含项目主文件)
 font/:  (包含字体)
 img/:  (包含图片)
-js/:  (包含js文件 里面分controller、directive、service、filter、app.js)
+js/:  (包含js文件 里面分controller、directive、service、filter、router、app.js)
 mock/: (模拟接口返回数据)
 page/: (项目模板文件)
 ```
