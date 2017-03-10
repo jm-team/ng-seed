@@ -111,6 +111,7 @@ angular.module('jmui.pagination', [])
                         var start = 2;
                         var end = start + maxSize;
                         $scope.pages = [];
+                        $scope.maxSize = maxSize;
 
                         // 判斷总页码是否小于最大显示页
                         if (totalPages < maxSize) {

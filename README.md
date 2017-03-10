@@ -10,7 +10,7 @@
 - 图片懒加载ng插件（ng-lazy-image）
 - SPA页面路由（ui-router）
 - SPA页面historyApi（webpack-dev-server、nginx配置）
-- SPA页面SEO解决方案(Prerender.io)
+- SPA页面SEO解决方案(Prerender.io)，爬取404页面设置status code为404
 - 添加云詞例子[echarts-wordCloud](https://github.com/ecomfe/echarts-wordcloud)
 - 添加滚动指令（/scroll）
 - 搜索条件保存至URL (/search)
