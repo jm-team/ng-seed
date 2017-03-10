@@ -1,16 +1,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <ul class="category-list">
-                <li ng-repeat="list in data" ng-click="searchCategory(list)">
-                    <a href="javascript:;" category-tab>{{ list.categoryName }}</a>
+            {{search.categoryId}}
+            <ul class="category-list" ng-model="search.categoryId" >
+                <li ng-repeat="list in base.categorys" ng-click="changeType(list, 'industryId')">
+                    <a href="javascript:;" ng-class="{'active':search.categoryId === list.categoryId}" >{{ list.categoryName }}</a>
                 </li>
             </ul>
-            <ul class="industry-list" search-tab>
-                <li ng-repeat="list in data" ng-click="searchIndustry(list)">
-                    <a href="javascript:;" industry-tab>{{ list.industryName }}</a>
+
+            <ul class="industry-list" ng-model="search.industryId">
+                <li ng-repeat="list in base.industrys" ng-click="changeType(list, 'industryId')">
+                    <a href="javascript:;" ng-class="{'active':search.industryId === list.industryId}">{{ list.industryName }}</a>
                 </li>
             </ul>
+
             <ul class="search-list">
                 <li ng-repeat="list in lists">{{ list.content }}</li>
             </ul>
