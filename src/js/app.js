@@ -78,7 +78,7 @@ app.run(function ($rootScope,$log, requestService, Login, Api, Auth) {
 // 路由切换成功
     // , toParams, formState, formParams, options
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-        $log.log('app run $stateChangeSuccess', arguments);
+        // $log.log('app run $stateChangeSuccess', arguments);
 
         Login.checkHasLogin().then(function (data) {
             $log.log('checkAutoLogin', data);
@@ -104,22 +104,23 @@ app.run(function ($rootScope,$log, requestService, Login, Api, Auth) {
 
     });
     $rootScope.isShowFooter = false;
+    $rootScope.isFirstLoad = true;
     // 路由切换开始
     // event, toState, toParams, formState, formParams, options
     $rootScope.$on('$stateChangeStart', function() {
         $rootScope.isShowFooter = false;
-        $log.log('app run $stateChangeStart', arguments);
+        $log.error('app run $stateChangeStart', $rootScope.isShowFooter, arguments);
         // 取消上一个路由中还在请求的并且可以取消的XHR
         requestService.clearAll();
     });
 
-    $rootScope.$on('$viewContentLoading', function(event, toState) {
-        $log.error('app run $viewContentLoading', arguments);
-
-    });
     $rootScope.$on('$viewContentLoaded', function(event, toState) {
-        $log.error('app run $viewContentLoaded', arguments);
-        $rootScope.isShowFooter = true;
+        if($rootScope.isFirstLoad) {
+            $rootScope.isFirstLoad = false;
+        } else {
+            $rootScope.isShowFooter = true;
+        }
+        $log.error('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
     });
 });
 
