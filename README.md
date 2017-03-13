@@ -1,20 +1,20 @@
 # ng-seed
 > angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、服务接口跨域、SPA页面SEO等问题    
 
--[x] 开发阶段服务环境（webpack-dev-server），生产环境（nginx）
--[x] css预处理（less、sass），css3后处理（postcss-autoprefixer）
--[x] 图片合并（postcss-sprites）
--[x] 文件按模块打包（webpack commonjs）
--[x] 资源文件添加MD5命名，解决生产环境部署后的缓存问题（webpack *hash*）
--[x] ng依赖注入自动添加，解决生产环境代码压缩问题(ng-annotate-webpack-plugin)
--[x] 图片懒加载ng插件（ng-lazy-image）
--[x] SPA页面路由（ui-router）
--[x] SPA页面historyApi（webpack-dev-server、nginx配置）
--[x] SPA页面SEO解决方案(Prerender.io)，爬取404页面设置status code为404
--[x] 添加云詞例子[echarts-wordCloud](https://github.com/ecomfe/echarts-wordcloud)
--[x] 添加滚动指令（/scroll）
--[x] 搜索条件保存至URL (/search)
--[x] 富文本编辑器（/ueditor）
+- [x] 开发阶段服务环境（webpack-dev-server），生产环境（nginx）
+- [x] css预处理（less、sass），css3后处理（postcss-autoprefixer）
+- [x] 图片合并（postcss-sprites）
+- [x] 文件按模块打包（webpack commonjs）
+- [x] 资源文件添加MD5命名，解决生产环境部署后的缓存问题（webpack *hash*）
+- [x] ng依赖注入自动添加，解决生产环境代码压缩问题(ng-annotate-webpack-plugin)
+- [x] 图片懒加载ng插件（ng-lazy-image）
+- [x] SPA页面路由（ui-router）
+- [x] SPA页面historyApi（webpack-dev-server、nginx配置）
+- [x] SPA页面SEO解决方案(Prerender.io)，爬取404页面设置status code为404
+- [x] 添加云詞例子[echarts-wordCloud](https://github.com/ecomfe/echarts-wordcloud)
+- [x] 添加滚动指令（/scroll）
+- [x] 搜索条件保存至URL (/search)
+- [x] 富文本编辑器（/ueditor）
 
 ## Usage
 
