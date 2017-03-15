@@ -87,14 +87,25 @@ app.run(function ($rootScope,$log, requestService, Login, Api, Auth) {
         });
 
     });
-
+    $rootScope.isShowFooter = false;
+    $rootScope.isFirstLoad = true;
     // 路由切换开始
     // event, toState, toParams, formState, formParams, options
     $rootScope.$on('$stateChangeStart', function() {
-        //$log.log('app run $stateChangeStart');
+        $rootScope.isShowFooter = false;
+        $log.error('app run $stateChangeStart', $rootScope.isShowFooter, arguments);
         // 取消上一个路由中还在请求的并且可以取消的XHR
         
         requestService.clearAll();
+    });
+
+    $rootScope.$on('$viewContentLoaded', function(event, toState) {
+        if($rootScope.isFirstLoad) {
+            $rootScope.isFirstLoad = false;
+        } else {
+            $rootScope.isShowFooter = true;
+        }
+        $log.error('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
     });
 });
 

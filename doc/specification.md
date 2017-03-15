@@ -28,7 +28,7 @@ dep/:  (包含第三方文件 如：angularjs、ui-router...)
 entry/:  (包含项目主文件)
 font/:  (包含字体)
 img/:  (包含图片)
-js/:  (包含js文件 里面分controller、directive、service、filter、app.js)
+js/:  (包含js文件 里面分controller、directive、service、filter、router、app.js)
 mock/: (模拟接口返回数据)
 page/: (项目模板文件)
 ```
@@ -163,6 +163,6 @@ entry.js: (webpack 入口文件)
 ```
 
 ## 九、浏览器分辨率适配要求
-1. 前台网站一般页面，内容固定宽度1190分辨率（电商平台、物流平台）。
+1. 前台网站一般页面，内容固定宽度1190分辨率（电商平台、物流平台）。Body需加min-width:1190px，以适配移动端访问。
 2. 前台网站满屏设计页面，内容需要考虑1920\*1080至1024\*768分辨率下的适配效果（官网、三馆、专题）。
 3. 后台管理网站需采用流式布局，最小宽度适配至1280分辨率。
