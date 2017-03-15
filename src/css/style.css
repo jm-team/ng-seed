@@ -11,12 +11,16 @@ html {
     width: 100%;
 }
 
+.main-area {
+    min-height: calc(100%-162px);
+}
+
 body {
     background: #eee;
     min-height: 100%;
-    display: flex;
+    /*display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;*/
     font-family: Source Sans Pro, Helvetica, sans-serif;
     font-size: 16px;
     flex-direction: column;
@@ -185,11 +189,11 @@ i, em {
 .main-area {
     width: 100%;
     background: #eee;
-    flex: 1;
+    /*flex: 1;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center;*/
 }
 
 #footer {
