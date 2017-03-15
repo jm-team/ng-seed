@@ -10,7 +10,6 @@ module.exports = {
         loadCtrl: function ($q, $timeout) {
             var defer = $q.defer();
             require.ensure([], function (require) {
-               
                 $timeout(function(){
                 defer.resolve(require('controller/chartCtrl.js'));
                },2000)

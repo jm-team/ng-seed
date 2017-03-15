@@ -3,7 +3,7 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('SearchCtrl',
 	/*@ngInject*/
-	function ($scope, $http, $q, $location, $stateParams, $state, $timeout) {
+	function ($scope, $http, $q, $location, $stateParams, $state, $timeout, dialogs) {
 		// 初始化参数
 		$scope.search = {
 			categoryId: 10000,
@@ -15,6 +15,26 @@ app.registerController('SearchCtrl',
 			categorys: [],
 			industrys: []
 		};
+
+
+		$scope.pop = function(){
+			dialogs.modal({
+				controller:'cccc',
+				submit:$scope.submit,
+				template:'<form>status: {{ status }}<button type="button" ng-click="ok()">Login</button></form>'
+			}).then(function(obj){
+				var {scope, data} = obj;
+				scope.status = data.msg;
+
+				setTimeout(function(){
+					dialogs.close();
+				},2000)
+				
+			}, function(obj){
+				var {scope, err} = obj;
+				scope.status = err.errMsg;
+			});
+		}
 
 
 		angular.extend($scope, {
