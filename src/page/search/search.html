@@ -2,15 +2,18 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             {{search.categoryId}}
+
+            {{base.categorys}}
             <ul class="category-list" ng-model="search.categoryId" >
-                <li ng-repeat="list in base.categorys" ng-click="changeType(list, 'industryId')">
-                    <a href="javascript:;" ng-class="{'active':search.categoryId === list.categoryId}" >{{ list.categoryName }}</a>
+                
+                <li ng-repeat="list in base.categorys" ng-click="changeType(list, 'categoryId')">
+                    <a href="javascript:;" ng-class="{'active':search.categoryId == list.categoryId}" >{{ list.categoryName }} - {{list.categoryId}}</a>
                 </li>
             </ul>
 
             <ul class="industry-list" ng-model="search.industryId">
                 <li ng-repeat="list in base.industrys" ng-click="changeType(list, 'industryId')">
-                    <a href="javascript:;" ng-class="{'active':search.industryId === list.industryId}">{{ list.industryName }}</a>
+                    <a href="javascript:;" ng-class="{'active':search.industryId == list.industryId}">{{ list.industryName }}</a>
                 </li>
             </ul>
 

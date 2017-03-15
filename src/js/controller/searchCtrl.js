@@ -32,7 +32,7 @@ app.registerController('SearchCtrl',
 				// 分类列表
 				$http.get('/dist/mock/search.json').then(function (result) {
 					$scope.lists = result.data;
-				//	$location.search(search);
+					$location.search(search);
 				}, function(){
 					alert('Error');
 				});
@@ -66,12 +66,10 @@ app.registerController('SearchCtrl',
 			return $scope.search;
 		}
 
-		$timeout(function(){
 			$q.all([getCategory(), getIndustry()])
 				.then(processBase)
 				.then(coverParams)
 				.then($scope.getList)
-		}, 2000)
 		
 		
 	});
