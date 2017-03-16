@@ -6,9 +6,9 @@ app.controller('cccc', function($scope, $q){
     $scope.submit = function(){
         $scope.status = "执行中"
         var defer = $q.defer();
+        // 模拟登录
         setTimeout(function(){
             // defer.reject({errMsg: "错误的参数"})
-
             defer.resolve({msg: "success"})
         },3000);
 

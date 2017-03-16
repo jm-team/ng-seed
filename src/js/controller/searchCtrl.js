@@ -20,7 +20,6 @@ app.registerController('SearchCtrl',
 		$scope.pop = function(){
 			dialogs.modal({
 				controller:'cccc',
-				submit:$scope.submit,
 				template:'<form>status: {{ status }}<button type="button" ng-click="ok()">Login</button></form>'
 			}).then(function(obj){
 				var {scope, data} = obj;
