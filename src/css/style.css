@@ -40,8 +40,13 @@ i, em {
 
 }
 
-.jm-form {
-    padding: 38px 50px;
+.dialog-box{
+    width: 300px;
+}
+
+.form-wrap{
+    
+    padding: 0 15px 15px; 
 }
 
 .pop-form-header {

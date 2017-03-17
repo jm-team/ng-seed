@@ -1,6 +1,6 @@
 var address = require('address');
 var jmui = require('component/jmui');
-var app = angular.module('app', ['ui.router', 'ngResource','pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+var app = angular.module('app', ['ui.router', 'ngResource','ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
 // 路由配置
 var router = [
     ["notFound", require("./router/error/404.js")],
@@ -61,25 +61,25 @@ app.run(function ($state, $rootScope, $location, Cookie, Util, Address) {
     }
 });
 
-app.run(function ($rootScope,$log, requestService, Login, Api, Auth) {
+app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
     $rootScope.show = false;
-// 路由切换成功
+    // 路由切换成功
     // , toParams, formState, formParams, options
-    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+    $rootScope.$on('$stateChangeSuccess', function (event, toState) {
         $log.log('app run $stateChangeSuccess');
         $rootScope.show = true;
         Login.checkHasLogin().then(function (data) {
             $log.log('checkAutoLogin', data);
-            Api.User().get({ t: +new Date() }, function(userData) {
-                if (userData.id) {
-                    Auth.user = userData;
-                } else {
-                    Auth.user = null;
-                }
-                $rootScope.$broadcast('userLoginFinished', userData);
-            });
+            // Api.User().get({ t: +new Date() }, function (userData) {
+            //     if (userData.id) {
+            //         Auth.user = userData;
+            //     } else {
+            //         Auth.user = null;
+            //     }
+            //     $rootScope.$broadcast('userLoginFinished', userData);
+            // });
 
-        },function (data) {
+        }, function (data) {
             // not login yet
             Auth.user = null;
             $rootScope.$broadcast('userLoginFinished', null);
@@ -91,21 +91,18 @@ app.run(function ($rootScope,$log, requestService, Login, Api, Auth) {
     $rootScope.isFirstLoad = true;
     // 路由切换开始
     // event, toState, toParams, formState, formParams, options
-    $rootScope.$on('$stateChangeStart', function() {
+    $rootScope.$on('$stateChangeStart', function () {
         $rootScope.isShowFooter = false;
-        $log.error('app run $stateChangeStart', $rootScope.isShowFooter, arguments);
         // 取消上一个路由中还在请求的并且可以取消的XHR
-        
         requestService.clearAll();
     });
 
-    $rootScope.$on('$viewContentLoaded', function(event, toState) {
-        if($rootScope.isFirstLoad) {
+    $rootScope.$on('$viewContentLoaded', function (event, toState) {
+        if ($rootScope.isFirstLoad) {
             $rootScope.isFirstLoad = false;
         } else {
             $rootScope.isShowFooter = true;
         }
-        $log.error('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
     });
 });
 

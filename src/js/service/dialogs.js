@@ -1,6 +1,12 @@
 // module
 var app = require('app');
 
+
+/**
+ * 弹出框构造函数
+ * @author zhoul
+ * @class Dialogs
+ */
 function Dialogs() {
     this.resolveKeys = [];
     this.scope = {};
@@ -26,6 +32,12 @@ Dialogs.prototype.creatHTML = function (config) {
     var http = this.$http;
     var defer = q.defer();
 
+    // 遮罩层背景
+    var backdrop = angular.element('<div class="dialog-bg ' + config.backdropClass + '" ng-click="DropCloseDialogs($event)"></div>');
+    var dialogBox = angular.element('<div ng-click="$event.stopPropagation()" class="dialog-box ' + config.className + '">'+ (config.isShowCloseIcon ? (
+            '<i ng-click="close($event)" class="dialog-icon-close">&times;</i></div></div>'):''))
+
+
     if (config.dialogHeader) {
         header = '<div class="dialog-header">' + config.dialogHeader + '</div>';
     }
@@ -38,12 +50,10 @@ Dialogs.prototype.creatHTML = function (config) {
         http.get(_templateUrl, {
             cache: templateCache
         }).then(function (response) {
-            defer.resolve(response.data);
+            defer.resolve(backdrop.append(dialogBox.append(response.data)));
         });
     } else {
-        return q.when('<div class="dialog-bg ' + config.backdropClass + '" ng-click="DropCloseDialogs($event)"><div ng-click="$event.stopPropagation()" class="dialog-box ' + config.className + '">' +
-            (header + _template + footer) +
-            '<i ng-click="close($event)" class="dialog-icon-close">&times;</i></div></div>');
+        return q.when(backdrop.append(dialogBox.append((header + _template + footer))));
     }
     return defer.promise;
 };
@@ -68,13 +78,6 @@ Dialogs.prototype.resolve = function (config) {
     return q.all(this.resolves);
 };
 
-
-/**
- * [render 编译模版并添加到指定的Dom中]
- * @param  {[JSON]} data   [传入到弹出框中的数据]
- * @param  {[JSON]} config [配置文件]
- * @return {[type]}        [description]
- */
 
 /**
  * 编译模版并添加到指定的Dom中
@@ -123,11 +126,15 @@ Dialogs.prototype.modal = function (conf) {
     var scope = this.scope = rootScope.$new();
     var defer = q.defer();
     var self = this;
+    var method = config.method;
 
     this.container = angular.element(config.container || document.body);
     this.controllerAs = config.controllerAs;
     this.controllerName = config.controller || null;
     this.locals = config.locals || {};
+    
+
+    console.log(scope);
 
     this.resolve(config).then(function (data) {
         angular.forEach(data, function (item, index) {
@@ -139,11 +146,16 @@ Dialogs.prototype.modal = function (conf) {
     });
 
     scope.ok = function ($event) {
-        if(angular.isFunction(scope.submit)){
-             scope.submit().then(function(data){
-                 defer.resolve({scope: scope, data:data})
+        // 判断controller中点击ok后是否需要进一步处理异步操作(如: 登录)
+        // 如果是将会处理这个请求服务之后返回promise对象
+        // 以便dialogs.model() 能正常使用then 方法处理请求后的操作
+        // 执行操作处理函数是通过config.method 传入处理函数的名称字符串 
+        // 然后找到controller中对应的处理函数执行 
+        if(angular.isFunction(scope[method])){
+             scope[method]($event).then(function(data){
+                 defer.resolve({scope: scope, data:data});
              }, function(err){
-                 defer.reject({scope: scope, err:err})
+                 defer.reject({scope: scope, err:err});
              });
         }else{
             defer.resolve(scope);
@@ -198,19 +210,39 @@ Dialogs.prototype.confirm = function (confg) {
     return this.modal(cof);
 };
 
-// 静态方法
+
+/**
+ * 关闭弹框方法
+ * @author zhoul
+ * @returns
+ */
 Dialogs.prototype.close = function(){
     var self = this;
+    var animate = this.$animate;
+
     if(self.element && angular.isFunction(self.element.remove)){
-        self.element.remove();
-        self.element = null;
+        if(self.element){
+            animate.leave(self.element);
+            self.element = null;
+        }
         this.scope.$destroy();
     }
 };
 
-// 注册弹出框服务
 app.provider('dialogs', {
     instance: new Dialogs(),
+    /**
+     * 注册弹出框服 
+     * @param {object} $document 
+     * @param {object} $compile 
+     * @param {object} $q 
+     * @param {object} $http 
+     * @param {object} $rootScope 
+     * @param {object} $controller 
+     * @param {object} $animate 
+     * @param {object} $templateCache 
+     * @returns 
+     */
     $get: function ($document, $compile, $q, $http, $rootScope, $controller, $animate, $templateCache) {
         this.instance.$document = $document;
         this.instance.$compile = $compile;
@@ -219,7 +251,7 @@ app.provider('dialogs', {
         this.instance.$controller = $controller;
         this.instance.$rootScope = $rootScope;
         this.instance.$animate = $animate;
-        this.templateCache = $templateCache;
+        this.instance.$templateCache = $templateCache;
         return this.instance;
     }
 });

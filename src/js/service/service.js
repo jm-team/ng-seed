@@ -138,16 +138,16 @@ app.factory('Api', function ($resource, $http, Address) {
         },
 
         doLogin: function (email, password) {
-            return $http.post('/webapi/doLogin', {email: email, password: password});
+            return $http.post('/webapi/doLogin', { email: email, password: password });
         },
-        checkVerifyCode: function(){
-            return $resource(Address.API_ADDRESS + '/validateVerifyCode/:id', {id: '@id'});
+        checkVerifyCode: function () {
+            return $resource(Address.API_ADDRESS + '/validateVerifyCode/:id', { id: '@id' });
         },
         /**
          * 获得用户信息
          */
         User: function () {
-            return $resource('/webapi/v1/getMsg');
+            // return $resource('/webapi/v1/getMsg');
         }
     }
 });
@@ -157,10 +157,10 @@ app.factory('News', function ($resource, API_SERVER, API_KEY) {
         id: '@id',
         apiKey: API_KEY
     }, {
-        update: {
-            method: 'PUT'
-        }
-    });
+            update: {
+                method: 'PUT'
+            }
+        });
 });
 
 app.factory('Cookie', function ($q) {
@@ -244,4 +244,68 @@ app.factory('requestService', function () {
             this.requests = [];
         }
     };
+});
+
+// 登录相关
+app.factory('Auth', function ($resource, Address, $q) {
+    return {
+        security: function () {
+            return $resource(Address.API_ADDRESS + '/security');
+        },
+
+        auth: function () {
+            return $resource(Address.API_ADDRESS + '/doLogin');
+        },
+
+        submit: function (form, options) {
+            var defer = $q.defer();
+            var iframe = angular.element('<iframe></iframe>');
+            var iframeName = options.iframeName || 'loginIframe';
+
+            iframe.attr({
+                name: iframeName,
+                id: iframeName
+            }).css('display', 'none');
+            angular.element(document.body).append(iframe);
+            angular.element(form).attr({
+                action: options.action,
+                target: iframeName
+            });
+
+
+            // 表单提交成功结果
+            iframe.on('load', function () {
+                try {
+                    str = parent.document.getElementById(iframeName).contentWindow.document.body.innerHTML;
+                    defer.resolve(angular.fromJson(str));
+                } catch (e) {
+                    defer.reject();
+                }
+            });
+
+            setTimeout(function () {
+                form.submit();
+            }, 0)
+            return defer.promise;
+        }
+    }
+});
+
+// 用户相关
+app.factory('User', function () {
+    class User {
+        constructor() {
+            this.user = {};
+        }
+
+        setUser(user) {
+            this.user = user;
+        }
+
+        getUser() {
+            return this.user;
+        }
+    }
+
+    return new User();
 });

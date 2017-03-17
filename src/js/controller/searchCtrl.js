@@ -16,10 +16,12 @@ app.registerController('SearchCtrl',
 			industrys: []
 		};
 
-
 		$scope.pop = function(){
 			dialogs.modal({
 				controller:'cccc',
+				method:'submit',
+				isBackdropClickClose:false,
+				isShowCloseIcon:false,
 				template:'<form>status: {{ status }}<button type="button" ng-click="ok()">Login</button></form>'
 			}).then(function(obj){
 				var {scope, data} = obj;

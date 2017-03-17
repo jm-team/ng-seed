@@ -1,16 +1,28 @@
 var app = require('app');
 
-// 测试弹出框
+// 模拟登录弹出框控制器
 app.controller('cccc', function($scope, $q){
     $scope.status = "初始状态"
     $scope.submit = function(){
-        $scope.status = "执行中"
+        $scope.status = "执行中";
+
+
+        // return Login.login();
+
+        
         var defer = $q.defer();
-        // 模拟登录
+        // // 模拟登录
         setTimeout(function(){
             // defer.reject({errMsg: "错误的参数"})
             defer.resolve({msg: "success"})
         },3000);
+
+        // 登录逻辑
+        // $http.post({}).then(function(){
+        //     defer.resolve({msg: "success"})
+        // }, function(){
+            
+        // })
 
         return defer.promise;
     }
