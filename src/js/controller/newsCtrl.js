@@ -3,7 +3,7 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('newsCtrl',
     /*@ngInject*/
-    function ($scope, News, $modal, dialogs, $timeout) {
+    function ($scope, News, $modal, dialogs, $timeout,$http) {
         $scope.currentPage = 7;
         $scope.numPages = 9;
         $scope.maxSize =3;
@@ -32,7 +32,12 @@ app.registerController('newsCtrl',
 
 
         $scope.select = function (arg) {
+            
             var tab = arg.tab;
+
+            $http.get('/aab')
+
+            
         };
 
         // tab2

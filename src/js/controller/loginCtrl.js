@@ -1,5 +1,21 @@
 var app = require('app');
 
+// 测试弹出框
+app.controller('cccc', function($scope, $q){
+    $scope.status = "初始状态"
+    $scope.submit = function(){
+        $scope.status = "执行中"
+        var defer = $q.defer();
+        // 模拟登录
+        setTimeout(function(){
+            // defer.reject({errMsg: "错误的参数"})
+            defer.resolve({msg: "success"})
+        },3000);
+
+        return defer.promise;
+    }
+});
+
 app.controller('loginCtrl',
     /*@ngInject*/
     function ($scope, $modalInstance, $log, $q, Util, CENTER_ADDRESS, USERCENTER_ADDRESS, SERVER_ADDRESS, JmLoginService, Address) {

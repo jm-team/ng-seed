@@ -23,6 +23,7 @@ Dialogs.prototype.creatHTML = function (config) {
     var _templateUrl = config.templateUrl;
     var templateCache = this.$templateCache;
     var q = this.$q;
+    var http = this.$http;
     var defer = q.defer();
 
     if (config.dialogHeader) {
@@ -134,19 +135,19 @@ Dialogs.prototype.modal = function (conf) {
         });
         return self.creatHTML(config);
     }).then(function (data) {
-        // if(!self.element){
         self.render(data, config);
-        // }
     });
 
     scope.ok = function ($event) {
-        self.element.remove();
-        scope.$destroy();
-
-        if (angular.isFunction(config.okCallback)) {
-            config.okCallback($event, scope);
+        if(angular.isFunction(scope.submit)){
+             scope.submit().then(function(data){
+                 defer.resolve({scope: scope, data:data})
+             }, function(err){
+                 defer.reject({scope: scope, err:err})
+             });
+        }else{
+            defer.resolve(scope);
         }
-        defer.resolve(scope);
     };
 
     scope.DropCloseDialogs = function () {
@@ -156,20 +157,13 @@ Dialogs.prototype.modal = function (conf) {
     };
 
     scope.close = function () {
-        self.element.remove();
-        self.element = null;
-        scope.$destroy();
+        self.close();
     };
 
     scope.cancel = function ($event) {
         scope.close();
         defer.reject();
-
-        if (angular.isFunction(config.cancelCallback)) {
-            config.cancelCallback($event, scope);
-        }
     };
-
     return defer.promise;
 };
 
@@ -202,6 +196,16 @@ Dialogs.prototype.confirm = function (confg) {
         dialogFooter: '<button class="btn btn-sm btn-primary " ng-click="ok($event)">确定</button><button class="btn btn-sm btn-primary " ng-click="cancel($event)">取消</button>'
     });
     return this.modal(cof);
+};
+
+// 静态方法
+Dialogs.prototype.close = function(){
+    var self = this;
+    if(self.element && angular.isFunction(self.element.remove)){
+        self.element.remove();
+        self.element = null;
+        this.scope.$destroy();
+    }
 };
 
 // 注册弹出框服务
