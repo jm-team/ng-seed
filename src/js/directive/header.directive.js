@@ -14,14 +14,14 @@ app.directive('jmHeader', function (dialogs) {
             $scope.user = {};
 
             // 弹出登录框
-            $scope.modalV2 = () => {
+            $scope.modalV2 = function() {
                 dialogs.modal({
                     method: 'login',
                     className: 'box',
                     backdropClass:'login',
                     templateUrl: loginV2Tmp,
                     controller: 'loginV2Ctrl',
-                }).then((data) => {
+                }).then(function(data) {
                     var result = data.data.data;
                     $scope.user = result;
                     dialogs.close();

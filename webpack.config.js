@@ -15,6 +15,7 @@ var vendorFiles = [
     './src/dep/angular/angular.js',
     './src/dep/angular/angular-sanitize.js',
     './src/dep/angular/angular-resource.js',
+    './src/dep/angular/angular-animate.js',
     './src/dep/angular/ui-bootstrap-tpls.js',
     './src/dep/angular/angular-locale_zh-cn.js',
     './src/dep/angular/angular-ui-router.js',

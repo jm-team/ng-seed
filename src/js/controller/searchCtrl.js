@@ -24,7 +24,8 @@ app.registerController('SearchCtrl',
 				isShowCloseIcon:false,
 				template:'<form>status: {{ status }}<button type="button" ng-click="ok()">Login</button></form>'
 			}).then(function(obj){
-				var {scope, data} = obj;
+				var scope = obj.scope;
+				var data = obj.data;
 				scope.status = data.msg;
 
 				setTimeout(function(){
@@ -32,7 +33,8 @@ app.registerController('SearchCtrl',
 				},2000)
 				
 			}, function(obj){
-				var {scope, err} = obj;
+				var scope = obj.scope;
+				var err = obj.err;
 				scope.status = err.errMsg;
 			});
 		}
