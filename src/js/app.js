@@ -69,7 +69,7 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         $log.log('app run $stateChangeSuccess');
         $rootScope.show = true;
         Login.checkHasLogin().then(function (data) {
-            $log.log('checkAutoLogin', data);
+            $log.log('checkAutoLogin', data); 
             // Api.User().get({ t: +new Date() }, function (userData) {
             //     if (userData.id) {
             //         Auth.user = userData;
@@ -95,14 +95,6 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         $rootScope.isShowFooter = false;
         // 取消上一个路由中还在请求的并且可以取消的XHR
         requestService.clearAll();
-    });
-
-    $rootScope.$on('$viewContentLoaded', function (event, toState) {
-        if ($rootScope.isFirstLoad) {
-            $rootScope.isFirstLoad = false;
-        } else {
-            $rootScope.isShowFooter = true;
-        }
     });
 });
 

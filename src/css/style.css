@@ -7,23 +7,56 @@ html {
     height: 100%;
 }
 
-.container {
+.container{
     width: 100%;
 }
 
-.main-area {
-    min-height: calc(100%-162px);
+
+.main-area { 
+    padding-bottom: 98px;
+    
+}
+.main-area > .container{
+    transition: 800ms linear all;
+    opacity: 1;
+    /*transform: rotateZ(0deg);
+    transform-origin: right bottom;*/
+}
+
+
+.main-area.ng-enter > .container{
+    opacity: 0;
+    transform: translateY(50px);
+}
+.main-area.ng-enter-active > .container{
+    /*transform: rotateZ(0);*/
+    opacity: 1;
+}
+.main-area.ng-leave > .container{
+    /*transform: rotateZ(0);*/
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+}
+.main-area.ng-leave-active > .container{
+    /*transform: translateX(180deg)*/
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+#footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 body {
     background: #eee;
     min-height: 100%;
-    /*display: flex;
-    justify-content: center;
-    align-items: center;*/
     font-family: Source Sans Pro, Helvetica, sans-serif;
     font-size: 16px;
-    flex-direction: column;
+    position: relative;
     color: #2c3e50;
     overflow-x: hidden;
 }

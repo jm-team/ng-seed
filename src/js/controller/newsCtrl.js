@@ -3,13 +3,13 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('newsCtrl',
     /*@ngInject*/
-    function ($scope, News, $modal, dialogs, $timeout,$http) {
+    function ($scope, News, $modal, dialogs, $timeout, $http) {
         $scope.currentPage = 7;
         $scope.numPages = 9;
-        $scope.maxSize =3;
+        $scope.maxSize = 3;
         $scope.itemsPerPage = 6;
         $scope.query = function () {
-            return News.query({pageSize: 1}, function (data) {
+            return News.query({ pageSize: 1 }, function (data) {
                 $scope.news = data;
                 return data;
             });
@@ -19,8 +19,8 @@ app.registerController('newsCtrl',
 
         // 删除新闻
         $scope.remove = function ($event, news) {
-            dialogs.confirm({template: '<p class="text-center text-default">确认删除？</p>'}).then(function () {
-                News.remove({id: news._id.$oid}, function (data) {
+            dialogs.confirm({ template: '<p class="text-center text-default">确认删除？</p>' }).then(function () {
+                News.remove({ id: news._id.$oid }, function (data) {
                     $scope.query();
                 });
             });
@@ -32,12 +32,7 @@ app.registerController('newsCtrl',
 
 
         $scope.select = function (arg) {
-            
             var tab = arg.tab;
-
-            $http.get('/aab')
-
-            
         };
 
         // tab2
@@ -85,8 +80,8 @@ app.registerController('newsSaveCtrl',
             } else {
                 // PUT 数据
                 if ($scope.news._id) {
-                    News.update({id: news._id.$oid},
-                        angular.extend({}, $scope.news, {_id: undefined}),
+                    News.update({ id: news._id.$oid },
+                        angular.extend({}, $scope.news, { _id: undefined }),
                         function (data) {
                             $state.go('news.list');
                         });

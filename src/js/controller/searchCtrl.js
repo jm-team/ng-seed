@@ -6,7 +6,7 @@ app.registerController('SearchCtrl',
 	function ($scope, $http, $q, $location, $stateParams, $state, $timeout, dialogs) {
 		// 初始化参数
 		$scope.search = {
-			categoryId: 10000,
+			categoryId: 0,
 			industryId: 0
 		};
 

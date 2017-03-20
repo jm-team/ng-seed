@@ -41,47 +41,8 @@ app.factory('Util', function ($q) {
             }
             return aResult;
 
-        },
-
-        createIframe: function (src) {
-            var iframe = document.createElement('iframe');
-            var _this = this;
-            var oBody = document.body;
-            var defer = $q.defer();
-            var str = '';
-
-            // 删除iframe
-            function removeIframe() {
-                angular.element(iframe).remove();
-            }
-
-            iframe.src = src;
-            iframe.style.display = 'none';
-            oBody.appendChild(iframe);
-
-            iframe.onload = function () {
-                try {
-                    str = iframe.contentWindow.location.href;
-                    str = str.substr(str.indexOf('?') + 1);
-                } catch (e) {
-                    defer.reject();
-                    console.log(e);
-                }
-
-                if (str) {
-                    defer.resolve(_this.search(str, 'shiroJID'));
-                } else {
-                    defer.reject();
-                }
-
-                // 删除iframe
-                removeIframe();
-            };
-
-            return defer.promise;
         }
-
-    };
+    }
 });
 
 //Address - 环境地址配置
@@ -117,14 +78,6 @@ app.factory('Address', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRE
     };
 });
 
-app.factory('Auth', function () {
-    return {
-        // 存储用户信息
-        user: null
-    }
-
-});
-
 app.factory('Api', function ($resource, $http, Address) {
     return {
         Lines: function () {
@@ -150,17 +103,6 @@ app.factory('Api', function ($resource, $http, Address) {
             // return $resource('/webapi/v1/getMsg');
         }
     }
-});
-
-app.factory('News', function ($resource, API_SERVER, API_KEY) {
-    return $resource(API_SERVER + '/news/:id', {
-        id: '@id',
-        apiKey: API_KEY
-    }, {
-            update: {
-                method: 'PUT'
-            }
-        });
 });
 
 app.factory('Cookie', function ($q) {
@@ -225,38 +167,97 @@ app.factory('Cookie', function ($q) {
     }
 });
 
-/**
- * [请求服务]
- * @param  {Array}   [description]
- * @return {[type]}  [description]
- */
+// ajax请求服务
 app.factory('requestService', function () {
     return {
+        // 请求队列
         requests: [],
+
         /**
-         * [clearAll 清除所有带canCancel参数的请求]
-         * @return {[type]} [description]
+         * 清除所有带canCancel参数的请求，
+         * 用于取消路由已状态跳转，
+         * 但是之前路由正在ajax还未返回结果请求。
+         * 
+         * @author zhoul
+         * @param requests {Array} 需要取消请求的数组 [可选] 如果没有就清除所有在队列中的所有请求
          */
-        clearAll: function () {
-            angular.forEach(this.requests, function (req) {
-                req.resolve();
-            });
-            this.requests = [];
+        clearAll: function (requests) {
+            if (angular.isArray(requests)) {
+                angular.forEach(requests, function (req) {
+                    req.resolve();
+                });
+            } else {
+                angular.forEach(this.requests, function (req) {
+                    req.resolve();
+                });
+                this.requests = [];
+            }
         }
     };
 });
 
 // 登录相关
-app.factory('Auth', function ($resource, Address, $q) {
+app.factory('Auth', function ($resource, Address, $q, $timeout) {
     return {
+        /**
+         * 获取非对称加密的数据接口
+         * @author zhoul
+         * @returns resource
+         */
         security: function () {
             return $resource(Address.API_ADDRESS + '/security');
         },
 
+        /**
+         * 用户登录接口
+         * @author zhoul
+         * @returns resource
+         */
         auth: function () {
             return $resource(Address.API_ADDRESS + '/doLogin');
         },
 
+        /**
+         * 判断用户是否登录
+         * @author zhoul
+         * @param opt {Object}  可选的参数对象
+         * @returns promise
+         */
+        isLogin: function (opt) {
+            var options = angular.extend({}, opt);
+            var defer = $q.defer();
+            var $ = angular.element;
+
+            // 用户已经登录回调
+            window.userLoginSuccessCallback = function (token) {
+                oScript.remove();
+                console.log('suc')
+                defer.resolve(token);
+            }
+
+            // 用户未登录回调
+            window.userNotLoginCallback = function () {
+                console.log('err')
+                oScript.remove();
+                defer.reject({ error: 'ERROR' });
+            }
+
+            var oScript = $(document.createElement('script'));
+            oScript.attr({
+                src: options.src,
+                id: 'hasLogin'
+            });
+
+            angular.element(document.getElementById('hasLogin')).remove();
+            $(document.body).append(oScript)
+            return defer.promise;
+        },
+
+        /**
+         * 使用表单提交登录处理逻辑
+         * @author zhoul
+         * @returns promise
+         */
         submit: function (form, options) {
             var defer = $q.defer();
             var iframe = angular.element('<iframe></iframe>');
@@ -283,7 +284,8 @@ app.factory('Auth', function ($resource, Address, $q) {
                 }
             });
 
-            setTimeout(function () {
+            // 使用延时 解决密码做加密后 model同步缓慢 提交的密码是非加密的密码
+            $timeout(function () {
                 form.submit();
             }, 0)
             return defer.promise;
@@ -293,18 +295,22 @@ app.factory('Auth', function ($resource, Address, $q) {
 
 // 用户相关
 app.factory('User', function () {
-    class User {
-        constructor() {
-            this.user = {};
-        }
 
-        setUser(user) {
-            this.user = user;
-        }
+    /**
+     * 用户构造器函数
+     */
+    function User() {
+        this.user = {};
+    }
 
-        getUser() {
-            return this.user;
-        }
+    // 设置用户信息
+    User.prototype.setUser = function (user) {
+        this.user = user;
+    }
+
+    // 获取用户 返回当前用户
+    User.prototype.getUser = function () {
+        return this.user;
     }
 
     return new User();

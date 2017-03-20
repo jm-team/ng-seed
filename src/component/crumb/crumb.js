@@ -1,7 +1,7 @@
 var tmpCrumbs = require('./crumb.html');
 
 angular.module('jmui.crumbs', [])
-// 面包屑
+    // 面包屑
     .directive('jmCrumbs', function ($state, $interpolate, $timeout) {
         return {
             restrict: 'AE',
@@ -14,7 +14,6 @@ angular.module('jmui.crumbs', [])
             },
             link: function (scope, element, attrs) {
                 scope.breadcrumbs = [];
-                // console.log($state)
                 if ($state.$current.name !== '') {
                     updateBreadcrumbsArray();
                 }
@@ -113,13 +112,14 @@ angular.module('jmui.crumbs', [])
 
 
                 function getStateDisplayName($state) {
-                    var tmp = $state.data.displayName;
-                    var data = $state.locals.globals;
-
-                    // 解析插值字符串
-                    // tmp => {{news.title}}
-                    // $state.locals.golbals =>
-                    return $interpolate(tmp)($state.locals.globals);
+                    if(angular.isObject($state.data)){
+                        var tmp = $state.data.displayName;
+                        var data = $state.locals.globals;
+                        // 解析插值字符串
+                        // tmp => {{news.title}}
+                        // $state.locals.golbals =>
+                        return $interpolate(tmp)($state.locals.globals);
+                    }
                 }
             }
         };
