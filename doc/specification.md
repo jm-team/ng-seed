@@ -23,6 +23,7 @@ webpack-production.js: (webpack生产环境)
 
 ### 2.src二级目录
 ```
+component/:  (公共组件)
 css/:  (包含样式文件)
 dep/:  (包含第三方文件 如：angularjs、ui-router...)
 entry/:  (包含项目主文件)
@@ -79,8 +80,9 @@ entry.js: (webpack 入口文件)
 2. Filter 应尽量在Controller中使用 防止不稳定的过滤器导致程序出错
 
 ### 4.Router
-1. Router配置文件拆分，每个页面的路由拆分为单独的模块，以免页面过长导阅读不变，不易维护
+1. Router配置文件拆分，每个页面的路由拆分为单独的模块，以免页面过长导致阅读不变，不易维护
 2. 页面依赖的Controller在页面加载前，异步加载
+3. 部分页面的数据可以在路由中获取
 
 ### 5.Directive
 1. Directive 用于扩展HTML 使自己定义的HTML具有交互性
