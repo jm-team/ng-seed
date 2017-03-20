@@ -1,27 +1,27 @@
 var app = require('app');
 
 // 模拟登录弹出框控制器
-app.controller('cccc', function($scope, $q){
+app.controller('cccc', function($scope, $q) {
     $scope.status = "初始状态"
-    $scope.submit = function(){
+    $scope.submit = function() {
         $scope.status = "执行中";
 
 
         // return Login.login();
 
-        
+
         var defer = $q.defer();
         // // 模拟登录
-        setTimeout(function(){
+        setTimeout(function() {
             // defer.reject({errMsg: "错误的参数"})
-            defer.resolve({msg: "success"})
-        },3000);
+            defer.resolve({ msg: "success" })
+        }, 3000);
 
         // 登录逻辑
         // $http.post({}).then(function(){
         //     defer.resolve({msg: "success"})
         // }, function(){
-            
+
         // })
 
         return defer.promise;
@@ -30,18 +30,18 @@ app.controller('cccc', function($scope, $q){
 
 app.controller('loginCtrl',
     /*@ngInject*/
-    function ($scope, $modalInstance, $log, $q, Util, CENTER_ADDRESS, USERCENTER_ADDRESS, SERVER_ADDRESS, JmLoginService, Address) {
+    function($scope, $modalInstance, $log, $q, Util, CENTER_ADDRESS, USERCENTER_ADDRESS, SERVER_ADDRESS, JmLoginService, Address) {
         var localAddr = Address.localHost;
 
         // 登录成功
-        $scope.$on('getSessionIdSuccess', function () {
+        $scope.$on('getSessionIdSuccess', function() {
             $log.info('获取shirJID 成功');
             $modalInstance.close();
         });
 
         // 登录失败
-        $scope.$on('getSessionIdError', function () {
-            $scope.$apply(function () {
+        $scope.$on('getSessionIdError', function() {
+            $scope.$apply(function() {
                 if ($scope.clickNums === 3) {
                     $scope.isRequiredCode = true;
                 }
@@ -78,28 +78,28 @@ app.controller('loginCtrl',
             USERCENTER_ADDRESS: USERCENTER_ADDRESS,
 
             // 切换验证码
-            changeCode: function () {
+            changeCode: function() {
                 if ($scope.isRequiredCode) {
                     $scope.verifiCodeSrc = JmLoginService.getVerfiCode(USERCENTER_ADDRESS + '/cas/c/verifyCodeController?action=init&t=' + new Date());
                 }
             },
 
             //检测是否需要验证码
-            checkIsRequiredCode: function () {
+            checkIsRequiredCode: function() {
                 var userName = Util.trim()($scope.userName);
                 if (userName) {
                     // 调用检测是否需要验证码
                     JmLoginService.checkIsRequiredVerfiCode({
                         serverUrl: USERCENTER_ADDRESS + '/cas/c/loginController?action=checkLoginNeedVerifyCode&callback=JSON_CALLBACK',
-                        data: {username: userName}
-                    }).then(function (data) {
+                        data: { username: userName }
+                    }).then(function(data) {
                         // 判断是否要验证码
                         var isNeed = data.LOGIN_NEED_VERIFYCODE_BOOL;
                         $scope.isRequiredCode = isNeed;
                         if (isNeed) {
                             $scope.changeCode();
                         }
-                    }, function () {
+                    }, function() {
                         $scope.changeCode();
                         $scope.isRequiredCode = true;
                     });
@@ -107,7 +107,7 @@ app.controller('loginCtrl',
             },
 
             // 检测验证码
-            checkCode: function () {
+            checkCode: function() {
                 var defer = $q.defer();
                 var code = Util.trim()($scope.checkcode); //Util.trim($scope.checkcode);
                 if (code) {
@@ -116,16 +116,16 @@ app.controller('loginCtrl',
                             checkcode: code
                         },
                         serverUrl: USERCENTER_ADDRESS + '/cas/c/loginController?action=validateVerifyCode&callback=JSON_CALLBACK'
-                    }).then(function (data) {
+                    }).then(function(data) {
                         defer.resolve(data);
-                    }, function () {
+                    }, function() {
                         defer.reject();
                     });
                 }
                 return defer.promise;
             },
 
-            submit: function ($event) {
+            submit: function($event) {
                 $scope.errTip = false;
                 $scope.userInValid = false;
                 $scope.verifyCode = false;
@@ -140,9 +140,9 @@ app.controller('loginCtrl',
 
                 if ($scope.isRequiredCode) {
                     $scope.checkCode()
-                        .then(function () {
+                        .then(function() {
                             $event.target.form.submit();
-                        }, function () {
+                        }, function() {
                             $scope.errTip = true;
                             $scope.verifyCode = true;
                             $scope.loging = false;
