@@ -45,7 +45,7 @@ app.service('dialogs', function($document, $compile, $q, $http, $rootScope, $con
 
         if (_templateUrl) {
             $http.get(_templateUrl, {
-                cache: templateCache
+                cache: $templateCache
             }).then(function(response) {
                 defer.resolve(backdrop.append(dialogBox.append(response.data)));
             });
