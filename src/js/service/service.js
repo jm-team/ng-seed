@@ -276,16 +276,16 @@ app.factory('Auth', function ($resource, Address, $q, $timeout) {
 
             // 表单提交成功结果
             iframe.on('load', function () {
-                iframe.remove();
                 try {
                     str = parent.document.getElementById(iframeName).contentWindow.document.body.innerHTML;
                     defer.resolve(angular.fromJson(str));
                 } catch (e) {
                     defer.reject();
                 }
+                iframe.remove();
             });
 
-            iframe.on('error', function(){
+            iframe.on('error', function () {
                 iframe.remove();
             });
 
@@ -305,7 +305,7 @@ app.factory('User', function () {
      * 用户构造器函数
      */
     function User() {
-      
+
     }
 
     // 设置用户信息
