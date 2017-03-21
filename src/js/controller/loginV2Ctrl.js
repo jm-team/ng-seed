@@ -38,7 +38,7 @@ app.controller('loginV2Ctrl', function ($rootScope, $scope, $log, $q, Auth, User
                 // 表单提交方式  返回promise 
                 return Auth.submit($event.target, { action: Address.API_ADDRESS + '/doLogin', iframeName: 'loginnormal' })
                     .then(function (data) {
-                        User.setUser(data.data.data);
+                        User.setUser(data.data);
                         return data;
                     });
             });

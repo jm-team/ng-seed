@@ -10,8 +10,8 @@ app.directive('jmHeader', function (dialogs) {
         restrict: 'AE',
         templateUrl: tmpHeader,
         replace: true,
-        controller: function ($modal, $scope) {
-            $scope.user = {};
+        controller: function ($scope, User) {
+            $scope.user = User;
 
             // 弹出登录框
             $scope.modalV2 = function() {
@@ -23,7 +23,6 @@ app.directive('jmHeader', function (dialogs) {
                     controller: 'loginV2Ctrl',
                 }).then(function(data) {
                     var result = data.data.data;
-                    $scope.user = result;
                     dialogs.close();
                 });
             }

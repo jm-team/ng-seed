@@ -276,12 +276,17 @@ app.factory('Auth', function ($resource, Address, $q, $timeout) {
 
             // 表单提交成功结果
             iframe.on('load', function () {
+                iframe.remove();
                 try {
                     str = parent.document.getElementById(iframeName).contentWindow.document.body.innerHTML;
                     defer.resolve(angular.fromJson(str));
                 } catch (e) {
                     defer.reject();
                 }
+            });
+
+            iframe.on('error', function(){
+                iframe.remove();
             });
 
             // 使用延时 解决密码做加密后 model同步缓慢 提交的密码是非加密的密码
@@ -300,17 +305,15 @@ app.factory('User', function () {
      * 用户构造器函数
      */
     function User() {
-        this.user = {};
+      
     }
 
     // 设置用户信息
     User.prototype.setUser = function (user) {
-        this.user = user;
-    }
-
-    // 获取用户 返回当前用户
-    User.prototype.getUser = function () {
-        return this.user;
+        var self = this;
+        angular.forEach(user, function (value, key) {
+            self[key] = value;
+        })
     }
 
     return new User();
