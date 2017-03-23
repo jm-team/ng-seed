@@ -24,7 +24,7 @@
 ### 开发环境 
 `npm run dev`
 
-### build
+### 生产环境
 `npm run build`
 
 ## ng-seed详解
