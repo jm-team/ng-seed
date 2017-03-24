@@ -1,0 +1,84 @@
+// 表单验证状态
+//
+// 用于forms.less生成警告，错误和成功的表单验证CSS。
+
+@mixin form-control-validation($text-color: #555, $border-color: #ccc, $background-color: #f5f5f5) {
+  // 标签和帮助文本颜色
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label  {
+    color: $text-color;
+  }
+  // 在特定输入上设置边框和框阴影以匹配
+  .form-control {
+    border-color: $border-color;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075)); // Redeclare这样转换工作
+    &:focus {
+      border-color: darken($border-color, 10%);
+      $shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px lighten($border-color, 20%);
+      @include box-shadow($shadow);
+    }
+  }
+  // 为插件设置验证状态
+  .input-group-addon {
+    color: $text-color;
+    border-color: $border-color;
+    background-color: $background-color;
+  }
+  // 可选反馈图标
+  .form-control-feedback {
+    color: $text-color;
+  }
+}
+
+
+// 形式控制聚焦状态
+//
+// 生成自定义的焦点状态，以及任何具有指定颜色的输入，默认为`$ input-border-focus'变量。
+
+// 我们强烈建议您不要自定义默认值，而是使用此按钮根据需要调整颜色。
+// 这种美学的变化是基于WebKit的默认风格，但适用于更广泛的浏览器。
+// 任何变化都应考虑其可用性和可访问性。
+
+// 用法示例：将默认蓝色边框和阴影更改为白色，以获得与深灰色背景更好的对比度。
+@mixin form-control-focus($color: $input-border-focus) {
+  $color-rgba: rgba(red($color), green($color), blue($color), .6);
+  &:focus {
+    border-color: $color;
+    outline: 0;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px $color-rgba);
+  }
+}
+
+// 表单控件大小
+//
+// 表单控件的相对文字大小，填充和边框半径更改。
+// 对于水平大小，在预定义网格类中包装控件。
+// `<select>`元素获得特殊的爱，因为它是特别的，这是一个事实！
+// [converter] $parent hack
+@mixin input-size($parent, $input-height, $padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+  #{$parent} {
+    height: $input-height;
+    padding: $padding-vertical $padding-horizontal;
+    font-size: $font-size;
+    line-height: $line-height;
+    border-radius: $border-radius;
+  }
+
+  select#{$parent} {
+    height: $input-height;
+    line-height: $input-height;
+  }
+
+  textarea#{$parent},
+  select[multiple]#{$parent} {
+    height: auto;
+  }
+}

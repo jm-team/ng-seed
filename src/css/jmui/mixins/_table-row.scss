@@ -1,0 +1,27 @@
+// 表格
+
+@mixin table-row-variant($state, $background) {
+  //下面的精确选择器需要覆盖`.table-striped`，并阻止继承到嵌套表。
+  .table > thead > tr,
+  .table > tbody > tr,
+  .table > tfoot > tr {
+    > td.#{$state},
+    > th.#{$state},
+    &.#{$state} > td,
+    &.#{$state} > th {
+      background-color: $background;
+    }
+  }
+
+  // 悬停状态为`.table-hover`
+  // 注意：这不适用于`thead`或`tfoot`中的单元格或行。
+  .table-hover > tbody > tr {
+    > td.#{$state}:hover,
+    > th.#{$state}:hover,
+    &.#{$state}:hover > td,
+    &:hover > .#{$state},
+    &.#{$state}:hover > th {
+      background-color: darken($background, 5%);
+    }
+  }
+}

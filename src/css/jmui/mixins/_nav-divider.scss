@@ -1,0 +1,10 @@
+// 水平分隔线
+//
+// 在下拉列表和导航列表中的分隔符（基本上是一个hr）
+
+@mixin nav-divider($color: #e5e5e5) {
+  height: 1px;
+  margin: (($line-height-computed / 2) - 1) 0;
+  overflow: hidden;
+  background-color: $color;
+}

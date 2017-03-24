@@ -1,0 +1,57 @@
+#header{
+  padding: 8px 0;
+  margin-bottom: 15px;
+  border-bottom:1px solid #ccc;
+}
+
+.flex-middle{
+  display: flex;
+  align-items: center;
+}
+
+.page-container{
+  padding: 15px 0;
+}
+
+//  边距和填充
+.m-t-xs{
+  margin-top: 3px;
+}
+
+.m-t-sm{
+  margin-top: 6px;
+}
+
+.m-t-md{
+  margin-top: 8px;
+}
+
+.m-t-lg{
+  margin-top: 15px;
+}
+
+.m-b-lg{
+  margin-bottom:15px;
+}
+
+.p-t-sm{
+  padding-top: 6px;
+}
+
+.text-overflow{
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.highlights li{
+  margin-top: 20px;
+}
+.highlights .entry-img{
+  display: block;
+}
+.highlights .entry-img img{
+  box-shadow:0px 4px 5px rgba(0, 0, 0, 0.15);
+}

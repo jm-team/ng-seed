@@ -1,0 +1,8 @@
+// 文本超出隐藏
+// 需要inline-block或block才能获得正确的样式
+
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

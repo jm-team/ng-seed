@@ -24,7 +24,6 @@ var vendorFiles = [
     './src/dep/ng-lazy-image/lazy-image.js'
 ];
 
-
 if (config.echarts.enabled) {
     vendorFiles.push('echarts');
     vendorFiles.push('zrender');
@@ -52,7 +51,8 @@ var extractSASS = new ExtractTextPlugin('css/sass.[name].' + contenthash + 'css'
 module.exports = merge({
     /**
      * 源文件入口文件
-     * 这里的文件在使用html-webpack-plugin的时候会自动将这些资源插入到html中
+     * 这里的文件在使用html-webpack-plugin的时候会
+     * 自动将这些资源插入到html中
      */
     entry: {
         // 公共文件
@@ -77,14 +77,14 @@ module.exports = merge({
             'app': path.join(__dirname, './src/js/app.js'),
             'component': path.join(__dirname, './src/component'),
             'page': path.join(__dirname, './src/page'),
+            'css': path.join(__dirname, './src/css'),
             'controller': path.join(__dirname, './src/js/controller')
         },
 
         fallback: [path.join(__dirname, './node_modules')],
 
         // 配置哪些文件不需要后缀自动识别
-        extensions: ['', '.js']
-
+        extensions: ['', '.js', '.css']
     },
 
     //

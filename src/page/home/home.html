@@ -8,37 +8,49 @@
 </div>
 -->
 
-<div class="container">
-<div class="row">
-  <div class="jumbotron col-sm-6 col-sm-offset-3">
 
-    <div class="pull-left">
-        <img src="../../img/logo.png" alt=""/>
+<div class="jumbotron row">
+
+  <div class="col-lg-16 col-lg-offset-4 flex-middle">
+    <div class="col-lg-6">
+      <img src="../../img/logo.png" alt="" />
     </div>
 
-    <div class="pull-right">
-        <h1>Hello, Angular!</h1>
-        <p><a class="btn btn-primary btn-lg" href="https://github.com/jm-team/ng-seed" target="_blank" role="button">Learn more</a></p>
+    <div class="col-lg-18 text-info">
+      <h1>Hello, Angular!</h1>
+      <p>Welcome to your Angular.js app!</p>
+      <p><a class="btn btn-primary btn-lg" href="https://github.com/jm-team/ng-seed" target="_blank" role="button">Learn more</a></p>
     </div>
   </div>
 </div>
+
+
+
 <!-- 图片懒加载 -->
-<div class="img-list">
-  <h3>图片懒加载</h3>
-  <p>
-    <select ng-model="searchText">
-      <option value="1">filter 1</option>
-      <option value="2">filter 2</option>
-      <option value="3">none</option>
-    </select>
-    <span ng-bind="filtered.length">0</span> item(s)
-  </p>
+
+<div class="panel">
+  <header class="panel-heading">
+    <h3>图片懒加载</h3>
+  </header>
+
+  <section class="panel-body">
+    <div class="form-group row">
+      <div class="col-lg-6">
+        <select class="form-control" ng-model="searchText">
+          <option value="1">filter 1</option>
+          <option value="2">filter 2</option>
+          <option value="3">none</option>
+        </select>
+      </div>
+      
+      <span class="p-t-sm" ng-bind="filtered.length">0</span> item(s)
+    </div>
 
 
-  <ul class="demo-repeat-list">
-    <li class="demo-repeat-list--items" ng-repeat="image in filtered =(collection | filter:{'type': searchText})">
-      <span afkl-lazy-image="{{image.srcset}}" class="afkl-lazy-wrapper afkl-img-ratio-3-2"></span>
-    </li>
-  </ul>
-</div>
+    <ul class="list-unstyled">
+      <li class="demo-repeat-list--items" ng-repeat="image in filtered =(collection | filter:{'type': searchText})">
+        <span afkl-lazy-image="{{image.srcset}}" class="afkl-lazy-wrapper afkl-img-ratio-3-2"></span>
+      </li>
+    </ul>
+  </section>
 </div>

@@ -1,0 +1,7 @@
+// 块级元素水平居中
+
+@mixin center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,13 +1,16 @@
-<div id="header" class="bg-info">
+<div id="header">
     <header class="container">
-
-        <div class="col-xs-5 col-sm-4 col-lg-3 logo">
-            <a ui-sref="home" class="fn-clear" style="display: inline-block; vertical-align: middle"><h1><img height="42" src="../../img/logo.png" alt="jumore 聚贸" title="jumore 聚贸" /></h1></a>
-            <iframe style="display: inline-block; vertical-align: middle" src="https://ghbtns.com/github-btn.html?user=jm-team&repo=ng-seed&type=star&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+        <div class="col-xs-10 col-sm-8 col-lg-6 logo">
+            <a ui-sref="home" class="fn-clear" style="display: inline-block; vertical-align: middle">
+                <div><img height="42" src="../../img/logo.png" alt="jumore 聚贸" title="jumore 聚贸" /></div>
+            </a>
+            <iframe style="display: inline-block; vertical-align: middle" src="https://ghbtns.com/github-btn.html?user=jm-team&repo=ng-seed&type=star&count=true&size=large&v=2"
+                frameborder="0" scrolling="0" width="160px" height="30px">
+            </iframe>
         </div>
 
 
-        <div class="col-xs-7 col-sm-8 col-lg-9 nav-main pull-right">
+        <div class="col-xs-14 col-sm-16 col-lg-18 nav-main">
             <div class="hidden-xs">
                 <ul class="nav nav-pills pull-right" role="tablist">
                     <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
@@ -22,12 +25,6 @@
                     <li><a href="javascript:;" ng-click="modalV2($event)">LoginV2</a></li>
                 </ul>
             </div>
-
-                <p>链接的是聚运通测试环境 用户名/密码：18700000001/111111</p>
-            <div>
-                用户: {{ user.nikeName }}
-            </div>
         </div>
-
     </header>
 </div>
