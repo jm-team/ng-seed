@@ -10,13 +10,13 @@ module.exports = {
 	// dev 配置
 	dev: {
 		assetsPublicPath: '/dist/',
-        debug: true, // debug:true devtool:"#eval-source-map"
+		debug: false, // debug:true devtool:"#eval-source-map"
 		devServer: {
-			host: 'localhost', // 默认localhost <hostname/ip>: hostname or IP. 0.0.0.0 binds to all hosts.
+			host: '192.168.26.194', // 默认localhost <hostname/ip>: hostname or IP. 0.0.0.0 binds to all hosts.
 			port: 8081, // http://localhost:8081/
 			proxyTarget: [
-				  {pattern: '/webapi', address: address.SERVER_ADDRESS} 
-                //, {pattern: '/dataserviceEN', address: address.JM_BIG_DATA_WEBAPI}
+				{ pattern: '/webapi', address: address.SERVER_ADDRESS }
+				//, {pattern: '/dataserviceEN', address: address.JM_BIG_DATA_WEBAPI}
 			] // api服务器地址
 		}
 	},
