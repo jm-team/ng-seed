@@ -1,0 +1,33 @@
+/* 手风琴*/
+.jm-accordions {
+    margin: 20px auto;
+}
+
+.jm-accordions .jm-accordion {
+    background: #fff;
+    margin-bottom: 2px;
+    padding: 20px 30px;
+}
+
+.jm-accordions .jm-accordion-title {
+    cursor: default;
+}
+
+.jm-accordions .jm-accordion-content {
+    display: none;
+    overflow: hidden;
+}
+
+.jm-accordions .jm-accordion-content p {
+    padding: 20px;
+}
+
+.jm-accordions .jm-accordion.open {
+}
+
+.jm-accordions .jm-accordion.open .jm-accordion-content {
+}
+
+.jm-accordions.jm-accordions-vertical {
+    width: 800px;
+}

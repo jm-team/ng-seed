@@ -19,7 +19,7 @@ app.controller('loginV2Ctrl', function ($rootScope, $scope, $log, $q, Auth, User
             $scope.inputRequired = false;
             $event.preventDefault();
             if ($scope.loginnormal.$invalid) {
-                if ($scope.loginnormal.username.$error.required || $scope.loginnormal.password.$error.required) {
+                if ($scope.loginnormal.mobileNo.$error.required || $scope.loginnormal.password.$error.required) {
                     $scope.inputRequired = true;
                 }
                 return;
@@ -38,6 +38,7 @@ app.controller('loginV2Ctrl', function ($rootScope, $scope, $log, $q, Auth, User
                 // 表单提交方式  返回promise 
                 return Auth.submit($event.target, { action: Address.API_ADDRESS + '/doLogin', iframeName: 'loginnormal' })
                     .then(function (data) {
+                        debugger;
                         User.setUser(data.data);
                         return data;
                     });

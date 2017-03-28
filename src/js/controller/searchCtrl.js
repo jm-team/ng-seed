@@ -16,35 +16,32 @@ app.registerController('SearchCtrl',
             industrys: []
         };
 
-        //$scope.pop = function(){
-
-        //var d1 = new dialogs();
-        dialogs.modal({
-            controller: 'cccc',
-            method: 'submit',
-            isBackdropClickClose: false,
-            isShowCloseIcon: false,
-            template: '<form>status: {{ status }}<button type="button" ng-click="ok()">Login</button></form>'
-        }).then(function(obj) {
-            var scope = obj.scope;
-            var data = obj.data;
-            scope.status = data.msg;
-            return scope;
-        }, function(obj) {
-            var scope = obj.scope;
-            var err = obj.err;
-            scope.status = err.errMsg;
-        }).then(function(obj) {
-            obj.close();
-            return dialogs.alert({
-                template: '<p>执行完毕，关闭弹窗</p>'
+        $scope.pop = function(){
+            dialogs.modal({
+                controller: 'cccc',
+                method: 'submit',
+                // isBackdropClickClose: false,
+                // isShowCloseIcon: false,
+                template: '<form>status: {{ status }}<button type="button" ng-click="ok()">Login</button></form>'
+            }).then(function(obj) {
+                debugger;
+                var scope = obj.scope;
+                var data = obj.data;
+                scope.status = data.msg;
+                return scope;
+            }, function(obj) {
+                var scope = obj.scope;
+                var err = obj.err;
+                scope.status = err.errMsg;
+            }).then(function(obj) {
+                // obj.close();
+                return dialogs.alert({
+                    template: '<p>执行完毕，关闭弹窗</p>'
+                });
+            }).then(function(obj) {
+                obj.close();
             });
-        }).then(function(obj) {
-            obj.close();
-        });
-
-
-        //}
+        }
 
 
         angular.extend($scope, {
@@ -99,7 +96,5 @@ app.registerController('SearchCtrl',
         $q.all([getCategory(), getIndustry()])
             .then(processBase)
             .then(coverParams)
-            .then($scope.getList)
-
-
+            .then($scope.getList);
     });

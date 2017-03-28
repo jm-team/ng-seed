@@ -4,7 +4,7 @@ angular.module('jmui.accordion', [])
         return {
             restrict: 'AE',
             transclude: true,
-            template: '<div class="jm-accordions"><ul ng-transclude></ul></div>',
+            template: '<div class="jm-accordions"><ul class="list-unstyled" ng-transclude></ul></div>',
             controller: function ($scope, $element, $attrs) {
                 var self = this;
                 var accordions = $scope.accordions = [];

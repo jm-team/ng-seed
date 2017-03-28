@@ -1,13 +1,4 @@
-
-<style>
-.login .box { transition: 400ms linear all;}
-.login.ng-enter .box { opacity: 0; }
-.login.ng-enter.ng-enter-active .box { opacity: 1;}
-.login.ng-leave .box {opacity: 1;  }
-.login.ng-leave-active .box.ng-leave {opacity: 0;  }
-
-</style>
-<div class="pop-form">
+<div class="pop-form box">
     <header class="pop-form-header">
         <h2 class="pop-form-title">Sign In</h2>
         <span class="jm-close" ng-click="close()">&times;</span>
@@ -32,7 +23,7 @@
                            required>
                 </div>
                 <div ng-show="loginnormal.mobileNo.$dirty && loginnormal.mobileNo.$invalid">
-                    <div class=" text-danger" ng-show="loginnormal.mobileNo.$error.pattern">Email format is invalid
+                    <div class=" text-danger" ng-show="loginnormal.mobileNo.$error.email">Email format is invalid
                     </div>
                     <div class=" text-danger" ng-show="loginnormal.mobileNo.$error.required">Email Required</div>
                 </div>
@@ -60,9 +51,8 @@
             </div>
 
             <div class="jmform-control-group">
-                <input type="submit" ng-disabled="loging" class="btn btn-block btn-info" value="login" >
+                <input type="submit" ng-disabled="loging" class="jm-btn jm-btn-block jm-btn-info" value="login" >
             </div>
-
         </form>
     </div>
 </div>

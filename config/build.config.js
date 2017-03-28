@@ -10,7 +10,7 @@ module.exports = {
 	// dev 配置
 	dev: {
 		assetsPublicPath: '/dist/',
-		debug: false, // debug:true devtool:"#eval-source-map"
+		debug: true, // debug:true devtool:"#eval-source-map"
 		devServer: {
 			host: '192.168.26.194', // 默认localhost <hostname/ip>: hostname or IP. 0.0.0.0 binds to all hosts.
 			port: 8081, // http://localhost:8081/

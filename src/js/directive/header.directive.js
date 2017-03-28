@@ -11,13 +11,14 @@ app.directive('jmHeader', function (dialogs) {
         templateUrl: tmpHeader,
         replace: true,
         controller: function ($scope, User) {
-            $scope.user = User;
+            $scope.user = User.user;
 
             // 弹出登录框
             $scope.modalV2 = function() {
                 dialogs.modal({
                     method: 'login',
-                    className: 'box',
+                    modalClassName:'dialog-box',
+                    // animteClassName: 'bounceInDown animated',
                     backdropClass:'login',
                     templateUrl: loginV2Tmp,
                     controller: 'loginV2Ctrl',

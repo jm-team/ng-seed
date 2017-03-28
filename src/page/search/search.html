@@ -1,4 +1,6 @@
 <div>
+    <button ng-click="pop()">POP</button>
+
     <div class="form-group">
         <ul class="nav nav-pills" ng-model="search.categoryId">
             <li ng-repeat="list in base.categorys" ng-class="{'active':search.categoryId == list.categoryId}" ng-click="changeType(list, 'categoryId')">
@@ -29,6 +31,4 @@
             </li>
         </ul>
     </div>
-
-    <!--<button ng-click="pop()">弹出</button>-->
 </div>

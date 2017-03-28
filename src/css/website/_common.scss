@@ -1,3 +1,51 @@
+html{
+  height: 100%;
+}
+body{
+  background: #f5f5f5;
+  position: relative;
+  min-height: 100%;
+}
+
+#footer{
+  text-align: center;
+  padding:15px 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+.page-container { 
+    padding-bottom: 60px;
+}
+.page-container > *{
+    transition: 800ms linear all;
+    opacity: 1;
+    /*transform: rotateZ(0deg);
+    transform-origin: right bottom;*/
+}
+
+
+.page-container.ng-enter > *{
+    opacity: 0;
+    transform: translateY(50px);
+}
+.page-container.ng-enter-active > *{
+    /*transform: rotateZ(0);*/
+    opacity: 1;
+}
+.page-container.ng-leave > *{
+    /*transform: rotateZ(0);*/
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+}
+.page-container.ng-leave-active > *{
+    /*transform: translateX(180deg)*/
+    opacity: 0;
+    transform: translateY(50px);
+}
+
 #header{
   padding: 8px 0;
   margin-bottom: 15px;
@@ -10,7 +58,7 @@
 }
 
 .page-container{
-  padding: 15px 0;
+  padding: 15px 0 60px;
 }
 
 //  边距和填充
@@ -55,3 +103,10 @@
 .highlights .entry-img img{
   box-shadow:0px 4px 5px rgba(0, 0, 0, 0.15);
 }
+
+
+.modal .dialog-box{ transition: 500ms linear all; transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);}
+.modal.ng-enter .dialog-box{ transform: translate(-50%, -200px); }
+.modal.ng-enter.ng-enter-active .dialog-box{ transform:translate(-50%, 0);}
+.modal.ng-leave .dialog-box{transform: translate(-50%, 0);}
+.modal.ng-leave-active.ng-leave .dialog-box{transform: translate(-50%, -200px);}

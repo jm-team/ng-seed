@@ -21,7 +21,8 @@ var vendorFiles = [
     './src/dep/angular/angular-ui-router.js',
     './src/dep/bindonce.js',
     './src/dep/security.js',
-    './src/dep/ng-lazy-image/lazy-image.js'
+    './src/dep/ng-lazy-image/lazy-image.js',
+    './src/css/index.js'
 ];
 
 if (config.echarts.enabled) {
@@ -57,6 +58,7 @@ module.exports = merge({
     entry: {
         // 公共文件
         vendor: vendorFiles,
+        // css: './src/css/index.js',
         entry: './src/js/entry.js'
     },
 
@@ -207,7 +209,14 @@ module.exports = merge({
                 removeComments: true,
                 // 删除冗余属性
                 removeRedundantAttributes: true
-            }
+            },
+            // chunks:['vendor', 'css','entry'],
+            // chunksSortMode:function (chunk1, chunk2){
+            //     var order = ['vendor', 'css','entry'];
+            //     var order1 = order.indexOf(chunk1.names[0]);
+            //     var order2 = order.indexOf(chunk2.names[0]);
+            //     return order1 - order2;  
+            // }
 
         }),
 
