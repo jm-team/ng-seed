@@ -96,6 +96,15 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         // 取消上一个路由中还在请求的并且可以取消的XHR
         requestService.clearAll();
     });
+
+    $rootScope.$on('$viewContentLoaded', function(event, toState) {
+        if($rootScope.isFirstLoad) {
+            $rootScope.isFirstLoad = false;
+        } else {
+            $rootScope.isShowFooter = true;
+        }
+        $log.error('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
+    });
 });
 
 module.exports = app;
