@@ -5,12 +5,13 @@ app.directive('lazyErr', function() {
     return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
+            console.log(attrs);
             return attrs.$observe("afklLazyImageLoaded", function(value) {
                 // value为fail，图片加载失败；为done，图片加载成功
                 console.log("lazyImageLoaded:" + value);
                 if (value == 'fail') {
                     scope.$apply(function(){
-                        element.children().attr('src', attrs.imgError);
+                        element.children().attr('src', attrs.lazyErr);
                     });
                 }
             });
