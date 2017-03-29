@@ -1,7 +1,7 @@
 // module
 var app = require('app');
 
-app.service('dialogs', function($document, $compile, $q, $http, $rootScope, $controller, $animate, $templateCache) {
+app.service('dialogs', function ($document, $compile, $q, $http, $rootScope, $controller, $animate, $templateCache) {
     /**
      * 弹出框构造函数
      * @author zhoul
@@ -22,7 +22,7 @@ app.service('dialogs', function($document, $compile, $q, $http, $rootScope, $con
      * @param   {object}  config 初始配置
      * @returns {object} promise对象
      */
-    Dialogs.prototype.creatHTML = function(config) {
+    Dialogs.prototype.creatHTML = function (config) {
         var header = '';
         var footer = '';
         var _template = '<div class="dialog-content">' + (config.template) + '</div>';
@@ -46,7 +46,7 @@ app.service('dialogs', function($document, $compile, $q, $http, $rootScope, $con
         if (_templateUrl) {
             $http.get(_templateUrl, {
                 cache: $templateCache
-            }).then(function(response) {
+            }).then(function (response) {
                 defer.resolve(backdrop.append(dialogBox.append(response.data)));
             });
         } else {
@@ -61,7 +61,7 @@ app.service('dialogs', function($document, $compile, $q, $http, $rootScope, $con
      * @param   {object} config 配置对象
      * @returns {object} promise 对象
      */
-    Dialogs.prototype.resolve = function(config) {
+    Dialogs.prototype.resolve = function (config) {
         var resolves = config.resolve;
         if (angular.isObject(resolves)) {
             for (var attr in resolves) {
@@ -82,7 +82,7 @@ app.service('dialogs', function($document, $compile, $q, $http, $rootScope, $con
      * @param   {object} config 配置文件
      * @returns {object} Dom    对象
      */
-    Dialogs.prototype.render = function(data, config) {
+    Dialogs.prototype.render = function (data, config) {
         var scope = this.scope;
         this.element = angular.element(data);
 
@@ -108,37 +108,43 @@ app.service('dialogs', function($document, $compile, $q, $http, $rootScope, $con
      * @param   {object} conf 配置对象
      * @returns {object} promise
      */
-    Dialogs.prototype.modal = function(conf) {
+    Dialogs.prototype.modal = function (conf) {
         var config = conf || {};
         var scope = this.scope = $rootScope.$new();
         var defer = $q.defer();
         var self = this;
         var method = config.method;
+        var dataElement = null;
 
         this.container = angular.element(config.container || document.body);
         this.controllerAs = config.controllerAs;
         this.controllerName = config.controller || null;
         this.locals = config.locals || {};
+        this.success = config.success || angular.noop;
+        this.error = config.error || angular.noop;
 
-        this.resolve(config).then(function(data) {
-            angular.forEach(data, function(item, index) {
+        this.resolve(config).then(function (data) {
+            angular.forEach(data, function (item, index) {
                 scope[self.resolveKeys[index]] = item;
             });
             return self.creatHTML(config);
-        }).then(function(data) {
+        }).then(function (data) {
+            dataElement = data;
             self.render(data, config);
         });
 
-        scope.ok = function($event) {
+        scope.ok = function ($event) {
             // 判断controller中点击ok后是否需要进一步处理异步操作(如: 登录)
             // 如果是将会处理这个请求服务之后返回promise对象
             // 以便dialogs.model() 能正常使用then 方法处理请求后的操作
             // 执行操作处理函数是通过config.method 传入处理函数的名称字符串 
             // 然后找到controller中对应的处理函数执行 
             if (angular.isFunction(scope[method])) {
-                scope[method]($event).then(function(data) {
+                scope[method]($event).then(function (data) {
+                    self.success({ scope: scope, data: data });
                     defer.resolve({ scope: scope, data: data });
-                }, function(err) {
+                }, function (err) {
+                    self.error({ scope: scope, err: err });
                     defer.reject({ scope: scope, err: err });
                 });
             } else {
@@ -146,17 +152,17 @@ app.service('dialogs', function($document, $compile, $q, $http, $rootScope, $con
             }
         };
 
-        scope.DropCloseDialogs = function() {
+        scope.DropCloseDialogs = function () {
             if (angular.isUndefined(config.isBackdropClickClose) || config.isBackdropClickClose) {
                 scope.close();
             }
         };
 
-        scope.close = function() {
+        scope.close = function () {
             self.close();
         };
 
-        scope.cancel = function($event) {
+        scope.cancel = function ($event) {
             scope.close();
             defer.reject();
         };
@@ -170,7 +176,7 @@ app.service('dialogs', function($document, $compile, $q, $http, $rootScope, $con
      * @param   {object} confg 弹出框配置
      * @returns {object} promise
      */
-    Dialogs.prototype.alert = function(confg) {
+    Dialogs.prototype.alert = function (confg) {
         var config = confg || {};
         var cof = angular.extend(config, {
             dialogHeader: '<h3 class="dialog-title">' + (config.title || '温馨提示') + '</h3>',
@@ -185,7 +191,7 @@ app.service('dialogs', function($document, $compile, $q, $http, $rootScope, $con
      * @param   {object} confg 配置对象
      * @returns {object} promise
      */
-    Dialogs.prototype.confirm = function(confg) {
+    Dialogs.prototype.confirm = function (confg) {
         var config = confg || {};
         var cof = angular.extend(config, {
             dialogHeader: '<h3 class="dialog-title">' + (config.title || '温馨提示') + '</h3>',
@@ -200,7 +206,7 @@ app.service('dialogs', function($document, $compile, $q, $http, $rootScope, $con
      * @author zhoul
      * @returns
      */
-    Dialogs.prototype.close = function() {
+    Dialogs.prototype.close = function () {
         var self = this;
         if (self.element && angular.isFunction(self.element.remove)) {
             if (self.element) {

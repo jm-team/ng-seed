@@ -24,7 +24,6 @@ app.registerController('SearchCtrl',
                 // isShowCloseIcon: false,
                 template: '<form>status: {{ status }}<button type="button" ng-click="ok()">Login</button></form>'
             }).then(function(obj) {
-                debugger;
                 var scope = obj.scope;
                 var data = obj.data;
                 scope.status = data.msg;
@@ -34,7 +33,7 @@ app.registerController('SearchCtrl',
                 var err = obj.err;
                 scope.status = err.errMsg;
             }).then(function(obj) {
-                // obj.close();
+                obj.close();
                 return dialogs.alert({
                     template: '<p>执行完毕，关闭弹窗</p>'
                 });

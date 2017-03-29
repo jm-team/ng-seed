@@ -13,7 +13,6 @@ app.controller('cccc', function($scope, $q) {
         var defer = $q.defer();
         // // 模拟登录
         setTimeout(function() {
-            debugger;
             // defer.reject({errMsg: "错误的参数"})
             defer.resolve({ msg: "success" })
         }, 3000);

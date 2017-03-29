@@ -15,17 +15,18 @@ app.directive('jmHeader', function (dialogs) {
 
             // 弹出登录框
             $scope.modalV2 = function() {
-                dialogs.modal({
+              var a =  dialogs.modal({
                     method: 'login',
                     modalClassName:'dialog-box',
                     // animteClassName: 'bounceInDown animated',
                     backdropClass:'login',
                     templateUrl: loginV2Tmp,
+                    success:function(data){
+                        var result = data.data.data;
+                        alert('tick')
+                    },
                     controller: 'loginV2Ctrl',
-                }).then(function(data) {
-                    var result = data.data.data;
-                    dialogs.close();
-                });
+                })
             }
         }
     };
