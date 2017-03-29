@@ -1,12 +1,3 @@
-<!--
-<div class="container" style="height: 1080px; padding-top: 50px">
-  <header class="text-center">
-    <img src="../../img/logo.png" alt=""/>
-    <h1 class="text-primary">Hello Angular!</h1>
-    <p>Welcome to your Angular.js app!</p>
-  </header>
-</div>
--->
 
 <div class="container">
 <div class="row">
@@ -37,7 +28,7 @@
 
   <ul class="demo-repeat-list">
     <li class="demo-repeat-list--items" ng-repeat="image in filtered =(collection | filter:{'type': searchText})">
-      <span lazy-err="/dist/img/logo.png" afkl-lazy-image="{{image.srcset}}" class="afkl-lazy-wrapper afkl-img-ratio-3-2"></span>
+      <span img-error="../../img/logo.png" afkl-lazy-image="{{image.srcset}}" class="afkl-lazy-wrapper afkl-img-ratio-3-2"></span>
     </li>
   </ul>
 </div>

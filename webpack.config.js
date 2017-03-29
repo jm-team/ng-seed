@@ -99,7 +99,7 @@ module.exports = merge({
             // 处理angularjs 模版片段
             {
                 test: /\.html$/,
-                loader: 'ngtemplate?module=ng&relativeTo=/src!html',
+                loader: 'ngtemplate?module=ng&relativeTo=/src!html?attrs=img:src img:img-error div:img-error li:img-error span:img-error a:img-error',
                 exclude: /(entry)/
             },
 
