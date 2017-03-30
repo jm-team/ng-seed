@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var InlineManifestWebpackPlugin = require("inline-manifest-webpack-plugin");
-var WebpackMd5Hash = require('webpack-md5-hash');
+var WebpackChunkHash = require('webpack-chunk-hash');
 var RemoveWebpackPlugin = require('remove-webpack-plugin');
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
             }
         }),
         new RemoveWebpackPlugin('./dist/'),
-        new WebpackMd5Hash()
+        new WebpackChunkHash()
 
     ]
 };
