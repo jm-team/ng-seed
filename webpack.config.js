@@ -35,7 +35,7 @@ var env = (process.env.NODE_ENV || '').trim();
 if (env === 'dev') {
     webpackConfig = require('./webpack-dev.js');
     config = config.dev;
-    devtool = config.debug ? '#eval-source-map' : false;
+    devtool = config.debug ? '#cheap-module-eval-source-map' : false;
 } else if (env === 'production') {
     webpackConfig = require('./webpack-production.js');
     config = config.production;

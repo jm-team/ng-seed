@@ -103,6 +103,7 @@ module.exports = {
     },
     // 插件
     plugins: [
+        new webpack.NamedModulesPlugin(),
         new FriendlyErrorsPlugin()
     ]
 };
