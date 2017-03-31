@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var InlineManifestWebpackPlugin = require("inline-manifest-webpack-plugin");
 var WebpackChunkHash = require('webpack-chunk-hash');
 var RemoveWebpackPlugin = require('remove-webpack-plugin');
+var HashedModuleIdsPlugin = require('./build/HashedModuleIdsPlugin');
 
 module.exports = {
 
@@ -9,8 +10,11 @@ module.exports = {
     plugins: [
         // 合并生成公用文件 .[hash:8]
         new webpack.optimize.CommonsChunkPlugin({
-            name: ["vendor", "manifest"] // vendor libs + extracted manifest
+            name: ["vendor", "manifest"], // vendor libs + extracted manifest
+            minChunks: Infinity
         }),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new HashedModuleIdsPlugin(),
         new InlineManifestWebpackPlugin({
             name: 'webpackManifest'
         }),
