@@ -16,6 +16,7 @@ app.service('dialogs', function ($document, $compile, $q, $http, $rootScope, $co
         this.controllerName = '';
     }
 
+
     /**
      * 创建模版
      * @author zhoul
@@ -30,9 +31,10 @@ app.service('dialogs', function ($document, $compile, $q, $http, $rootScope, $co
         var defer = $q.defer();
 
         // 遮罩层背景
-        var backdrop = angular.element('<div class="dialog-bg ' + config.backdropClass + '" ng-click="DropCloseDialogs($event)"></div>');
-        var dialogBox = angular.element('<div ng-click="$event.stopPropagation()" class="dialog-box ' + config.className + '">' + (config.isShowCloseIcon ? (
+        var backdrop = angular.element('<div class="dialog-wrap" ng-click="DropCloseDialogs($event)"></div>');
+        var dialogBox = angular.element('<div ng-click="$event.stopPropagation()" class="dialog ' + config.className + '">' + (config.isShowCloseIcon ? (
             '<i ng-click="close($event)" class="dialog-icon-close">&times;</i></div></div>') : ''))
+        this.backdrop = angular.element('<div class="modal-backdrop"></div>')
 
 
         if (config.dialogHeader) {
@@ -98,7 +100,10 @@ app.service('dialogs', function ($document, $compile, $q, $http, $rootScope, $co
             }
         }
         $compile(this.element)(scope);
-        return $animate.enter(this.element, this.container);
+        $animate.enter(this.element, this.container, null, function () {
+            // debugger;
+        });
+        $animate.addClass(this.backdrop, config.backdropClass);
     };
 
 
@@ -116,6 +121,7 @@ app.service('dialogs', function ($document, $compile, $q, $http, $rootScope, $co
         var method = config.method;
         var dataElement = null;
 
+        this.config = config;
         this.container = angular.element(config.container || document.body);
         this.controllerAs = config.controllerAs;
         this.controllerName = config.controller || null;
@@ -130,6 +136,8 @@ app.service('dialogs', function ($document, $compile, $q, $http, $rootScope, $co
             return self.creatHTML(config);
         }).then(function (data) {
             dataElement = data;
+            self.container.append(self.backdrop);
+
             self.render(data, config);
         });
 
@@ -206,14 +214,19 @@ app.service('dialogs', function ($document, $compile, $q, $http, $rootScope, $co
      * @author zhoul
      * @returns
      */
-    Dialogs.prototype.close = function () {
-        var self = this;
-        if (self.element && angular.isFunction(self.element.remove)) {
-            if (self.element) {
-                $animate.leave(self.element);
-                self.element = null;
+    Dialogs.prototype.close = function (conf) {
+        if (this.backdrop && angular.isFunction(this.backdrop.remove)) {
+            $animate.removeClass(this.backdrop, this.config.backdropClass, function () {
+                this.backdrop.remove();
+                this.backdrop = null;
+            }.bind(this));
+        }
+
+        if (this.element && angular.isFunction(this.element.remove)) {
+            $animate.leave(this.element, function () {
+                this.element = null;
                 this.scope.$destroy();
-            }
+            }.bind(this));
         }
     };
 

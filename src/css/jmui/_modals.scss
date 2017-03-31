@@ -70,8 +70,26 @@
   z-index: $zindex-modal-background;
   background-color: $modal-backdrop-bg;
   // Fade for backdrop
-  &.fade { @include opacity(0); }
-  &.in { @include opacity($modal-backdrop-opacity); }
+  // &.fade { @include opacity(0); }
+  // &.in { @include opacity($modal-backdrop-opacity); }
+}
+
+
+.modal-backdrop{
+    transition: .35s linear all;
+
+    &.in{
+      @include opacity($modal-backdrop-opacity); 
+    }
+    &.in-add.in-add-active,
+    &.in-remove{
+      @include opacity($modal-backdrop-opacity); 
+    }
+
+    &.in-add,
+    &.in-remove.in-remove-active{
+      @include opacity(0);
+    }
 }
 
 // Modal header

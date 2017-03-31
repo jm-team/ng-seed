@@ -17,6 +17,9 @@ app.registerController('newsCtrl',
 
         $scope.query();
 
+
+       
+
         // 删除新闻
         $scope.remove = function ($event, news) {
             dialogs.confirm({ template: '<p class="text-center text-default">确认删除？</p>' }).then(function () {
@@ -57,7 +60,21 @@ app.registerController('newsCtrl',
                     content: 'Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns dwelling graceful six humoured. Whether mr up savings talking an. Active mutual nor father mother exeter change six did all. '
                 }
             ];
+
+            $scope.accordions = [{
+                title: "titles",
+                content:"这是内容？？？？"
+            },{
+                title: "titles",
+                content:"这是内容？？？？"
+            },{
+                title: "titles",
+                content:"这是内容？？？？"
+            }];
         }, 10)
+
+
+         
 
     });
 

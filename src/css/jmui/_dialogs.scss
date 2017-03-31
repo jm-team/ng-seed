@@ -1,4 +1,34 @@
 /*=====================================  测试自定义dialogs */
+
+.dialog-wrap{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050;
+    transition: .35s linear all; 
+}
+
+.dialog-wrap .dialog{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 15%);
+}
+.dialog-wrap.ng-enter .dialog,.dialog-wrap.ng-leave .dialog{
+    transition: inherit; 
+}
+.dialog-wrap.ng-enter .dialog,
+.dialog-wrap.ng-leave.ng-leave-active .dialog{
+    opacity: 0;
+   transform: translate(-50%, 5%);
+}
+.dialog-wrap.ng-enter.ng-enter-active .dialog,
+.dialog-wrap.ng-leave .dialog{ 
+    opacity: 1;
+    transform:translate(-50%, 15%);
+}
+
 .dialog-bg {
     position: fixed;
     top: 0;

@@ -14,14 +14,14 @@ app.directive('jmHeader', function (dialogs) {
             $scope.user = User.user;
 
             // 弹出登录框
-            $scope.modalV2 = function() {
-              var a =  dialogs.modal({
+            $scope.modalV2 = function ($event) {
+                $event.preventDefault();
+                var a = dialogs.modal({
                     method: 'login',
-                    modalClassName:'dialog-box',
-                    // animteClassName: 'bounceInDown animated',
-                    backdropClass:'login',
+                    className: 'login-from',
+                    backdropClass: 'in',
                     templateUrl: loginV2Tmp,
-                    success:function(data){
+                    success: function (data) {
                         var result = data.data.data;
                         alert('tick')
                     },
