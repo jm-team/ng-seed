@@ -62,8 +62,7 @@
 <h2>手风琴</h2>
 <jm-accordions>
     <jm-accordion ng-repeat="item in accordions">
-        {{open}}
-        <header class="jm-accordion-title">{{item.title}}</header>
+        <header class="jm-accordion-title" ng-click="toggle($event)">{{item.title}}</header>
         <section class="jm-accordion-content" ng-show="open">
             <p>{{ item.content}}</p>
         </section>

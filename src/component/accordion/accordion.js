@@ -4,24 +4,21 @@ angular.module('jmui.accordion', [])
         return {
             restrict: 'AE',
             transclude: true,
-            replace:true,
+            replace: true,
             template: '<div class="jm-accordions"><ul class="list-unstyled" ng-transclude></ul></div>',
             controller: function ($scope, $element, $attrs) {
-                var self = this;
                 var accordions = this.$accordions = [];
-
+                // $scope.open = '123'
                 this.toggleAccrdion = function (accordion) {
-                    angular.forEach($scope.$accordions, function (item) {
-                        if (accordion === item) {
-                            item.open = !item.open;
-                        } else {
+                    angular.forEach(accordions, function (item) {
+                        if (accordion !== item) {
                             item.open = false;
                         }
                     });
                 };
 
                 this.addAccordions = function (accordion) {
-                    this.$accordions.push(accordion);
+                    accordions.push(accordion);
                 };
             },
             link: function (scope, ele, attrs) {
@@ -32,47 +29,37 @@ angular.module('jmui.accordion', [])
         return {
             restrict: 'AE',
             require: '^jmAccordions',
-            template: '<li ng-click="toggle($event)" ng-class="{open: open}" class="jm-accordion" ng-transclude></li>',
+            template: '<li  ng-class="{open: open}" class="jm-accordion" ><div ng-transclude></div></li>',
             transclude: true,
-            replace:true,
-            scope: {
-                heading: '@',
-                onTolggle: '&'
+            replace: true,
+            controller: function ($scope, $transclude) {
+                // console.log($transclude);
+                console.log($scope)
             },
-            link: function(scope, ele, attrs, ctrl){
+
+            compile: function (tEl, tAttr, transclude) {
+                return function postlink(scope, ele, attrs, ctrl) {
                     scope.open = false;
                     ctrl.addAccordions(scope);
+                    scope.toggle = function ($event) {
+                        scope.open = !scope.open;
+                        // console.log(ele.find('section'))
+                        // // debugger
+                        
+                        // var s = ele.find('section').removeClass('ng-hide');
 
-                    scope.toggle = function($event){
+                        // setTimeout(function(){
+                        //     s.css('height',getComputedStyle(s[0], false)['height']);
+                        // },0)
+                                       
+
+                                     
+                        
                         ctrl.toggleAccrdion(scope);
+
+
                     }
-                    debugger;
-                    
-            },
-           // link: function (scope, ele, attrs, jmAccordionsCtrl) {
-                // var accordionContent = ele.find('section')[0];
-                // jmAccordionsCtrl.addAccordions(scope);
-                // scope.open = false;
-
-                // var accordion = scope.$eval(attrs.jmTabContentTransclude);
-                // debugger
-                // ele.find('header').on('click', function (ev) {
-                //     // angular.element(accordionContent).css({ 'display': 'block' });
-                //     // var height = accordionContent.scrollHeight;
-                //     // angular.element(accordionContent).css({ 'height': '0' })
-                //     // setTimeout(function () {
-                //     //     angular.element(accordionContent).css({
-                //     //         'transition': 'height .3s ease',
-                //     //         'height': height + 'px'
-                //     //     });
-                //     // }, 0);
-
-                //     scope.$apply(function () {
-                //         debugger;
-                //         jmAccordionsCtrl.toggleAccrdion(scope);
-                //         (scope.onTolggle || angular.noop)({ arg: { ev: ev, accordion: scope } });
-                //     });
-                // });
-          //  }
+                }
+            }
         }
     });

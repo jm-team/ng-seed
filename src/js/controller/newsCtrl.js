@@ -62,14 +62,14 @@ app.registerController('newsCtrl',
             ];
 
             $scope.accordions = [{
-                title: "titles",
-                content:"这是内容？？？？"
+                title: "手风琴标题1",
+                content:"手风琴内容1"
             },{
-                title: "titles",
-                content:"这是内容？？？？"
+                title: "手风琴标题2",
+                content:"手风琴内容2"
             },{
-                title: "titles",
-                content:"这是内容？？？？"
+                title: "手风琴标题3",
+                content:"手风琴内容3"
             }];
         }, 10)
 
