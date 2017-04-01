@@ -19,33 +19,30 @@ app.registerController('SearchCtrl',
         //$scope.pop = function(){
 
         //var d1 = new dialogs();
-        dialogs.modal({
-            controller: 'cccc',
-            method: 'submit',
-            isBackdropClickClose: false,
-            isShowCloseIcon: false,
-            template: '<form>status: {{ status }}<button type="button" ng-click="ok()">Login</button></form>'
-        }).then(function(obj) {
-            var scope = obj.scope;
-            var data = obj.data;
-            scope.status = data.msg;
-            return scope;
-        }, function(obj) {
-            var scope = obj.scope;
-            var err = obj.err;
-            scope.status = err.errMsg;
-        }).then(function(obj) {
-            obj.close();
-            return dialogs.alert({
-                template: '<p>执行完毕，关闭弹窗</p>'
-            });
-        }).then(function(obj) {
-            obj.close();
-        });
-
-
+        // dialogs.modal({
+        //     controller: 'cccc',
+        //     method: 'submit',
+        //     isBackdropClickClose: false,
+        //     isShowCloseIcon: false,
+        //     template: '<form>status: {{ status }}<button type="button" ng-click="ok()">Login</button></form>'
+        // }).then(function(obj) {
+        //     var scope = obj.scope;
+        //     var data = obj.data;
+        //     scope.status = data.msg;
+        //     return scope;
+        // }, function(obj) {
+        //     var scope = obj.scope;
+        //     var err = obj.err;
+        //     scope.status = err.errMsg;
+        // }).then(function(obj) {
+        //     obj.close();
+        //     return dialogs.alert({
+        //         template: '<p>执行完毕，关闭弹窗</p>'
+        //     });
+        // }).then(function(obj) {
+        //     obj.close();
+        // });
         //}
-
 
         angular.extend($scope, {
             changeType: function(list, type) {
@@ -96,10 +93,20 @@ app.registerController('SearchCtrl',
             return $scope.search;
         }
 
-        $q.all([getCategory(), getIndustry()])
-            .then(processBase)
-            .then(coverParams)
-            .then($scope.getList)
+        function initSearch() {
+            $q.all([getCategory(), getIndustry()])
+                .then(processBase)
+                .then(coverParams)
+                .then($scope.getList)
+        }
 
+        initSearch();
+
+        $scope.state = $state;
+        $scope.params = $stateParams;
+
+        $scope.$on('$locationChangeStart', function () {
+            initSearch();
+        })
 
     });

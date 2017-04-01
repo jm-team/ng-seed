@@ -1,15 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-     
-            <ul class="category-list" ng-model="search.categoryId" >
-                
+            <ul class="category-list">
                 <li ng-repeat="list in base.categorys" ng-click="changeType(list, 'categoryId')">
                     <a href="javascript:;" ng-class="{'active':search.categoryId == list.categoryId}" >{{ list.categoryName }}</a>
                 </li>
             </ul>
 
-            <ul class="industry-list" ng-model="search.industryId">
+            <ul class="industry-list">
                 <li ng-repeat="list in base.industrys" ng-click="changeType(list, 'industryId')">
                     <a href="javascript:;" ng-class="{'active':search.industryId == list.industryId}">{{ list.industryName }}</a>
                 </li>
@@ -23,3 +21,5 @@
         </div>
     </div>
 </div>
+<p style="background: #01b5f3;color:#fff;width: 100%;">{{ state | json }}</p>
+<p style="background: #01b5f3;color:#fff;width: 100%;">{{ params| json }}</p>
