@@ -103,7 +103,7 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         } else {
             $rootScope.isShowFooter = true;
         }
-        $log.error('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
+        $log.info('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
     });
 });
 
