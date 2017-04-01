@@ -3,7 +3,7 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('SearchCtrl',
     /*@ngInject*/
-    function($scope, $http, $q, $location, $stateParams, $state, $timeout, dialogs) {
+    function($scope, $http, $q, $location, $stateParams, $state, $timeout, $window, dialogs) {
         // 初始化参数
         $scope.search = {
             categoryId: 0,
@@ -16,7 +16,16 @@ app.registerController('SearchCtrl',
             industrys: []
         };
 
-        //$scope.pop = function(){
+        $scope.$on('$locationChangeStart', function () {
+            alert("$locationChangeStart location: " + document.location + ", state: " + JSON.stringify($location.search()));
+        });
+        // $window.onpopstate = function(event) {
+        //     alert("onpopstate location: " + document.location + ", state: " + JSON.stringify($location.search()));
+        // };
+        // $window.onhashchange = function(event) {
+        //     alert("hashChange location: " + document.location + ", state: " + JSON.stringify($location.search()));
+        // };
+     /*   //$scope.pop = function(){
 
         //var d1 = new dialogs();
         dialogs.modal({
@@ -44,7 +53,7 @@ app.registerController('SearchCtrl',
         });
 
 
-        //}
+        //}*/
 
 
         angular.extend($scope, {
