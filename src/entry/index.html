@@ -18,7 +18,7 @@
     <script src="<%= htmlWebpackPlugin.options.assetsPublicPath %>dep/ie8supports.js" type="text/javascript"></script>
     <![endif]-->
 
-    <base target="/"/>
+    <base href="/"/>
 </head>
 
 <body ng-class="{'index-page': $state.current.url === '/', 'other-page':  $state.current.url !== '/'}">
@@ -36,7 +36,7 @@
 
 <!-- 内联webpack manifest -->
 <%=htmlWebpackPlugin.files.webpackManifest%>
-
+<script src="../src/dep/angular/angular.min.js"></script>
 <!-- SEO脚本 百度统计代码 -->
 </body>
 </html>
