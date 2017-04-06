@@ -45,16 +45,16 @@ angular.module('jmui.accordion', [])
                         scope.open = !scope.open;
                         // console.log(ele.find('section'))
                         // // debugger
-                        
+
                         // var s = ele.find('section').removeClass('ng-hide');
 
                         // setTimeout(function(){
                         //     s.css('height',getComputedStyle(s[0], false)['height']);
                         // },0)
-                                       
 
-                                     
-                        
+
+
+
                         ctrl.toggleAccrdion(scope);
 
 
