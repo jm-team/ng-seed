@@ -15,8 +15,8 @@ module.exports = {
 			host: 'localhost', // 默认localhost <hostname/ip>: hostname or IP. 0.0.0.0 binds to all hosts.
 			port: 8081, // http://localhost:8081/
 			proxyTarget: [
-				  {pattern: '/webapi', address: address.SERVER_ADDRESS} 
-                //, {pattern: '/dataserviceEN', address: address.JM_BIG_DATA_WEBAPI}
+				{ pattern: '/webapi', address: address.SERVER_ADDRESS }
+				//, {pattern: '/dataserviceEN', address: address.JM_BIG_DATA_WEBAPI}
 			] // api服务器地址
 		}
 	},

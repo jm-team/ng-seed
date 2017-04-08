@@ -1,38 +1,18 @@
-
-<style>
-.login .box { transition: 400ms linear all;}
-.login.ng-enter .box { opacity: 0; }
-.login.ng-enter.ng-enter-active .box { opacity: 1;}
-.login.ng-leave .box {opacity: 1;  }
-.login.ng-leave-active .box.ng-leave {opacity: 0;  }
-
-</style>
-<div class="pop-form">
+<div class="pop-form box">
     <header class="pop-form-header">
         <h2 class="pop-form-title">Sign In</h2>
         <span class="jm-close" ng-click="close()">&times;</span>
     </header>
 
     <div class="form-wrap">
-        <form
-            ng-submit="ok($event)"
-            name="loginnormal"
-            method="post"
-            novalidate>
+        <form ng-submit="ok($event)" name="loginnormal" method="post" novalidate>
             <!-- 用户名 -->
-            <div class="form-group"
-                 ng-class="{ 'has-error' : loginnormal.mobileNo.$invalid && !loginnormal.mobileNo.$pristine }">
+            <div class="form-group" ng-class="{ 'has-error' : loginnormal.mobileNo.$invalid && !loginnormal.mobileNo.$pristine }">
                 <div class="login-user">
-                    <input type="text"
-                           class="form-control"
-                           placeholder="Email"
-                           name="mobileNo"
-                           ng-model="mobileNo"
-                           ng-focus="onfocus()"
-                           required>
+                    <input type="text" class="form-control" placeholder="Email" name="mobileNo" ng-model="mobileNo" ng-focus="onfocus()" required>
                 </div>
                 <div ng-show="loginnormal.mobileNo.$dirty && loginnormal.mobileNo.$invalid">
-                    <div class=" text-danger" ng-show="loginnormal.mobileNo.$error.pattern">Email format is invalid
+                    <div class=" text-danger" ng-show="loginnormal.mobileNo.$error.email">Email format is invalid
                     </div>
                     <div class=" text-danger" ng-show="loginnormal.mobileNo.$error.required">Email Required</div>
                 </div>
@@ -41,13 +21,8 @@
             <!-- 密码 -->
             <div class="form-group last">
                 <div class="login-pass">
-                    <input type="password"
-                           name="password"
-                           placeholder="Password"
-                           ng-model="password"
-                           class="form-control"
-                           ng-focus="onfocus()"
-                           required>
+                    <input type="password" name="password" placeholder="Password" ng-model="password" class="form-control" ng-focus="onfocus()"
+                        required>
                 </div>
                 <div ng-show="loginnormal.password.$dirty && loginnormal.password.$invalid">
                     <div class=" text-danger" ng-show="loginnormal.password.$error.required">Password Required</div>
@@ -60,9 +35,8 @@
             </div>
 
             <div class="jmform-control-group">
-                <input type="submit" ng-disabled="loging" class="btn btn-block btn-info" value="login" >
+                <input type="submit" ng-disabled="loging" class="jm-btn jm-btn-block jm-btn-info" value="login">
             </div>
-
         </form>
     </div>
 </div>

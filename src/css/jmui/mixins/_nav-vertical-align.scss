@@ -1,0 +1,9 @@
+// Navbar垂直对齐
+//
+// 垂直居中在导航栏中的元素。
+// 示例：元素的高度为30像素，因此请写出`.navbar-vertical-align（30px）;`以计算合适的上边距。
+
+@mixin navbar-vertical-align($element-height) {
+  margin-top: (($navbar-height - $element-height) / 2);
+  margin-bottom: (($navbar-height - $element-height) / 2);
+}

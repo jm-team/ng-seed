@@ -1,0 +1,891 @@
+
+$bootstrap-sass-asset-helper: false !default;
+//
+// 变量
+// --------------------------------------------------
+
+
+//== 颜色
+//
+//## 使用于bootstrap的灰色和网站色调.
+
+$gray-base:              #000 !default;
+$gray-darker:            lighten($gray-base, 13.5%) !default; // #222
+$gray-dark:              lighten($gray-base, 20%) !default;   // #333
+$gray:                   lighten($gray-base, 33.5%) !default; // #555
+$gray-light:             lighten($gray-base, 46.7%) !default; // #777
+$gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
+
+$brand-default:         #f6f6f6 !default;
+$brand-primary:         #0e62c7 !default;
+$brand-success:         #68b828 !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f2aa00 !default;
+$brand-danger:          #ea6262 !default;
+
+
+//== 脚手架
+//
+//## 一些全局样式设置
+
+//** `<body>`的背景色.
+$body-bg:               #fff !default;
+//** `<body>`上的全局文本颜色.
+$text-color:            $gray-dark !default;
+
+//** 全局文本链接颜色.
+$link-color:            $brand-primary !default;
+//** 通过`darken()` 函数设置鼠标悬停颜色.
+$link-hover-color:      darken($link-color, 15%) !default;
+//** 链接悬停样式.
+$link-hover-decoration: underline !default;
+
+
+//== 排版
+//
+//## 字体，行高和正文文本，标题等颜色
+
+// $font-family-sans-serif:  Arial, sans-serif,"Helvetica Neue", Helvetica,"Microsoft Yahei" !default;
+$font-family-sans-serif:  Arial, sans-serif, "Microsoft Yahei" !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+//** `<code>`，`<kbd>`和`<pre>`的默认等宽字体。
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
+
+$font-size-base:          14px !default;
+$font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
+
+$font-size-h1:            floor(($font-size-base * 2.6)) !default; // ~36px
+$font-size-h2:            floor(($font-size-base * 2.15)) !default; // ~30px
+$font-size-h3:            ceil(($font-size-base * 1.7)) !default; // ~24px
+$font-size-h4:            ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-h5:            $font-size-base !default;
+$font-size-h6:            ceil(($font-size-base * 0.85)) !default; // ~12px
+
+//** 无单位“line-height”用于按钮等组件。
+$line-height-base:        1.428571429 !default; // 20/14
+//** 计算“行高”（`font-size` *`line-height`）用于`margin'，`padding`等。
+$line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px
+
+//** 默认情况下，这继承自`<body>`。
+$headings-font-family:    inherit !default;
+$headings-font-weight:    500 !default;
+$headings-line-height:    1.1 !default;
+$headings-color:          inherit !default;
+
+
+//== 图像
+//
+//## 指定包含的Glyphicons图标字体的自定义位置和文件名。 对于那些包括通过Bower的Bootstrap有用。
+
+//** 从此目录加载字体。
+
+// [converter] 如果使用$ bootstrap-sass-asset-helper，请提供相对于资产加载路径的路径。
+// [converter] 这是因为某些资产助手（例如Sprockets）不能处理文件相对路径。
+$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "//at.alicdn.com/t/") !default;
+
+//** 所有字体文件的文件名。
+$icon-font-name:          "font_3sr3o5z8o81zia4i" !default;
+//** SVG图标文件中的元素ID。
+$icon-font-svg-id:        "jm-icon" !default;
+
+
+
+//== 组件
+//
+//## 定义公共填充和边框半径大小等。 值基于14px文本和1.428行高（约20px开始）。
+
+$padding-base-vertical:     6px !default;
+$padding-base-horizontal:   12px !default;
+
+$padding-large-vertical:    10px !default;
+$padding-large-horizontal:  16px !default;
+
+$padding-small-vertical:    5px !default;
+$padding-small-horizontal:  10px !default;
+
+$padding-xs-vertical:       1px !default;
+$padding-xs-horizontal:     5px !default;
+
+$line-height-large:         1.3333333 !default; // extra decimals for Win 8.1 Chrome
+$line-height-small:         1.5 !default;
+
+$border-radius-base:        4px !default;
+$border-radius-large:       6px !default;
+$border-radius-small:       3px !default;
+
+
+//**  激活项目的全局颜色（例如，导航或下拉列表）。
+$component-active-color:    #fff !default;
+//** 激活项目的全局背景颜色（例如导航或下拉列表）。
+$component-active-bg:       $brand-primary !default;
+
+//** `border'的宽度，用于生成表示下拉列表的插入符号。
+$caret-width-base:          4px !default;
+//** 对于较大的部件，尺寸略有增加。
+$caret-width-large:         5px !default;
+
+
+//== 表格
+//
+//## 使用基本值自定义`.table'组件，每个表格变量都使用。
+
+//** “<th>”和“<td>”的填充。
+$table-cell-padding:            8px !default;
+//** `.table-condensed` 中的单元格的填充。
+$table-condensed-cell-padding:  5px !default;
+
+//** 用于所有表格的默认背景颜色。
+$table-bg:                      transparent !default;
+//** 用于`.table-striped`的背景颜色。
+$table-bg-accent:               #f9f9f9 !default;
+//** `.table-hover'使用的背景颜色。
+$table-bg-hover:                #f5f5f5 !default;
+$table-bg-active:               $table-bg-hover !default;
+
+//** 表格边框颜色
+$table-border-color:            #ddd !default;
+
+
+//== 按钮
+//
+//## 对于每个Bootstrap按钮，定义文本，背景和边框颜色。
+
+$btn-font-weight:                normal !default;
+
+$btn-default-color:              #666 !default;
+$btn-default-bg:                 $brand-default !default;
+$btn-default-border:             #ddd !default;
+
+$btn-primary-color:              #fff !default;
+$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-border:             $btn-primary-bg !default;
+
+$btn-success-color:              #fff !default;
+$btn-success-bg:                 $brand-success !default;
+$btn-success-border:             $btn-success-bg !default;
+
+$btn-info-color:                 #fff !default;
+$btn-info-bg:                    $brand-info !default;
+$btn-info-border:                $btn-info-bg !default;
+
+$btn-warning-color:              #fff !default;
+$btn-warning-bg:                 $brand-warning !default;
+$btn-warning-border:             $btn-warning-bg !default;
+
+$btn-danger-color:               #fff !default;
+$btn-danger-bg:                  $brand-danger !default;
+$btn-danger-border:              $btn-danger-bg !default;
+
+$btn-link-disabled-color:        $gray-light !default;
+
+// 允许根据全局边界半径自定义按钮半径
+$btn-border-radius-base:         $border-radius-base !default;
+$btn-border-radius-large:        $border-radius-large !default;
+$btn-border-radius-small:        $border-radius-small !default;
+
+// 一些按钮的固定尺寸和icon的大小
+$btn-absolute-xs:                20px !default;
+$btn-absolute-icon-xs:           11px !default;
+
+$btn-absolute-sm:                30px !default;
+$btn-absolute-icon-sm:           14px !default;
+
+$btn-absolute-md:                40px !default;
+$btn-absolute-icon-md:           18px !default;
+
+$btn-absolute-lg:                50px !default;
+$btn-absolute-icon-lg:           20px !default;
+
+
+//== 表单
+//
+//##
+
+//** `<input>` 背景色
+$input-bg:                       #fff !default;
+//** `<input disabled>` 背景色
+$input-bg-disabled:              $gray-lighter !default;
+
+//**  `<input>`文本色
+$input-color:                    $gray !default;
+//** `<input>` 边框色
+$input-border:                   #ccc !default;
+
+// TODO: Rename `$input-border-radius` to `$input-border-radius-base` in v4
+//** 默认`.form-control`圆角半径
+// 这在一些浏览器中对`<select>`没有影响，因为CSS中`<select>`s的可限制性。
+$input-border-radius:            $border-radius-base !default;
+//** `.form-control`大的圆角半径
+$input-border-radius-large:      $border-radius-large !default;
+//** `.form-control`小的圆角半径
+$input-border-radius-small:      $border-radius-small !default;
+
+//** 在焦点输入的边界颜色
+$input-border-focus:             #66afe9 !default;
+
+//** Placeholder 文本颜色
+$input-color-placeholder:        #999 !default;
+
+//** 默认`.form-control`高度
+$input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;
+//** 大的`.form-control`高度
+$input-height-large:             (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2) !default;
+//** 小的`.form-control`高度
+$input-height-small:             (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
+
+//** `.form-group` 边距
+$form-group-margin-bottom:       15px !default;
+
+$legend-color:                   $gray-dark !default;
+$legend-border-color:            #e5e5e5 !default;
+
+//** 文本输入插件的背景颜色
+$input-group-addon-bg:           $gray-lighter !default;
+//** 文本输入插件的边框颜色
+$input-group-addon-border-color: $input-border !default;
+
+//** 表单控件和按钮的禁用鼠标样式
+$cursor-disabled:                not-allowed !default;
+
+
+//== 下拉列表
+//
+//## 下拉菜单容器和内容。
+
+//** 下拉菜单的背景。
+$dropdown-bg:                    #fff !default;
+//** 下拉菜单`border-color`。
+$dropdown-border:                rgba(0,0,0,.15) !default;
+//** 下拉菜单`border-color`。 **IE8**
+$dropdown-fallback-border:       #ccc !default;
+//** 下拉项之间的分隔线颜色。
+$dropdown-divider-bg:            #e5e5e5 !default;
+
+//** 下拉链接文字颜色。
+$dropdown-link-color:            $gray-dark !default;
+//** 下拉链接的悬停颜色。
+$dropdown-link-hover-color:      darken($gray-dark, 5%) !default;
+//** 下拉列表链接的悬停背景。
+$dropdown-link-hover-bg:         #f5f5f5 !default;
+
+//** 下拉菜菜单选中项文字颜色。
+$dropdown-link-active-color:     $component-active-color !default;
+//** 下拉菜菜单选中项的背景颜色。
+$dropdown-link-active-bg:        $component-active-bg !default;
+
+//** 下拉菜菜单禁用项的背景颜色。
+$dropdown-link-disabled-color:   $gray-light !default;
+
+//** 下拉菜单中的标题的文字颜色。
+$dropdown-header-color:          $gray-light !default;
+
+//** 从v3.1.0开始弃用`$ dropdown-caret-color`
+$dropdown-caret-color:           #000 !default;
+
+
+//-- Z-index 主列表
+//
+// 警告：避免自定义这些值。 它们用于对取决于z轴的组件的鸟瞰视图，并设计为一起工作。
+//
+// 注意：这些变量不会生成到定制程序中。
+
+$zindex-navbar:            1000 !default;
+$zindex-dropdown:          1000 !default;
+$zindex-popover:           1060 !default;
+$zindex-tooltip:           1070 !default;
+$zindex-navbar-fixed:      1030 !default;
+$zindex-modal-background:  1040 !default;
+$zindex-modal:             1050 !default;
+
+
+//== 媒体查询断点
+//
+//## 定义布局将改变的断点，适应不同的屏幕尺寸。
+
+// 超小屏幕/电话
+//** 从v3.0.1开始弃用`$ screen-xs`
+$screen-xs:                  480px !default;
+//** 从v3.2.0开始弃用`$ screen-xs-min`
+$screen-xs-min:              $screen-xs !default;
+//** 从v3.0.1开始弃用`$ screen-phone`
+$screen-phone:               $screen-xs-min !default;
+
+// 小屏幕/平板电脑
+//** 从v3.0.1开始弃用`$ screen-sm'
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+//** 从v3.0.1开始弃用`$ screen-tablet`
+$screen-tablet:              $screen-sm-min !default;
+
+// 中等屏幕/桌面
+//** 从v3.0.1开始弃用`$ screen-md`
+$screen-md:                  992px !default;
+$screen-md-min:              $screen-md !default;
+//** 从v3.0.1开始弃用`$ screen-desktop`
+$screen-desktop:             $screen-md-min !default;
+
+// 大屏幕/宽桌面
+//** 从v3.0.1开始弃用`$ screen-lg'
+$screen-lg:                  1200px !default;
+$screen-lg-min:              $screen-lg !default;
+//** 从v3.0.1开始弃用`$ screen-lg-desktop`
+$screen-lg-desktop:          $screen-lg-min !default;
+
+// 因此，媒体查询在需要时不重叠，提供最大值
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+
+//== 网格系统
+//
+//## 定义您的自定义响应式网格。
+
+//** 网格中的列数。
+$grid-columns:              24 !default;
+//** 列之间的填充。 左右各一半
+$grid-gutter-width:         20px !default;
+// 导航栏
+//** 导航栏变为未折叠的点。
+$grid-float-breakpoint:     $screen-sm-min !default;
+//** 导航栏开始折叠的点。
+$grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
+
+
+//== 容器尺寸
+//
+//## 为不同的屏幕尺寸定义`.container`的最大宽度。
+
+// 小屏幕/平板电脑
+$container-tablet:             (720px + $grid-gutter-width) !default;
+//** 对于$screen-sm-min
+$container-sm:                 $container-tablet !default;
+
+// 中等屏幕/桌面
+$container-desktop:            (940px + $grid-gutter-width) !default;
+//** 对于$screen-md-min
+$container-md:                 $container-desktop !default;
+
+// 大屏幕/宽桌面
+$container-large-desktop:      (1140px + $grid-gutter-width) !default;
+//** 对于$screen-lg-min
+$container-lg:                 $container-large-desktop !default;
+
+
+//== 导航栏
+//
+//##
+
+// 导航栏的基础
+$navbar-height:                    50px !default;
+$navbar-margin-bottom:             $line-height-computed !default;
+$navbar-border-radius:             $border-radius-base !default;
+$navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
+$navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2) !default;
+$navbar-collapse-max-height:       340px !default;
+
+$navbar-default-color:             #777 !default;
+$navbar-default-bg:                #f8f8f8 !default;
+$navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
+
+// 导航栏链接
+$navbar-default-link-color:                #777 !default;
+$navbar-default-link-hover-color:          #333 !default;
+$navbar-default-link-hover-bg:             transparent !default;
+$navbar-default-link-active-color:         #555 !default;
+$navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%) !default;
+$navbar-default-link-disabled-color:       #ccc !default;
+$navbar-default-link-disabled-bg:          transparent !default;
+
+// Navbar品牌标签
+$navbar-default-brand-color:               $navbar-default-link-color !default;
+$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%) !default;
+$navbar-default-brand-hover-bg:            transparent !default;
+
+// 导航栏切换
+$navbar-default-toggle-hover-bg:           #ddd !default;
+$navbar-default-toggle-icon-bar-bg:        #888 !default;
+$navbar-default-toggle-border-color:       #ddd !default;
+
+
+//=== 倒置导航栏
+// 重置反向导航栏基础
+$navbar-inverse-color:                      lighten($gray-light, 15%) !default;
+$navbar-inverse-bg:                         #222 !default;
+$navbar-inverse-border:                     darken($navbar-inverse-bg, 10%) !default;
+
+// 倒置导航条链接
+$navbar-inverse-link-color:                 lighten($gray-light, 15%) !default;
+$navbar-inverse-link-hover-color:           #fff !default;
+$navbar-inverse-link-hover-bg:              transparent !default;
+$navbar-inverse-link-active-color:          $navbar-inverse-link-hover-color !default;
+$navbar-inverse-link-active-bg:             darken($navbar-inverse-bg, 10%) !default;
+$navbar-inverse-link-disabled-color:        #444 !default;
+$navbar-inverse-link-disabled-bg:           transparent !default;
+
+// 倒立的导航条品牌标签
+$navbar-inverse-brand-color:                $navbar-inverse-link-color !default;
+$navbar-inverse-brand-hover-color:          #fff !default;
+$navbar-inverse-brand-hover-bg:             transparent !default;
+
+// 倒立的导航条切换
+$navbar-inverse-toggle-hover-bg:            #333 !default;
+$navbar-inverse-toggle-icon-bar-bg:         #fff !default;
+$navbar-inverse-toggle-border-color:        #333 !default;
+
+
+//== 导航
+//
+//##
+
+//=== 共享导航样式
+$nav-link-padding:                          10px 15px !default;
+$nav-link-hover-bg:                         $gray-lighter !default;
+
+$nav-disabled-link-color:                   $gray-light !default;
+$nav-disabled-link-hover-color:             $gray-light !default;
+
+//== 选项卡
+$nav-tabs-border-color:                     #ddd !default;
+
+$nav-tabs-link-hover-border-color:          $gray-lighter !default;
+
+$nav-tabs-active-link-hover-bg:             $body-bg !default;
+$nav-tabs-active-link-hover-color:          $gray !default;
+$nav-tabs-active-link-hover-border-color:   #ddd !default;
+
+$nav-tabs-justified-link-border-color:            #ddd !default;
+$nav-tabs-justified-active-link-border-color:     $body-bg !default;
+
+//== Pills
+$nav-pills-border-radius:                   $border-radius-base !default;
+$nav-pills-active-link-hover-bg:            $component-active-bg !default;
+$nav-pills-active-link-hover-color:         $component-active-color !default;
+
+
+//== 分页
+//
+//##
+
+$pagination-color:                     $link-color !default;
+$pagination-bg:                        #fff !default;
+$pagination-border:                    #ddd !default;
+
+$pagination-hover-color:               $link-hover-color !default;
+$pagination-hover-bg:                  $gray-lighter !default;
+$pagination-hover-border:              #ddd !default;
+
+$pagination-active-color:              #fff !default;
+$pagination-active-bg:                 $brand-primary !default;
+$pagination-active-border:             $brand-primary !default;
+
+$pagination-disabled-color:            $gray-light !default;
+$pagination-disabled-bg:               #fff !default;
+$pagination-disabled-border:           #ddd !default;
+
+
+//== 页面
+//
+//##
+
+$pager-bg:                             $pagination-bg !default;
+$pager-border:                         $pagination-border !default;
+$pager-border-radius:                  15px !default;
+
+$pager-hover-bg:                       $pagination-hover-bg !default;
+
+$pager-active-bg:                      $pagination-active-bg !default;
+$pager-active-color:                   $pagination-active-color !default;
+
+$pager-disabled-color:                 $pagination-disabled-color !default;
+
+
+//== 巨幕
+//
+//##
+
+$jumbotron-padding:              30px !default;
+$jumbotron-color:                inherit !default;
+$jumbotron-bg:                   $gray-lighter !default;
+$jumbotron-heading-color:        inherit !default;
+$jumbotron-font-size:            ceil(($font-size-base * 1.5)) !default;
+$jumbotron-heading-font-size:    ceil(($font-size-base * 4.5)) !default;
+
+
+//== 表单状态和提醒
+//
+//## 定义表单反馈状态的颜色，默认情况下，提醒。
+
+$state-success-text:             #3c763d !default;
+$state-success-bg:               #dff0d8 !default;
+$state-success-border:           darken(adjust-hue($state-success-bg, -10), 5%) !default;
+
+$state-info-text:                #31708f !default;
+$state-info-bg:                  #d9edf7 !default;
+$state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%) !default;
+
+$state-warning-text:             #8a6d3b !default;
+$state-warning-bg:               #fcf8e3 !default;
+$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%) !default;
+
+$state-danger-text:              #a94442 !default;
+$state-danger-bg:                #f2dede !default;
+$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !default;
+
+
+//== 工具提示
+//
+//##
+
+//** 工具提示最大宽度
+$tooltip-max-width:           200px !default;
+//** 工具提示文本颜色
+$tooltip-color:               #fff !default;
+//** 工具提示背景色
+$tooltip-bg:                  #000 !default;
+$tooltip-opacity:             .9 !default;
+
+//** 工具提示箭头宽度
+$tooltip-arrow-width:         5px !default;
+//** 工具提示箭头颜色
+$tooltip-arrow-color:         $tooltip-bg !default;
+
+
+//== Popovers
+//
+//##
+
+//** Popover 主体背景色
+$popover-bg:                          #fff !default;
+//** Popover最大宽度
+$popover-max-width:                   276px !default;
+//** Popover边框颜色
+$popover-border-color:                rgba(0,0,0,.2) !default;
+//** Popover fallback边框颜色
+$popover-fallback-border-color:       #ccc !default;
+
+//** Popover标题背景颜色
+$popover-title-bg:                    darken($popover-bg, 3%) !default;
+
+//** Popover箭头宽度
+$popover-arrow-width:                 10px !default;
+//** Popover箭头颜色
+$popover-arrow-color:                 $popover-bg !default;
+
+//** Popover外箭头宽度
+$popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
+//** Popover外箭头颜色
+$popover-arrow-outer-color:           fade_in($popover-border-color, 0.05) !default;
+//** Popover外箭头后备颜色
+$popover-arrow-outer-fallback-color:  darken($popover-fallback-border-color, 20%) !default;
+
+
+//== 标签
+//
+//##
+
+//** 默认标签背景颜色
+$label-default-bg:            $gray-light !default;
+//** 主标签背景颜色
+$label-primary-bg:            $brand-primary !default;
+//** 成功标签背景颜色
+$label-success-bg:            $brand-success !default;
+//** 信息标签背景颜色
+$label-info-bg:               $brand-info !default;
+//** 警告标签背景颜色
+$label-warning-bg:            $brand-warning !default;
+//** 危险标签背景颜色
+$label-danger-bg:             $brand-danger !default;
+
+//** 默认标签文字颜色
+$label-color:                 #fff !default;
+//** 链接标签的默认文字颜色
+$label-link-hover-color:      #fff !default;
+
+
+//== 模态
+//
+//##
+
+//** 填充应用于模态体
+$modal-inner-padding:         15px !default;
+
+//** 填充应用于模态标题
+$modal-title-padding:         15px !default;
+//** 模态标题行高
+$modal-title-line-height:     $line-height-base !default;
+
+//** 模态内容区域的背景颜色
+$modal-content-bg:                             #fff !default;
+//** 模式内容边框颜色
+$modal-content-border-color:                   rgba(0,0,0,.2) !default;
+//** 模式内容边框颜色** for IE8 **
+$modal-content-fallback-border-color:          #999 !default;
+
+//** 模态框背景背景颜色
+$modal-backdrop-bg:           #000 !default;
+//** 模态背景不透明度
+$modal-backdrop-opacity:      .5 !default;
+//** 模态框头部边框颜色
+$modal-header-border-color:   #e5e5e5 !default;
+//** 模态框底部边框颜色
+$modal-footer-border-color:   $modal-header-border-color !default;
+
+$modal-lg:                    900px !default;
+$modal-md:                    600px !default;
+$modal-sm:                    300px !default;
+
+
+//== 警报
+//
+//## 定义警报颜色，边框半径和填充。
+
+$alert-padding:               15px !default;
+$alert-border-radius:         $border-radius-base !default;
+$alert-link-font-weight:      bold !default;
+
+$alert-success-bg:            $state-success-bg !default;
+$alert-success-text:          $state-success-text !default;
+$alert-success-border:        $state-success-border !default;
+
+$alert-info-bg:               $state-info-bg !default;
+$alert-info-text:             $state-info-text !default;
+$alert-info-border:           $state-info-border !default;
+
+$alert-warning-bg:            $state-warning-bg !default;
+$alert-warning-text:          $state-warning-text !default;
+$alert-warning-border:        $state-warning-border !default;
+
+$alert-danger-bg:             $state-danger-bg !default;
+$alert-danger-text:           $state-danger-text !default;
+$alert-danger-border:         $state-danger-border !default;
+
+
+//== 进度条
+//
+//##
+
+//** 整个进度组件的背景颜色
+$progress-bg:                 #f5f5f5 !default;
+//** 进度条文本颜色
+$progress-bar-color:          #fff !default;
+//** 进度条上设置圆角的变量。
+$progress-border-radius:      $border-radius-base !default;
+
+//** 默认进度条颜色
+$progress-bar-bg:             $brand-primary !default;
+//** 成功进度栏颜色
+$progress-bar-success-bg:     $brand-success !default;
+//** 警告进度栏颜色
+$progress-bar-warning-bg:     $brand-warning !default;
+//** 危险进度条颜色
+$progress-bar-danger-bg:      $brand-danger !default;
+//** 信息进度栏颜色
+$progress-bar-info-bg:        $brand-info !default;
+
+
+//== 列表组
+//
+//##
+
+//** `.list-group-item`上的背景颜色
+$list-group-bg:                 #fff !default;
+//** `.list-group-item`边框颜色
+$list-group-border:             #ddd !default;
+//** 列表组边框半径
+$list-group-border-radius:      $border-radius-base !default;
+
+//** 悬停时单个列表项的背景颜色
+$list-group-hover-bg:           #f5f5f5 !default;
+//** 活动列表项的文本颜色
+$list-group-active-color:       $component-active-color !default;
+//** 活动列表项的背景颜色
+$list-group-active-bg:          $component-active-bg !default;
+//** 活动列表元素的边框颜色
+$list-group-active-border:      $list-group-active-bg !default;
+//** 活动列表项内的内容的文本颜色
+$list-group-active-text-color:  lighten($list-group-active-bg, 40%) !default;
+
+//** 禁用列表项的文本颜色
+$list-group-disabled-color:      $gray-light !default;
+//** 禁用列表项的背景颜色
+$list-group-disabled-bg:         $gray-lighter !default;
+//** 禁用列表项内的内容的文本颜色
+$list-group-disabled-text-color: $list-group-disabled-color !default;
+
+$list-group-link-color:         #555 !default;
+$list-group-link-hover-color:   $list-group-link-color !default;
+$list-group-link-heading-color: #333 !default;
+
+
+//== 面板
+//
+//##
+
+$panel-bg:                    #fff !default;
+$panel-body-padding:          15px !default;
+$panel-heading-padding:       10px 15px !default;
+$panel-footer-padding:        $panel-heading-padding !default;
+$panel-border-radius:         $border-radius-base !default;
+
+//** 面板中元素的边框颜色
+$panel-inner-border:          #ddd !default;
+$panel-footer-bg:             #f5f5f5 !default;
+
+$panel-default-text:          $gray-dark !default;
+$panel-default-border:        #ddd !default;
+$panel-default-heading-bg:    #f5f5f5 !default;
+
+$panel-primary-text:          #fff !default;
+$panel-primary-border:        $brand-primary !default;
+$panel-primary-heading-bg:    $brand-primary !default;
+
+$panel-success-text:          $state-success-text !default;
+$panel-success-border:        $state-success-border !default;
+$panel-success-heading-bg:    $state-success-bg !default;
+
+$panel-info-text:             $state-info-text !default;
+$panel-info-border:           $state-info-border !default;
+$panel-info-heading-bg:       $state-info-bg !default;
+
+$panel-warning-text:          $state-warning-text !default;
+$panel-warning-border:        $state-warning-border !default;
+$panel-warning-heading-bg:    $state-warning-bg !default;
+
+$panel-danger-text:           $state-danger-text !default;
+$panel-danger-border:         $state-danger-border !default;
+$panel-danger-heading-bg:     $state-danger-bg !default;
+
+
+//== 缩略图
+//
+//##
+
+//** 在缩略图图像周围填充
+$thumbnail-padding:           4px !default;
+//** 缩略图背景颜色
+$thumbnail-bg:                $body-bg !default;
+//** 缩略图边框颜色
+$thumbnail-border:            #ddd !default;
+//** 缩略图边框半径
+$thumbnail-border-radius:     $border-radius-base !default;
+
+//** 缩图字幕的自定义文字颜色
+$thumbnail-caption-color:     $text-color !default;
+//** 在缩略图标题附近填充
+$thumbnail-caption-padding:   9px !default;
+
+
+//== 嵌入
+//
+//##
+
+$well-bg:                     #f5f5f5 !default;
+$well-border:                 darken($well-bg, 7%) !default;
+
+
+//== 徽章
+//
+//##
+
+$badge-color:                 #fff !default;
+//** 悬停时链接的徽章文字颜色
+$badge-link-hover-color:      #fff !default;
+$badge-bg:                    $gray-light !default;
+
+//** 在活动导航链接中标记文字颜色
+$badge-active-color:          $link-color !default;
+//** 徽章在激活导航链接中的背景颜色
+$badge-active-bg:             #fff !default;
+
+$badge-font-weight:           bold !default;
+$badge-line-height:           1 !default;
+$badge-border-radius:         10px !default;
+
+
+//== 面包屑
+//
+//##
+
+$breadcrumb-padding-vertical:   8px !default;
+$breadcrumb-padding-horizontal: 15px !default;
+//** 面包屑背景色
+$breadcrumb-bg:                 #f5f5f5 !default;
+//** 面包屑字体颜色
+$breadcrumb-color:              #ccc !default;
+//** 面包屑中当前选择的字体颜色
+$breadcrumb-active-color:       $gray-light !default;
+//** 面包屑分隔符
+$breadcrumb-separator:          "/" !default;
+
+
+//== 旋转木马
+//
+//##
+
+$carousel-text-shadow:                        0 1px 2px rgba(0,0,0,.6) !default;
+
+$carousel-control-color:                      #fff !default;
+$carousel-control-width:                      15% !default;
+$carousel-control-opacity:                    .5 !default;
+$carousel-control-font-size:                  20px !default;
+
+$carousel-indicator-active-bg:                #fff !default;
+$carousel-indicator-border-color:             #fff !default;
+
+$carousel-caption-color:                      #fff !default;
+
+
+//== 关闭
+//
+//##
+
+$close-font-weight:           bold !default;
+$close-color:                 #000 !default;
+$close-text-shadow:           0 1px 0 #fff !default;
+
+
+//== 代码
+//
+//##
+
+$code-color:                  #c7254e !default;
+$code-bg:                     #f9f2f4 !default;
+
+$kbd-color:                   #fff !default;
+$kbd-bg:                      #333 !default;
+
+$pre-bg:                      #f5f5f5 !default;
+$pre-color:                   $gray-dark !default;
+$pre-border-color:            #ccc !default;
+$pre-scrollable-max-height:   340px !default;
+
+
+//== 类型
+//
+//##
+
+//** 表单和列表的水平偏移量。
+$component-offset-horizontal: 180px !default;
+//** 文本静音颜色
+$text-muted:                  $gray-light !default;
+//** 缩写和首字母缩写边框颜色
+$abbr-border-color:           $gray-light !default;
+//** 标题小颜色
+$headings-small-color:        $gray-light !default;
+//** 区块小颜色
+$blockquote-small-color:      $gray-light !default;
+//** 区块字体
+$blockquote-font-size:        ($font-size-base * 1.25) !default;
+//** 区块边框颜色
+$blockquote-border-color:     $gray-lighter !default;
+//** 页眉边框颜色
+$page-header-border-color:    $gray-lighter !default;
+//** 水平描述列表标题的宽度
+$dl-horizontal-offset:        $component-offset-horizontal !default;
+//** .dl-horizontal变为水平的点
+$dl-horizontal-breakpoint:    $grid-float-breakpoint !default;
+//** 水平线颜色
+$hr-border:                   $gray-lighter !default;

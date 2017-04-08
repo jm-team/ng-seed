@@ -11,20 +11,22 @@ app.directive('jmHeader', function (dialogs) {
         templateUrl: tmpHeader,
         replace: true,
         controller: function ($scope, User) {
-            $scope.user = User;
+            $scope.user = User.user;
 
             // 弹出登录框
-            $scope.modalV2 = function() {
-                dialogs.modal({
+            $scope.modalV2 = function ($event) {
+                $event.preventDefault();
+                var a = dialogs.modal({
                     method: 'login',
-                    className: 'box',
-                    backdropClass:'login',
+                    className: 'login-from',
+                    backdropClass: 'in',
                     templateUrl: loginV2Tmp,
+                    success: function (data) {
+                        var result = data.data.data;
+                        alert('tick')
+                    },
                     controller: 'loginV2Ctrl',
-                }).then(function(data) {
-                    var result = data.data.data;
-                    dialogs.close();
-                });
+                })
             }
         }
     };

@@ -1,0 +1,84 @@
+/*=====================================  测试自定义dialogs */
+
+.dialog-wrap{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050;
+    transition: .35s linear all; 
+}
+
+.dialog-wrap .dialog{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 15%);
+}
+.dialog-wrap.ng-enter .dialog,.dialog-wrap.ng-leave .dialog{
+    transition: inherit; 
+}
+.dialog-wrap.ng-enter .dialog,
+.dialog-wrap.ng-leave.ng-leave-active .dialog{
+    opacity: 0;
+   transform: translate(-50%, 5%);
+}
+.dialog-wrap.ng-enter.ng-enter-active .dialog,
+.dialog-wrap.ng-leave .dialog{ 
+    opacity: 1;
+    transform:translate(-50%, 15%);
+}
+
+.dialog-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .7);
+    z-index: 9;
+}
+
+.dialog-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+}
+
+.dialog-header {
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    padding: 0 12px;
+}
+
+.dialog-header .dialog-title {
+    color: #666;
+    font-size: 16px;
+}
+
+.dialog-icon-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.dialog-content {
+    padding: 12px;
+    line-height: 24px;
+    font-size: 14px;
+    min-width: 200px;
+}
+
+.dialog-footer {
+    padding: 6px;
+    text-align: right;
+    /*border-top: 1px solid #ccc;*/
+}
+
+.dialog-footer .btn {
+    margin-left: 8px;
+}

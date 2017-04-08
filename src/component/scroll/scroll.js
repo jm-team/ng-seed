@@ -17,8 +17,6 @@ angular.module('jmui.scroll', [])
             link: function (scope, element, attrs) {
                 var timer = null;
                 var top, half;
-
-
                 var _$self = angular.element(element);
 
                 // 在滚动内容外添加一个滚动容器
@@ -32,10 +30,8 @@ angular.module('jmui.scroll', [])
                     "top": "0"
                 });
 
-                scope.$watch('finish', function (value) {
-                    if (!value) return;
-                    if (!scope.scrollable) return;
-
+                scope.$watch('finish', function (value, oldVal) {
+                    if (!value || !scope.scrollable || oldVal === value) return;
                     $timeout(function () {
                         top = 0;
                         half = element[0].offsetHeight / 2;
@@ -44,12 +40,10 @@ angular.module('jmui.scroll', [])
                         }
 
                         element.on('mouseleave', function () {
-                            console.log(123)
                             if (element[0].offsetHeight > scope.height) {
                                 auto();
                             }
                         })
-
                         element.on('mouseenter', function () {
                             clearInterval(timer)
                         })

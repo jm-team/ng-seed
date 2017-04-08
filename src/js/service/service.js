@@ -300,21 +300,10 @@ app.factory('Auth', function ($resource, Address, $q, $timeout) {
 
 // 用户相关
 app.factory('User', function () {
-
-    /**
-     * 用户构造器函数
-     */
-    function User() {
-
+    return {
+        user: {},
+        setUser: function (user) {
+            angular.extend(this.user, user);
+        }
     }
-
-    // 设置用户信息
-    User.prototype.setUser = function (user) {
-        var self = this;
-        angular.forEach(user, function (value, key) {
-            self[key] = value;
-        })
-    }
-
-    return new User();
 });
