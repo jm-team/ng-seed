@@ -3,8 +3,8 @@
   "version": "0.5.0",
   "description": "",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet --open",
-    "build": "cross-env NODE_ENV=production webpack --progress"
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet --open --config ./build/webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --progress --config ./build/webpack.config.js"
   },
   "author": "",
   "license": "ISC",

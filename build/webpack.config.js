@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var config = require('./config/build.config.js');
+var config = require('../config/build.config.js');
 var webpackConfig;
 var devtool;
 var hash = chunkhash = contenthash = '';
@@ -62,7 +62,7 @@ module.exports = merge({
 
     // 构建之后的文件目录配置
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, '../dist'),
         publicPath: config.assetsPublicPath, // html 中引用资源的位置
         filename: 'js/[name].' + chunkhash + 'js',
         chunkFilename: 'js/[name].' + chunkhash + 'js'
@@ -73,11 +73,11 @@ module.exports = merge({
 
         // 配置别名
         alias: {
-            'address': path.join(__dirname, './config/address.config'),
-            'app': path.join(__dirname, './src/js/app.js'),
-            'component': path.join(__dirname, './src/component'),
-            'page': path.join(__dirname, './src/page'),
-            'controller': path.join(__dirname, './src/js/controller')
+            'address': path.join(__dirname, '../config/address.config'),
+            'app': path.join(__dirname, '../src/js/app.js'),
+            'component': path.join(__dirname, '../src/component'),
+            'page': path.join(__dirname, '../src/page'),
+            'controller': path.join(__dirname, '../src/js/controller')
         },
 
         fallback: [path.join(__dirname, './node_modules')],

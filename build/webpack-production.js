@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var InlineManifestWebpackPlugin = require("inline-manifest-webpack-plugin");
 var WebpackChunkHash = require('webpack-chunk-hash');
 var RemoveWebpackPlugin = require('remove-webpack-plugin');
-var HashedModuleIdsPlugin = require('./build/HashedModuleIdsPlugin');
+var HashedModuleIdsPlugin = require('./HashedModuleIdsPlugin');
 
 module.exports = {
 

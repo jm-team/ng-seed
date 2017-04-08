@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-var config = require('./config/build.config.js').dev;
+var config = require('../config/build.config.js').dev;
 
 // 代理对象
 var objProxy = {};
