@@ -1,15 +1,19 @@
-var fs = require('fs')
-var path = require('path')
-var express = require('express')
-var config = require('../config/build.config').dev
-var resolve = file => path.resolve(__dirname, file)
-var proxyMiddleware = require('http-proxy-middleware')
-var app = express()
-var serve = (path, cache) => express.static(resolve(path))
-var proxyTable = require('./proxy');
+const fs = require('fs')
+const path = require('path')
+const express = require('express')
+const proxyMiddleware = require('http-proxy-middleware')
+const proxyTable = require('./proxy')
+
+const config = require('../config/build.config').dev
+const port = process.env.PORT || config.devServer.port
+
+const resolve = file => path.resolve(__dirname, file)
+const serve = (path, cache) => express.static(resolve(path))
+
+const app = express()
 
 Object.keys(proxyTable).forEach(function (context) {
-    var options = proxyTable[context];
+    const options = proxyTable[context];
 
     app.use(proxyMiddleware(options.filter || context, options))
 })
@@ -20,11 +24,9 @@ app.get('*', (req, res) => {
 
     res.setHeader("Content-Type", "text/html")
 
-    res.sendfile('dist/entry/index.html');
+    res.sendFile(resolve('../dist/entry/index.html'))
 
 })
-
-var port = process.env.PORT || config.devServer.port
 
 app.listen(port, () => {
     console.log(`server started at localhost:${port}`)
