@@ -27,9 +27,20 @@
 ### 生产环境
 `npm run build`
 
+### 生产环境测试服务
+`npm run start`
+
 ## ng-seed详解
 
 ### 目录文件说明
+
+#### build/
+1. HashedModuleIdsPlugin.js - webpack2加入的，这里直接引入解决模块id不稳定的问题
+2. proxy.js - 根据config.dev.devServer参数生成完整代理配置
+3. server.js - 用于查看build之后的代码
+4. webpack.config.js - webpack通用配置项，根据开发、生产环境配置`./config/build.config.js`添加文件hash
+5. webpack-dev.js - 提供开发环境热更新服务，指定vendor模文件名为vendor.js，将不包含hash
+6. webpack-production.js - 生产环境打包，打包前删除dist目录，启用文件压缩混淆，未指定vendor模块文件名，将包含hash
 
 #### config/
 1. address.config.js - 配置项目依赖服务器地址
@@ -68,11 +79,6 @@
 6.2. 在前端固定将来会开发成接口的数据  
 7. page - 页面目录结构需与js/router目录相互统一，common为公用指令模板目录。
 8. 注意一级子目录结构不可随意修改，二级子目录可根据项目复杂度设置多级目录
-
-#### webpack
-1. webpack.config.js - webpack通用配置项，根据开发、生产环境配置`./config/build.config.js`添加文件hash
-2. webpack-dev.js - 提供开发环境热更新服务，指定vendor模文件名为vendor.js，将不包含hash
-3. webpack-production.js - 生产环境打包，打包前删除dist目录，启用文件压缩混淆，未指定vendor模块文件名，将包含hash  
 
 ## 注意事项（坑）
 ### svn git 使用细节
