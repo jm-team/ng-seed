@@ -1,13 +1,10 @@
 <p style="background: #01b5f3;color:#fff;width: 100%;">{{ state | json }}</p>
 <p style="background: #01b5f3;color:#fff;width: 100%;">{{ params| json }}</p>
-
-
-
 <div>
     <!--<button ng-click="pop()">POP</button>-->
 
     <div class="form-group">
-        <ul class="nav nav-pills" ng-model="search.categoryId">
+        <ul class="nav nav-pills">
             <li ng-repeat="list in base.categorys" ng-class="{'active':search.categoryId == list.categoryId}" ng-click="changeType(list, 'categoryId')">
                 <a href="javascript:;">{{ list.categoryName }}</a>
             </li>
@@ -15,7 +12,7 @@
     </div>
 
     <div class="form-group">
-        <ul class="nav nav-pills form-group" ng-model="search.industryId">
+        <ul class="nav nav-pills form-group">
             <li ng-repeat="list in base.industrys" ng-class="{'active':search.industryId == list.industryId}" ng-click="changeType(list, 'industryId')">
                 <a href="javascript:;">{{ list.industryName }}</a>
             </li>
@@ -23,14 +20,14 @@
     </div>
 
     <div class="highlights">
-        <ul class="list-unstyled  ">
+        <ul class="list-unstyled">
             <li ng-repeat="list in lists" class="form-group row">
                 <a href="" class="col-lg-6 col-sm-10 entry-img text-center">
                     <img src="http://themes.laborator.co/xenon/assets/images/highlights/highlights-bootstrap-3-3-1.png" alt="">
                 </a>
 
                 <div class="entry-description col-lg-18 col-sm-14">
-                    <h3 text-overflow class="text-overflow">{{ list.title }}</h3>
+                    <h3 class="text-overflow">{{ list.title }}</h3>
                     <p class="text-muted">{{ list.desc }}</p>
                 </div>
             </li>

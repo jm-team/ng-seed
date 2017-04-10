@@ -3,7 +3,7 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('SearchCtrl',
     /*@ngInject*/
-    function($scope, $http, $q, $location, $stateParams, $state, $timeout, dialogs) {
+    function($scope, $http, $q, $stateParams, $state, $timeout, dialogs, $location) {
         // 初始化参数
         $scope.search = {
             categoryId: 0,
@@ -54,14 +54,15 @@ app.registerController('SearchCtrl',
                     categoryId: $scope.search.categoryId,
                     industryId: $scope.search.industryId
                 });
-
                 // 分类列表
                 $http.get('/dist/mock/search.json').then(function(result) {
                     $scope.lists = result.data;
-                    $location.search(search);
                 }, function() {
                     alert('Error');
                 });
+                if($state.current.name === 'search'){
+                    $state.go('search', $scope.search);
+                }
             }
         })
 
@@ -104,7 +105,7 @@ app.registerController('SearchCtrl',
         $scope.state = $state;
         $scope.params = $stateParams;
 
-        $scope.$on('$locationChangeStart', function () {
+        $scope.$on('$locationChangeSuccess', function () {
             initSearch();
         })
 
