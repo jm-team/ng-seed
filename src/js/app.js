@@ -1,6 +1,6 @@
 var address = require('address');
 var jmui = require('component/jmui');
-var app = angular.module('app', ['ui.router', 'ngResource','ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
 // 路由配置
 var router = [
     ["notFound", require("./router/error/404.js")],
@@ -69,7 +69,7 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth, anchorSmoo
         $log.log('app run $stateChangeSuccess');
         $rootScope.show = true;
         Login.checkHasLogin().then(function (data) {
-            $log.log('checkAutoLogin', data); 
+            $log.log('checkAutoLogin', data);
             Api.User().get({ t: +new Date() }, function (userData) {
                 if (userData.id) {
                     Auth.user = userData;
@@ -98,9 +98,9 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth, anchorSmoo
     });
 
     // 回到顶部
-    $rootScope.scroll = function(){
-        anchorSmoothScroll.scrollTo().then(function(){
-            alert('Ok');
+    $rootScope.scroll = function () {
+        anchorSmoothScroll.scrollTo().then(function () {
+            alert('已经回到顶部了！！！');
         });
     }
 });

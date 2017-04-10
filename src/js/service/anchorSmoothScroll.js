@@ -62,9 +62,6 @@ app.provider('anchorSmoothScroll', function () {
               if (leapY > stopY) leapY = stopY;
               timer++;
             }
-            
-            // setTimeout()
-
           }else{
             for (var i = startY; i > stopY; i -= step) {
               setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
