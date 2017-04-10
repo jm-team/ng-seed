@@ -385,4 +385,9 @@ app.registerController('ChartCtrl',
         };
 
         chart.setOption(option);
+
+
+        $scope.$on("$destroy", function (event) {
+            chart.dispose();
+        });
     });

@@ -112,7 +112,7 @@ angular.module('jmui.crumbs', [])
 
 
                 function getStateDisplayName($state) {
-                    if(angular.isObject($state.data)){
+                    if (angular.isObject($state.data)) {
                         var tmp = $state.data.displayName;
                         var data = $state.locals.globals;
                         // 解析插值字符串

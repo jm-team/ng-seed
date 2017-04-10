@@ -17,9 +17,6 @@ app.registerController('newsCtrl',
 
         $scope.query();
 
-
-       
-
         // 删除新闻
         $scope.remove = function ($event, news) {
             dialogs.confirm({ template: '<p class="text-center text-default">确认删除？</p>' }).then(function () {

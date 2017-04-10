@@ -23,12 +23,21 @@
                 <a href="" class="col-lg-6 col-sm-10 entry-img text-center">
                     <img src="http://themes.laborator.co/xenon/assets/images/highlights/highlights-bootstrap-3-3-1.png" alt="">
                 </a>
-
                 <div class="entry-description col-lg-18 col-sm-14">
                     <h3 text-overflow class="text-overflow">{{ list.title }}</h3>
                     <p class="text-muted">{{ list.desc }}</p>
                 </div>
             </li>
         </ul>
+
+        <jm-pagination 
+            total-page="numPages" 
+            boundary-links="1" 
+            on-select-page="selectPage(page)" 
+            previous-text="Previous" 
+            next-text="Next" 
+            max-size="2" 
+            current-Page="search.currentPage">
+        </jm-pagination>
     </div>
 </div>

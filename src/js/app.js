@@ -61,7 +61,7 @@ app.run(function ($state, $rootScope, $location, Cookie, Util, Address) {
     }
 });
 
-app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
+app.run(function ($rootScope, $log, requestService, Login, Api, Auth, anchorSmoothScroll) {
     $rootScope.show = false;
     // 路由切换成功
     // , toParams, formState, formParams, options
@@ -70,14 +70,14 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         $rootScope.show = true;
         Login.checkHasLogin().then(function (data) {
             $log.log('checkAutoLogin', data); 
-            // Api.User().get({ t: +new Date() }, function (userData) {
-            //     if (userData.id) {
-            //         Auth.user = userData;
-            //     } else {
-            //         Auth.user = null;
-            //     }
-            //     $rootScope.$broadcast('userLoginFinished', userData);
-            // });
+            Api.User().get({ t: +new Date() }, function (userData) {
+                if (userData.id) {
+                    Auth.user = userData;
+                } else {
+                    Auth.user = null;
+                }
+                $rootScope.$broadcast('userLoginFinished', userData);
+            });
 
         }, function (data) {
             // not login yet
@@ -96,6 +96,13 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         // 取消上一个路由中还在请求的并且可以取消的XHR
         requestService.clearAll();
     });
+
+    // 回到顶部
+    $rootScope.scroll = function(){
+        anchorSmoothScroll.scrollTo().then(function(){
+            alert('Ok');
+        });
+    }
 });
 
 module.exports = app;

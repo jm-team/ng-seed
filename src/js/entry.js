@@ -12,6 +12,8 @@ require('css/style.scss')
 
 require('../js/directive/directive.js');
 require('../js/filter/filter.js');
+
 require('../js/service/service.js');
+require('../js/service/anchorSmoothScroll.js');
 require('../js/service/api.js');
-require('../js/service/dialogs2.js');
+require('../js/service/dialogs.js');
