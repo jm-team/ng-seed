@@ -190,6 +190,7 @@ module.exports = merge({
         new HtmlWebpackPlugin({
             // 生成title
             title: 'webpack App',
+            favicon: './src/img/system/favicon.ico',
             assetsPublicPath: config.assetsPublicPath,
             // 输出的文件名称 默认index.html 可以带有子目录
             // filename: './dist/index.html',
