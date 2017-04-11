@@ -4,13 +4,14 @@ var app = require('app');
 app.registerController('SearchCtrl',
     /*@ngInject*/
     function ($scope, $http, $q, $stateParams, $state, $timeout, dialogs, $location) {
+        var defaultSearch = {
+            categoryId: 0,
+            industryId: 0
+        };
 
         angular.extend($scope, {
             // 初始化参数
-            search: {
-                categoryId: 0,
-                industryId: 0
-            },
+            search: angular.extend({}, defaultSearch, $location.search()),
             // 基础数据
             base: {
                 categorys: [],
@@ -19,7 +20,7 @@ app.registerController('SearchCtrl',
 
             changeType: function (list, type) {
                 $scope.search[type] = list[type];
-                $state.go('search', $scope.search);
+                $location.search($scope.search);
             },
 
             getList: function (data) {
@@ -31,6 +32,22 @@ app.registerController('SearchCtrl',
                 });
 
             }
+        });
+
+        initSearch();
+
+        // fix 延迟注册，防止切换回当前路由触发2次查询
+        $timeout(function () {
+            var originRouter = $state.current.name;
+
+            // $stateParams.abc = $scope.$on('$locationChangeStart', function (obj, newUrl, oldUrl) {
+            $scope.$on('$locationChangeStart', function (obj, newUrl, oldUrl) {
+                // fix 离开当前路由，防止不必要查询
+                if (originRouter !== $state.current.name) {
+                    return false;
+                }
+                initSearch();
+            });
         });
 
         // 获取Category
@@ -51,12 +68,8 @@ app.registerController('SearchCtrl',
         }
 
         // 将地址栏上的数据覆盖到搜索条件
-        function coverParams(data) {
-            angular.forEach($stateParams, function (value, key) {
-                if (value) {
-                    $scope.search[key] = value;
-                }
-            });
+        function coverParams() {
+            $scope.search = angular.extend({}, defaultSearch, $location.search());
             return $scope.search;
         }
 
@@ -70,11 +83,5 @@ app.registerController('SearchCtrl',
                 $scope.getList(coverParams());
             }
         }
-
-        initSearch();
-
-        $scope.$on('$locationChangeSuccess', function () {
-            initSearch();
-        })
 
     });
