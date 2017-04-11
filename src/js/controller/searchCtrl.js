@@ -3,68 +3,35 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('SearchCtrl',
     /*@ngInject*/
-    function($scope, $http, $q, $stateParams, $state, $timeout, dialogs, $location) {
-        // 初始化参数
-        $scope.search = {
-            categoryId: 0,
-            industryId: 0
-        };
-
-        // 基础数据
-        $scope.base = {
-            categorys: [],
-            industrys: []
-        };
-
-        $scope.pop = function(){
-            dialogs.modal({
-                controller: 'cccc',
-                method: 'submit',
-                // isBackdropClickClose: false,
-                // isShowCloseIcon: false,
-                template: '<form>status: {{ status }}<button type="button" ng-click="ok()">Login</button></form>'
-            }).then(function(obj) {
-                var scope = obj.scope;
-                var data = obj.data;
-                scope.status = data.msg;
-                return scope;
-            }, function(obj) {
-                var scope = obj.scope;
-                var err = obj.err;
-                scope.status = err.errMsg;
-            }).then(function(obj) {
-                obj.close();
-                return dialogs.alert({
-                    template: '<p>执行完毕，关闭弹窗</p>'
-                });
-            }).then(function(obj) {
-                obj.close();
-            });
-        }
-
+    function ($scope, $http, $q, $stateParams, $state, $timeout, dialogs, $location) {
 
         angular.extend($scope, {
-            changeType: function(list, type) {
-                $scope.search[type] = list[type];
-                $scope.getList();
+            // 初始化参数
+            search: {
+                categoryId: 0,
+                industryId: 0
+            },
+            // 基础数据
+            base: {
+                categorys: [],
+                industrys: []
             },
 
-            getList: function() {
-                var search = angular.extend({
-                    categoryId: $scope.search.categoryId,
-                    industryId: $scope.search.industryId
-                });
+            changeType: function (list, type) {
+                $scope.search[type] = list[type];
+                $state.go('search', $scope.search);
+            },
+
+            getList: function (data) {
                 // 分类列表
-                $http.get('/dist/mock/search.json').then(function(result) {
+                $http.get('/dist/mock/search.json', {params: data}).then(function (result) {
                     $scope.lists = result.data;
-                }, function() {
+                }, function () {
                     alert('Error');
                 });
-                if($state.current.name === 'search'){
-                    $state.go('search', $scope.search);
-                }
+
             }
-        })
+        });
 
         // 获取Category
         function getCategory() {
@@ -85,7 +52,7 @@ app.registerController('SearchCtrl',
 
         // 将地址栏上的数据覆盖到搜索条件
         function coverParams(data) {
-            angular.forEach($stateParams, function(value, key) {
+            angular.forEach($stateParams, function (value, key) {
                 if (value) {
                     $scope.search[key] = value;
                 }
@@ -94,16 +61,17 @@ app.registerController('SearchCtrl',
         }
 
         function initSearch() {
-            $q.all([getCategory(), getIndustry()])
-                .then(processBase)
-                .then(coverParams)
-                .then($scope.getList)
+            if (!$scope.base.categorys.length && !$scope.base.industrys.length) {
+                $q.all([getCategory(), getIndustry()])
+                    .then(processBase)
+                    .then(coverParams)
+                    .then($scope.getList);
+            } else {
+                $scope.getList(coverParams());
+            }
         }
 
         initSearch();
-
-        $scope.state = $state;
-        $scope.params = $stateParams;
 
         $scope.$on('$locationChangeSuccess', function () {
             initSearch();
