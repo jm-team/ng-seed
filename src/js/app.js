@@ -1,6 +1,6 @@
 var address = require('address');
 var jmui = require('component/jmui');
-var app = angular.module('app', ['ui.router', 'ngResource','ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
 // 路由配置
 var router = [
     ["notFound", require("./router/error/404.js")],
@@ -61,7 +61,7 @@ app.run(function ($state, $rootScope, $location, Cookie, Util, Address) {
     }
 });
 
-app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
+app.run(function ($rootScope, $log, requestService, Login, Api, Auth, anchorSmoothScroll) {
     $rootScope.show = false;
     // 路由切换成功
     // , toParams, formState, formParams, options
@@ -69,15 +69,15 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         $log.log('app run $stateChangeSuccess');
         $rootScope.show = true;
         Login.checkHasLogin().then(function (data) {
-            $log.log('checkAutoLogin', data); 
-            // Api.User().get({ t: +new Date() }, function (userData) {
-            //     if (userData.id) {
-            //         Auth.user = userData;
-            //     } else {
-            //         Auth.user = null;
-            //     }
-            //     $rootScope.$broadcast('userLoginFinished', userData);
-            // });
+            $log.log('checkAutoLogin', data);
+            Api.User().get({ t: +new Date() }, function (userData) {
+                if (userData.id) {
+                    Auth.user = userData;
+                } else {
+                    Auth.user = null;
+                }
+                $rootScope.$broadcast('userLoginFinished', userData);
+            });
 
         }, function (data) {
             // not login yet
@@ -105,6 +105,13 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         }
         $log.info('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
     });
+
+    // 回到顶部
+    $rootScope.scroll = function () {
+        anchorSmoothScroll.scrollTo().then(function () {
+            alert('已经回到顶部了！！！');
+        });
+    }
 });
 
 module.exports = app;
