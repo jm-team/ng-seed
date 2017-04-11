@@ -982,7 +982,6 @@ angular.module('ui.bootstrap.position', [])
             };
             break;
         }
-
         return targetElPos;
       }
     };

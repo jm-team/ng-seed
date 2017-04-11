@@ -34,7 +34,7 @@
 </style>
 <div jm-header></div>
 
-<div class="container page-container" ui-view></div>
+<div class="container page-container" id="view" ui-view></div>
 
 <div jm-footer></div>
 
@@ -42,7 +42,13 @@
 <%=htmlWebpackPlugin.files.webpackManifest%>
 
 
-<a href="#"class="backTop" ng-click="scroll()">返回顶部</a>
+<a  href="#" class="backTop" 
+    visibility-height="400" 
+    on-scroll-finsh="scrollFinsh()" 
+    target-id="view" 
+    jm-anchor-smooth-scroll>返回顶部
+</a>
+
 <!-- SEO脚本 百度统计代码 -->
 </body>
 </html>
