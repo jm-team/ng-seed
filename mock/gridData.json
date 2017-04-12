@@ -1,0 +1,706 @@
+{
+    "status": {
+        "code": "200",
+        "message": "Successful!"
+    },
+    "data": {
+        "titleTime": "05/01/2017",
+        "timeBegin": "01-04",
+        "timeEnd": "01-05",
+        "dataList": [
+            {
+                "commodity": "DME",
+                "sectors": "Energy",
+                "dayPrice": "3660.00",
+                "preDayPrice": "3760.62",
+                "change": "2.75%"
+            },
+            {
+                "commodity": "Zinc",
+                "sectors": "Non-ferrous metals",
+                "dayPrice": "21225.00",
+                "preDayPrice": "21697.50",
+                "change": "2.23%"
+            },
+            {
+                "commodity": "LPG",
+                "sectors": "Energy",
+                "dayPrice": "3687.65",
+                "preDayPrice": "3755.88",
+                "change": "1.85%"
+            },
+            {
+                "commodity": "FULLDRAWNYARN",
+                "sectors": "Textile",
+                "dayPrice": "9501.67",
+                "preDayPrice": "9662.00",
+                "change": "1.69%"
+            },
+            {
+                "commodity": "Copper",
+                "sectors": "Non-ferrous metals",
+                "dayPrice": "44847.50",
+                "preDayPrice": "45503.75",
+                "change": "1.46%"
+            },
+            {
+                "commodity": "Nickel",
+                "sectors": "Non-ferrous metals",
+                "dayPrice": "84062.50",
+                "preDayPrice": "85162.50",
+                "change": "1.31%"
+            },
+            {
+                "commodity": "Ethylene glycol",
+                "sectors": "Chemical",
+                "dayPrice": "7725.00",
+                "preDayPrice": "7817.86",
+                "change": "1.20%"
+            },
+            {
+                "commodity": "PREORIENTEDYARN",
+                "sectors": "Textile",
+                "dayPrice": "8658.75",
+                "preDayPrice": "8738.57",
+                "change": "0.92%"
+            },
+            {
+                "commodity": "Lead ingot",
+                "sectors": "Non-ferrous metals",
+                "dayPrice": "17637.50",
+                "preDayPrice": "17800.00",
+                "change": "0.92%"
+            },
+            {
+                "commodity": "Hot rolled coil",
+                "sectors": "Steel",
+                "dayPrice": "3662.86",
+                "preDayPrice": "3686.43",
+                "change": "0.64%"
+            },
+            {
+                "commodity": "Hydrofluoric acid",
+                "sectors": "Chemical",
+                "dayPrice": "6933.33",
+                "preDayPrice": "6977.78",
+                "change": "0.64%"
+            },
+            {
+                "commodity": "Wood pulp",
+                "sectors": "Building materials",
+                "dayPrice": "4650.00",
+                "preDayPrice": "4675.00",
+                "change": "0.54%"
+            },
+            {
+                "commodity": "Cobalt",
+                "sectors": "Non-ferrous metals",
+                "dayPrice": "271500.00",
+                "preDayPrice": "272833.34",
+                "change": "0.49%"
+            },
+            {
+                "commodity": "Sodium metabisulfite",
+                "sectors": "Chemical",
+                "dayPrice": "2130.00",
+                "preDayPrice": "2140.00",
+                "change": "0.47%"
+            },
+            {
+                "commodity": "Tin ingot",
+                "sectors": "Non-ferrous metals",
+                "dayPrice": "149325.00",
+                "preDayPrice": "149950.00",
+                "change": "0.42%"
+            },
+            {
+                "commodity": "Rebar",
+                "sectors": "Steel",
+                "dayPrice": "3078.00",
+                "preDayPrice": "3089.33",
+                "change": "0.37%"
+            },
+            {
+                "commodity": "Ethylene oxide",
+                "sectors": "Chemical",
+                "dayPrice": "9245.00",
+                "preDayPrice": "9275.00",
+                "change": "0.32%"
+            },
+            {
+                "commodity": "White granulated sugar",
+                "sectors": "Agricultural products",
+                "dayPrice": "6792.67",
+                "preDayPrice": "6811.33",
+                "change": "0.27%"
+            },
+            {
+                "commodity": "Wheat",
+                "sectors": "Agricultural products",
+                "dayPrice": "2442.67",
+                "preDayPrice": "2449.33",
+                "change": "0.27%"
+            },
+            {
+                "commodity": "Mild steel plate",
+                "sectors": "Steel",
+                "dayPrice": "3380.71",
+                "preDayPrice": "3389.29",
+                "change": "0.25%"
+            },
+            {
+                "commodity": "DAP",
+                "sectors": "Chemical",
+                "dayPrice": "2556.25",
+                "preDayPrice": "2562.50",
+                "change": "0.24%"
+            },
+            {
+                "commodity": "Calcium carbide",
+                "sectors": "Chemical",
+                "dayPrice": "2670.00",
+                "preDayPrice": "2675.00",
+                "change": "0.19%"
+            },
+            {
+                "commodity": "Steel I bean",
+                "sectors": "Steel",
+                "dayPrice": "3327.00",
+                "preDayPrice": "3333.00",
+                "change": "0.18%"
+            },
+            {
+                "commodity": "Palm Oil",
+                "sectors": "Agricultural products",
+                "dayPrice": "6556.67",
+                "preDayPrice": "6567.33",
+                "change": "0.16%"
+            },
+            {
+                "commodity": "Titanium Dioxide",
+                "sectors": "Chemical",
+                "dayPrice": "16060.00",
+                "preDayPrice": "16085.00",
+                "change": "0.16%"
+            },
+            {
+                "commodity": "Early indica rice",
+                "sectors": "Agricultural products",
+                "dayPrice": "2608.00",
+                "preDayPrice": "2612.00",
+                "change": "0.15%"
+            },
+            {
+                "commodity": "Raw silk",
+                "sectors": "Textile",
+                "dayPrice": "376250.00",
+                "preDayPrice": "376750.00",
+                "change": "0.13%"
+            },
+            {
+                "commodity": "Urea",
+                "sectors": "Chemical",
+                "dayPrice": "1672.40",
+                "preDayPrice": "1674.40",
+                "change": "0.12%"
+            },
+            {
+                "commodity": "Silver",
+                "sectors": "Non-ferrous metals",
+                "dayPrice": "4001.33",
+                "preDayPrice": "4005.00",
+                "change": "0.09%"
+            },
+            {
+                "commodity": "Dried cocoons",
+                "sectors": "Textile",
+                "dayPrice": "115100.00",
+                "preDayPrice": "115150.00",
+                "change": "0.04%"
+            },
+            {
+                "commodity": "Benzene",
+                "sectors": "Chemical",
+                "dayPrice": "7130.00",
+                "preDayPrice": "7130.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Xylene",
+                "sectors": "Chemical",
+                "dayPrice": "5225.00",
+                "preDayPrice": "5225.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Aluminum",
+                "sectors": "Non-ferrous metals",
+                "dayPrice": "12740.00",
+                "preDayPrice": "12740.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Galvanized sheet",
+                "sectors": "Steel",
+                "dayPrice": "5064.62",
+                "preDayPrice": "5064.62",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Soybean",
+                "sectors": "Agricultural products",
+                "dayPrice": "3698.67",
+                "preDayPrice": "3698.67",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Metal Silicon",
+                "sectors": "Non-ferrous metals",
+                "dayPrice": "11140.00",
+                "preDayPrice": "11140.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Coke",
+                "sectors": "Energy",
+                "dayPrice": "1935.00",
+                "preDayPrice": "1935.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Acetone",
+                "sectors": "Chemical",
+                "dayPrice": "7305.56",
+                "preDayPrice": "7305.56",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Propylene oxide",
+                "sectors": "Chemical",
+                "dayPrice": "10680.00",
+                "preDayPrice": "10680.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "BR",
+                "sectors": "Chemical",
+                "dayPrice": "19165.45",
+                "preDayPrice": "19165.45",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Phenol",
+                "sectors": "Chemical",
+                "dayPrice": "7233.33",
+                "preDayPrice": "7233.33",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "PVC",
+                "sectors": "Chemical",
+                "dayPrice": "6183.57",
+                "preDayPrice": "6183.57",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Cotton yarn",
+                "sectors": "Textile",
+                "dayPrice": "23375.00",
+                "preDayPrice": "23375.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Polyester yarn",
+                "sectors": "Textile",
+                "dayPrice": "13075.00",
+                "preDayPrice": "13075.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Asphalt",
+                "sectors": "Energy",
+                "dayPrice": "2593.29",
+                "preDayPrice": "2593.29",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Glass",
+                "sectors": "Building materials",
+                "dayPrice": "15.56",
+                "preDayPrice": "15.56",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Fuel Oil",
+                "sectors": "Energy",
+                "dayPrice": "3350.00",
+                "preDayPrice": "3350.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Gasoline",
+                "sectors": "Energy",
+                "dayPrice": "6884.62",
+                "preDayPrice": "6884.62",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Sulfuric acid",
+                "sectors": "Chemical",
+                "dayPrice": "333.75",
+                "preDayPrice": "333.75",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Soda ash",
+                "sectors": "Chemical",
+                "dayPrice": "2050.00",
+                "preDayPrice": "2050.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Rayon yarn",
+                "sectors": "Textile",
+                "dayPrice": "21430.00",
+                "preDayPrice": "21430.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Maleic anhydride",
+                "sectors": "Chemical",
+                "dayPrice": "8510.00",
+                "preDayPrice": "8510.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Methanol gasoline",
+                "sectors": "Energy",
+                "dayPrice": "5141.00",
+                "preDayPrice": "5141.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "PET",
+                "sectors": "Chemical",
+                "dayPrice": "8225.00",
+                "preDayPrice": "8225.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Steam coal",
+                "sectors": "Energy",
+                "dayPrice": "593.00",
+                "preDayPrice": "593.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "DOP",
+                "sectors": "Chemical",
+                "dayPrice": "8358.33",
+                "preDayPrice": "8358.33",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Hydrochloric acid",
+                "sectors": "Chemical",
+                "dayPrice": "198.00",
+                "preDayPrice": "198.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Polysilicon",
+                "sectors": "Chemical",
+                "dayPrice": "137800.00",
+                "preDayPrice": "137800.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "PC",
+                "sectors": "Chemical",
+                "dayPrice": "21873.90",
+                "preDayPrice": "21873.90",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "PA6",
+                "sectors": "Chemical",
+                "dayPrice": "19900.00",
+                "preDayPrice": "19900.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "DRAWTEXTUREDYARN",
+                "sectors": "Textile",
+                "dayPrice": "10492.22",
+                "preDayPrice": "10492.22",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Coking coal",
+                "sectors": "Energy",
+                "dayPrice": "1358.00",
+                "preDayPrice": "1358.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "2-EH",
+                "sectors": "Chemical",
+                "dayPrice": "7390.00",
+                "preDayPrice": "7390.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "PA",
+                "sectors": "Chemical",
+                "dayPrice": "7561.11",
+                "preDayPrice": "7561.11",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Adipic acid",
+                "sectors": "Chemical",
+                "dayPrice": "11200.00",
+                "preDayPrice": "11200.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Potassium chloride",
+                "sectors": "Chemical",
+                "dayPrice": "1940.00",
+                "preDayPrice": "1940.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Nitric acid",
+                "sectors": "Chemical",
+                "dayPrice": "1330.00",
+                "preDayPrice": "1330.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "SBR",
+                "sectors": "Chemical",
+                "dayPrice": "19057.14",
+                "preDayPrice": "19057.14",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Dysprosium oxide",
+                "sectors": "Non-ferrous metals",
+                "dayPrice": "1200000.00",
+                "preDayPrice": "1200000.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Chloroform",
+                "sectors": "Chemical",
+                "dayPrice": "1666.00",
+                "preDayPrice": "1666.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Paper",
+                "sectors": "Building materials",
+                "dayPrice": "3251.67",
+                "preDayPrice": "3251.67",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Phosphorus yellow",
+                "sectors": "Chemical",
+                "dayPrice": "14775.00",
+                "preDayPrice": "14775.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Bromine",
+                "sectors": "Chemical",
+                "dayPrice": "28791.67",
+                "preDayPrice": "28791.67",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Acrylic acid",
+                "sectors": "Chemical",
+                "dayPrice": "8412.50",
+                "preDayPrice": "8412.50",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Activated charcoal",
+                "sectors": "Chemical",
+                "dayPrice": "10800.00",
+                "preDayPrice": "10800.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Polyamide FDY",
+                "sectors": "Textile",
+                "dayPrice": "23800.00",
+                "preDayPrice": "23800.00",
+                "change": "0.00%"
+            },
+            {
+                "commodity": "Cement",
+                "sectors": "Building materials",
+                "dayPrice": "294.83",
+                "preDayPrice": "294.67",
+                "change": "-0.05%"
+            },
+            {
+                "commodity": "Toluene",
+                "sectors": "Chemical",
+                "dayPrice": "5468.67",
+                "preDayPrice": "5465.33",
+                "change": "-0.06%"
+            },
+            {
+                "commodity": "Cotton Lint",
+                "sectors": "Textile",
+                "dayPrice": "15814.29",
+                "preDayPrice": "15802.57",
+                "change": "-0.07%"
+            },
+            {
+                "commodity": "Cold rolled sheet",
+                "sectors": "Steel",
+                "dayPrice": "4805.56",
+                "preDayPrice": "4801.11",
+                "change": "-0.09%"
+            },
+            {
+                "commodity": "Caustic soda",
+                "sectors": "Chemical",
+                "dayPrice": "903.64",
+                "preDayPrice": "902.73",
+                "change": "-0.10%"
+            },
+            {
+                "commodity": "Stainless steel plate",
+                "sectors": "Steel",
+                "dayPrice": "15619.23",
+                "preDayPrice": "15596.15",
+                "change": "-0.15%"
+            },
+            {
+                "commodity": "Rapeseed oil",
+                "sectors": "Agricultural products",
+                "dayPrice": "7562.14",
+                "preDayPrice": "7546.43",
+                "change": "-0.21%"
+            },
+            {
+                "commodity": "Corn",
+                "sectors": "Agricultural products",
+                "dayPrice": "1580.00",
+                "preDayPrice": "1576.00",
+                "change": "-0.25%"
+            },
+            {
+                "commodity": "Color coated sheet",
+                "sectors": "Steel",
+                "dayPrice": "7390.00",
+                "preDayPrice": "7370.00",
+                "change": "-0.27%"
+            },
+            {
+                "commodity": "Iron ore",
+                "sectors": "Steel",
+                "dayPrice": "624.44",
+                "preDayPrice": "622.22",
+                "change": "-0.36%"
+            },
+            {
+                "commodity": "PTA",
+                "sectors": "Textile",
+                "dayPrice": "5275.80",
+                "preDayPrice": "5251.20",
+                "change": "-0.47%"
+            },
+            {
+                "commodity": "Diesel",
+                "sectors": "Energy",
+                "dayPrice": "6527.06",
+                "preDayPrice": "6491.76",
+                "change": "-0.54%"
+            },
+            {
+                "commodity": "Sulfur",
+                "sectors": "Chemical",
+                "dayPrice": "818.89",
+                "preDayPrice": "814.44",
+                "change": "-0.54%"
+            },
+            {
+                "commodity": "LDPE",
+                "sectors": "Chemical",
+                "dayPrice": "12325.00",
+                "preDayPrice": "12250.00",
+                "change": "-0.61%"
+            },
+            {
+                "commodity": "Acetic acid",
+                "sectors": "Chemical",
+                "dayPrice": "2956.25",
+                "preDayPrice": "2937.50",
+                "change": "-0.63%"
+            },
+            {
+                "commodity": "HDPE",
+                "sectors": "Chemical",
+                "dayPrice": "10362.50",
+                "preDayPrice": "10275.00",
+                "change": "-0.84%"
+            },
+            {
+                "commodity": "LLDPE",
+                "sectors": "Chemical",
+                "dayPrice": "10135.00",
+                "preDayPrice": "10045.00",
+                "change": "-0.89%"
+            },
+            {
+                "commodity": "Aniline",
+                "sectors": "Chemical",
+                "dayPrice": "8600.00",
+                "preDayPrice": "8510.00",
+                "change": "-1.05%"
+            },
+            {
+                "commodity": "Soybean meal",
+                "sectors": "Agricultural products",
+                "dayPrice": "3374.67",
+                "preDayPrice": "3339.33",
+                "change": "-1.05%"
+            },
+            {
+                "commodity": "Styrene",
+                "sectors": "Chemical",
+                "dayPrice": "9673.08",
+                "preDayPrice": "9538.46",
+                "change": "-1.39%"
+            },
+            {
+                "commodity": "Methanol",
+                "sectors": "Energy",
+                "dayPrice": "2872.00",
+                "preDayPrice": "2830.00",
+                "change": "-1.46%"
+            },
+            {
+                "commodity": "Natural rubber",
+                "sectors": "Chemical",
+                "dayPrice": "16740.00",
+                "preDayPrice": "16426.67",
+                "change": "-1.87%"
+            },
+            {
+                "commodity": "PP",
+                "sectors": "Chemical",
+                "dayPrice": "9129.17",
+                "preDayPrice": "8945.83",
+                "change": "-2.01%"
+            }
+        ]
+    }
+}
