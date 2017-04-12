@@ -2,6 +2,9 @@ var app = require('app');
 var tmpHeader = require('./header.html');
 var loginTmp = require('component/login/login.html');
 var loginV2Tmp = require('component/loginV2/login.html');
+
+
+
 require('controller/loginCtrl.js');
 require('controller/loginV2Ctrl.js');
 

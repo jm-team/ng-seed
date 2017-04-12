@@ -46,6 +46,8 @@ app.config(function ($controllerProvider, $httpProvider, $locationProvider, $url
     $urlRouterProvider.when('', '/');
     $urlRouterProvider.otherwise('/404');
 
+
+    
     // 配置路由
     router.forEach(function (item) {
         $stateProvider.state.apply($stateProvider, item);
@@ -103,7 +105,7 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         } else {
             $rootScope.isShowFooter = true;
         }
-        $log.info('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
+        //$log.info('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
     });
 
     // 回到顶部
