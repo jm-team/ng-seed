@@ -1,19 +1,17 @@
-require('./accordion/accordion');
-require('./crumb/crumb');
-// require('./login/login');
-require('./loginV2/login');
-require('./pagination/pagination');
-require('./tab/tab');
-require('./scroll/scroll');
-require('./imgerror/imgerror');
+require('./accordion');
+require('./crumb');
+require('./login');
+require('./pagination');
+require('./tab');
+require('./scroll');
+require('./imgerror');
 require('./search');
 require('./ueditor/angular-ueditor');
 
 angular.module('jmui', [
     'jmui.accordion',
     'jmui.crumbs',
-    // 'jmui.login',
-    'jmui.loginV2',
+    'jmui.login',
     'jmui.pagination',
     'jmui.tab',
     'jmui.scroll',

@@ -1,6 +1,6 @@
 var app = require('app');
 
-app.controller('loginV2Ctrl', function ($rootScope, $scope, $log, $q, Auth, User, dialogs, Address) {
+app.controller('loginCtrl', function ($rootScope, $scope, $log, $q, Auth, User, dialogs, Address) {
 
     angular.extend($scope, {
 

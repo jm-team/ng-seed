@@ -25,7 +25,7 @@ module.exports = {
                 },
                 {
                     from: /./,
-                    to: '/dist/entry/index.html'
+                    to: '/dist/index.html'
                 }
             ]
         },

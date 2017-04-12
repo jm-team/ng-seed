@@ -12,17 +12,17 @@ var hash = chunkhash = contenthash = '';
 
 // 公共類庫文件
 var vendorFiles = [
-    './src/dep/angular/angular.js',
-    './src/dep/angular/angular-sanitize.js',
-    './src/dep/angular/angular-resource.js',
-    './src/dep/angular/angular-animate.js',
-    './src/dep/angular/ui-bootstrap-tpls.js',
-    './src/dep/angular/angular-locale_zh-cn.js',
-    './src/dep/angular/angular-ui-router.js',
-    './src/dep/bindonce.js',
-    './src/dep/security.js',
-    './src/dep/ng-lazy-image/lazy-image.js',
-    './src/css/index.js'
+    './dep/angular/angular.js',
+    './dep/angular/angular-sanitize.js',
+    './dep/angular/angular-resource.js',
+    './dep/angular/angular-animate.js',
+    './dep/angular/ui-bootstrap-tpls.js',
+    './dep/angular/angular-locale_zh-cn.js',
+    './dep/angular/angular-ui-router.js',
+    './dep/bindonce.js',
+    './dep/security.js',
+    './dep/ng-lazy-image/lazy-image.js',
+    './src/asset/css/index.js'
 ];
 
 if (config.echarts.enabled) {
@@ -58,8 +58,7 @@ module.exports = merge({
     entry: {
         // 公共文件
         vendor: vendorFiles,
-        // css: './src/css/index.js',
-        entry: './src/js/entry.js'
+        entry: './src/entry.js'
     },
 
     // 构建之后的文件目录配置
@@ -76,11 +75,11 @@ module.exports = merge({
         // 配置别名
         alias: {
             'address': path.join(__dirname, '../config/address.config'),
-            'app': path.join(__dirname, '../src/js/app.js'),
+            'app': path.join(__dirname, '../src/app.js'),
             'component': path.join(__dirname, '../src/component'),
             'page': path.join(__dirname, '../src/page'),
-            'css': path.join(__dirname, '../src/css'),
-            'controller': path.join(__dirname, '../src/js/controller')
+            'css': path.join(__dirname, '../src/asset/css'),
+            'controller': path.join(__dirname, '../src/controller')
         },
 
         fallback: [path.join(__dirname, './node_modules')],
@@ -91,18 +90,12 @@ module.exports = merge({
 
     //
     module: {
-        /*        preLoaders: [
-         {
-         test: /\.js$/,
-         loader: 'baggage?[file].html&[file].css'
-         }
-         ],*/
         loaders: [
             // 处理angularjs 模版片段
             {
                 test: /\.html$/,
                 loader: 'ngtemplate?module=ng&relativeTo=/src!html?attrs=img:src img:img-error div:img-error li:img-error span:img-error a:img-error',
-                exclude: /(entry)/
+                include: /(src)/
             },
 
             // 配置css的抽取器、加载器。'-loader'可以省去
@@ -173,13 +166,13 @@ module.exports = merge({
         extractLESS,
         extractSASS,
         new CopyWebpackPlugin([{
-            from: './src/dep/ie8support/ie8supports.js',
+            from: './dep/ie8support/ie8supports.js',
             to: './dep'
         }, {
             from: './src/mock',
             to: './mock'
         }, {
-            from: './src/img/system',
+            from: './src/asset/img/system',
             to: './img/system'
         }, {
             from: './src/component/ueditor',
@@ -190,15 +183,15 @@ module.exports = merge({
         new HtmlWebpackPlugin({
             // 生成title
             title: 'webpack App',
-            favicon: './src/img/system/favicon.ico',
+            favicon: './src/asset/img/system/favicon.ico',
             assetsPublicPath: config.assetsPublicPath,
             // 输出的文件名称 默认index.html 可以带有子目录
             // filename: './dist/index.html',
-            filename: './entry/index.html',
+            filename: 'index.html',
 
             // 源文件
             // template: './src/index.ejs',
-            template: './src/entry/index.html',
+            template: 'index.html',
 
             // 注入资源
             inject: true,

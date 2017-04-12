@@ -1,88 +1,42 @@
-<div class="pop-form">
+<div class="pop-form box">
     <header class="pop-form-header">
-        <h2 class="pop-form-title">Login</h2>
+        <h2 class="pop-form-title">Sign In</h2>
         <span class="jm-close" ng-click="close()">&times;</span>
     </header>
 
-    <div>
-        <form
-            id='login-form'
-            name='loginnormal'
-            class="jm-form form-horizontal"
-            method='post'
-
-            target='loginFrame'
-            jm-login-login
-            serverUrl="https://uc.dev.com/cas/v1/muteLogin"
-            sessionId="shiroJID"
-            on-close="close()"
-            novalidate>
-            <input id='service' class="ng-hide" name='service' value='{{serverAddress}}/webapi/shiro-cas' />
-            <!-- 来源 -->
-            <input name="from" class="ng-hide" value="{{from}}"/>
-            <!-- 1004： 聚运通 -->
-            <input id='bizcode' class="ng-hide" name='bizcode' value='1004'/>
-            <div class="form-group error-group" ng-show="(loginnormal.$invalid || errTip) && submitted">
-                <div class=" text-danger" ng-show="userInValid">Phone Number or Password error</div>
-                <div class=" text-danger" ng-show="verifyCode">VerifyCode Error</div>
-                <div class=" text-danger" ng-show="loginnormal.username.$error.required">Phone Required</div>
-                <div class=" text-danger" ng-show="loginnormal.password.$error.required">Password Required</div>
-                <div class=" text-danger" ng-show="loginnormal.checkcode.$error.required">VerifyCode Required</div>
-
-            </div>
-
+    <div class="form-wrap">
+        <form ng-submit="ok($event)" name="loginnormal" method="post" novalidate>
             <!-- 用户名 -->
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error' : loginnormal.mobileNo.$invalid && !loginnormal.mobileNo.$pristine }">
                 <div class="login-user">
-                    <input type="text"
-                           class="form-control"
-                           placeholder="Phone Number"
-                           name="username"
-
-                           ng-blur="checkIsRequiredCode()"
-                           ng-model="userName"
-                           required>
-
-                    <!-- ng-pattern="/0?(13|14|15|18)[0-9]{9}/" -->
+                    <input type="text" class="form-control" placeholder="Email" name="mobileNo" ng-model="mobileNo" ng-focus="onfocus()" required>
+                </div>
+                <div ng-show="loginnormal.mobileNo.$dirty && loginnormal.mobileNo.$invalid">
+                    <div class=" text-danger" ng-show="loginnormal.mobileNo.$error.email">Email format is invalid
+                    </div>
+                    <div class=" text-danger" ng-show="loginnormal.mobileNo.$error.required">Email Required</div>
                 </div>
             </div>
 
             <!-- 密码 -->
-            <div class="form-group">
+            <div class="form-group last">
                 <div class="login-pass">
-                    <input type="password"
-                           name="password"
-                           placeholder="Password"
-                           ng-model="password"
-                           class="form-control"
-                           required>
+                    <input type="password" name="password" placeholder="Password" ng-model="password" class="form-control" ng-focus="onfocus()"
+                        required>
                 </div>
-            </div>
-
-            <!-- 验证码 -->
-              <!-- ng-show="isRequiredCode" -->
-            <div class="form-group" >
-                <div class=" input-group  verfication-code-wrap">
-                    <input type="text" ng-model="checkcode" name="checkcode" class="form-control" ng-required="isRequiredCode" placeholder="Code">
-                    <div class="input-group-btn verfication-code">
-                        <img ng-src="{{verifiCodeSrc}}" alt="" ng-click="changeCode()">
-                    </div>
+                <div ng-show="loginnormal.password.$dirty && loginnormal.password.$invalid">
+                    <div class=" text-danger" ng-show="loginnormal.password.$error.required">Password Required</div>
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input ng-model="rememberMe"  type="checkbox" name="rememberMe"> Remember me
-                    </label>
-                </div>
+                <div class=" text-danger" ng-show="userInValid">Email or Password error</div>
+                <div class=" text-danger" ng-show="inputRequired">Please input email and password</div>
             </div>
 
-            <!-- 登录 -->
             <div class="jmform-control-group">
-                <input type="submit" ng-disabled="loging" class="btn btn-block btn-info" value="login"  ng-click="submit($event)">
+                <input type="submit" ng-disabled="loging" class="jm-btn jm-btn-block jm-btn-info" value="login">
             </div>
-
         </form>
     </div>
 </div>
