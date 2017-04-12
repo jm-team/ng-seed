@@ -3,7 +3,7 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('SearchCtrl',
     /*@ngInject*/
-    function ($scope, $http, $q, $stateParams, $state, $timeout, dialogs, $location) {
+    function ($scope, $http, $q, $stateParams, $state, $timeout, $location, jmSearch) {
         var defaultSearch = {
             categoryId: 0,
             industryId: 0
@@ -36,19 +36,8 @@ app.registerController('SearchCtrl',
 
         initSearch();
 
-        // fix 延迟注册，防止切换回当前路由触发2次查询
-        $timeout(function () {
-            var originRouter = $state.current.name;
+        jmSearch($scope, initSearch);
 
-            // $stateParams.abc = $scope.$on('$locationChangeStart', function (obj, newUrl, oldUrl) {
-            $scope.$on('$locationChangeStart', function (obj, newUrl, oldUrl) {
-                // fix 离开当前路由，防止不必要查询
-                if (originRouter !== $state.current.name) {
-                    return false;
-                }
-                initSearch();
-            });
-        });
 
         // 获取Category
         function getCategory() {

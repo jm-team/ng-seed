@@ -6,6 +6,7 @@ require('./pagination/pagination');
 require('./tab/tab');
 require('./scroll/scroll');
 require('./imgerror/imgerror');
+require('./search');
 require('./ueditor/angular-ueditor');
 
 angular.module('jmui', [
@@ -17,5 +18,6 @@ angular.module('jmui', [
     'jmui.tab',
     'jmui.scroll',
     'jmui.imgerror',
+    'jmui.search',
     'ng.ueditor'
 ]).value('version', '0.1');
