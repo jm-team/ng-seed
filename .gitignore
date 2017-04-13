@@ -40,4 +40,4 @@ config
 
 # Webstorm
 .idea
-
+/config/build.config.js

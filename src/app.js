@@ -79,14 +79,6 @@ app.run(function ($state, $rootScope, $location, Cookie, Util, Address) {
     angular.element.prototype.getStyle = function(e) {
         return "undefined" != typeof getComputedStyle ? window.getComputedStyle(this[0])[e] : this[0].currentStyle[e]
     }
-
-
-    var params = $location.search();
-    var shiroJID;
-
-    if (angular.isObject(params)) {
-        shiroJID = $location.search().shiroJID;
-    }
 });
 
 app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
