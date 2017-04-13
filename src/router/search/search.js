@@ -2,7 +2,7 @@ var templateUrl = require('page/search/search.html');
 
 module.exports = {
     title: '数据搜索',
-    url: '/search?categoryId&industryId',
+    url: '/search',
     reloadOnSearch: false,
     templateUrl: templateUrl,
     controller: 'SearchCtrl',
@@ -15,5 +15,12 @@ module.exports = {
             }, 'home');
             return defer.promise;
         }
+    // },
+    // onEnter: function(){
+    //     console.log('onEnter')
+    // },
+    // onExit: function($stateParams){
+    //     $stateParams.abc()
+    //     console.log('onExit')
     }
 }

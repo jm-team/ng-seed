@@ -10,8 +10,10 @@ require('css/style.scss')
 // require('../css/less-demo.less');
 // require('../css/sass-demo.scss');
 
-require('../js/directive/directive.js');
-require('../js/filter/filter.js');
+require('./directive/directive.js');
+require('./filter/filter.js');
 
-require('../js/service/service.js');
-require('../js/service/api.js');
+require('./service/service.js');
+require('./service/anchorSmoothScroll.js');
+require('./service/api.js');
+require('./service/dialogs.js');

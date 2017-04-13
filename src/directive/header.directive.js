@@ -1,12 +1,7 @@
 var app = require('app');
 var tmpHeader = require('./header.html');
-var loginTmp = require('component/login/login.html');
-var loginV2Tmp = require('component/loginV2/login.html');
-
-
-
+var loginV2Tmp = require('component/login/login.html');
 require('controller/loginCtrl.js');
-require('controller/loginV2Ctrl.js');
 
 app.directive('jmHeader', function (dialogs) {
     return {
@@ -28,7 +23,7 @@ app.directive('jmHeader', function (dialogs) {
                         var result = data.data.data;
                         alert('tick')
                     },
-                    controller: 'loginV2Ctrl',
+                    controller: 'loginCtrl'
                 })
             }
         }

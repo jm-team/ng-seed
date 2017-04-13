@@ -7,10 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ng-seed</title>
 
-    <meta name="format-detection" content="telephone=no">
-    <meta name="format-detection" content="address=no">
-    <meta name="fragment" content="!">
-
     <!-- ie9及以下不支持placeholder， ie8不支持html5、自定义标签指令、console等
         参考： https://github.com/jm-team/MSL-V3/tree/master/static/dep/ie8supports -->
 
@@ -29,7 +25,7 @@
 <![endif]-->
 <style>
     .fade {
-            transition: opacity .15s linear;
+        transition: opacity .15s linear;
     }
 </style>
 <div jm-header></div>
@@ -42,10 +38,10 @@
 <%=htmlWebpackPlugin.files.webpackManifest%>
 
 
-<a  href="#" class="backTop" 
-    visibility-height="400" 
-    on-scroll-finsh="scrollFinsh()" 
-    target-id="view" 
+<a  href="#" class="backTop"
+    visibility-height="400"
+    on-scroll-finsh="scrollFinsh()"
+    target-id="view"
     jm-anchor-smooth-scroll>返回顶部
 </a>
 

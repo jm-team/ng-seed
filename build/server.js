@@ -24,7 +24,7 @@ app.get('*', (req, res) => {
 
     res.setHeader("Content-Type", "text/html")
 
-    res.sendFile(resolve('../dist/entry/index.html'))
+    res.sendFile(resolve('../dist/index.html'))
 
 })
 

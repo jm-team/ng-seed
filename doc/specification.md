@@ -144,7 +144,8 @@ entry.js: (webpack 入口文件)
 4. 参考百度：https://github.com/jm-team/spec/blob/master/javascript-style-guide.md
 
 ## 八、浏览器兼容性要求
-1. 兼容所有主流标准浏览器，IE8及以上IE浏览器。
+1. 兼容所有主流标准浏览器，IE8及以上IE浏览器。  
+    注：主流标准浏览器包含：chrome、Safari、Firefox、Microsoft Edge等，国内平台还需适当兼顾360浏览器、QQ浏览器
 2. 不支持H5，css3交互的浏览器，需使用js进行兼容。
 3. 小于ie8浏览器访问需提示用户升级浏览器。Body顶部添加如下代码，样式可根据网站具体ui进行调整：
 

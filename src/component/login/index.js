@@ -1,4 +1,4 @@
-angular.module('jmui.loginV2', [])
+angular.module('jmui.login', [])
     .factory('Login', function ($q, $resource, Address, USERCENTER_ADDRESS) {
     return {
         /**
