@@ -1,5 +1,6 @@
 require('./accordion');
 require('./crumb');
+require('./tooltip');
 require('./login');
 require('./pagination');
 require('./tab');

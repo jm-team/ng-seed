@@ -1,6 +1,6 @@
 var address = require('address');
 var jmui = require('component/jmui');
-var app = angular.module('app', ['ui.router', 'ngResource',  'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
 // 路由配置
 var router = [
     ["notFound", require("./router/error/404.js")],
