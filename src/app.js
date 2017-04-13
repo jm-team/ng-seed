@@ -1,6 +1,6 @@
 var address = require('address');
 var jmui = require('component/jmui');
-var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+var app = angular.module('app', ['ui.router', 'ngResource',  'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
 // 路由配置
 var router = [
     ["notFound", require("./router/error/404.js")],
@@ -46,6 +46,8 @@ app.config(function ($controllerProvider, $httpProvider, $locationProvider, $url
     $urlRouterProvider.when('', '/');
     $urlRouterProvider.otherwise('/404');
 
+
+    
     // 配置路由
     router.forEach(function (item) {
         $stateProvider.state.apply($stateProvider, item);
@@ -61,7 +63,7 @@ app.run(function ($state, $rootScope, $location, Cookie, Util, Address) {
     }
 });
 
-app.run(function ($rootScope, $log, requestService, Login, Api, Auth, anchorSmoothScroll) {
+app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
     $rootScope.show = false;
     // 路由切换成功
     // , toParams, formState, formParams, options
@@ -97,21 +99,19 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth, anchorSmoo
         requestService.clearAll();
     });
 
-    $rootScope.$on('$viewContentLoaded', function(event, toState) {
-        if($rootScope.isFirstLoad) {
+    $rootScope.$on('$viewContentLoaded', function (event, toState) {
+        if ($rootScope.isFirstLoad) {
             $rootScope.isFirstLoad = false;
         } else {
             $rootScope.isShowFooter = true;
         }
-        $log.info('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
+        //$log.info('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
     });
 
     // 回到顶部
-    $rootScope.scroll = function () {
-        anchorSmoothScroll.scrollTo().then(function () {
-            alert('已经回到顶部了！！！');
-        });
-    }
+    $rootScope.scrollFinsh = function () {
+        alert('xxxx已经回到顶部了！！！');
+    };
 });
 
 module.exports = app;

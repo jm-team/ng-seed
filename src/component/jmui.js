@@ -7,12 +7,17 @@ require('./scroll');
 require('./imgerror');
 require('./search');
 require('./ueditor/angular-ueditor');
+require('./backtop');
+require('./dialog');
 
 angular.module('jmui', [
+    'jmui.dialog',
     'jmui.accordion',
     'jmui.crumbs',
+    'jmui.tooltip',
     'jmui.login',
     'jmui.pagination',
+    'jmui.AnchorSmoothScroll',
     'jmui.tab',
     'jmui.scroll',
     'jmui.imgerror',

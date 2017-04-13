@@ -2,4 +2,36 @@
     <header>
         <h2 class="text-center">About Page</h2>
     </header>
+
+
+        <button class="jm-btn jm-btn-success" 
+                trigger="click"
+                
+                jm-tooltip 
+                delay="3000"
+                resolve="resolves"
+                tooltip-title="标题" 
+                tooltip-content="<p>这是一段内容,这是一段内容,这是一段内容,这是一段内容</p>">有依赖的 tooltip 点击</button>
+        
+        <button class="jm-btn jm-btn-danger"
+                popper-class="tooltip-left"
+                jm-tooltip tooltip-title="标题2" 
+                tooltip-content="<p>这是一段内容2,这是一段内容2,这是一段内容2,这是一段内容2</p>">tooltip 移入</button>
+        
+        <button class="jm-btn jm-btn-info" 
+                trigger="focus"
+                jm-tooltip tooltip-title="标题3" 
+                tooltip-content="<p>这是一段内容3,这是一段内容3,这是一段内容3,这是一段内容3</p>">tooltip focus</button>
+        
+        <button class="jm-btn jm-btn-primary" 
+                template="{{template}}" 
+                jm-tooltip
+                trigger="click"
+                controller-name="tooltipCtrl"
+                tooltip-title="模板上的标题4" 
+                tooltip-content="模板内容">tooltip click</button>
+        
+        <button class="jm-btn <jm-btn-warning></jm-btn-warning>" 
+                jm-tooltip tooltip-title="标题5" 
+                tooltip-content="<p>这是一段内容5,这是一段内容5,这是一段内容5,这是一段内容5</p>">tooltip hover</button>
 </div>

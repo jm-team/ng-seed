@@ -1,0 +1,8 @@
+<div>
+  <h4 ng-bind-html="title"></h4>
+  <div>
+    <p ng-bind-html="content"></p>
+  </div>
+  <p ng-if="closing"> <strong class="text-danger">{{ time }}</strong>秒后关闭</p>
+  <button class='jm-btn jm-btn-danger' ng-click='ok($event)'>删除？</button>
+</div>
