@@ -179,10 +179,6 @@ angular.module('jmui.tooltip', [])
 
           // 获取依赖
           ngCtrl.resolve().then(function (data) {
-            if (attrs.controllerName) {
-              ngCtrl.scope = $rootScope.$new();
-            }
-
             // 将依赖保存
             angular.forEach(data, function (item, index) {
               scope[ngCtrl.resolveKeys[index]] = item;

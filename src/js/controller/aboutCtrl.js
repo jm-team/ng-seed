@@ -9,6 +9,10 @@ app.registerController('AboutCtrl',
             title: 'About Page',
             desc: '关于。。。。',
             template: tpl,
+            on: true,
+            toggleDisabled: function(){
+                $scope.disabled = !$scope.disabled;
+            },
             resolves: {
                 content: function () {
                     return "123"

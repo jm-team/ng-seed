@@ -43,7 +43,6 @@ angular
             if (config.dialogFooter) {
                 footer = '<div class="dialog-footer">' + config.dialogFooter + '</div>';
             }
-            debugger;
             if (_templateUrl) {
                 $http.get(_templateUrl, {
                     cache: $templateCache

@@ -1,0 +1,21 @@
+<label class="jm-switch" ng-class="{on: ngModel, off: !ngModel}">
+
+  <input type="checkbox" 
+    ng-change="change($event)" 
+    class="jm-switch__input" 
+    name="{{name}}" 
+    ng-model="ngModel" 
+    ng-disabled="disabled"/> 
+  
+  <div class="jm-switch__core">
+    <span class="jm-switch__button"></span> 
+  </div>
+
+  <div class="jm-switch__left">
+    <span class="text" ng-bind-html="onText"></span>
+  </div>
+
+  <div class="jm-switch__right">
+    <span class="text" ng-bind-html="offText"></span>
+  </div>
+<label>
