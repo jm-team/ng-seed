@@ -4,16 +4,24 @@
  * type="text/javascript-lazy"
  */
 angular.module('jmui.loadScript', [])
-    .directive('script', [function() {
-    return {
-        restrict: 'E',
-        scope: false,
-        link: function(scope, element, attrs) {
-            if (attrs.type === 'text/javascript-lazy') {
-                var s = document.createElement('script'); // use global document since Angular's $document is weak
-                s.src = attrs.src;
-                document.body.appendChild(s);
+    .directive('script', [function () {
+        return {
+            restrict: 'E',
+            scope: false,
+            link: function (scope, element, attrs) {
+                if (attrs.type !== 'text/javascript-lazy') {
+                    return false;
+                }
+
+                if (attrs.src) {
+                    var s = document.createElement('script'); // use global document since Angular's $document is weak
+                    s.src = attrs.src;
+                    document.body.appendChild(s);
+                } else {
+                    var code = element.text();
+                    var f = new Function(code);
+                    f();
+                }
             }
-        }
-    };
-}]);
+        };
+    }]);
