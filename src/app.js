@@ -1,6 +1,7 @@
+require('./service/ng.element');
 var address = require('address');
 var jmui = require('component/jmui');
-var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+var app = angular.module('app', ['ng.element', 'ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
 
 // 路由配置
 var router = [
@@ -53,33 +54,6 @@ app.config(function ($controllerProvider, $httpProvider, $locationProvider, $url
     });
 });
 
-app.run(function ($state, $rootScope, $location, Cookie, Util, Address) {
-
-    angular.$ = function(e) {
-        return e = angular.isString(e) ? document.querySelectorAll(e) : e,
-        angular.element(e)
-    }
-
-    angular.element.prototype.find = function(e) {
-        if (!e)
-            return angular.$();
-        var t, n = document.querySelectorAll(e), a = [];
-        for (t = 0; t < n.length; t++)
-            a.push(n[t]);
-        var r = this[0].getElementsByTagName("*")
-          , i = [];
-        for (t = 0; t < r.length; t++)
-            i.push(r[t]);
-        var o = [];
-        for (t = 0; t < a.length; t++)
-            -1 !== i.indexOf(a[t]) && o.push(a[t]);
-        return angular.$(o)
-    }
-
-    angular.element.prototype.getStyle = function(e) {
-        return "undefined" != typeof getComputedStyle ? window.getComputedStyle(this[0])[e] : this[0].currentStyle[e]
-    }
-});
 
 app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
     $rootScope.show = false;
@@ -90,7 +64,9 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         $rootScope.show = true;
         Login.checkHasLogin().then(function (data) {
             $log.log('checkAutoLogin', data);
-            Api.User().get({ t: +new Date() }, function (userData) {
+            Api.User().get({
+                t: +new Date()
+            }, function (userData) {
                 if (userData.id) {
                     Auth.user = userData;
                 } else {
@@ -109,6 +85,7 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
     });
     $rootScope.isShowFooter = false;
     $rootScope.isFirstLoad = true;
+
     // 路由切换开始
     // event, toState, toParams, formState, formParams, options
     $rootScope.$on('$stateChangeStart', function () {
@@ -123,7 +100,6 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         } else {
             $rootScope.isShowFooter = true;
         }
-        //$log.info('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
     });
 
     // 回到顶部
