@@ -1,70 +1,74 @@
-var app = require('app');
-var tpl = require("page/about/tooltip.html");
-// 调用Api 服务
-app.registerController('AboutCtrl',
+(function () {
+    var app = require('app');
+    var tpl = require("page/about/tooltip.html");
+    // 调用Api 服务
+    app.registerController('AboutCtrl', AboutCtrl);
+
     /*@ngInject*/
-    function ($scope, Api, $interval, $q, $timeout) {
-        
-        angular.extend($scope, {
-            title: 'About Page',
-            desc: '关于。。。。',
-            template: tpl,
-            on: true,
-            toggleDisabled: function(){
-                $scope.disabled = !$scope.disabled;
+    function AboutCtrl(Api, $interval, $q, $timeout) {
+        var vm = this;
+        var resolve;
+
+        vm.title = "About Page";
+        vm.desc = "关于。。。。";
+        vm.on = true;
+        vm.template = tpl;
+        vm.resolves = resolve;
+        vm.toggleDisabled = toggleDisabled;
+
+        ///////////////////////////
+
+        function toggleDisabled() {
+            vm.disabled = !vm.disabled;
+        }
+
+        resolve = {
+            content: function () {
+                return "123"
             },
-            resolves: {
-                content: function () {
-                    return "123"
-                },
 
-                title: function () {
-                    var defer = $q.defer();
-                    $timeout(function () {
-                        console.log('title promise')
-                        defer.resolve('title promise')
-                    }, 300)
+            title: function () {
+                var defer = $q.defer();
+                $timeout(function () {
+                    console.log('title promise')
+                    defer.resolve('title promise')
+                }, 300)
 
-                    return defer.promise;
-                }
+                return defer.promise;
             }
-        });
-
-        // $interval(function () {
-        //     $scope.text = Math.random();
-        // }, 3000)
-    });
+        };
+    }
+})();
 
 
+(function () {
+    var app = require('app');
+    app.registerController('TooltipCtrl', TooltipCtrl);
 
-
-
-app.registerController('tooltipCtrl',
     /*@ngInject*/
+    function TooltipCtrl(Api, $sce, $q, $interval, tooltip) {
+        var vm = this;
 
-    /**, title, content */
-    function ($scope, Api, $sce, $q, $interval,  tooltip) {
-        console.log(tooltip.content);
-        angular.extend($scope, {
-            title:tooltip.title,
-            time:5,
-            closing:false,
-            content: tooltip.content,
-            ok: function ($event) {
-                $interval.cancel(interval);
-                $scope.closing = 1;
-                $event.stopPropagation();
-                var interval = $interval(function(){
-                    if($scope.time === 0){
-                        $interval.cancel(interval);
-                        tooltip.destroy();
-                    }
-                    $scope.time--;
-                }, 1000)
-            }
-        });
+        vm.title = 123;
+        vm.time = 5;
+        vm.closing = 0;
+        vm.title = tooltip.title;
+        vm.content = tooltip.content;
+        vm.ok = ok;
 
-        // $interval(function () {
-        //     $scope.text = Math.random();
-        // }, 3000)
-    });
+        //////////////////////////
+
+        function ok($event) {
+            $interval.cancel(interval);
+            vm.closing = 1;
+            $event.stopPropagation();
+            var interval = $interval(function () {
+                if (vm.time === 0) {
+                    $interval.cancel(interval);
+                    tooltip.destroy();
+                }
+                vm.time--;
+            }, 1000);
+        }
+    }
+})();

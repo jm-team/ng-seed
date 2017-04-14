@@ -9,9 +9,10 @@ require('./imgerror');
 require('./search');
 require('./ueditor/angular-ueditor');
 
-require('./backtop/');
-require('./dialog/');
-require('./switch/');
+require('./backtop');
+require('./dialog');
+require('./switch');
+require('./alert');
 
 
 angular.module('jmui', [
@@ -19,6 +20,7 @@ angular.module('jmui', [
     'jmui.accordion',
     'jmui.crumbs',
     'jmui.switch',
+    'jmui.alert',
     // 'jmui.login',
 
     'jmui.tooltip',

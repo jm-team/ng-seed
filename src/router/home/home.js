@@ -5,6 +5,7 @@ module.exports = {
     url: '/',
     templateUrl: templateUrl,
     controller: 'HomeCtrl',
+    controllerAs: 'vm',
     resolve: {
         /*@ngInject*/
         loadCtrl: function ($q) {

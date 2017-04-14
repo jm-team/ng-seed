@@ -346,7 +346,7 @@ $screen-md-max:              ($screen-lg-min - 1) !default;
 //** 网格中的列数。
 $grid-columns:              24 !default;
 //** 列之间的填充。 左右各一半
-$grid-gutter-width:         20px !default;
+$grid-gutter-width:         16px !default;
 // 导航栏
 //** 导航栏变为未折叠的点。
 $grid-float-breakpoint:     $screen-sm-min !default;
@@ -646,20 +646,20 @@ $alert-padding:               15px !default;
 $alert-border-radius:         $border-radius-base !default;
 $alert-link-font-weight:      bold !default;
 
-$alert-success-bg:            $state-success-bg !default;
-$alert-success-text:          $state-success-text !default;
+$alert-success-bg:            $brand-success !default;
+$alert-success-text:          #fff !default;
 $alert-success-border:        $state-success-border !default;
 
-$alert-info-bg:               $state-info-bg !default;
-$alert-info-text:             $state-info-text !default;
+$alert-info-bg:               $brand-info !default;
+$alert-info-text:             #fff !default;
 $alert-info-border:           $state-info-border !default;
 
-$alert-warning-bg:            $state-warning-bg !default;
-$alert-warning-text:          $state-warning-text !default;
+$alert-warning-bg:            $brand-warning !default;
+$alert-warning-text:          #fff !default;
 $alert-warning-border:        $state-warning-border !default;
 
-$alert-danger-bg:             $state-danger-bg !default;
-$alert-danger-text:           $state-danger-text !default;
+$alert-danger-bg:             $brand-danger !default;
+$alert-danger-text:           #fff !default;
 $alert-danger-border:         $state-danger-border !default;
 
 

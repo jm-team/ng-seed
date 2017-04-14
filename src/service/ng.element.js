@@ -35,5 +35,5 @@ angular.module('ng.element', [])
                 top: boundingClientRect.top + ($window.pageYOffset || $document[0].documentElement.scrollTop),
                 left: boundingClientRect.left + ($window.pageXOffset || $document[0].documentElement.scrollLeft)
             };
-        }
+        };
     })
