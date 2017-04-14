@@ -1,14 +1,14 @@
 {
   "name": "ng-seed",
-  "version": "0.5.0",
-  "description": "",
+  "version": "0.6.0-beta.2",
+  "description": "> angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、服务接口跨域、SPA页面SEO等问题",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet --open --config ./build/webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --progress --config ./build/webpack.config.js",
     "start": "node ./build/server"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "ICELI",
+  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.5.1",
     "copy-webpack-plugin": "^3.0.1",
@@ -33,6 +33,7 @@
     "postcss-sprites": "^4.0.0",
     "remove-webpack-plugin": "^1.2.2",
     "sass-loader": "^4.0.2",
+    "standard": "^10.0.1",
     "style-loader": "^0.13.1",
     "webpack": "1.13.2",
     "webpack-chunk-hash": "^0.4.0",
@@ -41,5 +42,23 @@
   },
   "dependencies": {
     "cross-env": "^3.1.4"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jm-team/ng-seed.git"
+  },
+  "keywords": [
+    "angularjs",
+    "webpack",
+    "angularjs-seed",
+    "ng-seed"
+  ],
+  "bugs": {
+    "url": "https://github.com/jm-team/ng-seed/issues"
+  },
+  "homepage": "https://github.com/jm-team/ng-seed#readme"
 }
