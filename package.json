@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet --open --config ./build/webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --progress --config ./build/webpack.config.js",
-    "start": "node ./build/server"
+    "start": "node ./build/server",
+    "authors": "./build/update-authors.sh"
   },
   "author": "ICELI",
   "license": "MIT",
