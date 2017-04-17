@@ -5,6 +5,12 @@ angular.module('ng.element', [])
                 angular.element(e)
         };
 
+        /**
+         * [重写angular find方法]
+         * @author zhoul
+         * @param   {String}   e CSS 选择器
+         * @returns {Array} angular 包装后的Dom对象
+         */
         angular.element.prototype.find = function (e) {
             if (!e)
                 return angular.$();
@@ -22,10 +28,21 @@ angular.module('ng.element', [])
             return angular.$(o)
         };
 
+        /**
+         * 获取元素的指定样式
+         * @author zhoul
+         * @param   {String} e 指定元素属性
+         * @returns {string} 元素的值
+         */
         angular.element.prototype.getStyle = function (e) {
             return "undefined" != typeof getComputedStyle ? window.getComputedStyle(this[0])[e] : this[0].currentStyle[e]
         };
 
+        /**
+         * 获取元素的定位位置和大小
+         * @author zhoul
+         * @returns {object} 元素信息对象
+         */
         angular.element.prototype.getOffset = function () {
             var boundingClientRect = this[0].getBoundingClientRect();
 

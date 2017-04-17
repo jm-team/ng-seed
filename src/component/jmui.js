@@ -13,6 +13,7 @@ require('./backtop');
 require('./dialog');
 require('./switch');
 require('./alert');
+require('./rate');
 
 
 angular.module('jmui', [
@@ -29,6 +30,7 @@ angular.module('jmui', [
     'jmui.AnchorSmoothScroll',
     'jmui.tab',
     'jmui.scroll',
+    'jmui.rate',
     'jmui.imgerror',
     'jmui.search',
     'ng.ueditor'

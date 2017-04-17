@@ -17,6 +17,12 @@ app.registerController('newsCtrl',
       });
     };
 
+
+
+
+    $timeout(function(){
+      $scope.numPages = 12;
+    },3000)
     $scope.query();
 
     // 删除新闻
