@@ -10,6 +10,7 @@ while (<>) {
   next if /(ti10mylove\@163.com)/;
   next if /(Yibang Yang)/;
   next if /(jumore.com)/;
+  next if /(.local)/;
   next if /(立)/;
   $seen{$_} = push @authors, "- ", $_;
 }
