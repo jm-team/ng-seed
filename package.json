@@ -10,6 +10,11 @@
     "commitmsg": "validate-commit-msg",
     "authors": "./build/update-authors.sh"
   },
+  "config": {
+    "validate-commit-msg": {
+      "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"]
+    }
+  },
   "author": "ICELI",
   "license": "MIT",
   "devDependencies": {
