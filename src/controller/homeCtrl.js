@@ -14,7 +14,7 @@
         vm.desc = "这是主页";
         vm.data = [1, 2, 3, 4, 5];
         vm.collection = [];
-        vm.searchText = [];
+        vm.searchText = 1;
         vm.changeImageUrl = changeImageUrl;
         vm.changeImage = changeImage;
 

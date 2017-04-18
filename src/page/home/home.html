@@ -35,7 +35,7 @@
     <section class="panel-body">
       <div class="form-group row">
         <div class="col-lg-6">
-          <select class="form-control" ng-model="searchText">
+          <select class="form-control" ng-model="vm.searchText">
             <option value="1">filter 1</option>
             <option value="2">filter 2</option>
             <option value="3">none</option>
@@ -47,7 +47,7 @@
 
 
       <ul class="list-unstyled">
-        <li class="demo-repeat-list--items" ng-repeat="image in filtered =(collection | filter:{'type': searchText})">
+        <li class="demo-repeat-list--items" ng-repeat="image in filtered =(vm.collection | filter:{'type': vm.searchText})">
           <span afkl-lazy-image="{{image.srcset}}" class="afkl-lazy-wrapper afkl-img-ratio-3-2"></span>
         </li>
       </ul>
