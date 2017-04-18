@@ -12,22 +12,22 @@ const serve = (path, cache) => express.static(resolve(path))
 
 const app = express()
 
-Object.keys(proxyTable).forEach(function (context) {
-    const options = proxyTable[context];
+Object.keys(proxyTable).forEach(context => {
+  const options = proxyTable[context]
 
-    app.use(proxyMiddleware(options.filter || context, options))
+  app.use(proxyMiddleware(options.filter || context, options))
 })
 
 app.use('/dist', serve('../dist', true))
 
 app.get('*', (req, res) => {
 
-    res.setHeader("Content-Type", "text/html")
+  res.setHeader('Content-Type', 'text/html')
 
-    res.sendFile(resolve('../dist/index.html'))
+  res.sendFile(resolve('../dist/index.html'))
 
 })
 
 app.listen(port, () => {
-    console.log(`server started at localhost:${port}`)
+  console.log(`server started at localhost:${port}`)
 })
