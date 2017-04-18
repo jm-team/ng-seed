@@ -1,37 +1,155 @@
-<div class="container">
-    <header>
-        <h2 class="text-center">About Page</h2>
-    </header>
+<div>
+  <h2>Tooltip</h2>
+  <div class="row">
+    <div class="col-md-24">
+      <button class="jm-btn jm-btn-success" trigger="click" jm-tooltip delay="3000" resolve="resolves" tooltip-title="标题" tooltip-content="<p>这是一段内容,这是一段内容,这是一段内容,这是一段内容</p>">有依赖的 tooltip 点击</button>
+
+      <button class="jm-btn jm-btn-danger" popper-class="tooltip-left" jm-tooltip tooltip-title="标题2" tooltip-content="<p>这是一段内容2,这是一段内容2,这是一段内容2,这是一段内容2</p>">tooltip 移入</button>
+
+      <button class="jm-btn jm-btn-info" trigger="focus" jm-tooltip tooltip-title="标题3" tooltip-content="<p>这是一段内容3,这是一段内容3,这是一段内容3,这是一段内容3</p>">tooltip focus</button>
+
+      <button class="jm-btn jm-btn-primary" template="{{vm.template}}" jm-tooltip trigger="click" controller-name="TooltipCtrl" controller-as="vm" tooltip-title="模板上的标题4" tooltip-content="模板内容">tooltip click</button>
+
+      <button class="jm-btn jm-btn-warning" jm-tooltip tooltip-title="标题5" tooltip-content="<p>这是一段内容5,这是一段内容5,这是一段内容5,这是一段内容5</p>">tooltip hover</button>
+    </div>
+  </div>
+
+  <h2>Switch</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <jm-switch style="margin:20px;" width="58" on-text="开" on-color="#68b828" off-text="关" off-color="#ea6262" name="checked" ng-model="on" ng-disabled="disabled">
+      </jm-switch>
+      <jm-switch style="margin:20px;" width="64" on-text="ON" on-color="#68b828" off-text="OFF" off-color="#ea6262" name="checked" ng-model="on1" disabled="disabled">
+      </jm-switch>
+    </div>
+
+    <div class="col-md-12">
+      <jm-switch style="margin:20px;" width="64" on-text="ON" on-color="#68b828" off-text="OFF" off-color="#ea6262" name="checked" ng-model="on2">
+      </jm-switch>
+
+      <button ng-click="toggleDisabled()">是否可切换switch</button>
+    </div>
+  </div>
+
+  <h2>Rate</h2>
+  <div class="row">
+
+   <div class="col-md-12">
+     <div
+          model="vm.model0"
+          jm-rate
+          max="5"
+          low-threshold="2"
+          high-threshold="4"
+          show-text="true"
+          void-color="#C6D1DE"
+          colors="['#99A9BF', '#F7BA2A', '#FF9900']"
+          texts="{{ vm.texts }}"
+          jm-icon-star-off="jm-icon-xihuan1"
+          jm-icon-star-on="jm-icon-xihuan">
+      </div>
+   </div>
+
+    <div class="col-md-12">
+      <div
+          model="vm.model"
+
+          jm-rate
+          max="5"
+          show-text="true"
+          disabled
+          texts="{{ vm.texts }}"
+          jm-icon-star-off="jm-icon-xihuan1"
+          jm-icon-star-on="jm-icon-xihuan">
+      </div>
+
+      <button ng-click="vm.change()">重新选择</button>
+    </div>
+    <div class="col-md-12">
+      <div
+          model="vm.model1"
+
+          jm-rate
+          max="5"
+          text-color="#ff9900"
+          show-text="true"
+          texts="{{ vm.texts }}"
+          jm-icon-star-off="jm-icon-zan1"
+          jm-icon-star-on="jm-icon-zan">
+      </div>
+    </div>
+  </div>
+
+  <h2>Alert</h2>
+  <div class="row">
+    <div class="col-md-12">
+
+      <jm-alert type="success">
+        <span>成功提示的文案</span>
+      </jm-alert>
+
+      <jm-alert type="info">
+        <span>信息的提示</span>
+      </jm-alert>
+
+      <jm-alert type="warning" closable="false">
+        <span>不可关闭的 警告提示的文案</span>
+      </jm-alert>
+
+      <jm-alert type="danger">
+        <span>错误提示的文案</span>
+      </jm-alert>
+
+    </div>
+
+    <div class="col-md-12">
+      <jm-alert type="success">
+        <div class="jm-alert-icon">
+          <i class="jm-icon jm-icon-succed"></i>
+        </div>
+
+        <div class="jm-alert__content">
+          <h4>成功提示的文案</h4>
+          <p>文字说明文字说明文字说明文字说明文字说明文字说明</p>
+        </div>
+
+      </jm-alert>
 
 
-        <button class="jm-btn jm-btn-success" 
-                trigger="click"
-                
-                jm-tooltip 
-                delay="3000"
-                resolve="resolves"
-                tooltip-title="标题" 
-                tooltip-content="<p>这是一段内容,这是一段内容,这是一段内容,这是一段内容</p>">有依赖的 tooltip 点击</button>
-        
-        <button class="jm-btn jm-btn-danger"
-                popper-class="tooltip-left"
-                jm-tooltip tooltip-title="标题2" 
-                tooltip-content="<p>这是一段内容2,这是一段内容2,这是一段内容2,这是一段内容2</p>">tooltip 移入</button>
-        
-        <button class="jm-btn jm-btn-info" 
-                trigger="focus"
-                jm-tooltip tooltip-title="标题3" 
-                tooltip-content="<p>这是一段内容3,这是一段内容3,这是一段内容3,这是一段内容3</p>">tooltip focus</button>
-        
-        <button class="jm-btn jm-btn-primary" 
-                template="{{template}}" 
-                jm-tooltip
-                trigger="click"
-                controller-name="tooltipCtrl"
-                tooltip-title="模板上的标题4" 
-                tooltip-content="模板内容">tooltip click</button>
-        
-        <button class="jm-btn <jm-btn-warning></jm-btn-warning>" 
-                jm-tooltip tooltip-title="标题5" 
-                tooltip-content="<p>这是一段内容5,这是一段内容5,这是一段内容5,这是一段内容5</p>">tooltip hover</button>
+
+      <jm-alert type="info">
+        <div class="jm-alert-icon">
+          <i class="jm-icon jm-icon-play"></i>
+        </div>
+        <div class="jm-alert__content">
+          <h4>信息提示的文案</h4>
+          <p>文字说明文字说明文字说明文字说明文字说明文字说明</p>
+        </div>
+      </jm-alert>
+
+
+      <jm-alert type="warning">
+        <div class="jm-alert-icon">
+          <i class="jm-icon jm-icon-parkinglot"></i>
+        </div>
+        <div class="jm-alert__content">
+          <h4>警告提示的文案</h4>
+          <p>文字说明文字说明文字说明文字说明文字说明文字说明</p>
+        </div>
+      </jm-alert>
+
+      <jm-alert type="danger">
+        <div class="jm-alert-icon">
+          <i class="jm-icon jm-icon-failed"></i>
+        </div>
+        <div class="jm-alert__content">
+          <h4>错误提示的文案</h4>
+          <p>文字说明文字说明文字说明文字说明文字说明文字说明</p>
+        </div>
+      </jm-alert>
+
+    </div>
+  </div>
+
+
 </div>

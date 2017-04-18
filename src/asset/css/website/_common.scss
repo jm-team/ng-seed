@@ -1,123 +1,141 @@
-html{
-  height: 100%;
+html {
+    height: 100%;
 }
+<<<<<<< HEAD
 body{
   background: #f5f5f5;
   position: relative;
   min-height: 100%;
   min-width: 1190px;
+=======
+
+body {
+    background: #fff;
+    position: relative;
+    min-height: 100%;
+>>>>>>> ui-branch
 }
 
-#footer{
-  text-align: center;
-  padding:15px 0;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
+#footer {
+    text-align: center;
+    padding: 15px 0;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
 }
-.page-container { 
+
+.page-container {
     padding-bottom: 60px;
 }
+
+@media (max-width: 1140px) {
+    .container,
+    .page-container {
+        width: 100%;
+    }
+}
+
 .ui-view-container {
-  position: relative;
+    position: relative;
 }
 
-// [ui-view].ng-enter, [ui-view].ng-leave {
-//   position: absolute;
-//   left: 0;
-//   right: 0;
-//   // -webkit-transition:all .5s ease-in-out;
-//   //   -moz-transition:all .5s ease-in-out;
-//   //   -o-transition:all .5s ease-in-out;
-//   //   transition:all .5s ease-in-out;
-// }
-
-// [ui-view].ng-enter {
-//   opacity: 0;
-//   // -webkit-transform:scale3d(0.5, 0.5, 0.5);
-//   // -moz-transform:scale3d(0.5, 0.5, 0.5);
-//   // transform:scale3d(0.5, 0.5, 0.5);
-// }
-
-// [ui-view].ng-enter-active {
-//   opacity: 1;
-//   // -webkit-transform:scale3d(1, 1, 1);
-//   // -moz-transform:scale3d(1, 1, 1);
-//   // transform:scale3d(1, 1, 1);
-// }
-
-// [ui-view].ng-leave {
-//   opacity: 1; 
-//   // -webkit-transform:translate3d(0, 0, 0);
-//   // -moz-transform:translate3d(0, 0, 0);
-//   // transform:translate3d(0, 0, 0);
-// }
-
-// [ui-view].ng-leave-active {
-//   opacity: 0;
-//   // -webkit-transform:translate3d(100px, 0, 0);
-//   // -moz-transform:translate3d(100px, 0, 0);
-//   // transform:translate3d(100px, 0, 0);
-// }
-
-#header{
-  padding: 8px 0;
-  margin-bottom: 15px;
-  border-bottom:1px solid #ccc;
+[ui-view].ng-enter,
+[ui-view].ng-leave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
-.flex-middle{
-  display: flex;
-  align-items: center;
+[ui-view].ng-enter {
+    opacity: 0;
+    -webkit-transform: scale3d(0.5, 0.5, 0.5);
+    -moz-transform: scale3d(0.5, 0.5, 0.5);
+    transform: scale3d(0.5, 0.5, 0.5);
 }
 
-.page-container{
-  padding: 15px 0 60px;
+[ui-view].ng-enter-active {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    -moz-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+
+[ui-view].ng-leave {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    // transform:translate3d(0, 0, 0);
+}
+
+[ui-view].ng-leave-active {
+    opacity: 0;
+    -webkit-transform: translate3d(100px, 0, 0);
+    -moz-transform: translate3d(100px, 0, 0);
+    transform: translate3d(100px, 0, 0);
+}
+
+#header {
+    padding: 8px 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.flex-middle {
+    display: flex;
+    align-items: center;
 }
 
 //  边距和填充
-.m-t-xs{
-  margin-top: 3px;
+.m-t-xs {
+    margin-top: 3px;
 }
 
-.m-t-sm{
-  margin-top: 6px;
+.m-t-sm {
+    margin-top: 6px;
 }
 
-.m-t-md{
-  margin-top: 8px;
+.m-t-md {
+    margin-top: 8px;
 }
 
-.m-t-lg{
-  margin-top: 15px;
+.m-t-lg {
+    margin-top: 15px;
 }
 
-.m-b-lg{
-  margin-bottom:15px;
+.m-b-lg {
+    margin-bottom: 15px;
 }
 
-.p-t-sm{
-  padding-top: 6px;
+.p-t-sm {
+    padding-top: 6px;
 }
 
-.text-overflow{
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.text-overflow {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
+.highlights li {
+    margin-top: 20px;
+}
 
-.highlights li{
-  margin-top: 20px;
+.highlights .entry-img {
+    display: block;
 }
-.highlights .entry-img{
-  display: block;
-}
-.highlights .entry-img img{
-  box-shadow:0px 4px 5px rgba(0, 0, 0, 0.15);
+
+.highlights .entry-img img {
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
 }
 
 // 登录表单
-.login-from{ background:#fff;width: 600px; }
+.login-from {
+    background: #fff;
+    width: 600px;
+}

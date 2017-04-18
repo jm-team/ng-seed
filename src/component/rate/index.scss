@@ -1,0 +1,32 @@
+.jm-rate {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  vertical-align: middle;
+
+
+  .jm-rate-star {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    padding-right: 4px;
+//    color: #e9e9e9;
+    cursor: pointer;
+    transition: all .2s linear;
+    i{
+      font-size: 20px;
+    }
+
+    &[disabled]{
+      cursor: not-allowed;
+    }
+
+  }
+
+  .jm-rate-star.hover
+  {
+    transform: scale(1.15);
+  }
+}
