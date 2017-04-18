@@ -5,7 +5,7 @@
   var tmpCrumbs = require('./crumb.html');
   angular.module('jmui.crumbs', [])
     // 面包屑
-    .directive('jmCrumbs', function ($state, $interpolate, $timeout) {
+    .directive('jmCrumbs', function ($state, $interpolate) {
       return {
         restrict: 'AE',
         templateUrl: function (element, attrs) {
