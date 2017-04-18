@@ -34,6 +34,9 @@
 
 ### 目录文件说明
 
+#### index.html
+1. index.html - 为SPA唯一入口文件，也是服务器上唯一的一个文件，因为其他文件都放于CND服务器上
+
 #### build/
 1. HashedModuleIdsPlugin.js - webpack2加入的，这里直接引入解决模块id不稳定的问题
 2. proxy.js - 根据config.dev.devServer参数生成完整代理配置
@@ -47,15 +50,14 @@
 2. build.config.js - `assetsPublicPath` - 配置引用资源的位置，用于配置CDN地址，读取address.config.js配置项 `CDN_ADDRESS`
 3. build.config.js - dev `devServer` - webpack热更新服务器配置，用于配置host访问地址，端口，服务接口反向代理(解决跨域问题)
 4. build.config.js - build `debug` - 用于配置调试压缩后的代码，true为开启调试模式，浏览器开发工具可查看到未压缩代码
-5. build.config.js - echarts enabled - 是否啓用echarts模塊
+5. build.config.js - echarts `enabled` - 是否啓用echarts模塊
 
 #### dist/
 1. dist文件夹将放于CND服务器，所有引用dist目录下资源的地方，都需要可以动态配置域名：  
 1.1. webpack设置publicPath打包时添加  
 1.2. angular自定义filter 给资源地址加`CDN_ADDRESS`前缀：cdn  
-2. dist/entry/index.html - 为SPA唯一入口文件，也是服务器上唯一的一个文件，因为其他文件都放于CND服务器上
-3. dist/img/sprite - 该文件夹为雪碧图合成临时文件夹，可以忽略。webpack在生产环境下会重新生成添加hash的图片
-4. dist/dep/ie8supports.js - 目前为卖塑郎项目打包后的文件，用于兼容ie8、9，比较固定一般不会更改。
+2. dist/img/sprite - 该文件夹为雪碧图合成临时文件夹，可以忽略。webpack在生产环境下会重新生成添加hash的图片
+3. dist/dep/ie8supports.js - 目前为[卖塑郎项目](https://github.com/jm-team/MSL-V3/tree/master/static/dep/ie8supports)打包后的文件，用于兼容ie8、9，比较固定一般不会更改。
 
 #### doc/
 1. api.md - RESTful API设计规范的demo
