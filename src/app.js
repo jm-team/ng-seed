@@ -1,6 +1,8 @@
+require('./service/ng.element');
 var address = require('address');
 var jmui = require('component/jmui');
-var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+var app = angular.module('app', ['ng.element', 'ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+
 // 路由配置
 var router = [
     ["notFound", require("./router/error/404.js")],
@@ -46,22 +48,12 @@ app.config(function ($controllerProvider, $httpProvider, $locationProvider, $url
     $urlRouterProvider.when('', '/');
     $urlRouterProvider.otherwise('/404');
 
-
-    
     // 配置路由
     router.forEach(function (item) {
         $stateProvider.state.apply($stateProvider, item);
     });
 });
 
-app.run(function ($state, $rootScope, $location, Cookie, Util, Address) {
-    var params = $location.search();
-    var shiroJID;
-
-    if (angular.isObject(params)) {
-        shiroJID = $location.search().shiroJID;
-    }
-});
 
 app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
     $rootScope.show = false;
@@ -72,7 +64,9 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         $rootScope.show = true;
         Login.checkHasLogin().then(function (data) {
             $log.log('checkAutoLogin', data);
-            Api.User().get({ t: +new Date() }, function (userData) {
+            Api.User().get({
+                t: +new Date()
+            }, function (userData) {
                 if (userData.id) {
                     Auth.user = userData;
                 } else {
@@ -91,6 +85,7 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
     });
     $rootScope.isShowFooter = false;
     $rootScope.isFirstLoad = true;
+
     // 路由切换开始
     // event, toState, toParams, formState, formParams, options
     $rootScope.$on('$stateChangeStart', function () {
@@ -105,7 +100,6 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
         } else {
             $rootScope.isShowFooter = true;
         }
-        //$log.info('app run $viewContentLoaded', $rootScope.isShowFooter, arguments);
     });
 
     // 回到顶部

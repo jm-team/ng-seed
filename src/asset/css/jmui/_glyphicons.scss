@@ -22,13 +22,9 @@
 
 // Catchall baseclass
 .jm-icon {
-  position: relative;
-  top: 1px;
-  display: inline-block;
-  font-family: 'jm-icon';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
+  font-family:"jm-icon" !important;
+  font-size:16px;
+  font-style:normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -308,3 +304,12 @@
 .jm-icon-huidaodingbu:before { content: "\e864"; }
 
 .jm-icon-saoyisao:before { content: "\e865"; }
+
+.jm-icon-xihuan:before { content: "\e86f"; }
+
+.jm-icon-xihuan1:before { content: "\e870"; }
+
+.jm-icon-zan:before { content: "\e871"; }
+
+.jm-icon-zan1:before { content: "\e872"; }
+
