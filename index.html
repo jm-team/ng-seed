@@ -12,28 +12,30 @@
     <script src="<%= htmlWebpackPlugin.options.assetsPublicPath %>dep/ie8supports.js" type="text/javascript"></script>
     <![endif]-->
 
-    <base href="/" />
+    <base href="/"/>
 </head>
 
 <body document-click ng-class="{'index-page': $state.current.url === '/', 'other-page':  $state.current.url !== '/'}">
-    <!--[if lt IE 8]>
-    <p class="browsehappy">
-        你正在使用一个<strong>过时</strong>的浏览器。请<a class="link" target="_blank" href="http://browsehappy.com">升级你的浏览器</a>以查看此页面。
-    </p>
-    <![endif]-->
+<!--[if lt IE 8]>
+<p class="browsehappy">
+    你正在使用一个<strong>过时</strong>的浏览器。请<a class="link" target="_blank" href="http://browsehappy.com">升级你的浏览器</a>以查看此页面。
+</p>
+<![endif]-->
 
-    <div jm-header></div>
+<div jm-header></div>
 
-    <div class="container page-container" id="view" ui-view></div>
-
-    <jm-footer></jm-footer>
-
-    <!-- 内联webpack manifest -->
-    <%=htmlWebpackPlugin.files.webpackManifest%>
+<div style="padding:0 48px 60px; position: relative;">
+    <div class=" container page-container main-wrap" id="view" ui-view></div>
+</div>
 
 
+<jm-footer></jm-footer>
 
-        <!-- SEO脚本 百度统计代码 -->
+<!-- 内联webpack manifest -->
+<%=htmlWebpackPlugin.files.webpackManifest%>
+
+
+<!-- SEO脚本 百度统计代码 -->
 </body>
 
 </html>
