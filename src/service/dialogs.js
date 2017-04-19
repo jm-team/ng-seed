@@ -211,7 +211,6 @@ app.service('dialogs', function ($document, $compile, $q, $http, $rootScope, $co
     /**
      * 关闭弹框方法
      * @author zhoul
-     * @returns
      */
     Dialogs.prototype.close = function (conf) {
         if (this.backdrop && angular.isFunction(this.backdrop.remove)) {

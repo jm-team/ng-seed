@@ -30,7 +30,6 @@ build/Release
 node_modules
 jspm_packages
 dist
-config
 
 # Optional npm cache directory
 .npm
@@ -40,4 +39,3 @@ config
 
 # Webstorm
 .idea
-/config/build.config.js
