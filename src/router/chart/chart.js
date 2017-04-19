@@ -2,7 +2,7 @@ var templateUrl = require('page/chart/chart.html');
 
 module.exports = {
     title: '云詞',
-    url: '/chart',
+    url: '^/chart',
     templateUrl: templateUrl,
     controller: 'ChartCtrl',
     resolve: {

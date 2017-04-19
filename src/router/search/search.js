@@ -2,7 +2,7 @@ var templateUrl = require('page/search/search.html');
 
 module.exports = {
     title: '数据搜索',
-    url: '/search',
+    url: '^/search',
     reloadOnSearch: false,
     templateUrl: templateUrl,
     controller: 'SearchCtrl',

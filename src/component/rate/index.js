@@ -17,12 +17,11 @@
       };
 
       function jmRateCtrl($scope, $element, $attrs) {
-        var disabeld = $attrs.disabled;
-        if (angular.isString(disabeld) && !disabeld) {
-          $scope.disabled = true;
-        } else {
-          $scope.disabled = Boolean($scope.$eval(disabeld));
-        }
+
+        // 监听是否禁用了`switch`
+        $attrs.$observe('disabled', function (newVal, oldVal) {
+          $scope.disabled = newVal;
+        });
 
         $scope.showText = true;
         if (angular.isDefined($attrs.showText)) {
@@ -86,8 +85,6 @@
           }
         });
 
-
-
         function choose($event, $index) {
           if (scope.disabled) {
             return;
@@ -145,7 +142,9 @@
             }
           });
 
-          scope.text = scope.$texts[scope[type]];
+          if(angular.isArray(scope.$texts) && scope[type]>=0 && scope[type] < scope.$texts.length){
+            scope.text = scope.$texts[scope[type]];
+          }
         }
 
 

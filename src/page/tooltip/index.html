@@ -1,0 +1,135 @@
+<div class="col-md-24">
+  <h1>Tooltip <span class="small">提示工具框</span></h1>
+
+  <section class="markdown">
+    <p>简单的提示气泡框。</p>
+  </section>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>最简单的用法。</h5>
+        </header>
+
+        <div class="ibox-content">
+          <span jm-tooltip
+                tooltip-content="prompt text">
+            当鼠标划过的时候显示 tooltip
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>带有标题和内容的</h5>
+        </header>
+
+        <div class="ibox-content">
+          <span
+              jm-tooltip
+              tooltip-title="Tooltip 标题"
+              tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
+            带有标题和内容的tooltip
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+
+        <header class="ibox-title">
+          <h5>触发条件</h5>
+        </header>
+        <div class="ibox-content">
+
+          <p>
+            <span
+              jm-tooltip
+              trigger="mouseover"
+              tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
+              鼠标划过显示
+            </span>
+          </p>
+          <p>
+            <button
+                class="jm-btn jm-btn-danger"
+              jm-tooltip
+              trigger="click"
+              tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
+              鼠标点击显示
+            </button>
+          </p>
+
+          <p>
+            <input
+                jm-tooltip
+                ng-click="$event.stopPropagation()"
+                class="form-control"
+                trigger="focus"
+                value="获取焦点展示"
+                tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+
+        <header class="ibox-title">
+          <h5>带自定义模板展示的</h5>
+        </header>
+        <div class="ibox-content">
+
+          <p>
+            <!--controller-name="TooltipCtrl" controller-as="vm" -->
+            <button class="jm-btn jm-btn-primary"
+                    jm-tooltip
+                    template="{{vm.template}}">展示的模板是自定义的
+            </button>
+          </p>
+
+          <p>
+            <button class="jm-btn jm-btn-primary"
+                    template="{{vm.template2}}"
+                    jm-tooltip
+                    controller-name="TooltipTestCtrl"
+                    controller-as="vm"
+                    tooltip-title="模板上的标题4"
+                    tooltip-content="模板内容">展示带有单独作用域的自定义模板
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+
+        <header class="ibox-title">
+          <h5>带有依赖的展示tooltip</h5>
+        </header>
+        <div class="ibox-content">
+
+          <p>
+            <button class="jm-btn jm-btn-primary"
+                    jm-tooltip
+                    trigger="click"
+                    resolve="resolve" >有依赖的tooltip
+            </button>
+          </p>
+
+          <p class="text-danger">需要等到resolve 执行完成后展示， 这个列子的依赖用了3s,所有点击按钮后，这里的tooltip 将在3s后展示</p>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

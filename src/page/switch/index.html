@@ -1,0 +1,163 @@
+<div class="col-md-24">
+  <h1>Switch <span class="small">开关</span></h1>
+
+  <section class="markdown">
+    <p>开关选择器。</p>
+  </section>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>最简单的用法。</h5>
+        </header>
+
+        <div class="ibox-content">
+          <jm-switch ng-model="on"></jm-switch>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>文字和图标。</h5>
+        </header>
+
+        <div class="ibox-content">
+          <p>
+            <jm-switch
+                width="58"
+                on-text="开"
+                on-color="#68b828"
+                off-text="关"
+                off-color="#ea6262"
+                name="checked"
+                ng-model="on">
+            </jm-switch>
+          </p>
+
+          <p>
+            <jm-switch
+                width="58"
+                on-text="<i class='jm-icon jm-icon-fullscreen'></i>"
+                on-color="#68b828"
+                off-text="<i class='jm-icon jm-icon-111'></i>"
+                off-color="#ea6262"
+                name="checked"
+                ng-model="vm.on">
+            </jm-switch>
+          </p>
+
+          <p>
+            <jm-switch
+                width="58"
+                on-text="<i class='jm-icon jm-icon-fullscreen'></i>"
+                on-color="#68b828"
+                off-text="<i class='jm-icon jm-icon-111'></i>"
+                off-color="#ea6262"
+                name="checked"
+                ng-model="vm.off">
+            </jm-switch>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+
+        <header class="ibox-title">
+          <h5>Switch 失效状态。</h5>
+        </header>
+        <div class="ibox-content">
+
+          <p>
+            <jm-switch
+                width="64"
+                on-text="ON"
+                on-color="#68b828"
+                off-text="OFF"
+                off-color="#ea6262"
+                name="checked"
+                ng-model="on1"
+                ng-disabled="vm.disabled"
+                >
+            </jm-switch>
+          </p>
+          <button class="jm-btn jm-btn-primary" ng-click="vm.toggleDisabled()">Toggle disabled</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+
+        <header class="ibox-title">
+          <h5>Switch 指定颜色。</h5>
+        </header>
+        <div class="ibox-content">
+
+          <p>
+            <jm-switch
+                width="64"
+                on-text="ON"
+                on-color="#68b828"
+                off-text="OFF"
+                off-color="#ea6262"
+                name="checked"
+                ng-model="vm.on">
+            </jm-switch>
+          </p>
+          <p>
+            <jm-switch
+                width="64"
+                on-text="ON"
+                on-color="#0e62c7"
+                off-text="OFF"
+                off-color="#ea6262"
+                name="checked"
+                ng-model="vm.on">
+            </jm-switch>
+          </p>
+          <p>
+            <jm-switch
+                width="64"
+                on-text="ON"
+                on-color="#5bc0de"
+                off-text="OFF"
+                off-color="#ea6262"
+                name="checked"
+                ng-model="vm.on">
+            </jm-switch>
+          </p>
+          <p>
+            <jm-switch
+                width="64"
+                on-text="ON"
+                on-color="#f2aa00"
+                off-text="OFF"
+                off-color="#ea6262"
+                name="checked"
+                ng-model="vm.on">
+            </jm-switch>
+          </p>
+          <p>
+            <jm-switch
+                width="64"
+                on-text="ON"
+                on-color="#ea6262"
+                off-text="OFF"
+                off-color="#f2aa00"
+                name="checked"
+                ng-model="vm.on">
+            </jm-switch>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

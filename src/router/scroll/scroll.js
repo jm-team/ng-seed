@@ -2,7 +2,7 @@ var templateUrl = require('page/scroll/scroll.html');
 
 module.exports = {
     title: '数据展示',
-    url: '/scroll',
+    url: '^/scroll',
     templateUrl: templateUrl,
     controller: ['$scope', 'Api', function ($scope, Api) {
 

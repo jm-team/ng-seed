@@ -1,0 +1,95 @@
+<div class="col-md-24">
+  <h1>Tabs <span class="small">标签页</span></h1>
+
+  <section class="markdown">
+    <p>选项卡切换组件。</p>
+  </section>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>基本的默认选择第一项</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-tabset>
+          <jm-tab heading="{{ tab.title }}" ng-repeat="tab in vm.tabs" on-select="select(arg)">
+            <p>{{ tab.content }}</p>
+          </jm-tab>
+        </jm-tabset>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>带有图标的标签</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-tabset>
+          <jm-tab ng-repeat="tab in vm.tabs">
+            <i jm-tab-header class="jm-icon jm-icon-order"></i>
+            <span jm-tab-header>{{ tab.title }}</span>
+
+            <p>{{ tab.content }}</p>
+          </jm-tab>
+        </jm-tabset>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>可以在页签两侧添加附加操作。</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-tabset>
+          <a jm-tabset-title class="jm-tabs-title text-info"><i class="jm-icon jm-icon-yijianfankui m-r-sm"></i>右侧</a>
+          <jm-tab ng-repeat="tab in vm.tabs">
+            <i jm-tab-header class="jm-icon jm-icon-order"></i>
+            <span jm-tab-header>{{ tab.title }}</span>
+
+            <p>{{ tab.content }}</p>
+          </jm-tab>
+        </jm-tabset>
+
+
+        <jm-tabset direction="right">
+          <a jm-tabset-title class="jm-tabs-title text-info"><i class="jm-icon jm-icon-yijianfankui m-r-sm"></i>左侧</a>
+          <jm-tab ng-repeat="tab in vm.tabs">
+            <i jm-tab-header class="jm-icon jm-icon-order"></i>
+            <span jm-tab-header>{{ tab.title }}</span>
+
+            <p>{{ tab.content }}</p>
+          </jm-tab>
+        </jm-tabset>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>可以设置页签的位置</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-tabset type="vertical" direction="left">
+          <jm-tab heading="{{ tab.title }}" ng-repeat="tab in vm.tabs" on-select="select(arg)">
+            <p>{{ tab.content }}</p>
+          </jm-tab>
+        </jm-tabset>
+
+        <jm-tabset type="vertical" direction="right">
+          <jm-tab heading="{{ tab.title }}" ng-repeat="tab in vm.tabs" on-select="select(arg)">
+            <p>{{ tab.content }}</p>
+          </jm-tab>
+        </jm-tabset>
+      </div>
+    </div>
+  </div>
+</div>

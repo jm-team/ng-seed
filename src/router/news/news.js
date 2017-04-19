@@ -3,7 +3,7 @@ var templateUrl = require('page/news/news.html');
 module.exports = {
     abstract: true,
     title: '新闻列表页',
-    url: '/news',
+    // url: '^/news',
     templateUrl: templateUrl,
     data: {
         breadcrumbProxy: 'news.list',
