@@ -228,7 +228,6 @@ Dialogs.prototype.confirm = function(confg) {
 /**
  * 关闭弹框方法
  * @author zhoul
- * @returns
  */
 Dialogs.prototype.close = function() {
     var self = this;
@@ -254,7 +253,7 @@ app.provider('dialogs', {
      * @param {object} $controller 
      * @param {object} $animate 
      * @param {object} $templateCache 
-     * @returns 
+     * @returns {object} this.instance
      */
     $get: function($document, $compile, $q, $http, $rootScope, $controller, $animate, $templateCache) {
         this.instance.$document = $document;
