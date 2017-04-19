@@ -2,7 +2,7 @@ var templateUrl = require('page/ueditor/ueditor.html');
 
 module.exports = {
     title: '百度编辑器',
-    url: '/ueditor',
+    url: '^/ueditor',
     templateUrl: templateUrl,
     controller: ['$scope', function ($scope) {
 

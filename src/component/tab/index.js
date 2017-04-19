@@ -16,7 +16,7 @@
         },
         replace: true,
         template: '<div class="jm-tabs jm-tabs-{{type}} jm-tabs-{{direction}}">' +
-          '<header class="jm-tabs-header">' +
+          '<header class="jm-tabs-header clearfix">' +
           '<ul ng-transclude></ul>' +
           '</header>' +
           '<div class="jm-tabs-content {{contentClass}}">' +
@@ -171,6 +171,12 @@
           };
         }
       };
+    })
+    .directive('jmTabHeader', function(){
+      return {
+        restrict:'AE',
+        replace: true
+      }
     })
     .directive('jmTabHeaderTransclude', function () {
       return {

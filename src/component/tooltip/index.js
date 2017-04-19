@@ -23,9 +23,9 @@
           tooltipTitle: '@'
         },
         controller: function ($scope, $element, $attrs) {
-          var tpl = "<h4 class='title' ng-bind-html='title'></h4><div class='tooltip-content' ng-bind-html='content'></div>",
+          var tpl = "<h4 ng-if='title' class='title' ng-bind-html='title'></h4><div class='tooltip-content' ng-bind-html='content'></div>",
             templateUrl = $scope.template,
-            delay = $attrs.delay || 0,
+            // delay = $attrs.delay || 0,
             self = this,
             controllerName = $attrs.controllerName,
             documentClick = angular.noop,
@@ -45,7 +45,6 @@
           this.opened = false;
           this.locals = {};
           this.resolveKeys = [];
-
           this.resolve = function () {
             var resolves = $scope.resolve,
               arrResolves = [],
@@ -80,8 +79,8 @@
 
           // 添加/显示元素
           this.create = function () {
-            this.content = childScope.content = $sce.trustAsHtml($scope.tooltipContent);
-            this.title = childScope.title = $sce.trustAsHtml($scope.tooltipTitle);
+            this.content = $scope.content = childScope.content = $sce.trustAsHtml($scope.tooltipContent);
+            this.title = $scope.title = childScope.title = $sce.trustAsHtml($scope.tooltipTitle);
 
             if (this.el) {
               return $q.when(this.el);
@@ -192,9 +191,15 @@
             ngCtrl.resolve().then(function (data) {
               // 将依赖保存
               angular.forEach(data, function (item, index) {
+                var key = ngCtrl.resolveKeys[index];
+                var insideKey = key.charAt(0).toUpperCase() + key.substr(1);
+
+                scope['tooltip'+insideKey] = item;
+
                 scope[ngCtrl.resolveKeys[index]] = item;
                 ngCtrl.locals[ngCtrl.resolveKeys[index]] = item;
               });
+
               return data;
             }).then(function (data) {
               // 创建`tooltip`
