@@ -7,7 +7,7 @@ require('./tab');
 require('./scroll');
 require('./imgerror');
 require('./search');
-require('./backtop');
+require('./anchor');
 require('./dialog');
 require('./loadScript');
 require('./ueditor/angular-ueditor');

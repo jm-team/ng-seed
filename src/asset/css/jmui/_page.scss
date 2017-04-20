@@ -18,10 +18,10 @@
 
 .jm-page .p-skip .jm-form-control {
     float: left;
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     margin: 0 3px;
-    line-height: 32px;
+    line-height: 24px;
     font-size: 14px;
     text-align: center;
     border: 1px solid #ddd;
@@ -31,7 +31,7 @@
     float: left;
     height: 36px;
     line-height: 36px;
-    padding: 0 14px;
+    padding: 0 8px;
     margin-right: 5px;
     font-size: 14px;
     color: #ccc;
@@ -47,8 +47,8 @@
     border: 1px solid #ddd;
     background: #f7f7f7;
     float: left;
-    padding: 0 14px;
-    line-height: 30px;
+    padding: 0 8px;
+    line-height: 24px;
     font-size: 14px;
     margin-right: 5px;
 }
@@ -84,14 +84,15 @@
 
 .jm-page .p-skip .btn {
     float: left;
-    height: 30px;
+    height: 24px;
     margin-left: 10px;
     font-size: 14px;
+    line-height: 1;
 }
 
 .jm-page em {
     float: left;
-    line-height: 32px;
+    line-height: 24px;
     font-style: normal;
 }
 
@@ -103,7 +104,7 @@
     text-decoration: none;
     cursor: pointer;
     border: 1px solid #DDD;
-    padding: 4px 13px 5px;
+    padding: 4px 10px 5px;
     color: #666;
     background-color: #f7f7f7;
     background-repeat: repeat-x;

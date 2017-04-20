@@ -79,6 +79,15 @@
     /*border-top: 1px solid #ccc;*/
 }
 
-.dialog-footer .btn {
+.dialog-footer .jm-btn {
     margin-left: 8px;
+}
+
+.modal-backdrop{
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
+
+.dialog{
+  background: #fff;
 }

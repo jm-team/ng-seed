@@ -16,4 +16,4 @@ require('./filter/filter.js');
 require('./service/service.js');
 require('./service/anchorSmoothScroll.js');
 require('./service/api.js');
-require('./service/dialogs.js');
+// require('./service/dialogs.js');

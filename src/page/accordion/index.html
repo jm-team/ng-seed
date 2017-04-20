@@ -1,0 +1,30 @@
+<div class="col-md-24">
+  <h1>Accordion <span class="small">手风琴 折叠面板</span></h1>
+
+  <section class="markdown">
+    <p>通过折叠面板收纳内容区域</p>
+  </section>
+
+  <div class="col-md-24">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>手风琴的内容和标题可以自定义的</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-accordions>
+          <jm-accordion ng-repeat="item in vm.accordions">
+            <header class="jm-accordion-title" ng-click="toggle($event)">
+              <i class="jm-icon jm-icon-enter"></i>
+              {{item.title}}
+            </header>
+
+            <section class="jm-accordion-content" ng-show="open">
+              <p>{{ item.content}}</p>
+            </section>
+          </jm-accordion>
+        </jm-accordions>
+      </div>
+    </div>
+  </div>
+</div>

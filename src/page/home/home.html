@@ -18,38 +18,9 @@
           <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
           <a class="jiathis_counter_style"></a>
         </div>
+        
         <script type="text/javascript-lazy" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
         <!-- JiaThis Button END -->
       </div>
-  </div>
-</div>
-
-<div class="row">
-  <!--图片懒加载 -->
-  <div class="panel">
-    <header class="panel-heading">
-      <h3>图片懒加载</h3>
-    </header>
-
-    <section class="panel-body">
-      <div class="form-group row">
-        <div class="col-lg-6">
-          <select class="form-control" ng-model="vm.searchText">
-            <option value="1">filter 1</option>
-            <option value="2">filter 2</option>
-            <option value="3">none</option>
-          </select>
-        </div>
-
-        <span class="p-t-sm" ng-bind="filtered.length">0</span> item(s)
-      </div>
-
-
-      <ul class="list-unstyled">
-        <li class="demo-repeat-list--items" ng-repeat="image in filtered =(vm.collection | filter:{'type': vm.searchText})">
-          <span afkl-lazy-image="{{image.srcset}}" class="afkl-lazy-wrapper afkl-img-ratio-3-2"></span>
-        </li>
-      </ul>
-    </section>
   </div>
 </div>
