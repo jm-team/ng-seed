@@ -5,7 +5,7 @@
   },
   "source": {
     "include":["src"],
-    "exclude":["src/component"],
+    "exclude":["src/component/ueditor"],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
   },
