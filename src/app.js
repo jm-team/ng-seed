@@ -5,38 +5,38 @@ var app = angular.module('app', ['ng.element', 'ui.router', 'ngResource', 'ngAni
 
 // 路由配置
 var router = [
-  ["notFound", require("./router/error/404.js")],
+  ["notFound", require("./page/error/404.js")],
 
 
-  ["about", require("./router/about/about.js")],
+  ["about", require("./page/about/about.js")],
 
-  ["help", require("./router/help/help.js")],
+  ["help", require("./page/help/help.js")],
 
   // ["home.index", require("./router/home/home")],
-  ["home", require("./router/home/index.js")],
-  ["home.chart", require("./router/chart/chart.js")],
+  ["home", require("./page/home/index.js")],
+  ["home.chart", require("./page/chart/chart.js")],
 
-  ["home.ueditor", require("./router/ueditor/ueditor.js")],
-  ["home.news", require("./router/news/news.js")],
-  ["home.news.list", require("./router/news/news.list.js")],
-  ["home.news.detail", require("./router/news/news.detail.js")],
-  ["home.news.save", require("./router/news/news.save.js")],
-  ["home.scroll", require("./router/scroll/scroll.js")],
-  ["home.search", require("./router/search/search.js")],
+  ["home.ueditor", require("./page/ueditor/ueditor.js")],
+  ["home.news", require("./page/news/news.js")],
+  ["home.news.list", require("./page/news/news.list.js")],
+  ["home.news.detail", require("./page/news/news.detail.js")],
+  ["home.news.save", require("./page/news/news.save.js")],
+  ["home.scroll", require("./page/scroll/scroll.js")],
+  ["home.search", require("./page/search/search.js")],
 
-  ["home.tab", require("./router/tab/tab.js")],
-  ["home.pagintion", require("./router/pagintion/pagintion.js")],
-  ["home.accordion", require("./router/accordion/accordion.js")],
-  ["home.dialog", require("./router/dialog/dialog.js")],
-  ["home.layzimg", require("./router/layzimg/layzimg.js")],
-  ["home.imgerror", require("./router/imgError/imgError.js")],
+  ["home.tab", require("./page/tab/tab.js")],
+  ["home.pagintion", require("./page/pagintion/pagintion.js")],
+  ["home.accordion", require("./page/accordion/accordion.js")],
+  ["home.dialog", require("./page/dialog/dialog.js")],
+  ["home.lazyimg", require("./page/lazyimg/lazyimg.js")],
+  ["home.imgerror", require("./page/imgError/imgError.js")],
 
-  ["home.switch", require("./router/switch/switch.js")],
-  ["home.rate", require("./router/rate/rate.js")],
-  ["home.alert", require("./router/alert/alert.js")],
-  ["home.crumb", require("./router/crumb/crumb.js")],
-  ["home.anchor", require("./router/anchor/anchor.js")],
-  ["home.tooltip", require("./router/tooltip/tooltip.js")]
+  ["home.switch", require("./page/switch/switch.js")],
+  ["home.rate", require("./page/rate/rate.js")],
+  ["home.alert", require("./page/alert/alert.js")],
+  ["home.crumb", require("./page/crumb/crumb.js")],
+  ["home.anchor", require("./page/anchor/anchor.js")],
+  ["home.tooltip", require("./page/tooltip/tooltip.js")]
 ];
 
 // 鏈接mongo配置
@@ -66,7 +66,7 @@ app.config(function ($controllerProvider, $httpProvider, $locationProvider, $url
   // 优化路由地址，开启SEO
   $locationProvider.html5Mode(true).hashPrefix('!');
   $urlRouterProvider.when('/', '/chart');
-  // $urlRouterProvider.otherwise('/404');
+  $urlRouterProvider.otherwise('/404');
 
   // 配置路由
   router.forEach(function (item) {
@@ -75,8 +75,9 @@ app.config(function ($controllerProvider, $httpProvider, $locationProvider, $url
 });
 
 
-app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
+app.run(function ($rootScope, $log, $state, requestService, Login, Api, Auth) {
   $rootScope.show = false;
+  $rootScope.$state = $state;
   // 路由切换成功
   // , toParams, formState, formParams, options
   $rootScope.$on('$stateChangeSuccess', function (event, toState) {
@@ -121,11 +122,6 @@ app.run(function ($rootScope, $log, requestService, Login, Api, Auth) {
       $rootScope.isShowFooter = true;
     }
   });
-
-  // 回到顶部
-  $rootScope.scrollFinsh = function () {
-    alert('xxxx已经回到顶部了！！！');
-  };
 });
 
 module.exports = app;

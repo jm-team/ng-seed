@@ -1,0 +1,24 @@
+<div id="header" class="container">
+    <header class="row">
+        <div class="col-md-6 col-md-offset-2 logo">
+            <a ui-sref="home" class="fn-clear" style="display: inline-block; vertical-align: middle">
+                <div><img height="42" src="../asset/img/logo.png" alt="jumore 聚贸" title="jumore 聚贸" /></div>
+            </a>
+            <iframe style="display: inline-block; vertical-align: middle" src="https://ghbtns.com/github-btn.html?user=jm-team&repo=ng-seed&type=star&count=true&size=large&v=2"
+                frameborder="0" scrolling="0" width="160px" height="30px">
+            </iframe>
+        </div>
+
+
+        <div class="col-md-14 nav-main">
+            <div class="hidden-xs">
+                <ul class="nav nav-pills pull-right" role="tablist">
+                    <li ui-sref-active="active"><a ui-sref="about">Home</a></li>
+                    <li ng-class="{active: state.includes('home')}"><a ui-sref="home.chart">组件</a></li>
+                </ul>
+            </div>
+
+            <div>{{ user.companyName }}</div>
+        </div>
+    </header>
+</div>
