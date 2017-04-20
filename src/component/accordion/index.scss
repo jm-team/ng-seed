@@ -1,0 +1,64 @@
+/* 手风琴*/
+.jm-accordions {
+  border:1px solid #c9c9c9;
+}
+
+.jm-accordions .jm-accordion {
+  background: #fff;
+
+  .jm-accordion-title{
+    position: relative;
+    padding-left: 30px;
+  }
+
+  .jm-icon-enter{
+    position: absolute;
+    left: 10px;
+    transition: all .3s linear;
+  }
+}
+
+.jm-accordions .jm-accordion + .jm-accordion {
+  border-top:1px solid #c9c9c9;
+}
+
+.jm-accordions .jm-accordion-title {
+  cursor: default;
+  padding: 20px 30px;
+}
+
+.jm-accordions .jm-accordion-content {
+  // display: none;
+  overflow: hidden;
+  border-top:1px solid #c9c9c9;
+}
+
+.jm-accordions .jm-accordion-content p {
+  padding: 20px;
+}
+
+.jm-accordions .jm-accordion.open {
+  .jm-icon-enter{
+    transform:  rotate(90deg);
+  }
+}
+
+.jm-accordions .jm-accordion.open .jm-accordion-content {
+}
+
+.jm-accordions.jm-accordions-vertical {
+  width: 800px;
+}
+
+
+
+
+
+
+.jm-accordion-content{ transition:all linear .3s; opacity:1; height: 200px; }
+.jm-accordion-content.ng-hide{ opacity:0;}
+.jm-accordion-content.ng-hide { }
+.jm-accordion-content.ng-hide-add { opacity:1; height: 200px; display: block;}
+.jm-accordion-content.ng-hide-add.ng-hide-add-active { opacity:0; height: 0; }
+.jm-accordion-content.ng-hide-remove { opacity:0; height: 0; display: block;}
+.jm-accordion-content.ng-hide-remove.ng-hide-remove-active {opacity:1; height: 200px; }

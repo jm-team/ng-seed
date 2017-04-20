@@ -3,7 +3,11 @@ var templateUrl = require('page/home/index.html');
 module.exports = {
   title: "首页",
   url:"/home",
-  // abstract: true,
+  data: {
+    breadcrumbProxy: 'home.chart',
+    displayName: '首页'
+  },
+  abstract: true,
   templateUrl: templateUrl,
   // controller: 'HomeCtrl',
   // controllerAs: 'vm',

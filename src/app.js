@@ -7,29 +7,35 @@ var app = angular.module('app', ['ng.element', 'ui.router', 'ngResource', 'ngAni
 var router = [
   ["notFound", require("./router/error/404.js")],
 
-  ["home", require("./router/home/index.js")],
 
   ["about", require("./router/about/about.js")],
 
   ["help", require("./router/help/help.js")],
 
-
+  // ["home.index", require("./router/home/home")],
+  ["home", require("./router/home/index.js")],
+  ["home.chart", require("./router/chart/chart.js")],
 
   ["home.ueditor", require("./router/ueditor/ueditor.js")],
   ["home.news", require("./router/news/news.js")],
   ["home.news.list", require("./router/news/news.list.js")],
   ["home.news.detail", require("./router/news/news.detail.js")],
   ["home.news.save", require("./router/news/news.save.js")],
-  ["home.chart", require("./router/chart/chart.js")],
   ["home.scroll", require("./router/scroll/scroll.js")],
   ["home.search", require("./router/search/search.js")],
 
   ["home.tab", require("./router/tab/tab.js")],
+  ["home.pagintion", require("./router/pagintion/pagintion.js")],
+  ["home.accordion", require("./router/accordion/accordion.js")],
+  ["home.dialog", require("./router/dialog/dialog.js")],
+  ["home.layzimg", require("./router/layzimg/layzimg.js")],
+  ["home.imgerror", require("./router/imgError/imgError.js")],
 
   ["home.switch", require("./router/switch/switch.js")],
   ["home.rate", require("./router/rate/rate.js")],
   ["home.alert", require("./router/alert/alert.js")],
   ["home.crumb", require("./router/crumb/crumb.js")],
+  ["home.anchor", require("./router/anchor/anchor.js")],
   ["home.tooltip", require("./router/tooltip/tooltip.js")]
 ];
 
@@ -59,8 +65,8 @@ app.config(function ($controllerProvider, $httpProvider, $locationProvider, $url
 
   // 优化路由地址，开启SEO
   $locationProvider.html5Mode(true).hashPrefix('!');
-  $urlRouterProvider.when('', '/');
-  $urlRouterProvider.otherwise('/404');
+  $urlRouterProvider.when('/', '/chart');
+  // $urlRouterProvider.otherwise('/404');
 
   // 配置路由
   router.forEach(function (item) {

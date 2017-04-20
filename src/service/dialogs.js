@@ -112,6 +112,11 @@ app.service('dialogs', function ($document, $compile, $q, $http, $rootScope, $co
      * @param   {object} conf 配置对象
      * @returns {object} promise
      */
+  /**
+   *
+   * @param conf
+   * @returns {promise|*|jQuery.promise|{then, catch, finally}}
+   */
     Dialogs.prototype.modal = function (conf) {
         var config = conf || {};
         var scope = this.scope = $rootScope.$new();

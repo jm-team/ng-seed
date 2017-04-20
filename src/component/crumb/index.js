@@ -49,10 +49,10 @@
               self = $currentState.self;
             }
 
-            breadcrumbs.push({
-              displayName: '首页',
-              router: 'home'
-            });
+            // breadcrumbs.push({
+            //   displayName: '首页',
+            //   router: 'home'
+            // });
             breadcrumbs.reverse();
             scope.breadcrumbs = breadcrumbs;
           }

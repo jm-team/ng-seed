@@ -1,0 +1,66 @@
+<div class="col-md-24">
+  <h1>Pagination <span class="small">分页</span></h1>
+
+  <section class="markdown">
+    <p>采用分页的形式分隔长列表，每次只加载一个页面。</p>
+  </section>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>基础分页。</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-pagination
+            total-page="vm.numPages"
+            boundary-links="1"
+            previous-text="Previous"
+            next-text="Next"
+            max-size="2"
+            input-links="false"
+            current-Page="vm.currentPage">
+        </jm-pagination>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>更多分页。</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-pagination
+            total-page="vm.numPages2"
+            boundary-links="1"
+            previous-text="&lt;"
+            next-text="&gt;"
+            max-size="5"
+            input-links="false"
+            current-Page="vm.currentPage2">
+        </jm-pagination>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>显示总页码和跳转分页。</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-pagination
+            total-page="vm.numPages2"
+            boundary-links="1"
+            previous-text="&lt;"
+            next-text="&gt;"
+            max-size="3"
+            current-Page="vm.currentPage2">
+        </jm-pagination>
+      </div>
+    </div>
+  </div>
+</div>

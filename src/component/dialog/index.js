@@ -109,7 +109,7 @@
         $animate.enter(this.element, this.container, null, function () {
           // debugger;
         });
-        $animate.addClass(this.backdrop, config.backdropClass);
+        $animate.addClass(this.backdrop, config.backdropClass || '');
       };
 
 
@@ -206,7 +206,7 @@
         var config = confg || {};
         var cof = angular.extend(config, {
           dialogHeader: '<h3 class="dialog-title">' + (config.title || '温馨提示') + '</h3>',
-          dialogFooter: '<button class="btn btn-sm btn-primary " ng-click="ok($event)">确定</button>'
+          dialogFooter: '<button class="jm-btn jm-btn-sm jm-btn-primary " ng-click="ok($event)">确定</button>'
         });
         return this.modal(cof);
       };
@@ -221,7 +221,7 @@
         var config = confg || {};
         var cof = angular.extend(config, {
           dialogHeader: '<h3 class="dialog-title">' + (config.title || '温馨提示') + '</h3>',
-          dialogFooter: '<button class="btn btn-sm btn-primary " ng-click="ok($event)">确定</button><button class="btn btn-sm btn-primary " ng-click="cancel($event)">取消</button>'
+          dialogFooter: '<button class="jm-btn jm-btn-sm jm-btn-primary " ng-click="ok($event)">确定</button><button class="jm-btn jm-btn-sm jm-btn-primary " ng-click="cancel($event)">取消</button>'
         });
         return this.modal(cof);
       };

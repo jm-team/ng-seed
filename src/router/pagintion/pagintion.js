@@ -1,22 +1,19 @@
-var templateUrl = require('page/crumb/index.html');
+var templateUrl = require('page/pagintion/index.html');
 
 module.exports = {
-  url:'^/crumb',
+  url:'^/pagintion',
   // abstract: true,
   templateUrl: templateUrl,
-  controller: 'CrumbCtrl',
+  controller: 'PagintionCtrl',
   controllerAs: 'vm',
-  data:{
-    breadcrumbProxy: 'home.curmb',
-    displayName: '面包屑'
-  },
+
   resolve: {
     /*@ngInject*/
     loadCtrl: function ($q) {
       var defer = $q.defer();
       require.ensure([], function (require) {
-        defer.resolve(require('controller/crumbCtrl.js'));
-      }, 'crumb');
+        defer.resolve(require('controller/pagintionCtrl.js'));
+      }, 'pagintion');
       return defer.promise;
     }
   }
