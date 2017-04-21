@@ -5,38 +5,38 @@ var app = angular.module('app', ['ng.element', 'ui.router', 'ngResource', 'ngAni
 
 // 路由配置
 var router = [
-  ["notFound", require("./page/error/404.js")],
+  ["notFound", require("./page/error/404.router.js")],
 
 
-  ["about", require("./page/about/about.js")],
+  ["about", require("./page/about/about.router.js")],
 
-  ["help", require("./page/help/help.js")],
+  ["help", require("./page/help/help.router.js")],
 
-  // ["home.index", require("./router/home/home")],
-  ["home", require("./page/home/index.js")],
-  ["home.chart", require("./page/chart/chart.js")],
+  // ["components.index", require("./router/home/home")],
+  ["components", require("./page/components/components.router.js")],
+  ["components.chart", require("./page/components/chart/chart.router.js")],
 
-  ["home.ueditor", require("./page/ueditor/ueditor.js")],
-  ["home.news", require("./page/news/news.js")],
-  ["home.news.list", require("./page/news/news.list.js")],
-  ["home.news.detail", require("./page/news/news.detail.js")],
-  ["home.news.save", require("./page/news/news.save.js")],
-  ["home.scroll", require("./page/scroll/scroll.js")],
-  ["home.search", require("./page/search/search.js")],
+  ["components.ueditor", require("./page/components/ueditor/ueditor.router.js")],
+  ["components.news", require("./page/components/news/news.router.js")],
+  ["components.news.list", require("./page/components/news/news.list.router.js")],
+  ["components.news.detail", require("./page/components/news/news.detail.router.js")],
+  ["components.news.save", require("./page/components/news/news.save.router.js")],
+  ["components.scroll", require("./page/components/scroll/scroll.router.js")],
+  ["components.search", require("./page/components/search/search.router.js")],
 
-  ["home.tab", require("./page/tab/tab.js")],
-  ["home.pagintion", require("./page/pagintion/pagintion.js")],
-  ["home.accordion", require("./page/accordion/accordion.js")],
-  ["home.dialog", require("./page/dialog/dialog.js")],
-  ["home.lazyimg", require("./page/lazyimg/lazyimg.js")],
-  ["home.imgerror", require("./page/imgError/imgError.js")],
+  ["components.tab", require("./page/components/tab/tab.router.js")],
+  ["components.pagintion", require("./page/components/pagintion/pagintion.router.js")],
+  ["components.accordion", require("./page/components/accordion/accordion.router.js")],
+  ["components.dialog", require("./page/components/dialog/dialog.router.js")],
+  ["components.lazyimg", require("./page/components/lazyimg/lazyimg.router.js")],
+  ["components.imgerror", require("./page/components/imgError/imgerror.router.js")],
 
-  ["home.switch", require("./page/switch/switch.js")],
-  ["home.rate", require("./page/rate/rate.js")],
-  ["home.alert", require("./page/alert/alert.js")],
-  ["home.crumb", require("./page/crumb/crumb.js")],
-  ["home.anchor", require("./page/anchor/anchor.js")],
-  ["home.tooltip", require("./page/tooltip/tooltip.js")]
+  ["components.switch", require("./page/components/switch/switch.router.js")],
+  ["components.rate", require("./page/components/rate/rate.router.js")],
+  ["components.alert", require("./page/components/alert/alert.router.js")],
+  ["components.crumb", require("./page/components/crumb/crumb.router.js")],
+  ["components.anchor", require("./page/components/anchor/anchor.router.js")],
+  ["components.tooltip", require("./page/components/tooltip/tooltip.router.js")]
 ];
 
 // 鏈接mongo配置

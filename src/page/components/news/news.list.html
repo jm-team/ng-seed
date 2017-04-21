@@ -1,0 +1,14 @@
+<h2 class="clearfix">
+    <p class="pull-left">news list</p>
+    <button class="jm-btn jm-btn-sm jm-btn-primary pull-right" ui-sref="news.save()">Add</button>
+</h2>
+<hr>
+<ul class="list-unstyled news-list">
+    <li style="line-height: 30px;" ng-repeat="new in news track by new._id.$oid" class="row">
+        <a ui-sref="news.detail({id: new._id.$oid})" class="title col-sm-18 col-xs-24">{{new.title}}</a>
+        <div class="col-sm-6 text-right col-xs-24">
+            <button class="jm-btn jm-btn-xs jm-btn-primary" ui-sref="news.save({id: new._id.$oid})">Update</button>
+            <button class="jm-btn jm-btn-xs jm-btn-danger" ng-click="remove($event, new)">Remove</button>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,134 @@
+<div class="col-md-24">
+  <h1>Rate <span class="small">评分</span></h1>
+
+  <section class="markdown">
+    <p>评分组件。</p>
+  </section>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>最简单的用法。</h5>
+        </header>
+
+        <div class="ibox-content">
+          <div
+              jm-rate
+              model="vm.model0"
+              jm-icon-star-off="jm-icon-xihuan1"
+              jm-icon-star-on="jm-icon-xihuan">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>有文案提示的用法。</h5>
+        </header>
+
+        <div class="ibox-content">
+          <div
+              jm-rate
+              texts="{{ vm.texts }}"
+              model="vm.model0"
+              jm-icon-star-off="jm-icon-xihuan1"
+              jm-icon-star-on="jm-icon-xihuan">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+
+        <header class="ibox-title">
+          <h5>分评分级别展示不同效果</h5>
+        </header>
+        <div class="ibox-content">
+
+          <div
+              model="vm.model0"
+              jm-rate
+              low-threshold="2"
+              high-threshold="4"
+              show-text="true"
+              colors="['#99A9BF', '#F7BA2A', '#FF9900']"
+              texts="{{ vm.texts }}"
+              jm-icon-star-off="jm-icon-xihuan1"
+              jm-icon-star-on="jm-icon-xihuan">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-12">
+      <div class="ibox">
+
+        <header class="ibox-title">
+          <h5>不同icon的评分</h5>
+        </header>
+        <div class="ibox-content">
+
+          <div
+              model="vm.model"
+              jm-rate
+              low-threshold="2"
+              high-threshold="4"
+              show-text="true"
+              colors="['#99A9BF', '#F7BA2A', '#FF9900']"
+              texts="{{ vm.texts }}"
+              jm-icon-star-off="jm-icon-zan1"
+              jm-icon-star-on="jm-icon-zan">
+          </div>
+
+          <div
+              model="vm.model"
+              jm-rate
+              low-threshold="2"
+              high-threshold="4"
+              show-text="true"
+              colors="['#99A9BF', '#F7BA2A', '#FF9900']"
+              texts="{{ vm.texts }}"
+              jm-icon-star-off="jm-icon-xihuan1"
+              jm-icon-star-on="jm-icon-xihuan">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-12">
+      <div class="ibox">
+
+        <header class="ibox-title">
+          <h5>只读</h5>
+        </header>
+        <div class="ibox-content">
+
+          <div
+              model="vm.model"
+              jm-rate
+              low-threshold="2"
+              high-threshold="4"
+              show-text="true"
+              colors="['#99A9BF', '#F7BA2A', '#FF9900']"
+              texts="{{ vm.texts }}"
+              jm-icon-star-off="jm-icon-zan1"
+              jm-icon-star-on="jm-icon-zan"
+              ng-disabled="vm.disabled">
+          </div>
+
+          <button class="jm-btn jm-btn-primary" ng-click="vm.toggle()">禁用切换</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
