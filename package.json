@@ -67,10 +67,6 @@
     "remove-webpack-plugin": "^1.2.2",
     "webpack-chunk-hash": "^0.4.0"
   },
-  "main": "index.js",
-  "directories": {
-    "doc": "doc"
-  },
   "repository": "git+https://github.com/jm-team/ng-seed.git",
   "keywords": [
     "angularjs",
