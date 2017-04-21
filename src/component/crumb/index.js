@@ -4,7 +4,7 @@
 
   var tmpCrumbs = require('./crumb.html');
   angular.module('jmui.crumbs', [])
-    // 面包屑
+  // 面包屑
     .directive('jmCrumbs', function ($state, $interpolate) {
       return {
         restrict: 'AE',
@@ -15,18 +15,23 @@
           displayNameProperty: '@',
           abstractProxyProperty: '@?'
         },
-        link: function (scope) {
+        link: function (scope, element, attrs) {
+
           scope.breadcrumbs = [];
+
           if ($state.$current.name !== '') {
             updateBreadcrumbsArray();
           }
 
           scope.$on('$stateChangeSuccess', function () {
+
             scope.breadcrumbs = [];
+
             updateBreadcrumbsArray();
           });
 
           function updateBreadcrumbsArray() {
+            var custromCrumbs = scope.$eval(attrs.indexCrumb);
             var breadcrumbs = [];
             var displayName;
             var $currentState = $state.$current;
@@ -49,10 +54,9 @@
               self = $currentState.self;
             }
 
-            // breadcrumbs.push({
-            //   displayName: '首页',
-            //   router: 'home'
-            // });
+            if (angular.isObject(custromCrumbs)) {
+              breadcrumbs.push(custromCrumbs);
+            }
             breadcrumbs.reverse();
             scope.breadcrumbs = breadcrumbs;
           }
@@ -72,26 +76,25 @@
           function getWorkingSatate(currentState) {
             var proxyStateName;
             var workingState = currentState;
-
             // 当前是抽象状态
-            if (currentState.abstract === true) {
-              // scope.abstractProxyProperty == 'data.breadcrumbProxy'
-              // currentState = {data:{breadcrumbProxy:'news.lists'}}
-              // 判断是否有代理 可以在抽象状态中代理到某一个状态
-              if (typeof scope.abstractProxyProperty !== 'undefined') {
-                proxyStateName = getValueInObject(scope.abstractProxyProperty, currentState);
-                if (proxyStateName) {
-                  workingState = angular.copy($state.get(proxyStateName));
-                  if (workingState) {
-                    workingState.locals = currentState.locals;
-                  }
-                } else {
-                  workingState = false;
+            // if (currentState.abstract === true) {
+            // scope.abstractProxyProperty == 'data.breadcrumbProxy'
+            // currentState = {data:{breadcrumbProxy:'news.lists'}}
+            // 判断是否有代理 可以在抽象状态中代理到某一个状态
+            if (typeof scope.abstractProxyProperty !== 'undefined') {
+              proxyStateName = getValueInObject(scope.abstractProxyProperty, currentState);
+              if (proxyStateName) {
+                workingState = angular.copy($state.get(proxyStateName));
+                if (workingState) {
+                  workingState.locals = currentState.locals;
                 }
               } else {
                 workingState = false;
               }
+            } else {
+              workingState = false;
             }
+            // }
 
             return workingState;
           }

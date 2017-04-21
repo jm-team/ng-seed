@@ -3,12 +3,20 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('newsCtrl',
   /*@ngInject*/
-  function ($scope, News, $modal, dialogs, $timeout, $http) {
-    $scope.currentPage = 7;
-    $scope.numPages = 9;
-    $scope.maxSize = 3;
-    $scope.itemsPerPage = 6;
-    $scope.query = function () {
+  function ($scope, News, $modal, dialogs, $timeout) {
+    var vm = this;
+
+    vm.indexCrumb = {
+      displayName:"首页",
+      router:"about"
+    };
+
+    vm.query = query;
+    vm.removeArticle = removeArticle;
+
+    vm.query();
+
+    function query() {
       return News.query({
         pageSize: 1
       }, function (data) {
@@ -18,73 +26,18 @@ app.registerController('newsCtrl',
     };
 
 
-
-
-    $timeout(function(){
-      $scope.numPages = 12;
-    },3000);
-    $scope.query();
-
     // 删除新闻
-    $scope.remove = function ($event, news) {
+    function removeArticle($event, news) {
       dialogs.confirm({
         template: '<p class="text-center text-default">确认删除？</p>'
       }).then(function () {
         News.remove({
           id: news._id.$oid
-        }, function (data) {
+        }, function () {
           $scope.query();
         });
       });
     };
-
-    $scope.selectPage = function (page) {
-      console.log(page);
-    };
-
-
-    $scope.select = function (arg) {
-      var tab = arg.tab;
-    };
-
-    // tab2
-    //
-    $timeout(function () {
-      $scope.tabs = [
-        {
-          title: "Home",
-          content: 'ring be appetite it declared. High eyes kept so busy feel call in. Would day nor ask walls known. But preserved advantage are but and certainty earnestly enjoyment. Passage weather as up am exposed. And natural related man subject. Eagerness get situation his was delighted. '
-                },
-        {
-          title: "Profile",
-          selected: true,
-          content: 'Fulfilled direction use continual set him propriety continued. Saw met applauded favourite deficient engrossed concealed and her. Concluded boy perpetual old supposing. Farther related bed and passage comfort civilly. Dashwoods see frankness objection abilities the. As hastened oh produced prospect formerly up am. Placing forming nay looking old married few has. Margaret disposed add screened rendered six say his striking confined. '
-                },
-        {
-          title: "Message",
-          content: 'When be draw drew ye. Defective in do recommend suffering. House it seven in spoil tiled court. Sister others marked fat missed did out use. Alteration possession dispatched collecting instrument travelling he or on. Snug give made at spot or late that mr. '
-                },
-        {
-          title: "Setting",
-          content: 'Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns dwelling graceful six humoured. Whether mr up savings talking an. Active mutual nor father mother exeter change six did all. '
-                }
-            ];
-
-      $scope.accordions = [{
-        title: "手风琴标题1",
-        content: "手风琴内容1"
-            }, {
-        title: "手风琴标题2",
-        content: "手风琴内容2"
-            }, {
-        title: "手风琴标题3",
-        content: "手风琴内容3"
-            }];
-    }, 10)
-
-
-
-
   });
 
 

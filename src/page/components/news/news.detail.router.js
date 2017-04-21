@@ -5,7 +5,8 @@ module.exports = {
     templateUrl: templateUrl,
     controller: 'newsDetailCtrl',
     data: {
-        displayName: '{{news.title}}'
+        displayName: '{{news.title}}',
+        breadcrumbProxy:'components.news.detail'
     },
     resolve: {
         /*@ngInject*/

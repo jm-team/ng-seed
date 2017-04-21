@@ -37,7 +37,7 @@
           $scope.timer2 = null;
 
           this.events = {
-            "mouseover": "mouseout",
+            "mouseenter": "mouseleave",
             "click": "",
             "focus": "blur"
           };
@@ -87,10 +87,16 @@
             } else {
               return this.getTpl(templateUrl).then(function (data) {
                 var ctrl;
-                this.locals.tooltip = self;
+                self.locals.tooltip = self;
                 self.locals.$scope = childScope;
+                var trigger = $attrs.trigger || "mouseenter";
 
                 if (controllerName) {
+                  // $controller Angular 官方解释: https://docs.angularjs.org/api/ng/service/$controller
+                  // $controller 实例化控制器
+                  // 这里的第一个参数是 控制器名称
+                  // 第二个参数是依赖注入到控制器的对象
+                  // 返回的是控制器实例
                   ctrl = $controller(controllerName, self.locals);
                   if ($attrs.controllerAs) {
                     childScope[$attrs.controllerAs] = ctrl;
@@ -100,17 +106,24 @@
                 this.el = $compile(angular.element("<div class='tooltip ng-hide'>" + data + "</div>"))(this.locals.$scope || $scope);
                 this.el
                   .addClass($scope.popperClass)
-                  .on('mouseenter', function () {
-                    $timeout.cancel($scope.timer1);
-                  })
-                  .on('mouseleave', function () {
-                    $scope.timer2 = $timeout(function () {
-                      $scope.show = false;
-                    }, 60);
-                  })
                   .on('click', function ($event) {
                     $event.stopPropagation();
                   });
+
+                if (trigger === 'mouseenter') {
+                  this.el
+                    .on('mouseenter', function () {
+                      $timeout.cancel($scope.timer1);
+                    })
+                    .on('mouseleave', function () {
+                      $scope.timer2 = $timeout(function () {
+                        $scope.$apply(function () {
+                          self.hide();
+                          console.log('mouseleave');
+                        });
+                      }, 60);
+                    })
+                }
 
                 documentClick = $scope.$on('document.click', function () {
                   $scope.$apply(function () {
@@ -138,11 +151,15 @@
           };
 
           // 隐藏`tooltip`
-          this.hide = function () {
+          this.hide = function ($event) {
             this.el.addClass('ng-hide');
             this.el.removeClass('in');
             this.opened = false;
-            onHideFn();
+            onHideFn({
+              $event: $event,
+              tooltip: self,
+              scope: $scope
+            });
 
             return this;
           };
@@ -177,7 +194,7 @@
           }.bind(this));
         },
         link: function (scope, element, attrs, ngCtrl) {
-          var trigger = attrs.trigger || 'mouseover',
+          var trigger = attrs.trigger || 'mouseenter',
             offset = element.getOffset();
 
           childScope = $rootScope.$new();
