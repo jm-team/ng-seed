@@ -1,1 +1,0 @@
-webpackJsonp([3,5],{DvsQ:function(e,t,n){var r=n("eslX");r.registerController("HelpCtrl",["$scope","$http","$q",function(e,t,n){n.defer();angular.extend(e,{title:"help center",desc:"帮助中心"})}])}});

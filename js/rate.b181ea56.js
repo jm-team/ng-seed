@@ -1,0 +1,1 @@
+webpackJsonp([6,17],{TO0z:function(e,t,l){function o(e){function t(){l.disabled=!l.disabled}var l=this;l.state=e,l.model0=-1,l.model=2,l.model1=3,l.max=5,l.texts=["极差","失望","一般","满意","惊喜"],l.toggle=t,l.disabled=!0}var a=l("eslX");a.registerController("RateCtrl",o)}});

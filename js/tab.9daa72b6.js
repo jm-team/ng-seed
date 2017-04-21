@@ -1,0 +1,1 @@
+webpackJsonp([4,17],{"4ZS/":function(t,n,e){function o(t){var n=this;console.log(t.find("body")),n.tabs=[{title:"Tab1",content:"Content of Tab Pane 1"},{title:"Tab2",content:"Content of Tab Pane 2"},{title:"Tab3",content:"Content of Tab Pane 3"}]}var a=e("eslX");a.registerController("TabCtrl",o)}});
