@@ -7,7 +7,6 @@ module.exports = {
     breadcrumbProxy: 'components.chart',
     displayName: '组件'
   },
-  abstract: true,
   templateUrl: templateUrl,
   // controller: 'HomeCtrl',
   // controllerAs: 'vm',

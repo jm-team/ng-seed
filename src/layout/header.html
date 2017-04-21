@@ -1,6 +1,6 @@
 <div id="header" class="container">
     <header class="row">
-        <div class="col-md-6 col-md-offset-2 logo">
+        <div class="col-md-8 col-md-offset-1 logo">
             <a ui-sref="home" class="fn-clear" style="display: inline-block; vertical-align: middle">
                 <div><img height="42" src="../asset/img/logo.png" alt="jumore 聚贸" title="jumore 聚贸" /></div>
             </a>
@@ -13,8 +13,11 @@
         <div class="col-md-14 nav-main">
             <div class="hidden-xs">
                 <ul class="nav nav-pills pull-right" role="tablist">
-                    <li ui-sref-active="active"><a ui-sref="about">Home</a></li>
-                    <li ng-class="{active: state.includes('components')}"><a ui-sref="components.chart">组件</a></li>
+                    <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+                    <li ng-class="{active: state.includes('components')}"><a ui-sref="components">components</a></li>
+                    <li ui-sref-active="active"><a ui-sref="about">About Us</a></li>
+                    <li ui-sref-active="active"><a ui-sref="help">Help</a></li>
+
                 </ul>
             </div>
 

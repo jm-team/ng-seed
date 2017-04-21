@@ -2,8 +2,7 @@ var templateUrl = require('page/home/home.html');
 
 module.exports = {
   title: "首页",
-  url: '/home',
-  abstract: true,
+  url: '/',
   templateUrl: templateUrl,
   controller: 'HomeCtrl',
   controllerAs: 'vm',

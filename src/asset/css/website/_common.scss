@@ -27,7 +27,7 @@ body {
 
 .page-container {
   background-color: #fff;
-  padding: 24px 0 0;
+  padding: 24px 0 60px;
   border-radius: 4px;
   position: relative;
 }
@@ -173,6 +173,7 @@ body {
         }
 
         &.active {
+          color: #108ee9;
           background-color: #ecf6fd;
           border-right: 2px solid #108ee9;
         }

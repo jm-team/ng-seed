@@ -5,14 +5,12 @@ var app = angular.module('app', ['ng.element', 'ui.router', 'ngResource', 'ngAni
 
 // 路由配置
 var router = [
+  ["home", require("./page/home/home.router.js")],
   ["notFound", require("./page/error/404.router.js")],
-
-
   ["about", require("./page/about/about.router.js")],
-
   ["help", require("./page/help/help.router.js")],
 
-  // ["components.index", require("./router/home/home")],
+  // components
   ["components", require("./page/components/components.router.js")],
   ["components.chart", require("./page/components/chart/chart.router.js")],
 
@@ -65,8 +63,10 @@ app.config(function ($controllerProvider, $httpProvider, $locationProvider, $url
 
   // 优化路由地址，开启SEO
   $locationProvider.html5Mode(true).hashPrefix('!');
-  $urlRouterProvider.when('/', '/chart');
+  $urlRouterProvider.when('', '/');
   $urlRouterProvider.otherwise('/404');
+
+  $urlRouterProvider.when('/components', '/chart');
 
   // 配置路由
   router.forEach(function (item) {
