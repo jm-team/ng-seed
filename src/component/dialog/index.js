@@ -22,11 +22,10 @@
       /**
        * 创建模版
        * @author zhoul
-       * @param   {object}  conf 初始配置对象
-       * @returns {object}  promise对象
+       * @param   {object}  config 初始配置
+       * @returns {object} promise对象
        */
-      Dialogs.prototype.creatHTML = function (conf) {
-        var config = conf || {isShowCloseIcon: true};
+      Dialogs.prototype.creatHTML = function (config) {
         var header = '',
           footer = '',
           template = '<div class="dialog-content">' + (config.template) + '</div>',
@@ -82,15 +81,17 @@
       /**
        * 编译模版并添加到指定的Dom中
        * @author zhoul
-       * @param   {string} el     DOM字符串
+       * @param   {object} data   传入到弹出框中的数据对象
        * @param   {object} config 配置文件
        * @returns {object} Dom    对象
        */
-      Dialogs.prototype.render = function (el, config) {
+      Dialogs.prototype.render = function (data, config) {
         var scope = this.scope,
           ctrl,
           prop;
-        this.element = angular.element(el);
+
+        this.element = angular.element(data);
+
         if (this.controllerName) {
           this.locals.$scope = scope;
           ctrl = $controller(this.controllerName, this.locals);
@@ -119,7 +120,7 @@
        * @returns {object} promise
        */
       Dialogs.prototype.modal = function (conf) {
-        var config = conf || {container: document.body, isBackdropClickClose: true};
+        var config = conf || {};
         var scope = this.scope = $rootScope.$new();
         var defer = $q.defer();
         var self = this;
@@ -127,7 +128,7 @@
         var dataElement = null;
 
         this.config = config;
-        this.container = angular.element(config.container);
+        this.container = angular.element(config.container || document.body);
         this.controllerAs = config.controllerAs;
         this.controllerName = config.controller || null;
         this.locals = config.locals || {};
@@ -187,7 +188,7 @@
           self.close();
         };
 
-        scope.cancel = function () {
+        scope.cancel = function ($event) {
           scope.close();
           defer.reject();
         };
@@ -230,7 +231,7 @@
        * 关闭弹框方法
        * @author zhoul
        */
-      Dialogs.prototype.close = function () {
+      Dialogs.prototype.close = function (conf) {
         if (this.backdrop && angular.isFunction(this.backdrop.remove)) {
           $animate.removeClass(this.backdrop, this.config.backdropClass, function () {
             this.backdrop.remove();
