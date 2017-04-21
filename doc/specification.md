@@ -42,7 +42,7 @@ filter/:  (过滤器文件)
 router/:  (页面路由文件)
 service/:  (服务文件)
 app.js:  (项目配置启动文件)
-entry.js: (webpack 入口文件)
+main.js: (webpack 入口文件)
 ```
 
 ### 4.page 文件夹 路由对应文件夹
