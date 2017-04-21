@@ -7,8 +7,8 @@ angular.module('jmui.accordion', [])
       transclude: true,
       replace: true,
       template: '<div class="jm-accordions"><ul class="list-unstyled" ng-transclude></ul></div>',
-      controller: function ($scope, $element, $attrs) {
-        var accordions = this.$accordions = [];
+      controller: function () {
+        var accordions =  [];
         // $scope.open = '123'
         this.toggleAccrdion = function (accordion) {
           angular.forEach(accordions, function (item) {
@@ -36,11 +36,11 @@ angular.module('jmui.accordion', [])
       controller: function ($scope, $transclude) {
       },
 
-      compile: function (tEl, tAttr, transclude) {
+      compile: function () {
         return function postlink(scope, ele, attrs, ctrl) {
           scope.open = false;
           ctrl.addAccordions(scope);
-          scope.toggle = function ($event) {
+          scope.toggle = function () {
             scope.open = !scope.open;
             ctrl.toggleAccrdion(scope);
           };

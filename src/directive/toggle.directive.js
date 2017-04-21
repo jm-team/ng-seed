@@ -1,6 +1,6 @@
 var app = require('app');
 
-app.directive('toggle', function (Util) {
+app.directive('toggle', function () {
     return {
         restrict: 'AE',
         link: function (scope, element, attrs) {

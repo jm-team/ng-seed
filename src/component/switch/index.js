@@ -17,7 +17,6 @@
           ngModel: '='
         },
         controller: function ($scope, $element, $attrs) {
-          var bgStyle = {};
           var width = parseInt($attrs.width, 10) || 58;
           var onColor = $attrs.onColor || "#13ce66";
           var offColor = $attrs.offColor || "#ff4949";

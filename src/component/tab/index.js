@@ -46,8 +46,8 @@
             tab.selected = true;
           };
         },
-        compile: function (tEle, tAttrs, transclude) {
-          return function postLink(scope, ele, attrs) {
+        compile: function () {
+          return function postLink(scope, ele) {
             var children = ele.children();
             var ngHeader = angular.element(children[0]);
             var ulChild = ngHeader.find('ul').children();
@@ -71,11 +71,11 @@
         }
       };
     })
-    .directive('jmTabContentTransclude', function ($interpolate) {
+    .directive('jmTabContentTransclude', function () {
       return {
         restrict: 'AE',
         transclude: true,
-        compile: function (tEle, tAttrs, transclude) {
+        compile: function () {
           return function postLink(scope, ele, attrs) {
             var tab = scope.$eval(attrs.jmTabContentTransclude);
             tab.transcludeFn(tab.$parent, function (clone) {
@@ -180,7 +180,7 @@
     })
     .directive('jmTabHeaderTransclude', function () {
       return {
-        link: function (scope, ele, attrs) {
+        link: function (scope, ele) {
           scope.$watch('headerNode', function (nodes) {
             if (angular.isArray(nodes) && nodes.length > 0) {
               ele.html('');

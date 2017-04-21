@@ -15,7 +15,7 @@
           displayNameProperty: '@',
           abstractProxyProperty: '@?'
         },
-        link: function (scope, element, attrs) {
+        link: function (scope) {
           scope.breadcrumbs = [];
           if ($state.$current.name !== '') {
             updateBreadcrumbsArray();
@@ -118,7 +118,6 @@
           function getStateDisplayName($state) {
             if (angular.isObject($state.data)) {
               var tmp = $state.data.displayName;
-              var data = $state.locals.globals;
               // 解析插值字符串
               // tmp => {{news.title}}
               // $state.locals.golbals =>
