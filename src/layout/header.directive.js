@@ -1,7 +1,7 @@
 var app = require('app');
 var tmpHeader = require('./header.html');
 var loginV2Tmp = require('page/login/login.html');
-require('page/login/loginCtrl.js');
+require('page/login/login.controller.js');
 
 app.directive('jmHeader', function (dialogs) {
     return {
