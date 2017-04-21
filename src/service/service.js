@@ -9,11 +9,11 @@ app.factory('Util', function ($q) {
      */
     trim: function () {
       if (!String.prototype.trim) {
-        return function (value) {
+        return function trim(value) {
           return angular.isString(value) ? value.replace(/^\s\s*/, '').replace(/\s\s*$/, '') : value;
         };
       }
-      return function (value) {
+      return function trim(value) {
         return angular.isString(value) ? value.trim() : value;
       };
     }
@@ -206,13 +206,11 @@ app.factory('Auth', function ($resource, $document, $q, $timeout, Address) {
       // 用户已经登录回调
       window.userLoginSuccessCallback = function (token) {
         oScript.remove();
-        console.log('suc')
         defer.resolve(token);
       }
 
       // 用户未登录回调
       window.userNotLoginCallback = function () {
-        console.log('err')
         oScript.remove();
         defer.reject({error: 'ERROR'});
       }

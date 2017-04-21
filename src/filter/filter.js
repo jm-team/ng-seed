@@ -66,7 +66,7 @@ app.filter('cut_str', function () {
      */
     function fn(str, L) {
         if (!angular.isString(str)) {
-            return;
+            return str;
         }
         var result = '',
             strlen = str.length, // 字符串长度
@@ -123,7 +123,7 @@ app.filter('light', function () {
 app.filter('trendUp', [function() {
     return function(value) {
         if (value) {
-            value = +value.replace('%', '')
+            value = +value.replace('%', '');
 
             return value > 0;
         }
@@ -135,7 +135,7 @@ app.filter('trendUp', [function() {
 app.filter('trendDown', [function() {
     return function(value) {
         if (value) {
-            value = +value.replace('%', '')
+            value = +value.replace('%', '');
 
             return value < 0;
         }

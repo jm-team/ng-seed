@@ -4,7 +4,7 @@
 
   // 滚动条柔和的滚动到指定的锚点位置
   angular.module('jmui.AnchorSmoothScroll', [])
-    .directive('jmAnchorSmoothScroll', function ($window) {
+    .directive('jmAnchorSmoothScroll', function ($window, $timeout) {
       return {
         restrict: 'AE',
         scope: {
@@ -15,7 +15,7 @@
           onScrollFinsh: '&',
 
           // 是否在
-          isHide:'@',
+          isHide: '@',
 
           // 指定滚动到ID为此参数的元素位置
           targetId: '@'
@@ -23,8 +23,10 @@
         controller: function ($scope, $element, $attrs) {
 
         },
-        link: function (scope, element, attrs) {
+        link: function (scope, element) {
           var visibilityHeight = scope.visibilityHeight || 400;
+          var timer = null;
+
           // 计算滚动条当前位置
           function currentYPosition() {
             // Firefox, Chrome, Opera, Safari
@@ -83,6 +85,8 @@
             var startY = currentYPosition();
             var stopY = elmYPosition(scope.targetId);
             var distance = stopY > startY ? stopY - startY : startY - stopY;
+
+
             if (distance < 100) {
               scrollTo(0, stopY);
               onFinsh();
@@ -122,9 +126,8 @@
           });
 
           angular.element($window).on('scroll', function () {
-            var timer = null;
-            clearTimeout(timer);
-            timer = setTimeout(contrast, 50);
+            $timeout.cancel(timer);
+            timer = $timeout(contrast, 50);
           });
         }
       };
