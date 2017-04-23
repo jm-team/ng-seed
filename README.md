@@ -18,7 +18,7 @@
 - [x] 生成发布日志
 - [x] 生成jsdoc
 - [x] 生成authors
-- [ ] 代码检查工具
+- [x] 代码检查工具(fecs)
 
 ## Usage
 
