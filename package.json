@@ -11,7 +11,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "commitmsg": "validate-commit-msg",
     "jsdoc": "jsdoc -c ./config/jsdoc.conf.json",
-    "authors": "node ./build/authors.js"
+    "authors": "node ./build/authors"
   },
   "config": {
     "validate-commit-msg": {
@@ -63,7 +63,8 @@
     "webpack": "1.13.2",
     "webpack-chunk-hash": "^0.4.0",
     "webpack-dev-server": "^1.15.1",
-    "webpack-merge": "^0.14.1"
+    "webpack-merge": "^0.14.1",
+    "webpack-uglify-parallel": "^0.1.3"
   },
   "dependencies": {
     "inline-manifest-webpack-plugin": "^3.0.1",

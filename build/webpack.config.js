@@ -4,25 +4,23 @@ var merge = require('webpack-merge');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var config = require('../config/build.config.js');
 var webpackConfig;
 var devtool;
-var hash = chunkhash = contenthash = '';
+var hash = chunkhash = '';
 
 // 公共類庫文件
 var vendorFiles = [
-    './dep/angular/angular.js',
-    './dep/angular/angular-sanitize.js',
-    './dep/angular/angular-resource.js',
-    './dep/angular/angular-animate.js',
-    './dep/angular/ui-bootstrap-tpls.js',
+    './dep/angular/angular.min.js',
+    './dep/angular/angular-sanitize.min.js',
+    './dep/angular/angular-resource.min.js',
+    './dep/angular/angular-animate.min.js',
+    './dep/angular/ui-bootstrap-tpls.min.js',
+    './dep/angular/angular-ui-router.min.js',
     './dep/angular/angular-locale_zh-cn.js',
-    './dep/angular/angular-ui-router.js',
     './dep/bindonce.js',
     './dep/security.js',
-    './dep/ng-lazy-image/lazy-image.js',
-    './src/asset/css/index.js'
+    './dep/ng-lazy-image/lazy-image.js'
 ];
 
 if (config.echarts.enabled) {
@@ -42,13 +40,7 @@ if (env === 'dev') {
     devtool = config.debug ? '#source-map' : false;
     hash = '[hash:8].';
     chunkhash = '[chunkhash:8].';
-    contenthash = '[contenthash:8].';
 }
-// multiple extract instances
-var extractCSS = new ExtractTextPlugin('css/[name].' + contenthash + 'css');
-var extractLESS = new ExtractTextPlugin('css/less.[name].' + contenthash + 'css');
-var extractSASS = new ExtractTextPlugin('css/sass.[name].' + contenthash + 'css');
-
 
 module.exports = merge({
     /**
@@ -77,10 +69,8 @@ module.exports = merge({
         alias: {
             'address': path.join(__dirname, '../config/address.config'),
             'app': path.join(__dirname, '../src/app'),
-            'component': path.join(__dirname, '../src/component'),
             'page': path.join(__dirname, '../src/page'),
-            'css': path.join(__dirname, '../src/asset/css'),
-            'controller': path.join(__dirname, '../src/controller')
+            'css': path.join(__dirname, '../src/asset/css')
         },
 
         fallback: [path.join(__dirname, './node_modules')],
@@ -91,29 +81,13 @@ module.exports = merge({
 
     //
     module: {
+        noParse: /(min\.js)$/,
         loaders: [
             // 处理angularjs 模版片段
             {
                 test: /\.html$/,
                 loader: 'ngtemplate?module=ng&relativeTo='+(path.resolve(__dirname, '../'))+'!html?attrs=img:src img:img-error div:img-error li:img-error span:img-error a:img-error',
                 include: /(src|dep)/
-            },
-
-            // 配置css的抽取器、加载器。'-loader'可以省去
-            // 这里使用自动添加CSS3 浏览器前缀
-            {
-                test: /\.css$/i,
-                loader: extractCSS.extract('style-loader', 'css!postcss')
-            },
-
-            {
-                test: /\.less$/i,
-                loader: extractLESS.extract(['css', 'less!postcss'])
-            },
-
-            {
-                test: /\.scss$/i,
-                loader: extractSASS.extract(['css', 'sass!postcss'])
             },
 
             // 处理html图片
@@ -123,39 +97,6 @@ module.exports = merge({
             }
         ]
     },
-    postcss: function () {
-        return [
-            require('postcss-sprites')({
-                stylesheetPath: './src/css',
-                spritePath: './dist/img/sprite',
-                filterBy: function (image) {
-                    //添加雪碧图规则 只有在sprite文件夹下的图片进行合并
-                    if (!/\/sprite\//.test(image.url)) {
-                        // console.log(image.url);
-                        return Promise.reject();
-                    }
-
-                    return Promise.resolve();
-                },
-                groupBy: function (image) {
-                    //添加雪碧图规则 在sprite下，如果包含文件夹则单独进行合并
-                    var regex = /\/sprite\/([^/]+)\//g;
-                    var m = regex.exec(image.url);
-                    if (!m) {
-                        return Promise.reject();
-                    }
-                    return Promise.resolve(m[1]); // 'sprite.' + icon + '.png'
-                },
-                spritesmith: {
-                    padding: 20
-                }
-            }),
-            require('autoprefixer')({
-                browsers: ["last 6 version"]
-            })
-        ];
-    },
-
     // sourceMap
     devtool: devtool,
 
@@ -163,9 +104,6 @@ module.exports = merge({
     plugins: [
         // 单独使用link标签加载css并设置路径，
         // 相对于output配置中的publickPath
-        extractCSS,
-        extractLESS,
-        extractSASS,
         new CopyWebpackPlugin([{
             from: './dep/ie8support/ie8supports.js',
             to: './dep'
@@ -176,7 +114,7 @@ module.exports = merge({
             from: './src/asset/img/system',
             to: './img/system'
         }, {
-            from: './src/component/ueditor',
+            from: './dep/jmui/ueditor',
             to: './js'
         }]),
 
