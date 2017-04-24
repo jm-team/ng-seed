@@ -15,6 +15,7 @@
 - [x] 添加滚动指令（/scroll）
 - [x] 搜索条件保存至URL (/search)
 - [x] 富文本编辑器（/ueditor）
+- [x] 校验git提交备注格式(validate-commit-msg)
 - [x] 生成发布日志
 - [x] 生成jsdoc
 - [x] 生成authors
