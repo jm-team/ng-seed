@@ -1,3 +1,4 @@
+require('./index.scss');
 require('./accordion');
 require('./crumb');
 require('./tooltip');
