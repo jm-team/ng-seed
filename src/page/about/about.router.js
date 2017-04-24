@@ -1,4 +1,4 @@
-var templateUrl = require('page/about/about.html');
+var templateUrl = require('./about.html');
 module.exports = {
     title: "关于我们",
     url: '/about',
