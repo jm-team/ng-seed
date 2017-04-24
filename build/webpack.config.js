@@ -49,8 +49,6 @@ var extractCSS = new ExtractTextPlugin('css/[name].' + contenthash + 'css');
 var extractLESS = new ExtractTextPlugin('css/less.[name].' + contenthash + 'css');
 var extractSASS = new ExtractTextPlugin('css/sass.[name].' + contenthash + 'css');
 
-console.log(__dirname);
-
 
 module.exports = merge({
     /**
