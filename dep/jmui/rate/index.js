@@ -16,7 +16,7 @@
         link: jmRateLinkFn
       };
 
-      function jmRateCtrl($scope, $element, $attrs) {
+      function jmRateCtrl($scope,  $attrs) {
 
         // 监听是否禁用了`switch`
         $attrs.$observe('disabled', function (newVal, oldVal) {

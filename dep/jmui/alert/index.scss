@@ -1,5 +1,5 @@
-@import "../../asset/css/jmui/_variables";
-@import "../../asset/css/jmui/mixins/_alerts";
+@import "../style/_variables";
+@import "../style/mixins/_alerts";
 
 .jm-alert {
     padding: $alert-padding;

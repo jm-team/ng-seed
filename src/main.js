@@ -1,6 +1,6 @@
 require('css/style.scss')
 
-require('./directive');
+require('./component');
 require('./filter');
 require("./layout");
 require('./service');

@@ -49,6 +49,7 @@ var extractCSS = new ExtractTextPlugin('css/[name].' + contenthash + 'css');
 var extractLESS = new ExtractTextPlugin('css/less.[name].' + contenthash + 'css');
 var extractSASS = new ExtractTextPlugin('css/sass.[name].' + contenthash + 'css');
 
+
 module.exports = merge({
     /**
      * 源文件入口文件
@@ -94,8 +95,8 @@ module.exports = merge({
             // 处理angularjs 模版片段
             {
                 test: /\.html$/,
-                loader: 'ngtemplate?module=ng&relativeTo=/src!html?attrs=img:src img:img-error div:img-error li:img-error span:img-error a:img-error',
-                include: /(src)/
+                loader: 'ngtemplate?module=ng&relativeTo='+(path.resolve(__dirname, '../'))+'!html?attrs=img:src img:img-error div:img-error li:img-error span:img-error a:img-error',
+                include: /(src|dep)/
             },
 
             // 配置css的抽取器、加载器。'-loader'可以省去

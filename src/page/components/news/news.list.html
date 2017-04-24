@@ -3,6 +3,9 @@
     <button class="jm-btn jm-btn-sm jm-btn-primary pull-right" ui-sref="components.news.save()">Add</button>
 </h2>
 <hr>
+
+<h5 class="text-center" ng-show="!news.length">加载中...</h5>
+
 <ul class="list-unstyled news-list">
     <li style="line-height: 30px;" ng-repeat="new in news track by new._id.$oid" class="row">
         <a ui-sref="components.news.detail({id: new._id.$oid})" class="title col-sm-18 col-xs-24">{{new.title}}</a>
