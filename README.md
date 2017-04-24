@@ -92,11 +92,13 @@ husky - commitmsg `validate-commit-msg`
 3.1. css - 推荐使用sass来模块化css文件，css用到了postcss来实现雪碧图、autoprefixer兼容css3
 3.2. img - sprite 雪碧图目录，在此文件夹下的图片将合并，子目录会单独合并为一张图片
 4. component - 提取公用ng组件，方便后续代码维护与复用
-5. directive - 公共指令，当组件抽取为外部组件库后，可当做`component`
-6. mock - json文件  
-6.1. 用于开发阶段模拟接口数据  
-6.2. 在前端固定将来会开发成接口的数据  
-7. page - 包含`controller`、`router`、`template`
+5. filter - 过滤器，处理数据格式
+6. layout - 页面布局公共指令
+7. mock - json文件  
+7.1. 用于开发阶段模拟接口数据  
+7.2. 在前端固定将来会开发成接口的数据  
+8. page - 包含`controller`、`router`、`template`
+9. service - 包含api服务、工具函数、数据单例
 > 注意一级子目录结构不可随意修改，二级子目录可根据项目复杂度设置多级目录
 
 ## 注意事项（坑）
@@ -116,7 +118,7 @@ husky - commitmsg `validate-commit-msg`
 1. 强烈建议使用淘宝镜像 `yarn config set registry http://registry.npm.taobao.org`
 2. 指定node-sass的下载源 `yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass`
 
-## end
+## End
 欢迎提出任何问题及建议
 
-**[Back to top](#ng-seed)**
+**[:arrow_up:Back to top](#ng-seed)**
