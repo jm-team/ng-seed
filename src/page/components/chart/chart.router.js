@@ -5,6 +5,10 @@ module.exports = {
     url: '^/chart',
     templateUrl: templateUrl,
     controller: 'ChartCtrl',
+    data: {
+        breadcrumbProxy: 'components.chart',
+        displayName: '云詞'
+    },
     resolve: {
         /*@ngInject*/
         loadCtrl: function ($q, $timeout) {

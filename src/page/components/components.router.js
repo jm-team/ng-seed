@@ -4,8 +4,15 @@ module.exports = {
   title: "组件",
   url:"/components",
   data: {
-    breadcrumbProxy: 'components.chart',
+    breadcrumbProxy: 'components',
     displayName: '组件'
+  },
+  controller: function($scope){
+
+    $scope.indexCrumb = {
+      displayName:"首页",
+      router:"about"
+    }
   },
   templateUrl: templateUrl,
   // controller: 'HomeCtrl',

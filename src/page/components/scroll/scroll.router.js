@@ -4,6 +4,10 @@ module.exports = {
     title: '数据展示',
     url: '^/scroll',
     templateUrl: templateUrl,
+    data: {
+        breadcrumbProxy: 'components.scroll',
+        displayName: '数据展示'
+    },
     controller: ['$scope', 'Api', function ($scope, Api) {
 
         $scope.finishRender = false;
@@ -22,7 +26,7 @@ module.exports = {
                 dataList = dataList.concat(dataList);
                 data.dataList = dataList;
             }
-            
+
             $scope.data = data;
 
         }, function errorCallback(response) {

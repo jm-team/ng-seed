@@ -6,6 +6,10 @@ module.exports = {
     reloadOnSearch: false,
     templateUrl: templateUrl,
     controller: 'SearchCtrl',
+    data: {
+        breadcrumbProxy: 'components.search',
+        displayName: '搜索列表'
+    },
     resolve: {
         /*@ngInject*/
         loadCtrl: function ($q) {
@@ -15,12 +19,12 @@ module.exports = {
             }, 'home');
             return defer.promise;
         }
-    // },
-    // onEnter: function(){
-    //     console.log('onEnter')
-    // },
-    // onExit: function($stateParams){
-    //     $stateParams.abc()
-    //     console.log('onExit')
+        // },
+        // onEnter: function(){
+        //     console.log('onEnter')
+        // },
+        // onExit: function($stateParams){
+        //     $stateParams.abc()
+        //     console.log('onExit')
     }
 }

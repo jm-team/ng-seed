@@ -4,6 +4,10 @@ module.exports = {
     title: '百度编辑器',
     url: '^/ueditor',
     templateUrl: templateUrl,
+    data: {
+        breadcrumbProxy: 'components.ueditor',
+        displayName: '富文本编辑'
+    },
     controller: ['$scope', function ($scope) {
 
         $scope._simpleConfig = {

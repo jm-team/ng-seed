@@ -7,7 +7,7 @@ module.exports = {
   controller: 'CrumbCtrl',
   controllerAs: 'vm',
   data:{
-    breadcrumbProxy: 'home.curmb',
+    breadcrumbProxy: 'components.crumb',
     displayName: '面包屑'
   },
   resolve: {
