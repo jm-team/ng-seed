@@ -23,12 +23,14 @@
             updateBreadcrumbsArray();
           }
 
-          scope.$on('$stateChangeSuccess', function () {
-
+          var a  = scope.$on('$stateChangeSuccess', function () {
             scope.breadcrumbs = [];
-
             updateBreadcrumbsArray();
           });
+
+          scope.$on('$destroy', function(){
+              a();
+          })
 
           function updateBreadcrumbsArray() {
             var custromCrumbs = scope.$eval(attrs.indexCrumb);
@@ -107,7 +109,8 @@
             var propertyObject = obj;
 
             angular.forEach(proxyArray, function (item) {
-              if (angular.isDefined(propertyObject[item])) {
+
+              if (angular.isObject(propertyObject) && angular.isDefined(propertyObject[item])) {
                 propertyObject = propertyObject[item];
               } else {
                 propertyObject = undefined;
