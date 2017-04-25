@@ -1,6 +1,5 @@
 require('./service/ng.element');
 var address = require('address');
-var jmui = require('../dep/jmui');
 var app = angular.module('app', ['ng.element', 'ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
 
 // 路由配置

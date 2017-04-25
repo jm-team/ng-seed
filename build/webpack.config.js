@@ -46,7 +46,8 @@ module.exports = merge({
     entry: {
         // 公共文件
         vendor: vendorFiles,
-        entry: './src/main.js'
+        jmui: './dep/jmui',
+        app: './src/main.js'
     },
 
     // 构建之后的文件目录配置
