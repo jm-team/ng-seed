@@ -1,15 +1,17 @@
 {
   "name": "ng-seed",
-  "version": "0.6.0-beta.2",
+  "version": "0.6.0",
   "description": "> angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、服务接口跨域、SPA页面SEO等问题",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet --open --config ./build/webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --progress --config ./build/webpack.config.js",
     "start": "node ./build/server",
+    "fecs:check": "fecs check src --reporter=baidu",
+    "fecs:fix": "fecs format src --replace --safe=high",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "commitmsg": "validate-commit-msg",
     "jsdoc": "jsdoc -c ./config/jsdoc.conf.json",
-    "authors": "node ./build/authors.js"
+    "authors": "node ./build/authors"
   },
   "config": {
     "validate-commit-msg": {
@@ -38,6 +40,7 @@
     "echarts": "^3.3.2",
     "echarts-wordcloud": "^1.0.3",
     "extract-text-webpack-plugin": "^1.0.1",
+    "fecs": "^1.2.2",
     "file-loader": "^0.9.0",
     "friendly-errors-webpack-plugin": "^1.1.3",
     "html-loader": "^0.4.3",
@@ -60,7 +63,8 @@
     "webpack": "1.13.2",
     "webpack-chunk-hash": "^0.4.0",
     "webpack-dev-server": "^1.15.1",
-    "webpack-merge": "^0.14.1"
+    "webpack-merge": "^0.14.1",
+    "webpack-uglify-parallel": "^0.1.3"
   },
   "dependencies": {
     "inline-manifest-webpack-plugin": "^3.0.1",
