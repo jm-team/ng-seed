@@ -39,8 +39,8 @@
         <jm-checkbox checked="vm.checked" disabled="{{vm.disabled}}" view-value="Css"></jm-checkbox>
 
         <p>
-          <button class="jm-btn jm-btn-primary" ng-click="vm.checkToggle()">切换选中和非选中</button>
-          <button class="jm-btn jm-btn-primary" ng-click="vm.toggle()">切换禁用和可用</button>
+          <button class="jm-btn jm-btn-sm jm-btn-primary" ng-click="vm.checkToggle()">切换选中和非选中</button>
+          <button class="jm-btn jm-btn-sm jm-btn-primary" ng-click="vm.toggle()">切换禁用和可用</button>
         </p>
       </div>
     </div>
@@ -53,7 +53,27 @@
       </div>
 
       <div class="ibox-content">
-        <jm-checkbox ng-repeat="opt in vm.options" checked="opt.checked"  view-value="{{opt.label}}"></jm-checkbox>
+        <p>当前选中的有: {{ vm.checkeds }}</p>
+        <jm-checkbox-group options="vm.options" checkeds="vm.checkeds"></jm-checkbox-group>
+
+        <p>当前选中的有: {{ vm.checkeds2 }}</p>
+        <jm-checkbox-group options="vm.options2" checkeds="vm.checkeds2"></jm-checkbox-group>
+
+        <p>当前选中的有: {{ vm.checkeds3 }}</p>
+        <jm-checkbox-group options="vm.options3" checkeds="vm.checkeds3"></jm-checkbox-group>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5><jm-checkbox checked="vm.checkAll" view-value="全选"></jm-checkbox></h5>
+      </div>
+
+      <div class="ibox-content">
+        <p>当前选中的有: {{ vm.checkeds4 }}</p>
+        <jm-checkbox-group on-change="vm.onChange()" options="vm.options4" checkeds="vm.checkeds4"></jm-checkbox-group>
       </div>
     </div>
   </div>
