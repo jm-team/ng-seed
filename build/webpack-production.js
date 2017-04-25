@@ -80,9 +80,17 @@ module.exports = {
         }),*/
         new UglifyJsParallelPlugin({
             workers: os.cpus().length,
-            mangle: true,
+            fromString: true,
+            mangle: {
+                screw_ie8: false
+            },
+            output: {
+                comments: false, // 移除所有注释
+                screw_ie8: false // 默认为true，不支持ie8及以下
+            },
             compressor: {
                 warnings: false,
+                screw_ie8: false,
                 drop_console: true,
                 drop_debugger: true
             }

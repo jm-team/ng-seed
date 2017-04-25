@@ -18,15 +18,10 @@ var vendorFiles = [
     './dep/angular/ui-bootstrap-tpls.min.js',
     './dep/angular/angular-ui-router.min.js',
     './dep/angular/angular-locale_zh-cn.js',
-    './dep/bindonce.js',
-    './dep/security.js',
-    './dep/ng-lazy-image/lazy-image.js'
+    './dep/ng-lazy-image/lazy-image.min.js',
+    './dep/bindonce.min.js',
+    './dep/security.js'
 ];
-
-if (config.echarts.enabled) {
-    vendorFiles.push('echarts');
-    vendorFiles.push('zrender');
-}
 
 // 获取执行环境
 var env = (process.env.NODE_ENV || '').trim();
@@ -142,6 +137,14 @@ module.exports = merge({
                 removeComments: true,
                 // 删除冗余属性
                 removeRedundantAttributes: true
+            },
+            // chunk排序
+            // chunksSortMode: "dependency"
+            chunksSortMode: function (chunk1, chunk2) {
+                var order = ['vender', 'jmui', 'app'];
+                var order1 = order.indexOf(chunk1.names[0]);
+                var order2 = order.indexOf(chunk2.names[0]);
+                return order1 - order2;
             }
 
         }),
