@@ -25,11 +25,13 @@ app.registerController('SearchCtrl',
 
             getList: function (data) {
                 // 分类列表
-                $http.get('/dist/mock/search.json', {params: data}).then(function (result) {
-                    $scope.lists = result.data;
-                }, function () {
-                    alert('Error');
-                });
+                $http.get('/dist/mock/search.json', {params: data})
+                    .then(function (result) {
+                        $scope.searchLists = result.data;
+                    }, function () {
+                        alert('Error');
+                    })
+                    .then(filterJsonData);
 
             }
         });
@@ -37,6 +39,28 @@ app.registerController('SearchCtrl',
         initSearch();
 
         jmSearch($scope, initSearch);
+
+        // 筛选条件
+        function filterJsonData() {
+            $scope.lists = [];
+            angular.forEach($scope.searchLists, function (item) {
+                if($scope.search['categoryId']){ // 判断分类是否为空
+                    if(item.categoryId == $scope.search['categoryId']){
+                        if(item.industryIds.match($scope.search['industryId'])){
+                            $scope.lists.push(item);
+                        }
+                    }
+                }else{
+                    if(+$scope.search['industryId']) { // 判断行业是否为空
+                        if (item.industryIds.match($scope.search['industryId'])) {
+                            $scope.lists.push(item);
+                        }
+                    }else{
+                        $scope.lists = $scope.searchLists;
+                    }
+                }
+            })
+        }
 
 
         // 获取Category
@@ -67,7 +91,7 @@ app.registerController('SearchCtrl',
                 $q.all([getCategory(), getIndustry()])
                     .then(processBase)
                     .then(coverParams)
-                    .then($scope.getList);
+                    .then($scope.getList)
             } else {
                 $scope.getList(coverParams());
             }
