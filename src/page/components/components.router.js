@@ -7,15 +7,15 @@ module.exports = {
         breadcrumbProxy: 'components',
         displayName: '组件'
     },
+    templateUrl: templateUrl,
     /*@ngInject*/
     controller: function ($scope) {
 
         $scope.indexCrumb = {
             displayName: "首页",
-            router: "about"
+            router: "home"
         }
     },
-    templateUrl: templateUrl,
     // controller: 'HomeCtrl',
     // controllerAs: 'vm',
     resolve: {
