@@ -2,14 +2,14 @@ var app = require('app');
 
 /* 新闻api接口 */
 app.factory('News', function ($resource, API_SERVER, API_KEY) {
-  return $resource(API_SERVER + '/news/:id', {
-    id: '@id',
-    apiKey: API_KEY
-  }, {
-      update: {
-        method: 'PUT'
-      }
-  });
+    return $resource(API_SERVER + '/news/:id', {
+        id: '@id',
+        apiKey: API_KEY
+    }, {
+        update: {
+            method: 'PUT'
+        }
+    });
 });
 
 app.factory('Api', function ($resource, $http, Address) {
@@ -21,7 +21,22 @@ app.factory('Api', function ($resource, $http, Address) {
         },
 
         GridDataList: function () {
-            return $resource('/dist/mock/gridData.json');
+            return $resource(__webpack_require__.p + 'mock/gridData.json');
+        },
+
+        // 获取Search
+        Search: function () {
+            return $resource(__webpack_require__.p + 'mock/search.json');
+        },
+
+        // 获取Category
+        Category: function () {
+            return $resource(__webpack_require__.p + 'mock/categorys.json');
+        },
+
+        // 获取Industry
+        Industry: function () {
+            return $resource(__webpack_require__.p + 'mock/industrys.json');
         },
 
         doLogin: function (email, password) {

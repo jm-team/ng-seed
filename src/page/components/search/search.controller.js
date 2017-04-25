@@ -3,7 +3,7 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('SearchCtrl',
     /*@ngInject*/
-    function ($scope, $http, $q, $stateParams, $state, $timeout, $location, jmSearch) {
+    function ($scope, $http, $q, $stateParams, $state, $timeout, $location, jmSearch, Api) {
         var defaultSearch = {
             categoryId: 0,
             industryId: 0
@@ -25,13 +25,11 @@ app.registerController('SearchCtrl',
 
             getList: function (data) {
                 // 分类列表
-                $http.get('/dist/mock/search.json', {params: data})
-                    .then(function (result) {
-                        $scope.searchLists = result.data;
-                    }, function () {
-                        alert('Error');
-                    })
-                    .then(filterJsonData);
+                Api.Search().query(data).$promise.then(function (result) {
+                    $scope.searchLists = result;
+                }, function () {
+                    alert('Error');
+                }).then(filterJsonData);
 
             }
         });
@@ -75,8 +73,8 @@ app.registerController('SearchCtrl',
 
         // 处理搜索参数
         function processBase(data) {
-            $scope.base.categorys = data[0].data;
-            $scope.base.industrys = data[1].data;
+            $scope.base.categorys = data[0];
+            $scope.base.industrys = data[1];
             return $scope.base;
         }
 
@@ -88,10 +86,10 @@ app.registerController('SearchCtrl',
 
         function initSearch() {
             if (!$scope.base.categorys.length && !$scope.base.industrys.length) {
-                $q.all([getCategory(), getIndustry()])
+                $q.all([Api.Category().query().$promise, Api.Industry().query().$promise])
                     .then(processBase)
                     .then(coverParams)
-                    .then($scope.getList)
+                    .then($scope.getList);
             } else {
                 $scope.getList(coverParams());
             }
