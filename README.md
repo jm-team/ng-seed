@@ -11,7 +11,7 @@
 - [x] SPA页面路由（ui-router）
 - [x] SPA页面historyApi（webpack-dev-server、nginx配置）
 - [x] SPA页面SEO解决方案(Prerender.io)，爬取404页面设置status code为404
-- [x] 添加云詞例子[echarts-wordCloud](https://github.com/ecomfe/echarts-wordcloud)
+- [x] 添加云詞例子[echarts-wordCloud](https://github.com/ecomfe/echarts-wordcloud) IE9+!!!
 - [x] 添加滚动指令（/scroll）
 - [x] 搜索条件保存至URL (/search)
 - [x] 富文本编辑器（/ueditor）
