@@ -1,9 +1,9 @@
 var templateUrl = require('./components.html');
 
 module.exports = {
-  title: "组件",
-  url:"/components",
-  data: {
+    title: "组件",
+    url:"/components",
+    data: {
     breadcrumbProxy: 'components',
     displayName: '组件'
   },

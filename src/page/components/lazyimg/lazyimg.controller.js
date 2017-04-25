@@ -7,6 +7,7 @@ var app = require('app');
 
 app.registerController('LazyimgCtrl', LazyimgCtrl);
 
+/*@ngInject*/
 function LazyimgCtrl() {
   var vm = this;
 

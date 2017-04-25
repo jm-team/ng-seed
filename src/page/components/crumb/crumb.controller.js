@@ -2,6 +2,7 @@ var app = require('app');
 
 app.registerController('CrumbCtrl', CrumbCtrl);
 
+/*@ngInject*/
 function CrumbCtrl() {
     var vm = this;
 

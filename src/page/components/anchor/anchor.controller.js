@@ -7,6 +7,7 @@ var app = require('app');
 
 app.registerController('AnchorCtrl', AnchorCtrl);
 
+/*@ngInject*/
 function AnchorCtrl() {
 
 }

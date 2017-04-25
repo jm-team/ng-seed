@@ -2,7 +2,8 @@ var app = require('app');
 
 app.registerController('ImgErrorCtrl', ImgErrorCtrl);
 
-function ImgErrorCtrl(dialogs) {
+/*@ngInject*/
+function ImgErrorCtrl() {
 
   var vm = this;
 

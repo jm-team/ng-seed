@@ -3,6 +3,7 @@
  */
 
 var templateUrl = require('./tab.html');
+
 module.exports = {
     url: '^/tab',
     // abstract: true,

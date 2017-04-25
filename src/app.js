@@ -34,7 +34,9 @@ var router = [
   ["components.alert", require("./page/components/alert/alert.router.js")],
   ["components.crumb", require("./page/components/crumb/crumb.router.js")],
   ["components.anchor", require("./page/components/anchor/anchor.router.js")],
-  ["components.tooltip", require("./page/components/tooltip/tooltip.router.js")]
+  ["components.tooltip", require("./page/components/tooltip/tooltip.router.js")],
+
+  ["components.checkbox", require("./page/components/checkbox/checkbox.router.js")]
 ];
 
 // 鏈接mongo配置
@@ -75,12 +77,12 @@ app.config(function ($controllerProvider, $httpProvider, $locationProvider, $url
 });
 
 
-app.run(function ($rootScope, $log, $state, requestService, Login, Api, Auth) {
+app.run(function ($rootScope, $log, $state, Util, Login, Api, Auth) {
   $rootScope.show = false;
   $rootScope.$state = $state;
   // 路由切换成功
   // , toParams, formState, formParams, options
-  $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+  $rootScope.$on('$stateChangeSuccess', function () {
     $log.log('app run $stateChangeSuccess');
     $rootScope.show = true;
     Login.checkHasLogin().then(function (data) {
@@ -112,10 +114,10 @@ app.run(function ($rootScope, $log, $state, requestService, Login, Api, Auth) {
   $rootScope.$on('$stateChangeStart', function () {
     $rootScope.isShowFooter = false;
     // 取消上一个路由中还在请求的并且可以取消的XHR
-    requestService.clearAll();
+    Util.clearAll();
   });
 
-  $rootScope.$on('$viewContentLoaded', function (event, toState) {
+  $rootScope.$on('$viewContentLoaded', function () {
     if ($rootScope.isFirstLoad) {
       $rootScope.isFirstLoad = false;
     } else {

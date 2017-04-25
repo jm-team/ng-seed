@@ -1,0 +1,61 @@
+<div class="col-md-24">
+  <h1>Checkbox <span class="small">复选框</span></h1>
+
+  <section class="markdown">
+    <p></p>
+  </section>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>最简单的用法。</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-checkbox checked="vm.checked2" view-value="Javascript"></jm-checkbox>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>checkbox 不可用。</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-checkbox checked="vm.checked2" disabled="true" view-value="Javascript"></jm-checkbox>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>受控制的 Checkbox</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-checkbox checked="vm.checked" disabled="{{vm.disabled}}" view-value="Css"></jm-checkbox>
+
+        <p>
+          <button class="jm-btn jm-btn-primary" ng-click="vm.checkToggle()">切换选中和非选中</button>
+          <button class="jm-btn jm-btn-primary" ng-click="vm.toggle()">切换禁用和可用</button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>Checkbox 组</h5>
+      </div>
+
+      <div class="ibox-content">
+        <jm-checkbox ng-repeat="opt in vm.options" checked="opt.checked"  view-value="{{opt.label}}"></jm-checkbox>
+      </div>
+    </div>
+  </div>
+
+</div>

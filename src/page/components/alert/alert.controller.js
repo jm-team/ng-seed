@@ -7,6 +7,7 @@ var app = require('app');
 
 app.registerController('AlertCtrl', AlertCtrl);
 
+/*@ngInject*/
 function AlertCtrl() {
   var vm = this;
   // star

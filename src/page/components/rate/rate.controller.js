@@ -4,12 +4,12 @@
 
 var app = require('app');
 
+
 app.registerController('RateCtrl', RateCtrl);
 
+/*@ngInject*/
 function RateCtrl($state) {
   var vm = this;
-  // star
-
   vm.state = $state;
   vm.model0 = -1;
   vm.model = 2;

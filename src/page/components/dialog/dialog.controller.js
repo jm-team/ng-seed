@@ -8,6 +8,7 @@ var loginV2Tmp = require('page/login/login.html');
 
 app.registerController('DialogCtrl', DialogCtrl);
 
+/*@ngInject*/
 function DialogCtrl(dialogs) {
   var vm = this;
 

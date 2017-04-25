@@ -5,7 +5,7 @@ var app = require('app');
 
 app.registerController('TabCtrl', TabCtrl);
 
-
+/*@ngInject*/
 function TabCtrl($document){
   var vm = this;
 

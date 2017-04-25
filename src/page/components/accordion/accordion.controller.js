@@ -7,6 +7,7 @@ var app = require('app');
 
 app.registerController('AccordionCtrl', AccordionCtrl);
 
+/*@ngInject*/
 function AccordionCtrl() {
   var vm = this;
 
