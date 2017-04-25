@@ -12,7 +12,7 @@
       </div>
 
       <div class="ibox-content">
-        <jm-checkbox checked="vm.checked2" view-value="Javascript"></jm-checkbox>
+        <div jm-checkbox checked="vm.checked2" view-value="Javascript"></div>
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
       </div>
 
       <div class="ibox-content">
-        <jm-checkbox checked="vm.checked2" disabled="true" view-value="Javascript"></jm-checkbox>
+        <div jm-checkbox checked="vm.checked2" disabled="true" view-value="Javascript"></div>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="ibox-content">
-        <jm-checkbox checked="vm.checked" disabled="{{vm.disabled}}" view-value="Css"></jm-checkbox>
+        <div jm-checkbox checked="vm.checked" disabled="{{vm.disabled}}" view-value="Css"></div>
 
         <p>
           <button class="jm-btn jm-btn-sm jm-btn-primary" ng-click="vm.checkToggle()">切换选中和非选中</button>
@@ -54,13 +54,13 @@
 
       <div class="ibox-content">
         <p>当前选中的有: {{ vm.checkeds }}</p>
-        <jm-checkbox-group options="vm.options" checkeds="vm.checkeds"></jm-checkbox-group>
+        <div jm-checkbox-group options="vm.options" checkeds="vm.checkeds"></div>
 
         <p>当前选中的有: {{ vm.checkeds2 }}</p>
-        <jm-checkbox-group options="vm.options2" checkeds="vm.checkeds2"></jm-checkbox-group>
+        <div jm-checkbox-group options="vm.options2" checkeds="vm.checkeds2"></div>
 
         <p>当前选中的有: {{ vm.checkeds3 }}</p>
-        <jm-checkbox-group options="vm.options3" checkeds="vm.checkeds3"></jm-checkbox-group>
+        <div jm-checkbox-group options="vm.options3" checkeds="vm.checkeds3"></div>
       </div>
     </div>
   </div>
@@ -73,7 +73,7 @@
 
       <div class="ibox-content">
         <p>当前选中的有: {{ vm.checkeds4 }}</p>
-        <jm-checkbox-group on-change="vm.onChange()" options="vm.options4" checkeds="vm.checkeds4"></jm-checkbox-group>
+        <div jm-checkbox-group on-change="vm.onChange()" options="vm.options4" checkeds="vm.checkeds4"></div>
       </div>
     </div>
   </div>
