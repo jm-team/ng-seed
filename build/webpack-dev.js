@@ -4,6 +4,15 @@ var config = require('../config/build.config.js').dev;
 var proxyTable = require('./proxy');
 
 module.exports = {
+    module: {
+        loaders: [
+            // 配置css的抽取器、加载器。'-loader'可以省去
+            {
+                test: /\.scss$/i,
+                loader: 'style!css!sass'
+            }
+        ]
+    },
     // 本地服务器配置
     devServer: {
         host: config.devServer.host || '',

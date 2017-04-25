@@ -1,1 +1,1 @@
-// require('./../../../dep/jmui/jmui.scss')
+require('./style.scss');

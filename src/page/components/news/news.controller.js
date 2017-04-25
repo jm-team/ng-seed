@@ -8,7 +8,7 @@ app.registerController('newsCtrl',
 
     vm.indexCrumb = {
       displayName:"首页",
-      router:"about"
+      router:"home"
     };
 
     vm.query = query;

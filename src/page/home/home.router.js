@@ -1,4 +1,4 @@
-var templateUrl = require('page/home/home.html');
+var templateUrl = require('./home.html');
 
 module.exports = {
   title: "首页",
@@ -6,8 +6,6 @@ module.exports = {
   templateUrl: templateUrl,
   controller: 'HomeCtrl',
   controllerAs: 'vm',
-
-
   resolve: {
     /*@ngInject*/
     loadCtrl: function ($q) {

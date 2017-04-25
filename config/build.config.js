@@ -19,10 +19,5 @@ module.exports = {
 				//, {pattern: '/dataserviceEN', address: address.JM_BIG_DATA_WEBAPI}
 			] // api服务器地址
 		}
-	},
-
-	// echarts 配置
-	echarts: {
-		enabled: false
 	}
 };
