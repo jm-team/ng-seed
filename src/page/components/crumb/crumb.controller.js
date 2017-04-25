@@ -8,6 +8,6 @@ function CrumbCtrl() {
 
     vm.indexCrumb = {
         displayName:"首页",
-        router:"about"
+        router:"home"
     };
 }
