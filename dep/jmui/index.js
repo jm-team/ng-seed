@@ -16,6 +16,7 @@ require('./ueditor/angular-ueditor');
 require('./switch');
 require('./alert');
 require('./rate');
+require('./checkbox');
 
 angular.module('jmui', [
     'jmui.accordion',
@@ -33,5 +34,6 @@ angular.module('jmui', [
     'jmui.switch',
     'jmui.alert',
     'jmui.rate',
+    'jmui.checkbox',
     'ng.ueditor'
 ]).value('version', '0.1');

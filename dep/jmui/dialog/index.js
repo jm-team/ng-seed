@@ -7,6 +7,7 @@
       /**
        * 弹出框构造函数
        * @author zhoul
+       * @description 一个弹出框服务用于模拟window的alert、confirm 以及自定义模版的弹出框
        * @class Dialogs
        */
       function Dialogs() {
