@@ -35,7 +35,8 @@ var router = [
   ["components.anchor", require("./page/components/anchor/anchor.router.js")],
   ["components.tooltip", require("./page/components/tooltip/tooltip.router.js")],
 
-  ["components.checkbox", require("./page/components/checkbox/checkbox.router.js")]
+  ["components.checkbox", require("./page/components/checkbox/checkbox.router.js")],
+  ["components.transfer", require("./page/components/transfer/transfer.router.js")]
 ];
 
 // 鏈接mongo配置
@@ -50,9 +51,11 @@ app.constant('CDN_ADDRESS', address.CDN_ADDRESS);
 app.constant('IMG_ADDRESS', address.IMG_ADDRESS);
 
 // ng配置
-app.config(function ($controllerProvider, $httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
+app.config(function ($provide, $controllerProvider, $httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
   // 将 controllerProvider 挂载到app 上
   app.registerController = $controllerProvider.register;
+
+  console.log($provide)
   // IE缓存
   if (!$httpProvider.defaults.headers.get) {
     $httpProvider.defaults.headers.get = {};

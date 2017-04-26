@@ -24,17 +24,17 @@ app.registerController('CheckboxCtrl',
         vm.checkeds = ['Apple']
 
         vm.options2 = [
-            { label: 'HTML', value: 'HTML' },
-            { label: 'CSS', value: 'CSS' },
-            { label: 'JavaScript', value: 'JavaScript' }
+            { title: 'HTML', value: 'HTML' },
+            { title: 'CSS', value: 'CSS' },
+            { title: 'JavaScript', value: 'JavaScript' }
         ];
 
         vm.checkeds2 = ['JavaScript', 'CSS']
 
         vm.options3 = [
-            { label: 'Angular', value: 'Angular' },
-            { label: 'Vue', value: 'Vue',disabled: true },
-            { label: 'React', value: 'React', disabled: true }
+            { title: 'Angular', value: 'Angular' },
+            { title: 'Vue', value: 'Vue',disabled: true },
+            { title: 'React', value: 'React', disabled: true }
         ];
 
         vm.checkeds3 = ['React', 'Angular']
@@ -43,11 +43,11 @@ app.registerController('CheckboxCtrl',
         // 全选
         vm.checkAll = false;
         vm.options4 = [
-            { label: 'Angular', value: 'Angular' },
-            { label: 'Vue', value: 'Vue'},
-            { label: 'React', value: 'React'},
-            { label: 'Backbone', value: 'Backbone', disabled: true},
-            { label: 'Knockout', value: 'Knockout',  disabled: true}
+            { title: 'Angular', value: 'Angular' },
+            { title: 'Vue', value: 'Vue'},
+            { title: 'React', value: 'React'},
+            { title: 'Backbone', value: 'Backbone', disabled: true},
+            { title: 'Knockout', value: 'Knockout',  disabled: true}
         ];
         vm.checkeds4 = ['React', 'Angular']
 

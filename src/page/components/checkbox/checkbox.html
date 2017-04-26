@@ -24,7 +24,7 @@
       </div>
 
       <div class="ibox-content">
-        <div jm-checkbox checked="vm.checked2" disabled="true" view-value="Javascript"></div>
+        <div jm-checkbox checked="vm.checked2" ng-disabled="true" view-value="Javascript"></div>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="ibox-content">
-        <div jm-checkbox checked="vm.checked" disabled="{{vm.disabled}}" view-value="Css"></div>
+        <div jm-checkbox checked="vm.checked" ng-disabled="{{ vm.disabled }}" view-value="Css"></div>
 
         <p>
           <button class="jm-btn jm-btn-sm jm-btn-primary" ng-click="vm.checkToggle()">切换选中和非选中</button>

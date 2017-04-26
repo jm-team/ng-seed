@@ -1,4 +1,6 @@
-require('./ng.element.js');
-require('./service.js');
-require('./api.js');
 require('./util.js');
+require('./service.js');
+require('./ng.element.js');
+require('./api.js');
+
+
