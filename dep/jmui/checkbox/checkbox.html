@@ -4,5 +4,5 @@
     <input type="checkbox" ng-change="change($event, checked)" class="jm-checkbox-input" ng-model="checked" value="{{checked}}" ng-disabled="disabled">
     <span class="jm-checkbox-inner"></span>
   </span>
-  <span>{{viewValue}}</span>
+  <span ng-if="viewValue">{{viewValue}}</span>
 </label>

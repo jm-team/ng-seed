@@ -17,6 +17,7 @@ require('./switch');
 require('./alert');
 require('./rate');
 require('./checkbox');
+require('./transfer');
 
 angular.module('jmui', [
     'jmui.accordion',
@@ -35,5 +36,6 @@ angular.module('jmui', [
     'jmui.alert',
     'jmui.rate',
     'jmui.checkbox',
+    'jmui.transfer',
     'ng.ueditor'
 ]).value('version', '0.1');

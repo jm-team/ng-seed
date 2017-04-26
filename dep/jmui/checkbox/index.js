@@ -18,14 +18,16 @@
                     className: '@'
                 },
                 link: function (scope, element, attrs) {
-
+                    scope.disabled = false;
                     scope.change = function ($event, checked) {
-                        debugger;
                         (scope.onChange || angular.noop)({arg: {$event: $event, checked: checked}});
                     };
 
-                    attrs.$observe('disabled', function (val) {
+                    attrs.$observe('ngDisabled', function (val) {
                         scope.disabled = scope.$eval(val);
+                        if(!scope.disabled){
+                            element.removeAttr('disabled')
+                        }
                         console.log(scope.disabled)
                     });
                 }
@@ -34,13 +36,12 @@
         .directive('jmCheckboxGroup', function () {
             return {
                 restrict: 'AE',
-                replace: true,
                 scope: {
                     options: '=',
                     onChange: '&',
                     checkeds: '='
                 },
-                template: '<div jm-checkbox on-change="toggleOption(arg, opt)" ng-repeat="opt in options" checked="opt.checked"  view-value="{{opt.label || opt}}" disabled="{{opt.disabled}}"></div>',
+                template: '<div jm-checkbox on-change="toggleOption(arg, opt)" ng-repeat="opt in options" checked="opt.checked"  view-value="{{opt.title}}" ng-disabled="{{opt.disabled}}"></div>',
                 link: function (scope, element, attrs) {
 
                     function getOptions(options) {
@@ -50,7 +51,7 @@
                         angular.forEach(options, function (option) {
                             if (typeof option === 'string') {
                                 newOptions.push({
-                                    label: option,
+                                    title: option,
                                     value: option
                                 });
                             }

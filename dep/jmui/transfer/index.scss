@@ -1,0 +1,62 @@
+.jm-transfer {
+  position: relative;
+  line-height: 1.5;
+}
+
+.jm-transfer-list {
+  font-size: 12px;
+  border: 1px solid #d9d9d9;
+  display: inline-block;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+  width: 180px;
+  height: 200px;
+  padding-top: 33px;
+  overflow: hidden;
+}
+
+.jm-transfer-operation {
+  display: inline-block;
+}
+
+.jm-transfer-list-header {
+  padding: 7px 15px;
+  border-radius: 4px 4px 0 0;
+  background: #fff;
+  color: rgba(0, 0, 0, .65);
+  border-bottom: 1px solid #e9e9e9;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.jm-transfer-list-body {
+  font-size: 12px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.jm-transfer-list-content {
+  height: 100%;
+  overflow: auto;
+  list-style: none;
+  padding: 0 15px;
+
+  .jm-checkbox-wrapper {
+    display: block;
+    line-height: 32px;
+  }
+}
+
+.jm-transfer-list-header-selected {
+
+}
+
+.jm-transfer-list-header-title {
+  position: absolute;
+  right: 15px;
+}

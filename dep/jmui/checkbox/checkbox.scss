@@ -3,7 +3,8 @@
   font-size: 12px;
   display: inline-block;
   position: relative;
-  color: rgba(0,0,0,.65);
+  color: #333;
+  margin-bottom: 0;
 
   &.jm-checkbox-disabled{
 
@@ -13,10 +14,10 @@
        border-color:#d9d9d9;
 
        &:after{
-         border-color:rgba(0,0,0,.25);
+         border-color:#999;
        }
      }
-    color: rgba(0,0,0,.25);
+    color: #999;
 
     cursor: not-allowed;
   }
@@ -35,37 +36,30 @@
     padding-left: 8px;
     padding-right: 8px;
   }
+  .jm-checkbox-input{
+    position: absolute;
+    left:0;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+    filter:alpha(opacity=0);
+    top:0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
 }
-.jm-checkbox-input{
-  position: absolute;
-  left:0;
-  z-index: 1;
-  cursor: pointer;
-  opacity: 0;
-  filter:alpha(opacity=0);
-  top:0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-}
+
 .jm-checkbox-checked .jm-checkbox-inner{
   background-color: #108ee9;
   border-color: #108ee9;
 
   &:after{
     transform: rotate(45deg) scale(1);
-    //position: absolute;
-    //left:4px;
-    //top:1px;
-    //display: table;
-    //width: 5px;
-    //height:8px;
-    //border:2px solid #fff;
-    //border-top:0;
-    //border-left:0;
-    //content:'';
     transition: all .2s cubic-bezier(.12,.4,.29,1.46) .1s;
+    display: block\0;
   }
 }
 
@@ -87,6 +81,7 @@
     left:4px;
     top:1px;
     display: table;
+    display: none\0;
     width: 5px;
     height:8px;
     border:2px solid #fff;
