@@ -11,6 +11,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "commitmsg": "validate-commit-msg",
     "jsdoc": "jsdoc -c ./config/jsdoc.conf.json",
+    "site": "node ./build/gh-pages",
     "authors": "node ./build/authors"
   },
   "config": {
