@@ -58,4 +58,27 @@ app.registerController('CheckboxCtrl',
 
             vm.checkAll = (l === vm.checkeds4.length)
         };
+
+        vm.selectAll = function(arg){
+            var selecteds = []
+            if(arg.checked){
+                vm.options4.forEach(function(item){
+                    if(!item.disabled){
+                        item.checked = true;
+                        selecteds.push(item.value);
+                    }
+                })
+
+                vm.checkeds4 = selecteds;
+
+            }else{
+                vm.options4.forEach(function(item){
+                    if(!item.disabled){
+                        item.checked = false;
+                        selecteds.push(item.value);
+                    }
+                })
+                vm.checkeds4 = [];
+            }
+        }
     });
