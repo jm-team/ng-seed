@@ -5,7 +5,7 @@ var RemoveWebpackPlugin = require('remove-webpack-plugin');
 var HashedModuleIdsPlugin = require('./HashedModuleIdsPlugin');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var extractSASS = new ExtractTextPlugin('css/sass.[name].[contenthash:8].css');
+var extractSASS = new ExtractTextPlugin('css/[name].[contenthash:8].css');
 
 var os = require('os');
 var UglifyJsParallelPlugin = require('webpack-uglify-parallel');
