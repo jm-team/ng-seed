@@ -20,7 +20,8 @@ var vendorFiles = [
     './dep/angular/angular-locale_zh-cn.js',
     './dep/ng-lazy-image/lazy-image.min.js',
     './dep/bindonce.min.js',
-    './dep/security.js'
+    './dep/security.js',
+    './dep/ng.element.js'
 ];
 
 // 获取执行环境
