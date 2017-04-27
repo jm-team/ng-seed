@@ -24,17 +24,17 @@ app.registerController('CheckboxCtrl',
         vm.checkeds = ['Apple']
 
         vm.options2 = [
-            { label: 'HTML', value: 'HTML' },
-            { label: 'CSS', value: 'CSS' },
-            { label: 'JavaScript', value: 'JavaScript' }
+            { title: 'HTML', value: 'HTML' },
+            { title: 'CSS', value: 'CSS' },
+            { title: 'JavaScript', value: 'JavaScript' }
         ];
 
         vm.checkeds2 = ['JavaScript', 'CSS']
 
         vm.options3 = [
-            { label: 'Angular', value: 'Angular' },
-            { label: 'Vue', value: 'Vue',disabled: true },
-            { label: 'React', value: 'React', disabled: true }
+            { title: 'Angular', value: 'Angular' },
+            { title: 'Vue', value: 'Vue',disabled: true },
+            { title: 'React', value: 'React', disabled: true }
         ];
 
         vm.checkeds3 = ['React', 'Angular']
@@ -43,11 +43,11 @@ app.registerController('CheckboxCtrl',
         // 全选
         vm.checkAll = false;
         vm.options4 = [
-            { label: 'Angular', value: 'Angular' },
-            { label: 'Vue', value: 'Vue'},
-            { label: 'React', value: 'React'},
-            { label: 'Backbone', value: 'Backbone', disabled: true},
-            { label: 'Knockout', value: 'Knockout',  disabled: true}
+            { title: 'Angular', value: 'Angular' },
+            { title: 'Vue', value: 'Vue'},
+            { title: 'React', value: 'React'},
+            { title: 'Backbone', value: 'Backbone', disabled: true},
+            { title: 'Knockout', value: 'Knockout',  disabled: true}
         ];
         vm.checkeds4 = ['React', 'Angular']
 
@@ -58,4 +58,27 @@ app.registerController('CheckboxCtrl',
 
             vm.checkAll = (l === vm.checkeds4.length)
         };
+
+        vm.selectAll = function(arg){
+            var selecteds = []
+            if(arg.checked){
+                vm.options4.forEach(function(item){
+                    if(!item.disabled){
+                        item.checked = true;
+                        selecteds.push(item.value);
+                    }
+                })
+
+                vm.checkeds4 = selecteds;
+
+            }else{
+                vm.options4.forEach(function(item){
+                    if(!item.disabled){
+                        item.checked = false;
+                        selecteds.push(item.value);
+                    }
+                })
+                vm.checkeds4 = [];
+            }
+        }
     });

@@ -1,8 +1,8 @@
 <label class="jm-checkbox-wrapper {{ className }}" ng-class="{'jm-checkbox-disabled': disabled}">
   <span class="jm-checkbox "
         ng-class="{'jm-checkbox-checked': checked, 'jm-checkbox-indeterminate': indeterminate}">
-    <input type="checkbox" ng-change="change($event, checked)" class="jm-checkbox-input" ng-model="checked" value="{{checked}}" ng-disabled="disabled">
+    <input type="checkbox" ng-change="change($event, checked)" class="jm-checkbox-input" ng-model="checked"  ng-disabled="disabled">
     <span class="jm-checkbox-inner"></span>
   </span>
-  <span>{{viewValue}}</span>
+  <span ng-if="viewValue">{{viewValue}}</span>
 </label>

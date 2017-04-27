@@ -1,22 +1,23 @@
 var app = require('app');
-
-app.factory('Util', function ($q) {
+console.log(app)
+app.factory('Util', function () {
+    var trim = (function(){
+        if (!String.prototype.trim) {
+            return function trim(value) {
+                return angular.isString(value) ? value.replace(/^\s\s*/, '').replace(/\s\s*$/, '') : value;
+            };
+        }
+        return function trim(value) {
+            return angular.isString(value) ? value.trim() : value;
+        };
+    })();
     return {
         /**
          * 字符串去空格
          * @author zhoul
          * @returns {string} 去除空格后的字符串
          */
-        trim: function () {
-            if (!String.prototype.trim) {
-                return function trim(value) {
-                    return angular.isString(value) ? value.replace(/^\s\s*/, '').replace(/\s\s*$/, '') : value;
-                };
-            }
-            return function trim(value) {
-                return angular.isString(value) ? value.trim() : value;
-            };
-        },
+        trim: trim,
 
         /**
          * 设置Cookie
@@ -100,4 +101,6 @@ app.factory('Util', function ($q) {
             }
         }
     }
+
+
 });

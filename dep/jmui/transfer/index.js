@@ -1,255 +1,108 @@
 /*global require, angular*/
 "use strict";
 
-require('./tooltip.scss');
+require('./index.scss');
+var tpl = require('./index.html');
+
 // 文字提示
 angular.module('jmui.transfer', [])
-    .directive('jmTransfer', function ($http, $rootScope, $window, $document, $timeout, $templateCache, $compile, $sce, $q, $controller) {
-
-        // 新作用域 用于`tooltip` 指令有controllerName的时候
-        var childScope = null;
+    .directive('jmTransfer', function () {
 
         return {
             restrict: 'AE',
-            require: '^jmTooltip',
+            templateUrl: tpl,
             scope: {
-                onShow: '&',
-                onHide: '&',
-                popperClass: '@',
-                tooltipContent: '@',
-                template: '@',
-                resolve: '=',
-                tooltipTitle: '@'
+                source: '=',
+                targetKeys: '='
             },
             controller: function ($scope, $element, $attrs) {
-                var tpl = "<h4 ng-if='title' class='title' ng-bind-html='title'></h4><div class='tooltip-content' ng-bind-html='content'></div>",
-                    templateUrl = $scope.template,
-                    // delay = $attrs.delay || 0,
-                    self = this,
-                    controllerName = $attrs.controllerName,
-                    documentClick = angular.noop,
-                    onHideFn = $scope.onHide || angular.noop,
-                    onShowFn = $scope.onShow || angular.noop;
+                console.log($attrs);
 
-                $scope.show = 0;
-                $scope.timer1 = null;
-                $scope.timer2 = null;
+                $scope.sourceCheckeds = [];
+                $scope.targetCheckeds = [];
 
-                this.events = {
-                    "mouseenter": "mouseleave",
-                    "click": "",
-                    "focus": "blur"
-                };
-                this.el = null;
-                this.opened = false;
-                this.locals = {};
-                this.resolveKeys = [];
-                this.resolve = function () {
-                    var resolves = $scope.resolve,
-                        arrResolves = [],
-                        attr;
+                console.log($scope.dataSource)
+                $scope.titles = ["Source", "Target"];
 
-                    if (angular.isObject(resolves)) {
-                        for (attr in resolves) {
-                            if (resolves.hasOwnProperty(attr)) {
-                                self.resolveKeys.push(attr);
-                                arrResolves.push($scope.resolve[attr]());
-                            }
+                function transfer(sourceArr, arrChecks, targetArr) {
+                    var arr = [];
+                    var newArr = [];
+
+                    newArr = $scope[sourceArr].filter(function (item) {
+                        return !item.checked;
+                    });
+
+                    angular.forEach($scope[sourceArr], function (item, index) {
+                        if (item.checked) {
+                            item.checked = false;
+                            arr.push(item);
+                            $scope[arrChecks].splice($scope[arrChecks].indexOf(item.title), 1);
                         }
-                    }
-                    return $q.all(arrResolves);
+                    });
+                    $scope[sourceArr] = newArr;
+                    $scope[targetArr] = $scope[targetArr].concat(arr)
+                }
+
+                $scope.lessTarget = function () {
+                    $scope.targetAll = false;
+                    transfer('targetKeys', 'targetCheckeds', 'source');
                 };
 
-                // 获取内容
-                this.getTpl = function (templateUrl) {
-                    var defer = $q.defer();
-                    // 判断是否有`templateUrl`
-                    if (templateUrl) {
-                        $http.get(templateUrl, {
-                            cache: $templateCache
-                        }).then(function (response) {
-                            defer.resolve(response.data);
-                        });
-                    } else {
-                        return $q.when(tpl);
-                    }
-                    return defer.promise;
+                $scope.addTarget = function () {
+                    $scope.sourceAll = false;
+                    transfer('source', 'sourceCheckeds', 'targetKeys');
                 };
 
-                // 添加/显示元素
-                this.create = function () {
-                    this.content = $scope.content = childScope.content = $sce.trustAsHtml($scope.tooltipContent);
-                    this.title = $scope.title = childScope.title = $sce.trustAsHtml($scope.tooltipTitle);
+                $scope.onChange = function (source) {
+                    var sourceData = $scope.source;
+                    var checkedSource = $scope.sourceCheckeds;
 
-                    if (this.el) {
-                        return $q.when(this.el);
-                    } else {
-                        return this.getTpl(templateUrl).then(function (data) {
-                            var ctrl;
-                            self.locals.tooltip = self;
-                            self.locals.$scope = childScope;
-                            var trigger = $attrs.trigger || "mouseenter";
+                    if (source === 'target') {
+                        sourceData = $scope.targetKeys;
+                        checkedSource = $scope.targetCheckeds;
+                    }
 
-                            if (controllerName) {
-                                // $controller Angular 官方解释: https://docs.angularjs.org/api/ng/service/$controller
-                                // $controller 实例化控制器
-                                // 这里的第一个参数是 控制器名称
-                                // 第二个参数是依赖注入到控制器的对象
-                                // 返回的是控制器实例
-                                ctrl = $controller(controllerName, self.locals);
-                                if ($attrs.controllerAs) {
-                                    childScope[$attrs.controllerAs] = ctrl;
+                    var l = sourceData.filter(function (item) {
+                        return !item.disabled
+                    }).length;
+                    $scope[source === 'target' ? 'targetAll' : 'sourceAll'] = (l === checkedSource.length);
+                }
+
+                $scope.changeAll = function (arg, source) {
+                    var sourceData = $scope.source;
+                    var arr = $scope.sourceCheckeds;
+
+                    if (source === 'target') {
+                        sourceData = $scope.targetKeys;
+                        arr = $scope.targetCheckeds;
+                    }
+
+                    if (arg.checked) {
+                        sourceData.map(function (item) {
+                            if (!item.disabled) {
+                                item.checked = true;
+                                if (arr.indexOf(item.title) === -1) {
+                                    arr.push(item.title)
                                 }
                             }
-
-                            this.el = $compile(angular.element("<div class='tooltip ng-hide'>" + data + "</div>"))(this.locals.$scope || $scope);
-                            this.el
-                                .addClass($scope.popperClass)
-                                .on('click', function ($event) {
-                                    $event.stopPropagation();
-                                });
-
-                            if (trigger === 'mouseenter') {
-                                this.el
-                                    .on('mouseenter', function () {
-                                        $timeout.cancel($scope.timer1);
-                                    })
-                                    .on('mouseleave', function () {
-                                        $scope.timer2 = $timeout(function () {
-                                            $scope.$apply(function () {
-                                                self.hide();
-                                                console.log('mouseleave');
-                                            });
-                                        }, 60);
-                                    })
-                            }
-
-                            documentClick = $scope.$on('document.click', function () {
-                                $scope.$apply(function () {
-                                    self.hide();
-                                });
-                            });
-
-                            $document.find('body').append(this.el);
-                            return this.el;
-                        }.bind(this));
-                    }
-                };
-
-                // 显示`tooltip`
-                this.show = function ($event) {
-                    this.el.removeClass('ng-hide');
-                    this.opened = true;
-                    onShowFn({
-                        $event: $event,
-                        tooltip: self,
-                        scope: $scope
-                    });
-
-                    return this;
-                };
-
-                // 隐藏`tooltip`
-                this.hide = function ($event) {
-                    this.el.addClass('ng-hide');
-                    this.el.removeClass('in');
-                    this.opened = false;
-                    onHideFn({
-                        $event: $event,
-                        tooltip: self,
-                        scope: $scope
-                    });
-
-                    return this;
-                };
-
-                // 删除`tooltip`
-                // 移除DOM、 作用域、重置`opened`状态、取消监听`body`点击事件
-                this.destroy = function () {
-                    if (angular.isObject(this.el) && angular.isFunction(this.el.remove)) {
-                        this.el.remove();
-                        this.el = null;
-                        this.opened = false;
-                        $scope.$destroy();
-                        documentClick();
-                    }
-
-                    return this;
-                };
-
-                // 显示/隐藏切换
-                this.toggleShow = function () {
-                    if (this.opened) {
-                        this.hide();
-                    } else {
-                        this.show();
-                    }
-                    return this;
-                };
-
-                // 作用域删除 删除DOM
-                $scope.$on('$destroy', function () {
-                    this.destroy();
-                }.bind(this));
-            },
-            link: function (scope, element, attrs, ngCtrl) {
-                var trigger = attrs.trigger || 'mouseenter',
-                    offset = element.getOffset();
-
-                childScope = $rootScope.$new();
-
-                element.on(trigger, function ($event) {
-                    $event.stopPropagation();
-                    $event.preventDefault();
-
-                    // 获取依赖
-                    ngCtrl.resolve().then(function (data) {
-                        // 将依赖保存
-                        angular.forEach(data, function (item, index) {
-                            var key = ngCtrl.resolveKeys[index];
-                            var insideKey = key.charAt(0).toUpperCase() + key.substr(1);
-
-                            scope['tooltip' + insideKey] = item;
-
-                            scope[ngCtrl.resolveKeys[index]] = item;
-                            ngCtrl.locals[ngCtrl.resolveKeys[index]] = item;
                         });
+                    } else {
+                        sourceData.map(function (item) {
+                            if (!item.disabled) {
+                                item.checked = false;
+                            }
+                        });
+                        arr = [];
+                    }
 
-                        return data;
-                    }).then(function () {
-                        // 创建`tooltip`
-                        return ngCtrl.create();
-                    }).then(function (el) {
+                    if (source === 'target') {
+                        $scope.targetCheckeds = arr
+                    } else {
+                        $scope.sourceCheckeds = arr;
+                    }
 
-                        // 延迟关闭 用于按钮和`tooltip`之间来回移入
-                        $timeout.cancel(scope.timer2);
+                }
 
-                        if (trigger === 'click') {
-                            ngCtrl.toggleShow();
-                        } else {
-                            ngCtrl.show($event);
-                        }
-
-                        // 计算位置
-                        $timeout(function () {
-                            var $elOffset = el.getOffset();
-                            el.css({
-                                position: 'absolute',
-                                top: (offset.top - Math.max($elOffset.height, offset.height) - 10) + 'px',
-                                left: offset.left + 'px'
-                            });
-
-                            ngCtrl.el.addClass('in');
-                        }, 0);
-                    });
-                });
-
-                // 相对应需要隐藏的事件
-                element.on(ngCtrl.events[trigger], function ($event) {
-                    scope.timer1 = $timeout(function () {
-                        ngCtrl.hide($event);
-                    }, 60);
-                });
             }
         };
     });
