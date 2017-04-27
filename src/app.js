@@ -1,6 +1,5 @@
-require('./service/ng.element');
 var address = require('address');
-var app = angular.module('app', ['ng.element', 'ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
 
 // 路由配置
 var router = [
@@ -36,6 +35,7 @@ var router = [
   ["components.tooltip", require("./page/components/tooltip/tooltip.router.js")],
 
   ["components.checkbox", require("./page/components/checkbox/checkbox.router.js")],
+  ["components.autoComponent", require("./page/components/autocomponent/autocomponent.router.js")],
   ["components.transfer", require("./page/components/transfer/transfer.router.js")]
 ];
 
