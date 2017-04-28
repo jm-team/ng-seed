@@ -4,15 +4,15 @@
     
 1. 获取集合
 
-/products                        // 产品的集合
+  /products                        // 产品的集合
 
-/orders                          // 订单的集合
+  /orders                          // 订单的集合
 
 2. 获取单个对象 其中id是占位符
 
-/products/:id                    // 单个产品对象
+  /products/:id                    // 单个产品对象
 
-/orders/:id                      // 单个订单对象
+  /orders/:id                      // 单个订单对象
 
 
 ## 资源的过滤信息（一些其他参数）
