@@ -14,28 +14,34 @@
 
 
 ### 资源的过滤信息（一些其他参数）
+
    > 资源的集合很多的时候 需要做一些过滤的时候 就要客户端传递一些过滤的参数
 
    /products?limit=10                // 指定返回的记录数量
    /products?page=2&pageSize =10     // 分页返回数据
    /products?sortby=name&order=asc   // 指定排序字段及方式
 
+
    资源的过滤参数可以存在冗余，即： /products?id=ID 和 /products/:ID 含义相等
 
 ### 使用http 动词操作资源
 
   GET
+  
   GET	/products			// 获取一个products 集合
   GET	/products/:id		// 获取product单个对象
 
   POST
+  
   POST /products			// 增加一个对象到集合
 
   PUT 和 PATCH
+  
   PUT /products/:id		// 更新一个对象的全部属性
   PATCH /products/:id 	// 更新一个对象的某个属性
 
   DELETE
+  
   DELETE	/products		// 删除一个集合
   DELETE	/products/:id	// 删除一个对象
 
@@ -57,12 +63,10 @@
 
         服务器返回对应的状态码  遵循http 状态码 如：
 
-        ```js
-        1. 200 服务器成功返回数据
-        2. 404 未找到资源
-        3. 401 用户没有权限
+      1. 200 服务器成功返回数据
+      2. 404 未找到资源
+      3. 401 用户没有权限
         ...
-        ```
 
    #### 返回数据格式
 
