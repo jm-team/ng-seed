@@ -1,25 +1,21 @@
 ## Restful API 设计规范
 
 ### URL路径 使用名词（资源描述）做url
-
-    如
-
-    1. 获取集合
-    ```js
+    
+   1. 获取集合
+    
     /products                        // 产品的集合
     /orders                          // 订单的集合
-    ```
-    2. 获取单个对象 其中id是占位符
+    
+   2. 获取单个对象 其中id是占位符
 
-        > /products/:id                    // 单个产品对象
-        >
-        > /orders/:id                      // 单个订单对象
+    /products/:id                    // 单个产品对象
+    /orders/:id                      // 单个订单对象
 
 
 ### 资源的过滤信息（一些其他参数）
    资源的集合很多的时候 需要做一些过滤的时候 就要客户端传递一些过滤的参数
 
-   如：
    ```js
    /products?limit=10                // 指定返回的记录数量
    /products?page=2&pageSize =10     // 分页返回数据
@@ -29,7 +25,6 @@
    ```
 ### 使用http 动词操作资源
 
-  ```js
   GET
   GET	/products			// 获取一个products 集合
   GET	/products/:id		// 获取product单个对象
@@ -44,26 +39,22 @@
   DELETE
   DELETE	/products		// 删除一个集合
   DELETE	/products/:id	// 删除一个对象
-  ```
 
 ### 版本号
 
-    1. 版本号加在url
+   1. 版本号加在url
 
-      ```js
       /api/v1/products/123
-      ```
 
-    2. 版本号加在请求头上
-      ```js
+   2. 版本号加在请求头上
+   
         GET /api/products/123
         Accept: application/json; version=1.0
-      ```
 
 
 ### 返回值
 
-    1. 返回状态码
+   #### 返回状态码
 
         服务器返回对应的状态码  遵循http 状态码 如：
 
@@ -74,9 +65,9 @@
         ...
         ```
 
-    2. 返回数据格式
+   #### 返回数据格式
 
-        1. 返回结果
+      1. 返回结果
 
           ```js
             GET /collection					//返回资源对象的列表（数组）
@@ -87,7 +78,7 @@
             DELETE /collection/resource		//返回一个空文档
           ```
 
-           返回集合：
+       2. 返回集合：
 
           ```json
             {
@@ -101,7 +92,7 @@
           	}
           ```
 
-             返回单个对象
+        3.返回单个对象
           ```json
                 {
                    name:"aaa",
@@ -114,7 +105,7 @@
                  {}
           ```
 
-         2. 错误状态的返回
+         4. 错误状态的返回
 
           ```json
           {
