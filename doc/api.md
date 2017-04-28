@@ -14,15 +14,14 @@
 
 
 ### 资源的过滤信息（一些其他参数）
-   资源的集合很多的时候 需要做一些过滤的时候 就要客户端传递一些过滤的参数
+   > 资源的集合很多的时候 需要做一些过滤的时候 就要客户端传递一些过滤的参数
 
-   ```js
    /products?limit=10                // 指定返回的记录数量
    /products?page=2&pageSize =10     // 分页返回数据
    /products?sortby=name&order=asc   // 指定排序字段及方式
 
    资源的过滤参数可以存在冗余，即： /products?id=ID 和 /products/:ID 含义相等
-   ```
+
 ### 使用http 动词操作资源
 
   GET
