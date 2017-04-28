@@ -1,136 +1,130 @@
-## API设计
-> 使用RESTful API规范：
+# Restful API 设计规范
+
+* ### URL路径 使用名词（资源描述）做url
+
+    如
+
+    1. 获取集合
+    ```js
+    /products                        // 产品的集合
+    /orders                          // 订单的集合
+    ```
+    2. 获取单个对象 其中id是占位符
+
+        > /products/:id                    // 单个产品对象
+        >
+        > /orders/:id                      // 单个订单对象
 
 
-1.获取新闻列表 GET请求  
-/webapi/版本/路径  
-/webapi/v1/news  
+* ### 资源的过滤信息（一些其他参数）
+   资源的集合很多的时候 需要做一些过滤的时候 就要客户端传递一些过滤的参数
 
-请求成功返回：   
-Status Code: 200
+   如：
+   ```js
+   /products?limit=10                // 指定返回的记录数量
+   /products?page=2&pageSize =10     // 分页返回数据
+   /products?sortby=name&order=asc   // 指定排序字段及方式
 
-```
-[
-	{
-		"id":  10086,
-		"title":  "新闻标题1",
-		"url":  "/news-1.html",
-		"time":  "2016-05-11",
-		"category": "化工行情"
-	},
-	{
-		"id":  10087,
-		"title":  "新闻标题2",
-		"url":  "/news-2.html",
-		"time":  "2016-05-11",
-		"category": "化工行情"
-	},
-	{
-		"id":  10088,
-		"title":  "新闻标题3",
-		"url":  "/news-3.html",
-		"time":  "2016-05-11",
-		"category": "化工行情"
-	}
-]
-```
+   资源的过滤参数可以存在冗余，即： /products?id=ID 和 /products/:ID 含义相等
+   ```
+* ### 使用http 动词操作资源
 
-2.获取指定ID的新闻 GET请求  
-/webapi/版本/路径/ID  
-/webapi/v1/news/10086  
+  ```js
+  GET
+  GET	/products			// 获取一个products 集合
+  GET	/products/:id		// 获取product单个对象
 
-请求成功返回：   
-Status Code: 200
+  POST
+  POST /products			// 增加一个对象到集合
 
-```
-{
-	"id":  10086,
-	"title":  "新闻标题3",
-	"url":  "/news-3.html",
-	"time":  "2016-05-11",
-	"content":  "新闻内容新闻内容新闻内容新闻内容",
-	"category": "化工行情"
-}
-```
+  PUT 和 PATCH
+  PUT /products/:id		// 更新一个对象的全部属性
+  PATCH /products/:id 	// 更新一个对象的某个属性
 
-失败：  
-Status Code: 400 /4XX
+  DELETE
+  DELETE	/products		// 删除一个集合
+  DELETE	/products/:id	// 删除一个对象
+  ```
 
-```
-{
-	"name"： "SERVICE_REJECTED"，// 错误码
-	"message":  "操作太频繁啦，请休息一下再试。" //错误描述
-}
-```
+* ### 版本号
 
-3.添加一条新闻  POST  
-/webapi/v1/news
+    1. 版本号加在url
 
-4.更新指定的新闻 PUT  
-/webapi/v1/news/ID
+      ```js
+      /api/v1/products/123
+      ```
 
-5.删除指定的新闻 DELETE  
-/webapi/v1/news/ID
-
-6.批量接口请求 POST请求（注意head里的content-type 为application/json）  
-/webapi/batch
-
-请求参数JSON:
-
-```
-{
-    "timeout": 10000, 
-    "requests": [
-        {
-            "method": "GET",
-            "url": "/v1/user"
-        },
-        {
-            "method": "GET",
-            "url": "/v1/news"
-        }
-    ]
-}
-```
-
-返回数据 JSON:
-
-```
-[
-    {
-        "code": 401,
-        "body": "{\"message\":\"\\u7528\\u6237\\u9a8c\\u8bc1\\u5931\\u8d25\",\"name\":\"HTTP_UNAUTHORIZED\"}"
-    },
-    {
-        "code": 200,
-        "body": "stringfiy JSON数据"
-    }
-]
-```
+    2. 版本号加在请求头上
+      ```js
+        GET /api/products/123
+        Accept: application/json; version=1.0
+      ```
 
 
+* ### 返回值
 
+    1. 返回状态码
 
-HTTP请求方法  
-* GET（SELECT）：从服务器取出资源（一项或多项）。
-* POST（CREATE）：在服务器新建一个资源。
-* PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。
-* PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。
-* DELETE（DELETE）：从服务器删除资源。
+        服务器返回对应的状态码  遵循http 状态码 如：
 
-返回状态
-* 200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。
-* 201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。
-* 202 Accepted - [*]：表示一个请求已经进入后台排队（异步任务）
-* 204 NO CONTENT - [DELETE]：用户删除数据成功。
-* 400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。
-* 401 Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。
-* 403 Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的。
-* 404 NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。
-* 406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。
-* 410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。
-* 422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。
-* 500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。
+        ```js
+        1. 200 服务器成功返回数据
+        2. 404 未找到资源
+        3. 401 用户没有权限
+        ...
+        ```
 
+    2. 返回数据格式
 
-详细参考地址：http://www.ruanyifeng.com/blog/2014/05/restful_api.html
+        1. 返回结果
+
+          ```
+            GET /collection					//返回资源对象的列表（数组）
+            GET /collection/resource		//返回单个资源对象
+            POST /collection				//返回新生成的资源对象
+            PUT /collection/resource		//返回完整的资源对象
+            PATCH /collection/resource		//返回完整的资源对象
+            DELETE /collection/resource		//返回一个空文档
+          ```
+
+           返回集合：
+
+          ```json
+            {
+             	count: 20,		// 获取条数
+             	total:614,		// 资源总数
+             	products:[
+                   	{name:'aaa', id:0},
+                   	{name:'aaa', id:1},
+                   	....
+                	]
+          	}
+          ```
+
+             返回单个对象
+          ```json
+                {
+                   name:"aaa",
+                   id: 0
+                }
+          ```
+
+             返回空文档
+          ```json
+                 {}
+          ```
+
+         2. 错误状态的返回
+
+          ```json
+          {
+          	"message": "錯誤提示信息",
+          	"errors": [
+          		{
+          		  "resource": "错误的请求API",
+          		  "field": "可能导致错误的字段",
+          		  "code": "错误的业务状态"		//非http状态码
+          		}
+          	]
+          }
+          ```
