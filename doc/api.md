@@ -28,26 +28,54 @@
 
 资源的过滤参数可以存在冗余，即： /products?id=ID 和 /products/:ID 含义相等
 
-## 使用http 动词操作资源
+## 使用`http动词`操作资源
 
-  **GET**
+**GET**
   
-  GET	/products			// 获取一个products 集合
-  GET	/products/:id		// 获取product单个对象
+* 获取一个products 集合
 
-  **POST**
-  
-  POST /products			// 增加一个对象到集合
+```javascript
+GET /products
+```
+* 获取product单个对象
 
-  **PUT 和 PATCH**
+```javascript
+GET	/products/:id
+```
+    
+**POST**
   
-  PUT /products/:id		// 更新一个对象的全部属性
-  PATCH /products/:id 	// 更新一个对象的某个属性
+* 增加一个对象到集合
 
-  **DELETE**
-  
-  DELETE	/products		// 删除一个集合
-  DELETE	/products/:id	// 删除一个对象
+```javascript
+POST /products
+``` 
+
+**PUT 和 PATCH**
+
+* 更新一个对象的全部属性
+
+```javascript
+PUT /products/:id
+``` 
+
+* 更新一个对象的某个属性
+
+```javascript
+PATCH /products/:id
+```
+
+**DELETE**
+
+* 删除一个集合
+```javascripot
+DELETE	/products
+```
+* 删除一个对象
+
+```javascripot
+DELETE	/products/:id
+```
 
 ## 版本号
 
