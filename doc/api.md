@@ -15,7 +15,7 @@
 
 ### 资源的过滤信息（一些其他参数）
 
-   > 资源的集合很多的时候 需要做一些过滤的时候 就要客户端传递一些过滤的参数
+   资源的集合很多的时候 需要做一些过滤的时候 就要客户端传递一些过滤的参数
 
    /products?limit=10                // 指定返回的记录数量
    /products?page=2&pageSize =10     // 分页返回数据
@@ -71,7 +71,6 @@
    #### 返回数据格式
 
       1. 返回结果
-
             GET     /collection					//返回资源对象的列表（数组）
             
             GET     /collection/resource		//返回单个资源对象
@@ -83,7 +82,7 @@
             PATCH   /collection/resource		//返回完整的资源对象
             
             DELETE  /collection/resource		//返回一个空文档
-
+            
        2. 返回集合：
 
             {
