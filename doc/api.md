@@ -54,8 +54,8 @@
 1. 版本号加在url
 
     ```javascript
-    GET /api/v1/products/123
-    ```
+    GET /api/v1/products/123
+    ```
     
 2. 版本号加在请求头上
 
