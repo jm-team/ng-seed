@@ -53,12 +53,13 @@
 
 1. 版本号加在url
 
-  /api/v1/products/123
+    /api/v1/products/123
 
 2. 版本号加在请求头上
 
-  GET /api/products/123
-  Accept: application/json; version=1.0
+    GET /api/products/123
+
+    Accept: application/json; version=1.0
 
 
 ## 返回值
@@ -90,16 +91,16 @@
 
 2. 返回集合：
 
-    ```json
-    {
-        "count": 20,
-        "total":614,
-        "products":[
-            {"name":"aaa", "id":0},
-            {"name":"bbb", "id":1}
-        ]
-    }
-    ```
+  ```json
+  {
+      "count": 20,
+      "total":614,
+      "products":[
+          {"name":"aaa", "id":0},
+          {"name":"bbb", "id":1}
+      ]
+  }
+  ```
 
 3. 返回单个对象
   
