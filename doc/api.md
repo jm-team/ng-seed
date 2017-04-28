@@ -5,11 +5,13 @@
 1. 获取集合
 
 /products                        // 产品的集合
+
 /orders                          // 订单的集合
 
 2. 获取单个对象 其中id是占位符
 
 /products/:id                    // 单个产品对象
+
 /orders/:id                      // 单个订单对象
 
 
@@ -18,7 +20,9 @@
 资源的集合很多的时候 需要做一些过滤的时候 就要客户端传递一些过滤的参数
 
 /products?limit=10                // 指定返回的记录数量
+
 /products?page=2&pageSize =10     // 分页返回数据
+
 /products?sortby=name&order=asc   // 指定排序字段及方式
 
 
@@ -53,15 +57,15 @@
 
 2. 版本号加在请求头上
 
-    GET /api/products/123
-    Accept: application/json; version=1.0
+  GET /api/products/123
+  Accept: application/json; version=1.0
 
 
 ## 返回值
 
 ### 返回状态码
 
-服务器返回对应的状态码  遵循http 状态码。
+  服务器返回对应的状态码  遵循http 状态码。
 
 1. 200 服务器成功返回数据
 2. 404 未找到资源
@@ -72,45 +76,49 @@
    
 1. 返回结果
 
-GET     /collection					//返回资源对象的列表（数组）
+  GET     /collection					//返回资源对象的列表（数组）
 
-GET     /collection/resource		//返回单个资源对象
+  GET     /collection/resource		//返回单个资源对象
 
-POST    /collection				    //返回新生成的资源对象
+  POST    /collection				    //返回新生成的资源对象
 
-PUT     /collection/resource		//返回完整的资源对象
+  PUT     /collection/resource		//返回完整的资源对象
 
-PATCH   /collection/resource		//返回完整的资源对象
+  PATCH   /collection/resource		//返回完整的资源对象
 
-DELETE  /collection/resource		//返回一个空文档
+  DELETE  /collection/resource		//返回一个空文档
 
 2. 返回集合：
 
-```json
-{
-    count: 20,
-    total:614,
-    products:[
-        {name:'aaa', id:0},
-        {name:'aaa', id:1}
-    ]
-}
-```
+    ```json
+    {
+        "count": 20,
+        "total":614,
+        "products":[
+            {"name":"aaa", "id":0},
+            {"name":"bbb", "id":1}
+        ]
+    }
+    ```
 
 3. 返回单个对象
-```jsoan
-    {
-        name:"aaa",
-        id: 0
-    }
-```
+  
+  ```jsoan
+      {
+        "name":"aaa",
+        "id": 0
+      }
+  ```
 
 4. 返回空文档
-
+  
+  ```json
     {}
+  ```
 
 5. 错误状态的返回
 
+  ```json
     {
         "message": "錯誤提示信息",
         "errors": [
@@ -121,3 +129,4 @@ DELETE  /collection/resource		//返回一个空文档
             }
         ]
     }
+  ```
