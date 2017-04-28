@@ -3,7 +3,7 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('SearchCtrl',
     /*@ngInject*/
-    function ($scope, $http, $q, $stateParams, $state, $timeout, $location, jmSearch) {
+    function ($scope, $http, $q, $stateParams, $state, $timeout, $location, jmSearch, Api) {
         var defaultSearch = {
             categoryId: 0,
             industryId: 0
@@ -25,11 +25,11 @@ app.registerController('SearchCtrl',
 
             getList: function (data) {
                 // 分类列表
-                $http.get('/dist/mock/search.json', {params: data}).then(function (result) {
-                    $scope.lists = result.data;
+                Api.Search().query(data).$promise.then(function (result) {
+                    $scope.searchLists = result;
                 }, function () {
                     alert('Error');
-                });
+                }).then(filterJsonData);
 
             }
         });
@@ -37,6 +37,28 @@ app.registerController('SearchCtrl',
         initSearch();
 
         jmSearch($scope, initSearch);
+
+        // 筛选条件
+        function filterJsonData() {
+            $scope.lists = [];
+            angular.forEach($scope.searchLists, function (item) {
+                if($scope.search['categoryId']){ // 判断分类是否为空
+                    if(item.categoryId == $scope.search['categoryId']){
+                        if(item.industryIds.match($scope.search['industryId'])){
+                            $scope.lists.push(item);
+                        }
+                    }
+                }else{
+                    if(+$scope.search['industryId']) { // 判断行业是否为空
+                        if (item.industryIds.match($scope.search['industryId'])) {
+                            $scope.lists.push(item);
+                        }
+                    }else{
+                        $scope.lists = $scope.searchLists;
+                    }
+                }
+            })
+        }
 
 
         // 获取Category
@@ -51,8 +73,8 @@ app.registerController('SearchCtrl',
 
         // 处理搜索参数
         function processBase(data) {
-            $scope.base.categorys = data[0].data;
-            $scope.base.industrys = data[1].data;
+            $scope.base.categorys = data[0];
+            $scope.base.industrys = data[1];
             return $scope.base;
         }
 
@@ -64,7 +86,7 @@ app.registerController('SearchCtrl',
 
         function initSearch() {
             if (!$scope.base.categorys.length && !$scope.base.industrys.length) {
-                $q.all([getCategory(), getIndustry()])
+                $q.all([Api.Category().query().$promise, Api.Industry().query().$promise])
                     .then(processBase)
                     .then(coverParams)
                     .then($scope.getList);

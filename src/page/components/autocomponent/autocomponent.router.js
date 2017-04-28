@@ -16,7 +16,7 @@ module.exports = {
             var defer = $q.defer();
             require.ensure([], function (require) {
                 defer.resolve(require('./autocomponent.controller.js'));
-            }, 'anchor');
+            }, 'autocomponent');
             return defer.promise;
         }
     }

@@ -1,3 +1,30 @@
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/jm-team/ng-seed/compare/v0.6.0...v0.6.1) (2017-04-25)
+
+
+### Bug Fixes
+
+* **scss:** 解决scss依赖顺序引起的样式覆盖 ([065732e](https://github.com/jm-team/ng-seed/commit/065732e))
+*  修改components 路由中 没有写 ngInject ([838b321](https://github.com/jm-team/ng-seed/commit/838b321))
+*  修改在跳转到不需要面包屑的界面出现错 ([246c975](https://github.com/jm-team/ng-seed/commit/246c975))
+*  修改在非src 的目录里面 有require html的时候 出错 ([0d692f8](https://github.com/jm-team/ng-seed/commit/0d692f8))
+*  修改在非src 的目录里面 有require html的时候 出错 ([bb3d994](https://github.com/jm-team/ng-seed/commit/bb3d994))
+
+
+### Features
+
+*  添加checkbox 组件 ([bb1b8ea](https://github.com/jm-team/ng-seed/commit/bb1b8ea))
+*  添加checkbox 组件 和 对service 的分层 ([4f68eab](https://github.com/jm-team/ng-seed/commit/4f68eab))
+*  添加各个组件页面中的面包屑 ([37db7d5](https://github.com/jm-team/ng-seed/commit/37db7d5))
+*  逐步添加checkbox 组件功能 ([730e63c](https://github.com/jm-team/ng-seed/commit/730e63c))
+*  逐步添加checkbox 组件功能 ([a68c130](https://github.com/jm-team/ng-seed/commit/a68c130))
+*  逐步添加checkbox 组件功能 ([0370825](https://github.com/jm-team/ng-seed/commit/0370825))
+*  面包屑页面添加功能 ([5272502](https://github.com/jm-team/ng-seed/commit/5272502))
+* add fecs for check code ([0442c4d](https://github.com/jm-team/ng-seed/commit/0442c4d))
+* **jmui:** 新增jmui入口，组件库单独维护 ([ab653df](https://github.com/jm-team/ng-seed/commit/ab653df))
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/jm-team/ng-seed/compare/v0.6.0-beta.2...v0.6.0) (2017-04-21)
 
@@ -25,6 +52,7 @@
 
 ### Features
 
+*  添加news 列表中 ’加载中‘ 文字 ([96a0134](https://github.com/jm-team/ng-seed/commit/96a0134))
 * add changelog ([042a6c1](https://github.com/jm-team/ng-seed/commit/042a6c1))
 * add npm scripts authors to update authors.md ([ca9fa79](https://github.com/jm-team/ng-seed/commit/ca9fa79))
 * add validate-commit-msg ([de0e39c](https://github.com/jm-team/ng-seed/commit/de0e39c))

@@ -15,11 +15,14 @@
 - [x] 添加滚动指令（/scroll）
 - [x] 搜索条件保存至URL (/search)
 - [x] 富文本编辑器（/ueditor）
+- [x] 代码检查工具(fecs)
+
+### 脚手架功能
 - [x] 校验git提交备注格式(validate-commit-msg)
 - [x] 生成发布日志
 - [x] 生成jsdoc
 - [x] 生成authors
-- [x] 代码检查工具(fecs)
+- [x] 自动更新gh-pages[静态网站](https://jm-team.github.io/ng-seed)
 
 ## Usage
 
@@ -43,6 +46,9 @@
 
 ### 生成authors
 `yarn run authors`
+
+### 更新gh-pages
+`yarn run site`
 
 ### 检查git commit格式钩子
 husky - commitmsg `validate-commit-msg`
