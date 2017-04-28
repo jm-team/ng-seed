@@ -26,21 +26,21 @@
 
 ### 使用http 动词操作资源
 
-  GET
+  **GET**
   
   GET	/products			// 获取一个products 集合
   GET	/products/:id		// 获取product单个对象
 
-  POST
+  **POST**
   
   POST /products			// 增加一个对象到集合
 
-  PUT 和 PATCH
+  **PUT 和 PATCH**
   
   PUT /products/:id		// 更新一个对象的全部属性
   PATCH /products/:id 	// 更新一个对象的某个属性
 
-  DELETE
+  **DELETE**
   
   DELETE	/products		// 删除一个集合
   DELETE	/products/:id	// 删除一个对象
@@ -66,27 +66,26 @@
       1. 200 服务器成功返回数据
       2. 404 未找到资源
       3. 401 用户没有权限
-        ...
+      4. ...
 
    #### 返回数据格式
 
       1. 返回结果
 
-            GET /collection					//返回资源对象的列表（数组）
+            GET     /collection					//返回资源对象的列表（数组）
             
-            GET /collection/resource		//返回单个资源对象
+            GET     /collection/resource		//返回单个资源对象
             
-            POST /collection				//返回新生成的资源对象
+            POST    /collection				    //返回新生成的资源对象
             
-            PUT /collection/resource		//返回完整的资源对象
+            PUT     /collection/resource		//返回完整的资源对象
             
-            PATCH /collection/resource		//返回完整的资源对象
+            PATCH   /collection/resource		//返回完整的资源对象
             
-            DELETE /collection/resource		//返回一个空文档
+            DELETE  /collection/resource		//返回一个空文档
 
        2. 返回集合：
 
-          ```json
             {
              	count: 20,		// 获取条数
              	total:614,		// 资源总数
@@ -96,24 +95,19 @@
                    	....
                 	]
           	}
-          ```
 
         3.返回单个对象
-          ```json
                 {
                    name:"aaa",
                    id: 0
                 }
-          ```
 
              返回空文档
-          ```json
+             
                  {}
-          ```
 
          4. 错误状态的返回
 
-          ```json
           {
           	"message": "錯誤提示信息",
           	"errors": [
@@ -124,4 +118,3 @@
           		}
           	]
           }
-          ```
