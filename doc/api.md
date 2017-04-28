@@ -52,15 +52,15 @@
 ## 版本号
 
 1. 版本号加在url
-
-    /api/v1/products/123
-
+    ```javascript
+    /api/v1/products/123
+    ```
+    
 2. 版本号加在请求头上
-
+    ```javascript
     GET /api/products/123
-
     Accept: application/json; version=1.0
-
+    ```    
 
 ## 返回值
 
