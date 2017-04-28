@@ -72,41 +72,41 @@
    
    1. 返回结果
    
-        GET     /collection					//返回资源对象的列表（数组）
+    GET     /collection					//返回资源对象的列表（数组）
 
-        GET     /collection/resource		//返回单个资源对象
+    GET     /collection/resource		//返回单个资源对象
 
-        POST    /collection				    //返回新生成的资源对象
+    POST    /collection				    //返回新生成的资源对象
 
-        PUT     /collection/resource		//返回完整的资源对象
+    PUT     /collection/resource		//返回完整的资源对象
 
-        PATCH   /collection/resource		//返回完整的资源对象
+    PATCH   /collection/resource		//返回完整的资源对象
 
-        DELETE  /collection/resource		//返回一个空文档
+    DELETE  /collection/resource		//返回一个空文档
             
-     2. 返回集合：
+    2. 返回集合：
 
-        {
-            count: 20,
-            total:614,
-            products:[
-                {name:'aaa', id:0},
-                {name:'aaa', id:1}
-            ]
-        }
+    {
+        count: 20,
+        total:614,
+        products:[
+            {name:'aaa', id:0},
+            {name:'aaa', id:1}
+        ]
+    }
 
-    3.返回单个对象
+    3. 返回单个对象
 
-        {
-            name:"aaa",
-            id: 0
-        }
+    {
+        name:"aaa",
+        id: 0
+    }
 
-    4.返回空文档
+    4. 返回空文档
 
-        {}
+    {}
 
-    4. 错误状态的返回
+    5. 错误状态的返回
 
         {
             "message": "錯誤提示信息",
