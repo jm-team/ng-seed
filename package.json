@@ -5,14 +5,13 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet --open --config ./build/webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --progress --config ./build/webpack.config.js",
-    "start": "node ./build/server",
     "fecs:check": "fecs check src --reporter=baidu",
     "fecs:fix": "fecs format src --replace --safe=high",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "commitmsg": "validate-commit-msg",
     "jsdoc": "jsdoc -c ./config/jsdoc.conf.json",
-    "site": "node ./build/gh-pages",
-    "authors": "node ./build/authors"
+    "site": "node ./scripts/gh-pages",
+    "authors": "node ./scripts/authors"
   },
   "config": {
     "validate-commit-msg": {
@@ -38,8 +37,6 @@
     "copy-webpack-plugin": "^3.0.1",
     "cross-env": "^3.1.4",
     "css-loader": "^0.25.0",
-    "echarts": "^3.3.2",
-    "echarts-wordcloud": "^1.0.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "fecs": "^1.2.2",
     "file-loader": "^0.9.0",
@@ -47,9 +44,8 @@
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.22.0",
     "husky": "^0.13.3",
+    "inline-manifest-webpack-plugin": "^3.0.1",
     "json-loader": "^0.5.4",
-    "less": "^2.7.1",
-    "less-loader": "^2.2.3",
     "loader-utils": "^0.2.15",
     "ng-annotate": "^1.2.1",
     "ng-annotate-webpack-plugin": "^0.1.3",
@@ -57,6 +53,7 @@
     "node-sass": "^3.13.0",
     "postcss-loader": "^1.0.0",
     "postcss-sprites": "^4.0.0",
+    "remove-webpack-plugin": "^1.2.2",
     "sass-loader": "^4.0.2",
     "standard": "^10.0.1",
     "style-loader": "^0.13.1",
@@ -68,9 +65,8 @@
     "webpack-uglify-parallel": "^0.1.3"
   },
   "dependencies": {
-    "inline-manifest-webpack-plugin": "^3.0.1",
-    "remove-webpack-plugin": "^1.2.2",
-    "webpack-chunk-hash": "^0.4.0"
+    "echarts": "^3.3.2",
+    "echarts-wordcloud": "^1.0.3"
   },
   "repository": "git+https://github.com/jm-team/ng-seed.git",
   "keywords": [

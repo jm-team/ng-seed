@@ -60,14 +60,14 @@ husky - commitmsg `validate-commit-msg`
 
 #### index.html
 1. index.html - 为SPA唯一入口文件，百度统计脚本放于页面底部
+2. server.js - 用于查看build之后的代码(npm start 默认执行node server)
 
 #### build/
 1. HashedModuleIdsPlugin.js - webpack2加入的，这里直接引入解决模块id不稳定的问题
 2. proxy.js - 根据config.dev.devServer参数生成完整代理配置
-3. server.js - 用于查看build之后的代码
-4. webpack.config.js - webpack通用配置项，根据开发、生产环境配置`./config/build.config.js`添加文件hash
-5. webpack-dev.js - 提供开发环境热更新服务，指定vendor模文件名为vendor.js，将不包含hash
-6. webpack-production.js - 生产环境打包，打包前删除dist目录，启用文件压缩混淆，未指定vendor模块文件名，将包含hash
+3. webpack.config.js - webpack通用配置项，根据开发、生产环境配置`./config/build.config.js`添加文件hash
+4. webpack-dev.js - 提供开发环境热更新服务，指定vendor模文件名为vendor.js，将不包含hash
+5. webpack-production.js - 生产环境打包，打包前删除dist目录，启用文件压缩混淆，未指定vendor模块文件名，将包含hash
 
 #### config/
 1. address.config.js - 配置项目依赖服务器地址
@@ -91,6 +91,11 @@ husky - commitmsg `validate-commit-msg`
 2. nginx.conf - nginx配置，用于在本地测试生产环境下代码
 3. server.js - Prerender.io的服务器配置，用于解决前台页面SEO的问题。注意单线程
 4. specification.md - 为angular项目规范
+
+#### scripts/
+> package.json scripts 存放ng－seed项目开发用脚本
+1. authors.js 生成ng－seed项目开发人员
+2. gh－pages.js 自动替换配置生成gh－pages所需路径网站，更新至github
 
 #### src/
 1. app.js - 配置项目使用常量、页面路由    
@@ -124,6 +129,11 @@ husky - commitmsg `validate-commit-msg`
 ### yarn安装失败
 1. 强烈建议使用淘宝镜像 `yarn config set registry http://registry.npm.taobao.org`
 2. 指定node-sass的下载源 `yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass`
+
+### phantomjs安装失败
+1. 指定phantomjs淘宝镜像 `yarn config set phantomjs_cdnurl http://npm.taobao.org/mirrors/phantomjs`
+
+> 安装失败请删除node_modules文件夹，再重新安装。可输入｀yarn config list｀查看修改的配置项是否正确
 
 ## End
 欢迎提出任何问题及建议
