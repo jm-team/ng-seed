@@ -18,13 +18,13 @@ Object.keys(proxyTable).forEach(context => {
   app.use(proxyMiddleware(options.filter || context, options))
 })
 
-app.use('/dist', serve('../dist', true))
+app.use('/dist', serve('./dist', true))
 
 app.get('*', (req, res) => {
 
   res.setHeader('Content-Type', 'text/html')
 
-  res.sendFile(resolve('../dist/index.html'))
+  res.sendFile(resolve('./dist/index.html'))
 
 })
 
