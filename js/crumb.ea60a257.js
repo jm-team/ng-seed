@@ -1,1 +1,0 @@
-webpackJsonp([12,17],{yu9M:function(r,e,n){function o(){var r=this;r.indexCrumb={displayName:"首页",router:"home"}}var t=n("eslX");t.registerController("CrumbCtrl",o)}});

@@ -1,0 +1,1 @@
+webpackJsonp([5,19],{"4ZS/":function(t,n,e){function o(t){var n=this;n.tabs=[{title:"Tab1",content:"Content of Tab Pane 1"},{title:"Tab2",content:"Content of Tab Pane 2"},{title:"Tab3",content:"Content of Tab Pane 3"}]}o.$inject=["$document"];var a=e("eslX");a.registerController("TabCtrl",o)}});

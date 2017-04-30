@@ -1,0 +1,1 @@
+webpackJsonp([2,19],{jRZ3:function(e,t,n){var l=n("eslX");l.registerController("HelpCtrl",["$scope","$http","$q",function(e,t,n){angular.extend(e,{title:"help center",desc:"帮助中心"})}])}});
