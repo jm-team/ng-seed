@@ -4,14 +4,14 @@
   "description": "> angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、服务接口跨域、SPA页面SEO等问题",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet --open --config ./build/webpack.config.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --config ./build/webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./build/webpack.config.js",
     "fecs:check": "fecs check src --reporter=baidu",
     "fecs:fix": "fecs format src --replace --safe=high",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "commitmsg": "validate-commit-msg",
     "jsdoc": "jsdoc -c ./config/jsdoc.conf.json",
-    "site": "node ./scripts/gh-pages",
-    "authors": "node ./scripts/authors"
+    "site": "node ./scripts/gh-pages.js",
+    "authors": "node ./scripts/authors.js"
   },
   "config": {
     "validate-commit-msg": {
@@ -28,7 +28,6 @@
       ]
     }
   },
-  "author": "ICELI",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.5.1",
