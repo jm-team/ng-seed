@@ -19,6 +19,7 @@ require('./rate');
 require('./checkbox');
 require('./transfer');
 require('./autocomponent');
+require('./pdf');
 
 angular.module('jmui', [
     'jmui.accordion',
@@ -39,5 +40,6 @@ angular.module('jmui', [
     'jmui.checkbox',
     'jmui.transfer',
     'jmui.autoComponent',
+    'jmui.pdf',
     'ng.ueditor'
 ]).value('version', '0.1');

@@ -36,6 +36,7 @@ var router = [
 
   ["components.checkbox", require("./page/components/checkbox/checkbox.router.js")],
   ["components.autoComponent", require("./page/components/autocomponent/autocomponent.router.js")],
+  ["components.pdf", require("./page/components/pdf/pdf.router.js")],
   ["components.transfer", require("./page/components/transfer/transfer.router.js")]
 ];
 
