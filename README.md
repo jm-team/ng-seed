@@ -38,17 +38,20 @@
 ### 生产环境测试服务
 `yarn run start`
 
+### ng-seed一键发布
+`yarn run seed`
+
 ### 生成发布日志
-`yarn run changelog`
+`yarn run seed:changelog`
 
 ### 生成jsdoc
-`yarn run jsdoc`
+`yarn run seed:jsdoc`
 
 ### 生成authors
-`yarn run authors`
+`yarn run seed:authors`
 
 ### 更新gh-pages
-`yarn run site`
+`yarn run seed:site`
 
 ### 检查git commit格式钩子
 husky - commitmsg `validate-commit-msg`
