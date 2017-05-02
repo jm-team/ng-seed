@@ -1,18 +1,19 @@
 {
   "name": "ng-seed",
   "version": "0.6.1",
+  "private": true,
   "description": "> angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、服务接口跨域、SPA页面SEO等问题",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet --open --config ./build/webpack.config.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --config ./build/webpack.config.js",
-    "start": "node ./build/server",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./build/webpack.config.js",
     "fecs:check": "fecs check src --reporter=baidu",
     "fecs:fix": "fecs format src --replace --safe=high",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "commitmsg": "validate-commit-msg",
-    "jsdoc": "jsdoc -c ./config/jsdoc.conf.json",
-    "site": "node ./build/gh-pages",
-    "authors": "node ./build/authors"
+    "seed": "npm run seed:changelog && npm run seed:jsdoc && npm run seed:authors && npm run seed:site",
+    "seed:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "seed:jsdoc": "jsdoc -c ./scripts/jsdoc.conf.json",
+    "seed:site": "node ./scripts/gh-pages.js",
+    "seed:authors": "node ./scripts/authors.js",
+    "commitmsg": "validate-commit-msg"
   },
   "config": {
     "validate-commit-msg": {
@@ -29,27 +30,19 @@
       ]
     }
   },
-  "author": "ICELI",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.5.1",
-    "conventional-changelog": "^1.1.3",
-    "conventional-changelog-cli": "^1.3.1",
     "copy-webpack-plugin": "^3.0.1",
     "cross-env": "^3.1.4",
     "css-loader": "^0.25.0",
-    "echarts": "^3.3.2",
-    "echarts-wordcloud": "^1.0.3",
     "extract-text-webpack-plugin": "^1.0.1",
-    "fecs": "^1.2.2",
     "file-loader": "^0.9.0",
     "friendly-errors-webpack-plugin": "^1.1.3",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.22.0",
-    "husky": "^0.13.3",
+    "inline-manifest-webpack-plugin": "^3.0.1",
     "json-loader": "^0.5.4",
-    "less": "^2.7.1",
-    "less-loader": "^2.2.3",
     "loader-utils": "^0.2.15",
     "ng-annotate": "^1.2.1",
     "ng-annotate-webpack-plugin": "^0.1.3",
@@ -57,10 +50,9 @@
     "node-sass": "^3.13.0",
     "postcss-loader": "^1.0.0",
     "postcss-sprites": "^4.0.0",
+    "remove-webpack-plugin": "^1.2.2",
     "sass-loader": "^4.0.2",
-    "standard": "^10.0.1",
     "style-loader": "^0.13.1",
-    "validate-commit-msg": "^2.12.1",
     "webpack": "1.13.2",
     "webpack-chunk-hash": "^0.4.0",
     "webpack-dev-server": "^1.15.1",
@@ -68,9 +60,17 @@
     "webpack-uglify-parallel": "^0.1.3"
   },
   "dependencies": {
-    "inline-manifest-webpack-plugin": "^3.0.1",
-    "remove-webpack-plugin": "^1.2.2",
-    "webpack-chunk-hash": "^0.4.0"
+    "echarts": "^3.3.2",
+    "echarts-wordcloud": "^1.0.3"
+  },
+  "optionalDependencies": {
+    "conventional-changelog": "^1.1.3",
+    "conventional-changelog-cli": "^1.3.1",
+    "fecs": "^1.2.2",
+    "gh-pages": "^0.12.0",
+    "husky": "^0.13.3",
+    "jsdoc": "^3.4.3",
+    "validate-commit-msg": "^2.12.1"
   },
   "repository": "git+https://github.com/jm-team/ng-seed.git",
   "keywords": [

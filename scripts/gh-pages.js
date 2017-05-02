@@ -24,16 +24,16 @@ const list = [
 
 list.forEach(item => replaceForGhPages(resolve(item.filePath), item.target, item.content))
 
-console.log('Building... Please wait a moment.')
-
 getGhPages().then(pullGhPages)
 
 function getGhPages() {
     return new Promise(function (resolve, reject) {
+
+        console.log('Building... Please wait a moment.')
+
         exec('yarn run build', (code, stdout, stderr) => {
             console.log('build success', stdout)
             console.log('build success')
-            console.log('Pushing gh-pages... Please wait a moment.')
             // pullGhPages()
             resolve();
         })
@@ -41,6 +41,9 @@ function getGhPages() {
 }
 
 function pullGhPages() {
+
+    console.log('Pushing gh-pages... Please wait a moment.')
+
     exec('gh-pages -d dist', (code, stdout, stderr) => {
 
         console.log('gh-pages success', stdout)
@@ -67,20 +70,20 @@ function replaceForGhPages(file, target, content) {
 
     // 异步读写文件处理方法
     /*fs.readFile(file, {encoding: 'utf8', flag: 'r'}, (err, data) => {
-        let wContent = data.replace(target, content);
-        if (err && err.errno == 33) {
-            fs.open(file, "w", function (e, fd) {
-                if (e) throw e;
-                fs.write(fd, wContent, 0, 'utf8', (e) => {
-                    if (e) throw e;
-                    fs.closeSync(fd);
-                })
-            });
-        } else {
-            fs.writeFile(file, wContent, (e) => {
-                if (e) throw e;
-            })
-        }
-        console.log(`replace success ${file} ${target} => ${content}`)
-    });*/
+     let wContent = data.replace(target, content);
+     if (err && err.errno == 33) {
+     fs.open(file, "w", function (e, fd) {
+     if (e) throw e;
+     fs.write(fd, wContent, 0, 'utf8', (e) => {
+     if (e) throw e;
+     fs.closeSync(fd);
+     })
+     });
+     } else {
+     fs.writeFile(file, wContent, (e) => {
+     if (e) throw e;
+     })
+     }
+     console.log(`replace success ${file} ${target} => ${content}`)
+     });*/
 }
