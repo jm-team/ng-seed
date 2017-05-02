@@ -1,5 +1,5 @@
 # ng-seed
-> angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、服务接口跨域、SPA页面SEO等问题    
+> angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、密码加密、服务接口跨域、SPA页面SEO等问题    
 
 - [x] 开发阶段服务环境（webpack-dev-server），生产环境（nginx）
 - [x] css预处理（less、sass），css3后处理（postcss-autoprefixer）
@@ -7,7 +7,7 @@
 - [x] 文件按模块打包（webpack commonjs）
 - [x] 资源文件添加MD5命名，解决生产环境部署后的缓存问题（webpack *hash*）
 - [x] ng依赖注入自动添加，解决生产环境代码压缩问题(ng-annotate-webpack-plugin)
-- [x] 图片懒加载ng插件（ng-lazy-image）
+- [x] 图片懒加载ng插件（lazy-image）
 - [x] SPA页面路由（ui-router）
 - [x] SPA页面historyApi（webpack-dev-server、nginx配置）
 - [x] SPA页面SEO解决方案(Prerender.io)，爬取404页面设置status code为404
@@ -61,13 +61,15 @@ husky - commitmsg `validate-commit-msg`
 #### index.html
 1. index.html - 为SPA唯一入口文件，百度统计脚本放于页面底部
 
+#### server.js
+1. server.js - 用于查看build之后的代码(npm start 默认执行node server)
+
 #### build/
 1. HashedModuleIdsPlugin.js - webpack2加入的，这里直接引入解决模块id不稳定的问题
 2. proxy.js - 根据config.dev.devServer参数生成完整代理配置
-3. server.js - 用于查看build之后的代码
-4. webpack.config.js - webpack通用配置项，根据开发、生产环境配置`./config/build.config.js`添加文件hash
-5. webpack-dev.js - 提供开发环境热更新服务，指定vendor模文件名为vendor.js，将不包含hash
-6. webpack-production.js - 生产环境打包，打包前删除dist目录，启用文件压缩混淆，未指定vendor模块文件名，将包含hash
+3. webpack.config.js - webpack通用配置项，根据开发、生产环境配置`./config/build.config.js`添加文件hash
+4. webpack-dev.js - 提供开发环境热更新服务，指定vendor模文件名为vendor.js，将不包含hash
+5. webpack-production.js - 生产环境打包，打包前删除dist目录，启用文件压缩混淆，未指定vendor模块文件名，将包含hash
 
 #### config/
 1. address.config.js - 配置项目依赖服务器地址
@@ -78,6 +80,9 @@ husky - commitmsg `validate-commit-msg`
 
 #### dep/
 1. dep - 建议根据文件功能及来源分目录
+2. jmui - 自定义组件库
+3. ng.element.js - angular.element方法扩展
+4. security.js - 前端加密算法库
 
 #### dist/
 1. dist文件夹将放于CND服务器，所有引用dist目录下资源的地方，都需要可以动态配置域名：  
@@ -91,6 +96,11 @@ husky - commitmsg `validate-commit-msg`
 2. nginx.conf - nginx配置，用于在本地测试生产环境下代码
 3. server.js - Prerender.io的服务器配置，用于解决前台页面SEO的问题。注意单线程
 4. specification.md - 为angular项目规范
+
+#### scripts/
+> package.json scripts 存放ng－seed项目开发用脚本
+1. authors.js 生成ng－seed项目开发人员
+2. gh－pages.js 自动替换配置生成gh－pages所需路径网站，更新至github
 
 #### src/
 1. app.js - 配置项目使用常量、页面路由    
@@ -124,6 +134,11 @@ husky - commitmsg `validate-commit-msg`
 ### yarn安装失败
 1. 强烈建议使用淘宝镜像 `yarn config set registry http://registry.npm.taobao.org`
 2. 指定node-sass的下载源 `yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass`
+
+### phantomjs安装失败
+1. 指定phantomjs淘宝镜像 `yarn config set phantomjs_cdnurl http://npm.taobao.org/mirrors/phantomjs`
+
+> 安装失败请删除node_modules文件夹，再重新安装。可输入｀yarn config list｀查看修改的配置项是否正确
 
 ## End
 欢迎提出任何问题及建议
