@@ -42,6 +42,13 @@ angular.module("jmui.pdf", [])
                         element.append(iframe);
                     }
                 });
+
+                scope.$on('$destory', function(){
+                    var ifra = angular.element(iframe);
+                    if(angular.isObject(ifra) && angular.isFunction(ifra.remove)){
+                        ifra.remove();
+                    }
+                });
             }
         };
     });
