@@ -37,6 +37,7 @@ var router = [
   ["components.checkbox", require("./page/components/checkbox/checkbox.router.js")],
   ["components.autoComponent", require("./page/components/autocomponent/autocomponent.router.js")],
   ["components.transfer", require("./page/components/transfer/transfer.router.js")]
+  ["components.upload", require("./page/components/upload/upload.router.js")]
 ];
 
 // 鏈接mongo配置
