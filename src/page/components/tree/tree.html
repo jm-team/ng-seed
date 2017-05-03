@@ -1,0 +1,52 @@
+<div class="col-md-24">
+  <style>
+    .header{padding-top: 50px; padding-bottom:50px; background-color: #444980;}
+    .head-container{width: 1140px; margin:auto;}
+    .header h1 {color: #fffffa; font-size: 60px}
+    .header h2 {color: #fffffa; font-size: 24px; font-style: normal}
+    .example-caption {color: #bbb; font-size: 12px}
+    .docs-body{width: 1140px; margin: auto auto 50px; }
+    .docs-footer{background-color: #F5F5F5; text-align: center; padding: 30px 0; border-top: #e5e5e5}
+    .tab-pane{background-color: #f8f8f8; border-right: 1px solid #ccc;border-left: 1px solid #ccc;border-bottom: 1px solid #ccc; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px }
+    .nav li.active a{background-color: #f8f8f8}
+    pre.code {border:none; background-color: #f8f8f8; padding: 10px; margin: 0; font-family: Consolas, 'Liberation Mono', Courier, monospace;}
+    .docs-sidenav { margin-top: 45px; margin-bottom: 0; }
+    .docs-sidenav > li > a {display: block; font-size: 13px; font-weight: 500; color: #999; padding: 4px 20px;}
+    .docs-sidenav > li.active > a {font-weight: 700; color: #563d7c; border-left: 2px solid #563d7c;padding-left: 18px;}
+    .docs-sidenav > li > a:hover {background-color: transparent; color: #563d7c; border-left: 1px solid #563d7c;padding-left: 19px;}
+    .type-hint-object {background:#999;}
+    .type-hint-boolean {background:rgb(18, 131, 39);}
+    .type-hint-function {background: rgb(36, 53, 131);}
+    .type-hint-number {background:rgb(189, 63, 66);}
+  </style>
+  <h1>Transfer <span class="small">穿梭框</span></h1>
+
+  <section class="markdown">
+    <p>双栏穿梭选择框。</p>
+  </section>
+
+  <div class="col-md-20">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>基本用法</h5>
+      </div>
+
+      <div class="ibox-content">
+        <treecontrol class="tree-classic"
+                     tree-model="treedata"
+                     expanded-nodes="expandedNodes"
+                     on-selection="showSelected(node)">
+          label: {{node.label}} ({{node.id}})
+        </treecontrol>
+
+        <p></p>
+        <p>选中的是： {{node.label + '====>'+  node.id}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
