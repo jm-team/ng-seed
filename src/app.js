@@ -1,5 +1,5 @@
 var address = require('address');
-var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage', 'treeControl']);
 
 // 路由配置
 var router = [
@@ -37,6 +37,7 @@ var router = [
   ["components.checkbox", require("./page/components/checkbox/checkbox.router.js")],
   ["components.autoComponent", require("./page/components/autocomponent/autocomponent.router.js")],
   ["components.pdf", require("./page/components/pdf/pdf.router.js")],
+  ["components.tree", require("./page/components/tree/tree.router.js")],
   ["components.transfer", require("./page/components/transfer/transfer.router.js")]
 ];
 
