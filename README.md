@@ -7,7 +7,7 @@
 - [x] 文件按模块打包（webpack commonjs）
 - [x] 资源文件添加MD5命名，解决生产环境部署后的缓存问题（webpack *hash*）
 - [x] ng依赖注入自动添加，解决生产环境代码压缩问题(ng-annotate-webpack-plugin)
-- [x] 图片懒加载ng插件（lazy-image）
+- [x] 图片懒加载ng插件（lazy-image.js）
 - [x] SPA页面路由（ui-router）
 - [x] SPA页面historyApi（webpack-dev-server、nginx配置）
 - [x] SPA页面SEO解决方案(Prerender.io)，爬取404页面设置status code为404
@@ -16,6 +16,7 @@
 - [x] 搜索条件保存至URL (/search)
 - [x] 富文本编辑器（/ueditor）
 - [x] 代码检查工具(fecs)
+- [x] 密码加密RSA(security.js)
 
 ### 脚手架功能
 - [x] 校验git提交备注格式(validate-commit-msg)

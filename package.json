@@ -2,7 +2,7 @@
   "name": "ng-seed",
   "version": "0.6.1",
   "private": true,
-  "description": "> angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、服务接口跨域、SPA页面SEO等问题",
+  "description": "> angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、密码加密、服务接口跨域、SPA页面SEO等问题",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet --open --config ./build/webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./build/webpack.config.js",
