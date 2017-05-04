@@ -17,6 +17,8 @@
 - [x] 富文本编辑器（/ueditor）
 - [x] 代码检查工具(fecs)
 - [x] 密码加密RSA(security.js)
+- [x] 文件上传（fine-upload）
+- [ ] 图片裁剪（cropper）
 
 ### 脚手架功能
 - [x] 校验git提交备注格式(validate-commit-msg)
@@ -82,11 +84,11 @@
 #### dep/
 > 项目依赖框架库 - 建议根据文件功能及来源分目录
 
-1. angular - angular.js v1.2.29 全家桶
-2. bootstrap - 默认依赖的`ui-bootstrap`组件库，需引入`bootstrap.css`
-3. ie8support - 兼容ie8浏览器ES5语法和H5特性，ie9的placeholder功能
-4. jmui - 自定义组件库
-5. lazy-image - 图片懒加载插件
+1. angular/ - angular.js v1.2.29 全家桶
+2. bootstrap/ - 默认依赖的`ui-bootstrap`组件库，需引入`bootstrap.css`
+3. ie8support/ - 兼容ie8浏览器ES5语法和H5特性，ie9的placeholder功能
+4. jmui/ - 自定义组件库
+5. lazy-image/ - 图片懒加载插件
 6. bindonce.js - 单次绑定插件，提升性能
 7. ng.element.js - angular.element方法扩展
 8. security.js - 前端加密算法库
@@ -117,7 +119,7 @@
 1. app.js - 配置项目使用常量、页面路由    
 2. main.js - 页面入口js文件，用于引入页面使用的样式，脚本   
 3. asset/ - 存放css、img等静态资源  
-3.1. css/ - 推荐使用sass来模块化css文件，css用到了postcss来实现雪碧图、autoprefixer兼容css3
+3.1. css/ - 推荐使用sass来模块化css文件，css用到了postcss来实现雪碧图、autoprefixer兼容css3  
 3.2. img/ - sprite 雪碧图目录，在此文件夹下的图片将合并，子目录会单独合并为一张图片
 4. component/ - 提取公用ng组件，方便后续代码维护与复用
 5. filter/ - 过滤器，处理数据格式
@@ -126,11 +128,11 @@
 7.1. 用于开发阶段模拟接口数据  
 7.2. 在前端固定将来会开发成接口的数据  
 8. page/ - 包含`controller`、`router`、`template`
-9. service/ - 包含api服务、util工具函数、store数据单例
+9. service/ - 包含api接口服务、util工具函数、store数据单例
 
 ## 注意事项（坑）
 ### svn git 使用细节
-1. .idea 文件夹需要设为ignore，避免影响到其他开发人员的WebStorm面板
+1. .idea 文件夹需要设为ignore，避免影响到其他开发人员的WebStorm面板（.vscode一样）
 2. node_modules 文件夹需要设为ignore，该文件夹包含文件过多，应由开发人员本地安装
 
 ### webStorm 使用细节
