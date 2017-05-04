@@ -19,7 +19,7 @@ var vendorFiles = [
     './dep/angular/ui-bootstrap-tpls.min.js',
     './dep/angular/angular-ui-router.min.js',
     './dep/angular/angular-locale_zh-cn.js',
-    './dep/ng-lazy-image/lazy-image.min.js',
+    './dep/lazy-image/lazy-image.min.js',
     './dep/bindonce.min.js',
     './dep/security.js',
     './dep/ng.element.js'
