@@ -1,3 +1,34 @@
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/jm-team/ng-seed/compare/v0.6.1...v0.7.0) (2017-05-04)
+
+
+### Bug Fixes
+
+* fixed upload path ([b07bc10](https://github.com/jm-team/ng-seed/commit/b07bc10))
+* remove es6, conflict chunks name ([aabe26e](https://github.com/jm-team/ng-seed/commit/aabe26e))
+
+
+### Features
+
+*  demo中添加tree组件的github地址 ([6ae08ae](https://github.com/jm-team/ng-seed/commit/6ae08ae))
+*  添加 tree 第三方组件 ([0e91229](https://github.com/jm-team/ng-seed/commit/0e91229))
+*  添加autocomonent组件 ([960a442](https://github.com/jm-team/ng-seed/commit/960a442))
+*  添加checkbox demo 页面全选功能 ([6d4741a](https://github.com/jm-team/ng-seed/commit/6d4741a))
+*  添加checkbox demo 页面全选功能 ([6682dcc](https://github.com/jm-team/ng-seed/commit/6682dcc))
+*  添加expose-loader ([5d04495](https://github.com/jm-team/ng-seed/commit/5d04495))
+*  添加pdf 删除事件 ([89c5da7](https://github.com/jm-team/ng-seed/commit/89c5da7))
+*  添加pdf 组件和demo ([f1631ee](https://github.com/jm-team/ng-seed/commit/f1631ee))
+*  添加tree demo ([76edbfc](https://github.com/jm-team/ng-seed/commit/76edbfc))
+*  添加扩展angular.element 方法 ([0d9089d](https://github.com/jm-team/ng-seed/commit/0d9089d))
+*  添加穿梭框组件 ([c7c2bbe](https://github.com/jm-team/ng-seed/commit/c7c2bbe))
+*  添加穿梭框页面demo ([cc5ca60](https://github.com/jm-team/ng-seed/commit/cc5ca60))
+* add more upload examples ([3ece952](https://github.com/jm-team/ng-seed/commit/3ece952))
+* **gh-pages:** 一键更新gh-pages https://jm-team.github.io/ng-seed ([755956f](https://github.com/jm-team/ng-seed/commit/755956f))
+* update file upload component ([3977def](https://github.com/jm-team/ng-seed/commit/3977def))
+* 增加搜索模块的数据联动 ([00f21f0](https://github.com/jm-team/ng-seed/commit/00f21f0))
+
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/jm-team/ng-seed/compare/v0.6.0...v0.6.1) (2017-04-25)
 
