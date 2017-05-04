@@ -69,7 +69,6 @@
         modal.close();
     }
 
-    console.log('jmui.fineUploader', tmpUpload)
     angular.module("jmui.fineUploader", [])
         .directive("fineUploader", function ($compile, $interpolate) {
             return {
