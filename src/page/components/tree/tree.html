@@ -1,0 +1,30 @@
+<div class="col-md-24">
+  <h1>Tree <span class="small">tree</span></h1>
+
+  <p>使用了第三方组件 <a href="https://github.com/wix/angular-tree-control">angular-tree-contro</a></p>
+
+  <div class="col-md-20">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>基本用法</h5>
+      </div>
+
+      <div class="ibox-content">
+        <treecontrol class="tree-classic"
+                     tree-model="treedata"
+                     expanded-nodes="expandedNodes"
+                     on-selection="showSelected(node)">
+          label: {{node.label}} ({{node.id}})
+        </treecontrol>
+
+        <p></p>
+        <p>选中的是： {{node.label + '====>'+  node.id}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+

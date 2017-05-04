@@ -1,4 +1,6 @@
+/*global require, angular*/
 /**
+     * [分页组件]
      * [分页组件]
      * @description
      *
@@ -77,6 +79,7 @@ angular.module('jmui.pagination', [])
             // 分页初始化
             init: function () {
               var self = this;
+
               if ($attrs.itemsPerPage) {
                 $scope.totalPage = this.calculateTotalPage();
               }
@@ -108,25 +111,24 @@ angular.module('jmui.pagination', [])
              */
             makePage: function (currentPage, totalPages) {
               var maxSize = $scope.maxSize;
+              var start = 2;
+
               if (maxSize < 3) {
                 maxSize = 3;
               }
-              var start = 2;
-              var end = start + maxSize;
+
               $scope.pages = [];
               $scope.maxSize = maxSize;
 
               // 判斷总页码是否小于最大显示页
-              if (totalPages < maxSize) {
-                end = totalPages - 1;
-              } else {
-                if (currentPage <= maxSize) {
-                  start = (start < 2) ? 2 : start;
-                } else if (currentPage > totalPages - maxSize) {
-                  start = totalPages - maxSize;
-                } else {
-                  start = currentPage - Math.floor(maxSize / 2);
-                }
+              if (totalPages >= maxSize) {
+                  if (currentPage <= maxSize) {
+                      start = (start < 2) ? 2 : start;
+                  } else if (currentPage > totalPages - maxSize) {
+                      start = totalPages - maxSize;
+                  } else {
+                      start = currentPage - Math.floor(maxSize / 2);
+                  }
               }
 
               if (start < 2) {
@@ -180,10 +182,10 @@ angular.module('jmui.pagination', [])
              */
             setPage: function ($event, p) {
               $event.preventDefault();
+
               var ngInput = $element.find('input') || null;
 
               if (p !== $scope.currentPage) {
-
                 if (!+p || p < 1) {
                   p = 1
                 } else if (p > $scope.totalPage) {
@@ -207,7 +209,6 @@ angular.module('jmui.pagination', [])
 
             /**
              * 页码输入框回车事件
-             * @author zhoul
              * @param {object} $event 事件对象
              * @param {number} p      输入框中的页码
              */
@@ -222,7 +223,7 @@ angular.module('jmui.pagination', [])
           $scope.init();
 
           // 监视总页数改变 总页数改变初始化分页
-          $scope.$watch('totalPage', function (value) {
+          $scope.$watch('totalPage', function () {
             $scope.makePage($scope.currentPage, $scope.totalPage);
           });
         }
