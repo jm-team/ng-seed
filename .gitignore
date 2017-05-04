@@ -39,3 +39,6 @@ dist
 
 # Webstorm
 .idea
+
+#vscode
+.vscode
