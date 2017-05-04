@@ -23,7 +23,7 @@ var fs = require("fs"),
 
     // paths/constants
     fileInputName = process.env.FILE_INPUT_NAME || "qqfile",
-    uploadedFilesPath = process.env.UPLOADED_FILES_DIR,
+    uploadedFilesPath = process.env.UPLOADED_FILES_DIR || "./uploads/",
     chunkDirName = "chunks",
     maxFileSize = process.env.MAX_FILE_SIZE || 0; // in bytes, 0 for unlimited
 
@@ -153,7 +153,12 @@ function moveFile(destinationDir, sourceFile, destinationFile, success, failure)
     });
 }
 
+function getUploadedUuidPath(uuid) {
+    return uploadedFilesPath + uuid + "/";
+}
+
 function moveUploadedFile(file, uuid, success, failure) {
+    console.log('uploadedFilesPath', uploadedFilesPath)
     var destinationDir = uploadedFilesPath + uuid + "/",
         fileDestination = destinationDir + file.name;
 
