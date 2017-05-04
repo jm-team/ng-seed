@@ -20,6 +20,7 @@ require('./checkbox');
 require('./transfer');
 require('./autocomponent');
 require('./pdf');
+require('./upload');
 
 angular.module('jmui', [
     'jmui.accordion',
@@ -41,5 +42,6 @@ angular.module('jmui', [
     'jmui.transfer',
     'jmui.autoComponent',
     'jmui.pdf',
+    'jmui.fineUploader',
     'ng.ueditor'
 ]).value('version', '0.1');

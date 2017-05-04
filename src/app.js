@@ -38,7 +38,8 @@ var router = [
   ["components.autoComponent", require("./page/components/autocomponent/autocomponent.router.js")],
   ["components.pdf", require("./page/components/pdf/pdf.router.js")],
   ["components.tree", require("./page/components/tree/tree.router.js")],
-  ["components.transfer", require("./page/components/transfer/transfer.router.js")]
+  ["components.transfer", require("./page/components/transfer/transfer.router.js")],
+    ["components.upload", require("./page/components/upload/upload.router.js")]
 ];
 
 // 鏈接mongo配置
