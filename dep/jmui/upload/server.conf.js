@@ -153,12 +153,7 @@ function moveFile(destinationDir, sourceFile, destinationFile, success, failure)
     });
 }
 
-function getUploadedUuidPath(uuid) {
-    return uploadedFilesPath + uuid + "/";
-}
-
 function moveUploadedFile(file, uuid, success, failure) {
-    console.log('uploadedFilesPath', uploadedFilesPath)
     var destinationDir = uploadedFilesPath + uuid + "/",
         fileDestination = destinationDir + file.name;
 
