@@ -20,6 +20,7 @@
  */
 
 (function () {
+    require("./fine-uploader/fine-uploader-new.scss");
     var qq = require('./fine-uploader/fine-uploader.js');
     var tmpUpload = require('./upload.html');
     console.log('qq', qq)
@@ -76,7 +77,7 @@
             return {
                 restrict: "A",
                 replace: true,
-                templateUrl: tmpUpload,
+                //templateUrl: tmpUpload,
                 link: function ($scope, element, attrs) {
                     console.log('link...')
                     var endpoint = attrs.uploadServer,
