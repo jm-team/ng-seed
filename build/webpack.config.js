@@ -3,7 +3,6 @@ var webpack = require('webpack');
 var merge = require('webpack-merge');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 var config = require('../config/build.config.js');
 var webpackConfig;
 var devtool;
@@ -150,10 +149,6 @@ module.exports = merge({
                 return order1 - order2;
             }
 
-        }),
-
-        new ngAnnotatePlugin({
-            add: true
         })
     ]
 }, webpackConfig);
