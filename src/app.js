@@ -35,7 +35,7 @@ var router = [
   ["components.tooltip", require("./page/components/tooltip/tooltip.router.js")],
 
   ["components.checkbox", require("./page/components/checkbox/checkbox.router.js")],
-  ["components.autoComponent", require("./page/components/autocomponent/autocomponent.router.js")],
+  ["components.autoComplete", require("./page/components/autocomplete/autocomplete.router.js")],
   ["components.pdf", require("./page/components/pdf/pdf.router.js")],
   ["components.tree", require("./page/components/tree/tree.router.js")],
   ["components.transfer", require("./page/components/transfer/transfer.router.js")]

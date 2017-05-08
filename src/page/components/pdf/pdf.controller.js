@@ -3,12 +3,9 @@
  */
 
 var app = require('app');
-
-
 app.registerController('PdfCtrl', PdfCtrl);
 
 /*@ngInject*/
 function PdfCtrl($state) {
   var vm = this;
-  
 }

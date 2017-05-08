@@ -3,15 +3,18 @@
  */
 
 var app = require('app');
+var custTpl = require('./custTpl.html');
 
-app.registerController('AutoComponentCtrl', AutoComponentCtrl);
+app.registerController('AutoCompleteCtrl', AutoCompleteCtrl);
 
 /*@ngInject*/
-function AutoComponentCtrl($q) {
+function AutoCompleteCtrl($q) {
     var vm = this;
 
     vm.results = [];
     vm.value = null;
+
+    vm.tplUrl = custTpl;
 
     vm.handleChange = function () {
         return searchResult(vm.keyword);
@@ -20,7 +23,7 @@ function AutoComponentCtrl($q) {
     vm.select = function (arg) {
         console.log(arg);
         vm.value = arg.item;
-    }
+    };
 
     function getRandomInt(max, min) {
         min = min || 0;
