@@ -139,7 +139,6 @@ angular
       }).then(function (data) {
         dataElement = data;
         self.container.append(self.backdrop);
-
         self.render(data, config);
       });
 

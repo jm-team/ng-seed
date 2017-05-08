@@ -1,4 +1,4 @@
-.auto-component-wrap{
+.auto-complete-wrap{
   position: relative;
 
   .result-wrap{
@@ -43,7 +43,7 @@
   }
 }
 
-.auto-component-wrap.open{
+.auto-complete-wrap.open{
   .result-wrap{
     display: block;
     opacity: 1;

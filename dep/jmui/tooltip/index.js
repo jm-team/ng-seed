@@ -22,7 +22,6 @@ angular.module('jmui.tooltip', [])
       controller: function ($scope, $element, $attrs) {
         var tpl = "<h4 ng-if='title' class='title' ng-bind-html='title'></h4><div class='tooltip-content' ng-bind-html='content'></div>",
           templateUrl = $scope.template,
-          // delay = $attrs.delay || 0,
           self = this,
           controllerName = $attrs.controllerName,
           documentClick = angular.noop,

@@ -87,9 +87,7 @@ angular.module("jmui.rate", [])
         if (scope.disabled) {
           return;
         }
-
         scope.model = $index;
-
         isChoose = true;
         changeFn({
           event: $event,

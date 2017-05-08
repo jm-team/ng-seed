@@ -18,7 +18,7 @@ require('./alert');
 require('./rate');
 require('./checkbox');
 require('./transfer');
-require('./autocomponent');
+require('./autocomplete');
 require('./pdf');
 
 angular.module('jmui', [
@@ -39,7 +39,7 @@ angular.module('jmui', [
     'jmui.rate',
     'jmui.checkbox',
     'jmui.transfer',
-    'jmui.autoComponent',
+    'jmui.autoComplete',
     'jmui.pdf',
     'ng.ueditor'
 ]).value('version', '0.1');

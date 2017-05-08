@@ -116,7 +116,6 @@ angular.module('jmui.AnchorSmoothScroll', [])
 
           // 执行结束
           setTimeout(onFinsh, timer * speed);
-
         });
 
         angular.element($window).on('scroll', function () {

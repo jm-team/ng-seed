@@ -2,7 +2,7 @@
 require('./index.scss');
 var tpl = require('./index.html');
 
-// 文字提示
+// 穿梭框
 angular.module('jmui.transfer', [])
   .directive('jmTransfer', function () {
 
@@ -13,13 +13,10 @@ angular.module('jmui.transfer', [])
         source: '=',
         targetKeys: '='
       },
-      controller: function ($scope, $element, $attrs) {
-        console.log($attrs);
+      controller: function ($scope) {
 
         $scope.sourceCheckeds = [];
         $scope.targetCheckeds = [];
-
-        console.log($scope.dataSource)
         $scope.titles = ["Source", "Target"];
 
         function transfer(sourceArr, arrChecks, targetArr) {
@@ -28,7 +25,7 @@ angular.module('jmui.transfer', [])
             return !item.checked;
           });
 
-          angular.forEach($scope[sourceArr], function (item, index) {
+          angular.forEach($scope[sourceArr], function (item) {
             if (item.checked) {
               item.checked = false;
               arr.push(item);
@@ -62,7 +59,7 @@ angular.module('jmui.transfer', [])
             return !item.disabled
           }).length;
           $scope[source === 'target' ? 'targetAll' : 'sourceAll'] = (l === checkedSource.length);
-        }
+        };
 
         $scope.changeAll = function (arg, source) {
           var sourceData = $scope.source;
@@ -96,9 +93,7 @@ angular.module('jmui.transfer', [])
           } else {
             $scope.sourceCheckeds = arr;
           }
-
-        }
-
+        };
       }
     };
   });
