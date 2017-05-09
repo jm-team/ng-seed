@@ -7,45 +7,7 @@
 > 参考：https://github.com/jm-team/ng-seed
 
 ## 一、目录规范
-### 1.一级目录
-```
-config/: (环境配置文件)
-dist/:  (包含项目构建后的代码)
-doc/:  (包含项目说明文档)
-node_modules/:  (包含服务依赖模块、gulpfile、webpack依赖模块)
-src/:  (包含源码文件)
-test/:  (测试文件, 子目录应该和src目录相对应)(暂无测试)
-package.json:  (运行、构建项目依赖的模块列表)
-webpack.config.js:  (webpack 基础配置文件)
-webpack-dev.js : (webpack开发环境)
-webpack-production.js: (webpack生产环境)
-```
-
-### 2.src二级目录
-```
-component/:  (公共组件)
-css/:  (包含样式文件)
-dep/:  (包含第三方文件 如：angularjs、ui-router...)
-entry/:  (包含项目主文件)
-font/:  (包含字体)
-img/:  (包含图片)
-js/:  (包含js文件 里面分controller、directive、service、filter、router、app.js)
-mock/: (模拟接口返回数据)
-page/: (项目模板文件)
-```
-
-### 3.js文件夹目录
-```
-controller/:  (控制器文件)
-directive/:  (指令文件)
-filter/:  (过滤器文件)
-router/:  (页面路由文件)
-service/:  (服务文件)
-app.js:  (项目配置启动文件)
-main.js: (webpack 入口文件)
-```
-
-### 4.page 文件夹 路由对应文件夹
+查看[README.md#目录文件说明](https://github.com/jm-team/ng-seed/#目录文件说明)
 
 ## 二、第三方库和服务
 
@@ -65,7 +27,7 @@ main.js: (webpack 入口文件)
 - Prerender Middleware nginx配置参考[nginx](./nginx.conf)
 - Prerender Service配置参考[server.js](./server.js)
 
-##三、Angular代码规范及建议
+## 三、Angular代码规范及建议
 ### 1.Controller
 1. Controller 中不应该出现DOM操作, DOM操作应该在Directive中出现
 2. Controller 中不应该出现`$http.get()`、`$ngResource`这些类似的代码 这些应该放在Service中当作服务 然后再Controller 中调用这些服务
@@ -123,7 +85,7 @@ main.js: (webpack 入口文件)
 3. 根据需求做图片base64位
 
 ## 五、CSS样式表
-1. 减少样选择器层级
+1. 减少样式选择器层级
 2. 合并压缩CSS样式表
 3. 添加md5 防止样式改变缓存问题
 4. 尽可能不要用通配选择符
@@ -138,10 +100,12 @@ main.js: (webpack 入口文件)
 5. Html要有语义化
 
 ## 七、文件命名和代码风格
-1. Controller文件夹中的文件名称应是相对应模版名称 + ctrl
+1. page文件夹中的js文件名称为`模板名称.类型.js` 如：`about.html` 对应有 `about[.controller].js` `about.router.js`
 2. 文件名有多个单词使用驼峰式
 3. JS 代码中应使用匈牙利命名法
-4. 参考百度：https://github.com/jm-team/spec/blob/master/javascript-style-guide.md
+> 参考  
+百度：https://github.com/jm-team/spec/blob/master/javascript-style-guide.md  
+angular-styleguide: https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#folders-by-feature-structure
 
 ## 八、浏览器兼容性要求
 1. 兼容所有主流标准浏览器，IE8及以上IE浏览器。  
@@ -169,3 +133,12 @@ main.js: (webpack 入口文件)
 1. 前台网站一般页面，内容固定宽度1190分辨率（电商平台、物流平台）。Body需加min-width:1190px，以适配移动端访问。
 2. 前台网站满屏设计页面，内容需要考虑1920\*1080至1024\*768分辨率下的适配效果（官网、三馆、专题）。
 3. 后台管理网站需采用流式布局，最小宽度适配至1280分辨率。
+
+## 十、技术架构要求
+1. 前台网站**整站**必须做图片懒加载
+2. 项目所有依赖的静态资源**必须**从cdn服务器获取
+3. 网站页面加载顺序，**公共底部**等不应在内容显示之前提前显示
+4. 搜索页面url**必须**保存搜索条件  
+5. 所有的网站在pc和手机浏览器能**正常访问**
+6. ~~项目代码自动打包上线-合并请求~~ 工具实现
+
