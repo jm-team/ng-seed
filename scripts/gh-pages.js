@@ -13,7 +13,7 @@ const list = [
     {
         filePath: '../config/build.config.js',
         target: '\'/dist/\'', // TODO: 非唯一，非第一匹配，存在bug
-        content: '\'\''
+        content: '\'/ng-seed/\''
     },
     {
         filePath: '../src/app.js',

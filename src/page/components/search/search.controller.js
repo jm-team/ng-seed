@@ -60,17 +60,6 @@ app.registerController('SearchCtrl',
             })
         }
 
-
-        // 获取Category
-        function getCategory() {
-            return $http.get('/dist/mock/categorys.json');
-        }
-
-        // 获取Industry
-        function getIndustry() {
-            return $http.get('/dist/mock/industrys.json');
-        }
-
         // 处理搜索参数
         function processBase(data) {
             $scope.base.categorys = data[0];

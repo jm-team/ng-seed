@@ -6,6 +6,7 @@ var HashedModuleIdsPlugin = require('./HashedModuleIdsPlugin');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractSASS = new ExtractTextPlugin('css/[name].[contenthash:8].css');
+var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 var os = require('os');
 var UglifyJsParallelPlugin = require('webpack-uglify-parallel');
@@ -57,6 +58,9 @@ module.exports = {
     // 插件
     plugins: [
         extractSASS,
+        new ngAnnotatePlugin({
+            add: true
+        }),
         // 合并生成公用文件 .[hash:8]
         new webpack.optimize.CommonsChunkPlugin({
             name: ["vendor", "manifest"], // vendor libs + extracted manifest
@@ -68,16 +72,6 @@ module.exports = {
             name: 'webpackManifest'
         }),
         // 启用文件压缩混淆
-        /*new webpack.optimize.UglifyJsPlugin({
-            output: {
-                comments: false, // 移除所有注释
-                screw_ie8: false // 默认为true，不支持ie8及以下
-            },
-            compress: {
-                warnings: false,
-                screw_ie8: false // 默认为true，不支持ie8及以下
-            }
-        }),*/
         new UglifyJsParallelPlugin({
             workers: os.cpus().length,
             fromString: true,

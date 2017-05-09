@@ -26,16 +26,12 @@ app.filter('cdn', function ($sce, CDN_ADDRESS) {
 });
 
 // 图片服务器地址
-app.filter('imgOrigin', function ($sce, IMG_ADDRESS) {
-    return function (input, url, imgAddr) {
-        if (url) {
-            return $sce.trustAsResourceUrl(url + input);
+app.filter('imgSystem', function ($sce, IMG_ADDRESS) {
+    return function (input) {
+        if (__webpack_require__ && __webpack_require__.p) {
+            return $sce.trustAsResourceUrl(__webpack_require__.p + input);
         } else {
-            if (imgAddr) {
-                return $sce.trustAsResourceUrl(imgAddr + input);
-            } else {
-                return $sce.trustAsResourceUrl(IMG_ADDRESS + input);
-            }
+            return $sce.trustAsResourceUrl(IMG_ADDRESS + input);
         }
     };
 });

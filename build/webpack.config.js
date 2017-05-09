@@ -3,7 +3,6 @@ var webpack = require('webpack');
 var merge = require('webpack-merge');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 var config = require('../config/build.config.js');
 var webpackConfig;
 var devtool;
@@ -19,7 +18,7 @@ var vendorFiles = [
     './dep/angular/ui-bootstrap-tpls.min.js',
     './dep/angular/angular-ui-router.min.js',
     './dep/angular/angular-locale_zh-cn.js',
-    './dep/ng-lazy-image/lazy-image.min.js',
+    './dep/lazy-image/lazy-image.min.js',
     './dep/bindonce.min.js',
     './dep/security.js',
     './dep/ng.element.js'
@@ -84,13 +83,13 @@ module.exports = merge({
             // 处理angularjs 模版片段
             {
                 test: /\.html$/,
-                loader: 'ngtemplate?module=ng&relativeTo='+(path.resolve(__dirname, '../'))+'!html?attrs=img:src img:img-error div:img-error li:img-error span:img-error a:img-error',
+                loader: 'ngtemplate?module=ng&relativeTo='+(path.resolve(__dirname, '../'))+'!html?attrs=img:src div:url img:img-error div:img-error li:img-error span:img-error a:img-error',
                 include: /(src|dep)/
             },
 
             // 处理html图片
             {
-                test: /\.(gif|jpe?g|png|woff|svg|eot|ttf)\??.*$/,
+                test: /\.(gif|jpe?g|png|woff|svg|eot|ttf|pdf)\??.*$/,
                 loader: 'file-loader?name=img/[name].' + hash + '[ext]'
             }
         ]
@@ -150,10 +149,6 @@ module.exports = merge({
                 return order1 - order2;
             }
 
-        }),
-
-        new ngAnnotatePlugin({
-            add: true
         })
     ]
 }, webpackConfig);

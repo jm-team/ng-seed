@@ -1,6 +1,5 @@
 require('./util.js');
-require('./service.js');
-require('./../../dep/ng.element.js');
+require('./store.js');
 require('./api.js');
 
 
