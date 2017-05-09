@@ -43,7 +43,6 @@ var tmpPage = require('./pagination.html');
 angular.module('jmui.pagination', [])
 
   .directive('jmPagination',
-
     function ($parse) {
       var watchItemsPerPageFn = angular.noop;
       var watchTotalPageFn = angular.noop;

@@ -1,5 +1,33 @@
 /*global require, angular*/
-
+/**
+ * [checkbox 复选框组件]
+ *
+ * @author zhoul
+ * @description
+ *
+ *  checkbox 复选框组件：
+ *  指令属性详细：
+ *      1) checked: 是否选中
+ *      2) viewValue: 复选框显示的值
+ *      3) className: 类名称
+ *      4) disabled: 是否禁用
+ *
+ *  指令方法详细
+ *      1) onChange(arg): 数据源改变的时候
+ *        arg: { 
+ *          $event: $event,  事件对象
+ *          checked: checked 是否选中
+ *        ｝
+ * @example
+ * <div 
+ *  jm-checkbox 
+ *  checked="vm.checked2"
+ *  on-change="change(arg)"
+ *  ng-disabled="true" 
+ *  view-value="Javascript">
+ * </div>
+ *
+ */
 require('./checkbox.scss');
 var tmpCheckbox = require('./checkbox.html');
 angular.module('jmui.checkbox', [])
@@ -12,7 +40,7 @@ angular.module('jmui.checkbox', [])
       replace: true,
       scope: {
         checked: '=',
-        indeterminate: '=',
+        // indeterminate: '=',
         onChange: '&',
         viewValue: '@',
         className: '@'
@@ -40,7 +68,36 @@ angular.module('jmui.checkbox', [])
     };
   })
 
-  // 复选框组
+  /**
+ * [jmCheckboxGroup 复选框组组件]
+ *
+ * @author zhoul
+ * @description
+ *  基于jmCheckbox
+ *  可以操作options中每一项的disabled来控制是否禁用
+ *  jmCheckboxGroup 复选框组组件：
+ *  指令属性详细：
+ *      1) options: 显示的复选框数组
+ *          {
+ *            disabled: Boolean,  控制当前项是否禁用
+ *            title: String,      checkbox显示的值 
+ *          }
+ *      2) checkeds: 一组选中的值 
+ *
+ *  指令方法详细
+ *      1) onChange(arg): 数据源改变的时候
+ *        arg: { 
+ *          checkeds: 当前选中的一组值
+ *        ｝
+ * @example
+ * <div 
+ *  jm-checkbox-group 
+ *  on-change="vm.onChange()" 
+ *  options="vm.options4" 
+ *  checkeds="vm.checkeds4">
+ * </div>
+ *
+ */
   .directive('jmCheckboxGroup', function () {
     return {
       restrict: 'AE',
@@ -94,7 +151,7 @@ angular.module('jmui.checkbox', [])
           }
 
           // 执行改变钩子函数
-          (scope.onChange || angular.noop)();
+          (scope.onChange || angular.noop)({checkeds: scope.checkeds});
         }
       }
     }

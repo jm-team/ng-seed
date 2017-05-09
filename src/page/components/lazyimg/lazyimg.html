@@ -26,7 +26,7 @@
         <ul class="list-unstyled">
           <li class="demo-repeat-list--items"
               ng-repeat="image in filtered =(vm.collection | filter:{'type': vm.searchText})">
-            <span afkl-lazy-image="{{image.srcset}}" class="afkl-lazy-wrapper afkl-img-ratio-3-2"></span>
+            <span afkl-lazy-image="{{image.srcset}}" img-error="" class="afkl-lazy-wrapper afkl-img-ratio-3-2"></span>
           </li>
         </ul>
       </section>

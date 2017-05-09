@@ -1,7 +1,66 @@
 /*global require, angular*/
 
 /**
+ * [dialog 弹窗服务]
+ *
  * @author zhoul
+ * @description
+ * dialog 弹窗服务
+ * 
+ * 方法：
+ *  confirm： 确认框
+ *  alert:    确定框
+ *  modal:    自定义弹窗
+ * 
+ * 弹框参数：
+ *  title：弹出标题模板
+ *  template： 显示模板
+ *  templateUrl: 模板地址
+ *  className： 弹出类名
+ *  backdropClass：遮罩层类名
+ *  success： 用户自定义模板的时候点击确定 请求某个服务端接口 成功执行的回调
+ *  error： 用户自定义模板的时候点击确定 请求某个服务端接口 失败执行的回调
+ *  resolves： 弹出之前需要处理的一些依赖
+ *  controllerAs：用于支持as语法
+ *  controller: 用户自定义模板的时候 可以添加控制器 处理自定义的模板
+ *  container：弹窗组append的DOM
+ *  locals：一些数据可在自定义模板的控制器中依赖注入
+ * 
+ * @example
+ * 确认框
+ * dialogs.confirm({
+ *    template: '<p class="text-center text-default">确认删除？</p>'
+ * })
+ * .then(function () {
+ *    alert("您点了确认");
+ *    dialogs.close();
+ * }, function(){
+ *    alert("您点了取消");
+ *    dialogs.close();
+ * });
+ *
+ * @example
+ * 确定框
+ * dialogs.alert({
+ *    template: '<p class="text-center text-default">确认删除？</p>'
+ * })
+ * .then(function(){
+ *    dialogs.close();
+ * })
+ * 
+ * @example
+ * 自定义弹窗
+ * dialogs.modal({
+ *  method: 'login',
+ *  className: 'login-from',
+ *  backdropClass: 'in',
+ *  templateUrl: loginV2Tmp,
+ *  success: function (data) {
+ *    var result = data.data.data;
+ *    alert('tick')
+ *  },
+ *  controller: 'loginCtrl'
+ * })
  */
 angular
   .module('jmui.dialog', [])

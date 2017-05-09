@@ -2,7 +2,16 @@
 (function () {
   "use strict";
 
-  // 图片错误 显示默认图片
+  /**
+ * [imgerror 图片加载出错]
+ *
+ * @description
+ * imgerror 图片加载出错
+ *
+ * @example
+ * <img ng-src="{{ vm.jpg }}" img-error="../../../asset/img/logo.png" alt="图片加载失败显示默认图">
+ *
+ */
   angular.module('jmui.imgerror', [])
     .directive('imgError', function () {
       return {

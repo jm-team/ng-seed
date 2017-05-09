@@ -1,5 +1,49 @@
 /*global require, angular*/
-
+/**
+ * [switch 开关组件]
+ *
+ * @author zhoul
+ * @description
+ * <jm-switch
+                width="58"
+                on-text="<i class='jm-icon jm-icon-fullscreen'></i>"
+                on-color="#68b828"
+                off-text="<i class='jm-icon jm-icon-111'></i>"
+                off-color="#ea6262"
+                name="checked"
+                ng-model="vm.on">
+            </jm-switch>
+ * 
+ * 
+ * switch 开关组件:
+ *  指令属性详细：
+ *      1) width: 组件宽度
+ *      2) ngModel: 开关的model值
+ *      3）on-text: switch 打开时的文字
+ *      4）on-color: switch 打开时的背景色
+ *      5) off-text: switch 关闭时的文字
+ *      6) off-color: switch 关闭时的背景色
+ *      7) name: switch 对应的 name 属性
+ *      7) disabled: 是否禁用
+ * 
+ * 指令方法：
+ *    1）onChange(arg): 开关值改变回调
+ *        arg:{ 
+ *          event: $event,
+ *          model: $scope.ngModel
+ *        }
+ * @example
+ *  <jm-switch
+ *    width="58"
+ *    on-text="开"
+ *    on-color="#68b828"
+ *    off-text="关"
+ *    off-color="#ea6262"
+ *    name="checked"
+ *    ng-model="on">
+ *  </jm-switch>
+ *
+ */
 var tmpl = require('./index.html');
 require('./index.scss');
 
@@ -11,7 +55,6 @@ angular.module('jmui.switch', [])
       templateUrl: tmpl,
       replace: true,
       scope: {
-        name: '@',
         onChange: '&',
         ngModel: '='
       },

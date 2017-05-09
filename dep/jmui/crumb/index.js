@@ -1,4 +1,30 @@
 /*global require, angular*/
+/**
+ * [crumbs 面包屑]
+ *
+ * @author zhoul
+ * @description
+ *
+ * crumbs 面包屑：
+ *  指令属性详细：
+ *      1) abstractProxyProperty: 静态路由需要代理到的路由
+ *      2）index-crumb： 最顶层的路由配置对象
+ *
+ *
+ * @example
+ * <div 
+ *    jm-crumbs 
+ *    abstract-proxy-property="data.breadcrumbProxy" 
+ *    index-crumb="{{vm.indexCrumb}}">
+ * </div>
+ * 
+ * 路由中的配置 添加一个data 属性
+ * data:{
+ *   breadcrumbProxy: 'components.crumb',  // 路由地址
+ *   displayName: '面包屑'  // 面包屑显示的名称
+ * }
+ *
+ */
 var tmpCrumbs = require('./crumb.html');
 angular.module('jmui.crumbs', [])
 // 面包屑
@@ -9,7 +35,6 @@ angular.module('jmui.crumbs', [])
         return attrs.templateUrl || tmpCrumbs;
       },
       scope: {
-        displayNameProperty: '@',
         abstractProxyProperty: '@?'
       },
       link: function (scope, element, attrs) {
