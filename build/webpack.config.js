@@ -83,13 +83,13 @@ module.exports = merge({
             // 处理angularjs 模版片段
             {
                 test: /\.html$/,
-                loader: 'ngtemplate?module=ng&relativeTo='+(path.resolve(__dirname, '../'))+'!html?attrs=img:src img:img-error div:img-error li:img-error span:img-error a:img-error',
+                loader: 'ngtemplate?module=ng&relativeTo='+(path.resolve(__dirname, '../'))+'!html?attrs=img:src div:url img:img-error div:img-error li:img-error span:img-error a:img-error',
                 include: /(src|dep)/
             },
 
             // 处理html图片
             {
-                test: /\.(gif|jpe?g|png|woff|svg|eot|ttf)\??.*$/,
+                test: /\.(gif|jpe?g|png|woff|svg|eot|ttf|pdf)\??.*$/,
                 loader: 'file-loader?name=img/[name].' + hash + '[ext]'
             }
         ]

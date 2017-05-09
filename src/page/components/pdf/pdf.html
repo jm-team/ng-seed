@@ -14,6 +14,16 @@
         </header>
 
         <div class="ibox-content">
+          <h3>通过html-loader div:url和file-loader实现文件引入，有hash命名</h3>
+          <div
+              style="height:600px;"
+              jm-pdf
+              url="../../../asset/img/system/1.pdf">
+          </div>
+
+          <h3>通过imgSystem filter实现文件引入，无hash命名</h3>
+          <p>依赖了webpack runtime属性__webpack_require__.p获取public path</p>
+          <p>system文件夹通过webpack copy 插件直接复制到dist目录下</p>
           <div
               style="height:600px;"
               jm-pdf
