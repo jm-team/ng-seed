@@ -46,6 +46,7 @@ angular.module("jmui.pdf", [])
               fallbackLink: "<p class='noSupport'>您的浏览器不支持在线预览PDF， 您可以 <a target='_blank' href='" + newValue + "'>下载这个PDF</a></p>"
             })
           } else {
+            // firefox
             if (!iframe) {
               iframe = document.createElement('iframe');
             }
