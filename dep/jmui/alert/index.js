@@ -30,7 +30,7 @@
  *
  */
 require("./index.scss");
-
+document.createElement('jm-alert');
 // alert 提示框
 angular.module('jmui.alert', [])
   .directive('jmAlert', function ($animate) {
@@ -45,7 +45,7 @@ angular.module('jmui.alert', [])
       link: function (scope, element, attrs) {
         var type = attrs.type || 'success';
         var closable = attrs.closable;
-        var closeFn = scope.close || angular.noop;
+        var closeFn = scope.onClose || angular.noop;
         // 是否显示关闭按钮
         scope.closable = true;
         // 根据传入的类型添加相应风格的类

@@ -40,6 +40,8 @@
  */
 var tmpPage = require('./pagination.html');
 
+document.createElement('jm-Pagination');
+
 angular.module('jmui.pagination', [])
 
   .directive('jmPagination',
@@ -258,4 +260,6 @@ angular.module('jmui.pagination', [])
           })
         }
       };
-    });
+    })
+
+

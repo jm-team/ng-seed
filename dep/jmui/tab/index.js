@@ -14,6 +14,13 @@
  *
  */
 // tab选项卡
+document.createElement('jm-tabset');
+document.createElement('jm-tab-content-transclude');
+document.createElement('jm-tabset-title');
+document.createElement('jm-tab');
+document.createElement('jm-tab-header');
+document.createElement('jm-tab-header-transclude');
+
 angular.module('jmui.tab', [])
   .directive('jmTabset', function () {
     return {

@@ -24,6 +24,8 @@
  */
 
 require('./index.scss');
+document.createElement('jm-accordions');
+document.createElement('jm-accordion');
 angular.module('jmui.accordion', [])
   .directive('jmAccordions', function () {
     return {

@@ -46,7 +46,7 @@
  */
 var tmpl = require('./index.html');
 require('./index.scss');
-
+document.createElement('jm-switch');
 // 滚动条柔和的滚动到指定的锚点位置
 angular.module('jmui.switch', [])
   .directive('jmSwitch', function ($sce) {
@@ -65,13 +65,25 @@ angular.module('jmui.switch', [])
         var disabledColor = $attrs.disabledColor || "#bfcbd9";
         var eCore = $element.find('.jm-switch__core');
         var eBtn = $element.find('.jm-switch__button');
+        var leftIcon = $element.find('.jm-switch__left .text');
+        var rightIcon = $element.find('.jm-switch__right .text');
         var btnWidth = parseInt(eBtn.getStyle('width'), 10);
         var switchHeight = parseInt($element.getStyle('height'), 10);
         var transOffX = (width - btnWidth - 5);
         var transY = Math.floor((switchHeight - btnWidth) / 2) - 1;
+        var iconOnName = $attrs.iconOn;
+        var iconOffName = $attrs.iconOff;
 
         $scope.onText = $sce.trustAsHtml($attrs.onText);
         $scope.offText = $sce.trustAsHtml($attrs.offText);
+
+        if(iconOnName){
+          leftIcon.addClass('jm-icon jm-icon-'+iconOnName)
+        }
+
+        if(iconOffName){
+          rightIcon.addClass('jm-icon jm-icon-'+iconOffName)
+        }
 
         // 设置`switch`宽度
         $element.css({
@@ -86,9 +98,11 @@ angular.module('jmui.switch', [])
             "background-color": offColor
           });
           eBtn.css(model ? {
-            transform: "translate(" + transOffX + "px," + transY + "px)"
+            left: transOffX + 'px',
+            top:transY+'px'
           } : {
-            transform: "translate(2px," + transY + "px)"
+            left: "2px",
+            top:transY+'px'
           });
         }
 
