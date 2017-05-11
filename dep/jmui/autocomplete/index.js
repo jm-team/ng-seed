@@ -90,7 +90,7 @@ angular.module('jmui.autoComplete', [])
         });
 
 
-        var oInputFocusEvent = oInput.on('focus', function () {
+        oInput.on('focus', function () {
           element.addClass('open');
         });
 
