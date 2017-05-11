@@ -10,12 +10,12 @@
       </div>
 
       <div class="ibox-content">
-        <treecontrol class="tree-classic"
+        <div treecontrol class="tree-classic"
                      tree-model="treedata"
                      expanded-nodes="expandedNodes"
                      on-selection="showSelected(node)">
           label: {{node.label}} ({{node.id}})
-        </treecontrol>
+        </div>
 
         <p></p>
         <p>选中的是： {{node.label + '====>'+  node.id}}</p>

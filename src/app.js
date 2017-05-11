@@ -1,6 +1,8 @@
 var address = require('address');
 var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage', 'treeControl']);
 
+document.createElement('treecontrol');
+document.createElement('treeitem');
 // 路由配置
 var router = [
   ["home", require("./page/home/home.router.js")],
