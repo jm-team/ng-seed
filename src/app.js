@@ -86,7 +86,7 @@ app.run(function ($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
   $rootScope.show = false;
   $rootScope.$state = $state;
   // 路由切换成功
-  // , toParams, formState, formParams, options
+  //event, toState, toParams, formState, formParams, options
   $rootScope.$on('$stateChangeSuccess', function () {
     // 百度统计pv量
     _hmt.push(['_trackPageview', $location.path()]);
