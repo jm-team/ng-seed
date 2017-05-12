@@ -17,7 +17,26 @@
 - [x] 富文本编辑器（/ueditor）
 - [x] 代码检查工具(fecs)
 - [x] 密码加密RSA(security.js)
+- [x] 对angular find 方法扩展
 - [x] 文件上传（fine-upload）
+- [x] 添加登录表单提交service(非ajax 提交)
+- [x] 手风琴
+- [x] alert 提示
+- [x] 锚点之间的跳转
+- [x] 输入自动提示
+- [x] checbox 复选框以及复选框组
+- [x] 面包屑导航
+- [x] dialog 弹出
+- [x] 图片加载出错显示默认图
+- [x] 图片懒加载
+- [x] 分页
+- [x] pdf 文件预览 基于 [PDFObject](https://github.com/pipwerks/PDFObject)
+- [x] 评分
+- [x] switch 开关
+- [x] Tab选项卡
+- [x] tooltip提示
+- [x] transfer 穿梭框
+- [x] tree 树控件 第三方组件[angular-tree-control](https://github.com/wix/angular-tree-control)
 - [ ] 图片裁剪（cropper）
 
 ### 脚手架功能
@@ -95,8 +114,8 @@
 
 #### dist/
 1. dist文件夹将放于CND服务器，所有引用dist目录下资源的地方，都需要可以动态配置域名：  
-1.1. webpack设置publicPath打包时添加  
-1.2. angular自定义filter - `cdn`, 给资源地址加`CDN_ADDRESS`前缀    
+  1.1. webpack设置publicPath打包时添加  
+  1.2. angular自定义filter - `cdn`, 给资源地址加`CDN_ADDRESS`前缀    
 2. dist/img/sprite - 该文件夹为雪碧图合成临时文件夹，可以忽略。webpack在生产环境下会重新生成添加hash的图片
 3. dist/dep/ie8supports.js - 目前为[卖塑郎项目](https://github.com/jm-team/MSL-V3/tree/master/static/dep/ie8supports)打包后的文件，用于兼容ie8、9，比较固定一般不会更改。
 
@@ -119,14 +138,14 @@
 1. app.js - 配置项目使用常量、页面路由    
 2. main.js - 页面入口js文件，用于引入页面使用的样式，脚本   
 3. asset/ - 存放css、img等静态资源  
-3.1. css/ - 推荐使用sass来模块化css文件，css用到了postcss来实现雪碧图、autoprefixer兼容css3  
-3.2. img/ - sprite 雪碧图目录，在此文件夹下的图片将合并，子目录会单独合并为一张图片
+  3.1. css/ - 推荐使用sass来模块化css文件，css用到了postcss来实现雪碧图、autoprefixer兼容css3  
+  3.2. img/ - sprite 雪碧图目录，在此文件夹下的图片将合并，子目录会单独合并为一张图片
 4. component/ - 提取公用ng组件，方便后续代码维护与复用
 5. filter/ - 过滤器，处理数据格式
 6. layout/ - 页面布局公共指令
 7. mock/ - json文件  
-7.1. 用于开发阶段模拟接口数据  
-7.2. 在前端固定将来会开发成接口的数据  
+  7.1. 用于开发阶段模拟接口数据  
+  7.2. 在前端固定将来会开发成接口的数据  
 8. page/ - 包含`controller`、`router`、`template`
 9. service/ - 包含api接口服务、util工具函数、store数据单例
 
