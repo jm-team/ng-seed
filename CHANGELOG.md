@@ -1,3 +1,24 @@
+<a name="0.7.1"></a>
+## [0.7.1](https://github.com/jm-team/ng-seed/compare/v0.7.0...v0.7.1) (2017-05-12)
+
+
+### Bug Fixes
+
+*  修改IE8 下的bug ([82aedde](https://github.com/jm-team/ng-seed/commit/82aedde))
+*  修改在IE8下的一些问题 ([c7ff4d3](https://github.com/jm-team/ng-seed/commit/c7ff4d3))
+*  修改多个tooltip时候 之间数据的相互影响 ([bedf18e](https://github.com/jm-team/ng-seed/commit/bedf18e))
+* checkbox demo checked1 ([c68a7ff](https://github.com/jm-team/ng-seed/commit/c68a7ff))
+* 修复css文件依赖的图片路径问题 ([7b6cfb9](https://github.com/jm-team/ng-seed/commit/7b6cfb9))
+
+
+### Features
+
+*  添加组件文档 ([ac49921](https://github.com/jm-team/ng-seed/commit/ac49921))
+*  添加自定义模版demo ([425fe8a](https://github.com/jm-team/ng-seed/commit/425fe8a))
+* **SEO:** baidu tongji pv ([705a037](https://github.com/jm-team/ng-seed/commit/705a037))
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/jm-team/ng-seed/compare/v0.6.1...v0.7.0) (2017-05-04)
 
