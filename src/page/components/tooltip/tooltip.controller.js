@@ -26,7 +26,7 @@ app.registerController('TooltipCtrl',
         $timeout(function () {
           console.log('title promise');
           defer.resolve('title promise')
-        }, 3000);
+        }, 1000);
 
         return defer.promise;
       }
@@ -38,7 +38,6 @@ app.registerController('TooltipCtrl',
 /*@ngInject*/
 function TooltipTestCtrl($interval, tooltip) {
   var vm = this;
-
   vm.title = 123;
   vm.time = 5;
   vm.closing = 0;

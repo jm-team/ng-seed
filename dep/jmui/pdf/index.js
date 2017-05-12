@@ -1,5 +1,20 @@
 /*global require, angular, console, PDFObject*/
-
+/**
+ * [pdf pdf预览组件]
+ *
+ * @author zhoul
+ * @description
+ *  组件基于pdfobject.js 
+ *  https://github.com/pipwerks/PDFObject
+ * 
+ * pdf预览组件：
+ *  指令属性详细：
+ *      1) url: pdf 地址
+ *
+ * @example
+ *  <div jm-pdf url="./dist/img/system/1.pdf"></div>
+ *
+ */
 
 require('expose-loader?PDFObject!./pdfobject.js');
 angular.module("jmui.pdf", [])
@@ -31,6 +46,7 @@ angular.module("jmui.pdf", [])
               fallbackLink: "<p class='noSupport'>您的浏览器不支持在线预览PDF， 您可以 <a target='_blank' href='" + newValue + "'>下载这个PDF</a></p>"
             })
           } else {
+            // firefox
             if (!iframe) {
               iframe = document.createElement('iframe');
             }

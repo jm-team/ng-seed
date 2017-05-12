@@ -14,7 +14,7 @@
        border-color:#d9d9d9;
 
        &:after{
-         border-color:#999;
+         color: #999;
        }
      }
     color: #999;
@@ -55,18 +55,17 @@
 .jm-checkbox-checked .jm-checkbox-inner{
   background-color: #108ee9;
   border-color: #108ee9;
-
   &:after{
-    transform: rotate(45deg) scale(1);
-    transition: all .2s cubic-bezier(.12,.4,.29,1.46) .1s;
-    display: block\0;
+    display: block;
+    //transform: rotate(45deg) scale(1);
+    //transition: all .2s cubic-bezier(.12,.4,.29,1.46) .1s;
   }
 }
 
 .jm-checkbox-inner{
-  position: relative;
   top:0;
   left:0;
+
   display: block;
   width: 14px;
   height: 14px;
@@ -76,18 +75,11 @@
   transition: all .3s;
 
   &:after{
-    transform: rotate(45deg) scale(0);
-    position: absolute;
-    left:4px;
-    top:1px;
-    display: table;
-    display: none\0;
-    width: 5px;
-    height:8px;
-    border:2px solid #fff;
-    border-top:0;
-    border-left:0;
-    content:'';
-    transition: all .1s cubic-bezier(.71,-.46,.88,.6);
+    color: #fff;
+    //transform: rotate(45deg) scale(0);
+    left:1px;
+    top:0;
+    content:'✔';
+    //transition: all .1s cubic-bezier(.71,-.46,.88,.6);
   }
 }

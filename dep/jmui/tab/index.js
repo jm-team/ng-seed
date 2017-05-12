@@ -1,20 +1,40 @@
 /*global require, angular, console*/
-
+/**
+ * [tab选项卡组件]
+ *
+ * @author zhoul
+ * 
+ * pdf预览组件：
+ *  指令属性详细：
+ *      1) align: 选项卡位置 
+ *      2) positon: 选项卡位置
+ *
+ * @example
+ *  <div jm-pdf url="./dist/img/system/1.pdf"></div>
+ *
+ */
 // tab选项卡
+document.createElement('jm-tabset');
+document.createElement('jm-tab-content-transclude');
+document.createElement('jm-tabset-title');
+document.createElement('jm-tab');
+document.createElement('jm-tab-header');
+document.createElement('jm-tab-header-transclude');
+
 angular.module('jmui.tab', [])
   .directive('jmTabset', function () {
     return {
       restrict: 'AE',
       transclude: true,
       scope: {
-        type: '@',
-        direction: '@',
+        align: '@',
+        position: '@',
         contentClass: '@',
         trigger: '@',
         delayed: '@'
       },
       replace: true,
-      template: '<div class="jm-tabs jm-tabs-{{type}} jm-tabs-{{direction}}">' +
+      template: '<div class="jm-tabs jm-tabs-{{align}} jm-tabs-{{position}}">' +
       '<header class="jm-tabs-header clearfix">' +
       '<ul ng-transclude></ul>' +
       '</header>' +
@@ -59,8 +79,8 @@ angular.module('jmui.tab', [])
           // ngHeader.append(ngHeader.find('ul').find('jm-tabset-title'));
 
           // 垂直排列并且 在右側顯示的
-          if (scope.direction === 'right') {
-            if (scope.type === 'vertical') {
+          if (scope.position === 'right') {
+            if (scope.align === 'vertical') {
               ele.append(children[0]);
             } else {
               angular.element(children[0]).addClass('jm-tabs-header-right');

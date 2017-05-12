@@ -47,26 +47,10 @@
       </div>
 
       <div class="ibox-content">
-        <jm-tabset>
-          <a jm-tabset-title class="jm-tabs-title text-info"><i class="jm-icon jm-icon-yijianfankui m-r-sm"></i>右侧</a>
-          <jm-tab ng-repeat="tab in vm.tabs">
-            <i jm-tab-header class="jm-icon jm-icon-order"></i>
-            <span jm-tab-header>{{ tab.title }}</span>
-
-            <p>{{ tab.content }}</p>
-          </jm-tab>
-        </jm-tabset>
+        <jm-tabset><a jm-tabset-title class="jm-tabs-title text-info"><i class="jm-icon jm-icon-yijianfankui m-r-sm"></i>右侧</a><jm-tab ng-repeat="tab in vm.tabs"><i jm-tab-header class="jm-icon jm-icon-order"></i><span jm-tab-header>{{ tab.title }}</span><p>{{ tab.content }}</p></jm-tab></jm-tabset>
 
 
-        <jm-tabset direction="right">
-          <a jm-tabset-title class="jm-tabs-title text-info"><i class="jm-icon jm-icon-yijianfankui m-r-sm"></i>左侧</a>
-          <jm-tab ng-repeat="tab in vm.tabs">
-            <i jm-tab-header class="jm-icon jm-icon-order"></i>
-            <span jm-tab-header>{{ tab.title }}</span>
-
-            <p>{{ tab.content }}</p>
-          </jm-tab>
-        </jm-tabset>
+        <jm-tabset position="right"><a jm-tabset-title class="jm-tabs-title text-info"><i class="jm-icon jm-icon-yijianfankui m-r-sm"></i>左侧</a><jm-tab ng-repeat="tab in vm.tabs"><i jm-tab-header class="jm-icon jm-icon-order"></i><span jm-tab-header>{{ tab.title }}</span><p>{{ tab.content }}</p></jm-tab></jm-tabset>
       </div>
     </div>
   </div>
@@ -78,13 +62,13 @@
       </div>
 
       <div class="ibox-content">
-        <jm-tabset type="vertical" direction="left">
+        <jm-tabset align="vertical" position="left">
           <jm-tab heading="{{ tab.title }}" ng-repeat="tab in vm.tabs" on-select="select(arg)">
             <p>{{ tab.content }}</p>
           </jm-tab>
         </jm-tabset>
 
-        <jm-tabset type="vertical" direction="right">
+        <jm-tabset align="vertical" position="right">
           <jm-tab heading="{{ tab.title }}" ng-repeat="tab in vm.tabs" on-select="select(arg)">
             <p>{{ tab.content }}</p>
           </jm-tab>

@@ -3,10 +3,6 @@ require('./tooltip.scss');
 // 文字提示
 angular.module('jmui.tooltip', [])
   .directive('jmTooltip', function ($http, $rootScope, $window, $document, $timeout, $templateCache, $compile, $sce, $q, $controller) {
-
-    // 新作用域 用于`tooltip` 指令有controllerName的时候
-    var childScope = null;
-
     return {
       restrict: 'AE',
       require: '^jmTooltip',
@@ -75,16 +71,18 @@ angular.module('jmui.tooltip', [])
 
         // 添加/显示元素
         this.create = function () {
-          this.content = $scope.content = childScope.content = $sce.trustAsHtml($scope.tooltipContent);
-          this.title = $scope.title = childScope.title = $sce.trustAsHtml($scope.tooltipTitle);
 
+          this.content = $scope.content = $scope.childScope.content = $sce.trustAsHtml($scope.tooltipContent);
+          this.title = $scope.title = $scope.childScope.title = $sce.trustAsHtml($scope.tooltipTitle);
+
+          // 判断这个 el 是否已经存在页面中
           if (this.el) {
             return $q.when(this.el);
           } else {
             return this.getTpl(templateUrl).then(function (data) {
               var ctrl;
               self.locals.tooltip = self;
-              self.locals.$scope = childScope;
+              self.locals.$scope = $scope.childScope;
               var trigger = $attrs.trigger || "mouseenter";
 
               if (controllerName) {
@@ -95,7 +93,7 @@ angular.module('jmui.tooltip', [])
                 // 返回的是控制器实例
                 ctrl = $controller(controllerName, self.locals);
                 if ($attrs.controllerAs) {
-                  childScope[$attrs.controllerAs] = ctrl;
+                  $scope.childScope[$attrs.controllerAs] = ctrl;
                 }
               }
 
@@ -190,10 +188,8 @@ angular.module('jmui.tooltip', [])
         }.bind(this));
       },
       link: function (scope, element, attrs, ngCtrl) {
-        var trigger = attrs.trigger || 'mouseenter',
-          offset = element.getOffset();
-
-        childScope = $rootScope.$new();
+        var trigger = attrs.trigger || 'mouseenter';
+        scope.childScope = $rootScope.$new();
 
         element.on(trigger, function ($event) {
           $event.stopPropagation();
@@ -205,13 +201,19 @@ angular.module('jmui.tooltip', [])
             angular.forEach(data, function (item, index) {
               var key = ngCtrl.resolveKeys[index];
               var insideKey = key.charAt(0).toUpperCase() + key.substr(1);
-
-              scope['tooltip' + insideKey] = item;
-
-              scope[ngCtrl.resolveKeys[index]] = item;
-              ngCtrl.locals[ngCtrl.resolveKeys[index]] = item;
+              if(attrs.controllerName){
+                // 创建的控制器时候 依赖注入到创建的控制器中
+                ngCtrl.locals[ngCtrl.resolveKeys[index]] = item;
+              }else{
+                // 当没有自定义控制器的时候 这个值是给自己的scope
+                // 下面的表达式类似 scope.tooltipTitle = item;
+                // 因为传入的 属性tooltip-title 可是html代码 ，
+                // Angular 对html字符串插入需要使用 $sec.trustAsHtml()
+                // 而且不能直接使用 scope.title = $sec.trustAsHtml(scope.title)
+                // 使用在指令属性上 使用了 tooltip-title 而在指令模板上使用了 title
+                scope['tooltip' + insideKey] = item;
+              }
             });
-
             return data;
           }).then(function () {
             // 创建`tooltip`
@@ -230,12 +232,12 @@ angular.module('jmui.tooltip', [])
             // 计算位置
             $timeout(function () {
               var $elOffset = el.getOffset();
+              var offset = element.getOffset();
               el.css({
                 position: 'absolute',
                 top: (offset.top - Math.max($elOffset.height, offset.height) - 10) + 'px',
                 left: offset.left + 'px'
               });
-
               ngCtrl.el.addClass('in');
             }, 0);
           });

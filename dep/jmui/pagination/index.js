@@ -40,10 +40,11 @@
  */
 var tmpPage = require('./pagination.html');
 
+document.createElement('jm-Pagination');
+
 angular.module('jmui.pagination', [])
 
   .directive('jmPagination',
-
     function ($parse) {
       var watchItemsPerPageFn = angular.noop;
       var watchTotalPageFn = angular.noop;
@@ -259,4 +260,6 @@ angular.module('jmui.pagination', [])
           })
         }
       };
-    });
+    })
+
+

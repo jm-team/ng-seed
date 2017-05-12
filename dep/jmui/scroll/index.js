@@ -1,4 +1,22 @@
 /*global require, angular*/
+/**
+ * [scroll 无缝滚动]
+ *
+ * @author zhoul
+ * @description
+ * 
+ * scroll 无缝滚动：
+ *  指令属性详细：
+ *      1) height: 容器高度
+ *      2）finish： 开始滚动条件
+ *      3）scrollable：是否可以滚动
+ *
+ * @example
+ *  <div scroll scrollable="scrollable" finish="finishRender" height="400">
+ *  .....
+ *  </div>
+ *
+ */
 angular.module('jmui.scroll', [])
   .directive('onLastRepeat', ['$timeout', function ($timeout) {
     return function (scope, element, attrs) {

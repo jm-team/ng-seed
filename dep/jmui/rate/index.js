@@ -1,4 +1,41 @@
 /*global require, angular, console*/
+/**
+ * [rate 评级组件]
+ *
+ * @author zhoul
+ * @description
+ * 
+ * 
+ * rate 评级组件：
+ *  指令属性详细：
+ *      1) texts: 说明的文字数组
+ *      2）model：选中的值
+ *      3）low-threshold：  低分和中等分数的界限值，值本身被划分在低分中
+ *      4）high-threshold：高分和中等分数的界限值，值本身被划分在高分中
+ *      5）show-text： 是否显示辅助文字
+ *      6）colors： icon 的颜色数组，共有 3 个元素，为 3 个分段所对应的颜色
+ *      7）jm-icon-star-off：未选中的icon类名
+ *      8）jm-icon-star-on：选中的icon类名
+ * 
+ *  指令方法详细
+ *      1) onChange(arg): 选择页码的回调
+ *          arg:{
+ *            event: $event,
+ *            model: scope.model
+ *         }
+ * @example
+ * <div
+ *  model="vm.model0"
+ *  jm-rate
+ *  low-threshold="2"
+ *  high-threshold="4"
+ *  show-text="true"
+ *  colors="['#99A9BF', '#F7BA2A', '#FF9900']"
+ *  texts="{{ vm.texts }}"
+ *  jm-icon-star-off="jm-icon-xihuan1"
+ *  jm-icon-star-on="jm-icon-xihuan">
+ * </div>
+ */
 require("./index.scss");
 angular.module("jmui.rate", [])
   .directive('jmRate', function ($timeout) {

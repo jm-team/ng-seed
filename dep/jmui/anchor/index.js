@@ -1,18 +1,38 @@
 /*global require, angular, scrollTo, self*/
-// 滚动条柔和的滚动到指定的锚点位置
+/**
+ * [AnchorSmoothScroll 锚点柔和滚动组件]
+ *
+ * @author zhoul
+ * @description
+ * 滚动条柔和的滚动到指定的锚点位置
+ *
+ * AnchorSmoothScroll 锚点柔和滚动组件：
+ *  指令属性详细：
+ *      1) visibilityHeight: 滚动高度达到此参数值才出现当前元素
+ *      3) targetId: 目标元素的ID名称 (可选) 默认到文档顶部
+ *
+ *  指令方法详细
+ *      1) onScrollFinsh(): 滚动结束回掉函数
+ *
+ * @example
+ * <button 
+ *    class="jm-btn jm-btn-primary" 
+ *    on-scroll-finsh="scrollFinsh()" 
+ *    jm-anchor-smooth-scroll visibility-height="0">
+ *      到顶部
+ * </button>
+ *
+ */
 angular.module('jmui.AnchorSmoothScroll', [])
   .directive('jmAnchorSmoothScroll', function ($window, $timeout) {
     return {
-      restrict: 'AE',
+      restrict: 'A',
       scope: {
         // 滚动高度达到此参数值才出现当前元素
         visibilityHeight: '@',
 
         // 滚动完成执行的回调函数
         onScrollFinsh: '&',
-
-        // 是否在
-        isHide: '@',
 
         // 指定滚动到ID为此参数的元素位置
         targetId: '@'
@@ -117,10 +137,18 @@ angular.module('jmui.AnchorSmoothScroll', [])
           // 执行结束
           setTimeout(onFinsh, timer * speed);
         });
-
+        
+        // 绑定scroll 事件
         angular.element($window).on('scroll', function () {
           $timeout.cancel(timer);
           timer = $timeout(contrast, 50);
+        });
+
+        // 
+        scope.$on('$destroy', function(){
+          $timeout.cancel(timer);
+          angular.element($window).off('scroll');
+          element.off('click');
         });
       }
     };
