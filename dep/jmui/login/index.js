@@ -3,14 +3,22 @@ angular.module('jmui.login', [])
     return {
       /**
        * check user is login
+       * @param obj   {Object} {path:'/hasLogin', params:{serviceContext:'/webapi',...}}
        * @returns {*|promise|{then, catch, finally}|jQuery.promise}
        * reference: https://www.html5rocks.com/zh/tutorials/speed/script-loading/
        */
-      checkHasLogin: function () {
+      checkHasLogin: function (obj) {
+        var obj = angular.extend({params:{serviceContext:'/webapi'}, path:'/hasLogin'}, obj);
+        var params = '?';
+
+        angular.forEach(obj.params, function(value, key){
+          params += key+'='+value+'&';
+        });
+
         var defer = $q.defer();
         var script,
           head = document.head || document.documentElement,
-          src = USERCENTER_ADDRESS + '/hasLogin?serviceContext=/webapi&_t=' + (+new Date);
+          src = (USERCENTER_ADDRESS + obj.path + params);
         // 用户未登录
         window.userNotLoginCallback = userNotLoginCallback;
 
