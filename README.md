@@ -6,7 +6,7 @@
 安装依赖包  
 ```bash
 $ yarn install
-#or 
+# or 
 $ yarn
 ```
 
@@ -18,7 +18,7 @@ $ yarn run dev
 生产环境  
 ```bash
 $ yarn run build
-#then
+# then
 $ yarn run start
 ```
 
