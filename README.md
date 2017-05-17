@@ -4,49 +4,48 @@
 ## Usage
 
 安装依赖包  
-```
+```bash
 $ yarn install
-//or 
+#or 
 $ yarn
 ```
 
 开发环境  
-```
+```bash
 $ yarn run dev
 ```
 
 生产环境  
-```
+```bash
 $ yarn run build
-then
+#then
 $ yarn run start
 ```
 
 ng-seed一键发布    
-```
+```bash
 $ yarn run seed
 ```
 
 生成发布日志  
-```
+```bash
 $ yarn run seed:changelog
 ```
 
 生成jsdoc  
-```
+```bash
 $ yarn run seed:jsdoc
 ```
 
 生成authors  
-```
+```bash
 $ yarn run seed:authors
 ```
 
 更新gh-pages  
-```
+```bash
 $ yarn run seed:site
 ```
-
 
 ## 功能清单
 [wiki:Features](https://github.com/jm-team/ng-seed/wiki/Features)
