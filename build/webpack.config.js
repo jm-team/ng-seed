@@ -8,7 +8,7 @@ var webpackConfig;
 var devtool;
 var hash = chunkhash = '';
 
-// 公共類庫文件
+// 公共類庫文件 这里尽量用了min后的文件，以减少build速度，避免uglify高版本对ie8不兼容的问题。
 var vendorFiles = [
     './dep/angular/angular.min.js',
     './dep/angular/angular-sanitize.min.js',
@@ -24,7 +24,7 @@ var vendorFiles = [
     './dep/ng.element.js'
 ];
 
-// 获取执行环境
+// 获取执行环境，根据不同环境进行不同处理
 var env = (process.env.NODE_ENV || '').trim();
 if (env === 'dev') {
     webpackConfig = require('./webpack-dev.js');
@@ -43,18 +43,19 @@ module.exports = merge({
      * 源文件入口文件
      * 这里的文件在使用html-webpack-plugin的时候会
      * 自动将这些资源插入到html中
+     * 1. 注意chunk顺序
+     * 2. jmui需单独维护
      */
     entry: {
-        // 公共文件
-        vendor: vendorFiles,
-        jmui: './dep/jmui',
-        app: './src/main.js'
+        vendor: vendorFiles,  // 公共文件
+        jmui: './dep/jmui', // 自定义组件库
+        app: './src/main.js' // ng-app入口文件
     },
 
     // 构建之后的文件目录配置
     output: {
-        path: path.join(__dirname, '../dist'),
-        publicPath: config.assetsPublicPath, // html 中引用资源的位置
+        path: path.join(__dirname, '../dist'), // 构建之后的文件目录
+        publicPath: config.assetsPublicPath, // html，css 中引用资源的位置
         filename: 'js/[name].' + chunkhash + 'js',
         chunkFilename: 'js/[name].' + chunkhash + 'js'
     },
@@ -70,6 +71,7 @@ module.exports = merge({
             'css': path.join(__dirname, '../src/asset/css')
         },
 
+        // 排除文件目录
         fallback: [path.join(__dirname, './node_modules')],
 
         // 配置哪些文件不需要后缀自动识别
@@ -94,13 +96,13 @@ module.exports = merge({
             }
         ]
     },
-    // sourceMap
+    // 开启何种类型的sourceMap，false则不启用
     devtool: devtool,
 
     // 插件
     plugins: [
-        // 单独使用link标签加载css并设置路径，
-        // 相对于output配置中的publickPath
+
+        // 相对于output配置中的path
         new CopyWebpackPlugin([{
             from: './dep/ie8support/ie8supports.js',
             to: './dep'
@@ -115,18 +117,18 @@ module.exports = merge({
             to: './js'
         }]),
 
-        // new HtmlWebpackPlugin(),
+        // 自动插入打包后的css、js文件，
         new HtmlWebpackPlugin({
-            // 生成title
-            title: 'webpack App',
+            // 网站图标文件名不加hash
             favicon: './src/asset/img/system/favicon.ico',
+
+            // 用于ie8support文件路径，因为需要用ie的注释判断，无法使用自动插入功能
             assetsPublicPath: config.assetsPublicPath,
+
             // 输出的文件名称 默认index.html 可以带有子目录
-            // filename: './dist/index.html',
             filename: 'index.html',
 
             // 源文件
-            // template: './src/index.ejs',
             template: 'index.html',
 
             // 注入资源
@@ -140,10 +142,10 @@ module.exports = merge({
                 // 删除冗余属性
                 removeRedundantAttributes: true
             },
-            // chunk排序
-            // chunksSortMode: "dependency"
+            // chunk排序  'none' | 'auto' | 'dependency' | {function} - default: 'auto'
+            // 如果chunk之间无依赖关系（没有使用webpack的require），需要通过函数手动控制
             chunksSortMode: function (chunk1, chunk2) {
-                var order = ['vender', 'jmui', 'app'];
+                var order = ['vender', 'jmui', 'app']; // 根据此数组索引进行排序
                 var order1 = order.indexOf(chunk1.names[0]);
                 var order2 = order.indexOf(chunk2.names[0]);
                 return order1 - order2;

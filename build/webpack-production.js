@@ -24,11 +24,13 @@ module.exports = {
 
     postcss: function () {
         return [
+            // 合并雪碧图
             require('postcss-sprites')({
                 stylesheetPath: './src/asset/css',
                 spritePath: './dist/img/sprite',
+
+                // 添加雪碧图规则 只有在sprite文件夹下的图片进行合并
                 filterBy: function (image) {
-                    //添加雪碧图规则 只有在sprite文件夹下的图片进行合并
                     if (!/\/sprite\//.test(image.url)) {
                         // console.log(image.url);
                         return Promise.reject();
@@ -36,8 +38,9 @@ module.exports = {
 
                     return Promise.resolve();
                 },
+
+                // 添加雪碧图规则 在sprite下，如果包含文件夹则单独进行合并
                 groupBy: function (image) {
-                    //添加雪碧图规则 在sprite下，如果包含文件夹则单独进行合并
                     var regex = /\/sprite\/([^/]+)\//g;
                     var m = regex.exec(image.url);
                     if (!m) {
@@ -45,10 +48,13 @@ module.exports = {
                     }
                     return Promise.resolve(m[1]); // 'sprite.' + icon + '.png'
                 },
+
+                // 图片之间的间距
                 spritesmith: {
                     padding: 20
                 }
             }),
+            // css浏览器兼容性补全
             require('autoprefixer')({
                 browsers: ["last 6 version"]
             })
@@ -57,21 +63,26 @@ module.exports = {
 
     // 插件
     plugins: [
+        // 从chunk文件中抽出css文件
         extractSASS,
+        // angular自动依赖注入插件，自定义方法需要用特殊占位符 /*@ngInject*/
         new ngAnnotatePlugin({
             add: true
         }),
-        // 合并生成公用文件 .[hash:8]
+        // 将webpack runtime从vendor里抽出
         new webpack.optimize.CommonsChunkPlugin({
             name: ["vendor", "manifest"], // vendor libs + extracted manifest
             minChunks: Infinity
         }),
+        // 根据依赖次数进行模块排序
         new webpack.optimize.OccurenceOrderPlugin(),
+        // 将模块Id转为hash值，解决模块id为数字时不稳定的问题，对应开放环境HashedModuleIdsPlugin
         new HashedModuleIdsPlugin(),
+        // 将webpack runtime内嵌至index.html，需要和HtmlWebpackPlugin配合使用
         new InlineManifestWebpackPlugin({
             name: 'webpackManifest'
         }),
-        // 启用文件压缩混淆
+        // 启用文件压缩混淆，第三方插件，通过cpu多核计算提高构建性能
         new UglifyJsParallelPlugin({
             workers: os.cpus().length,
             fromString: true,
@@ -89,7 +100,9 @@ module.exports = {
                 drop_debugger: true
             }
         }),
+        // 构建前删除dist文件夹
         new RemoveWebpackPlugin('./dist/'),
+        // 第三方的ChunkHash计算插件，实现从js中抽取的css文件hash计算
         new WebpackChunkHash()
 
     ]

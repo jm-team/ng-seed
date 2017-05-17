@@ -49,7 +49,9 @@ module.exports = {
     },
     // 插件
     plugins: [
+        // 根据模块的路径作为Id，解决模块id为数字时不稳定的问题
         new webpack.NamedModulesPlugin(),
+        // 增强的错误提示，便于定位问题
         new FriendlyErrorsPlugin()
     ]
 };
