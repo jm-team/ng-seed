@@ -85,7 +85,6 @@ app.config(function ($provide, $controllerProvider, $httpProvider, $locationProv
 
 
 app.run(function ($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
-  $rootScope.show = false;
   $rootScope.$state = $state;
   // 路由切换成功
   //event, toState, toParams, formState, formParams, options
@@ -94,7 +93,6 @@ app.run(function ($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
     _hmt.push(['_trackPageview', $location.path()]);
 
     $log.log('app run $stateChangeSuccess');
-    $rootScope.show = true;
     Login.checkHasLogin().then(function (data) {
       $log.log('checkAutoLogin', data);
       Api.User().get({
