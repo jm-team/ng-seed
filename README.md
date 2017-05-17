@@ -4,31 +4,48 @@
 ## Usage
 
 安装依赖包  
-`yarn install` or `yarn`
+```
+$ yarn install
+//or 
+$ yarn
+```
 
 开发环境  
-`yarn run dev`
+```
+$ yarn run dev
+```
 
 生产环境  
-`yarn run build`
-
-生产环境测试服务    
-`yarn run start`
+```
+$ yarn run build
+then
+$ yarn run start
+```
 
 ng-seed一键发布    
-`yarn run seed`
+```
+$ yarn run seed
+```
 
 生成发布日志  
-`yarn run seed:changelog`
+```
+$ yarn run seed:changelog
+```
 
 生成jsdoc  
-`yarn run seed:jsdoc`
+```
+$ yarn run seed:jsdoc
+```
 
 生成authors  
-`yarn run seed:authors`
+```
+$ yarn run seed:authors
+```
 
 更新gh-pages  
-`yarn run seed:site`
+```
+$ yarn run seed:site
+```
 
 
 ## 功能清单
