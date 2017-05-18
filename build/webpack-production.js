@@ -79,6 +79,7 @@ module.exports = {
         // 将模块Id转为hash值，解决模块id为数字时不稳定的问题，对应开放环境HashedModuleIdsPlugin
         new HashedModuleIdsPlugin(),
         // 将webpack runtime内嵌至index.html，需要和HtmlWebpackPlugin配合使用
+        // 需在模板文件加上占位符 <%=htmlWebpackPlugin.files.webpackManifest%>
         new InlineManifestWebpackPlugin({
             name: 'webpackManifest'
         }),
