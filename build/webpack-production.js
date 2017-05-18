@@ -102,7 +102,7 @@ module.exports = {
         }),
         // 构建前删除dist文件夹
         new RemoveWebpackPlugin('./dist/'),
-        // 第三方的ChunkHash计算插件，实现从js中抽取的css文件hash计算
+        // 第三方的ChunkHash计算插件，把从js中抽取的css文件进行单独的hash计算
         new WebpackChunkHash()
 
     ]
