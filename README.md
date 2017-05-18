@@ -22,31 +22,6 @@ $ yarn run build
 $ yarn run start
 ```
 
-ng-seed一键发布    
-```bash
-$ yarn run seed
-```
-
-生成发布日志  
-```bash
-$ yarn run seed:changelog
-```
-
-生成jsdoc  
-```bash
-$ yarn run seed:jsdoc
-```
-
-生成authors  
-```bash
-$ yarn run seed:authors
-```
-
-更新gh-pages  
-```bash
-$ yarn run seed:site
-```
-
 ## 功能清单
 [wiki:Features](https://github.com/jm-team/ng-seed/wiki/Features)
 ### TODO
