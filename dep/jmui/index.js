@@ -21,8 +21,10 @@ require('./transfer');
 require('./autocomplete');
 require('./pdf');
 require('./upload');
+require('./carousel');
 
 angular.module('jmui', [
+    'jmui.carousel',
     'jmui.accordion',
     'jmui.crumbs',
     'jmui.tooltip',
