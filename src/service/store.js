@@ -134,7 +134,7 @@ app.factory('Auth', function ($resource, $document, $q, $timeout, Address) {
       // 使用延时 解决密码做加密后 model同步缓慢 提交的密码是非加密的密码
       $timeout(function () {
         form.submit();
-      }, 0)
+      }, 0);
       return defer.promise;
     }
   }

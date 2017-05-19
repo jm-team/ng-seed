@@ -242,7 +242,7 @@ angular
         self.close();
       };
 
-      scope.cancel = function ($event) {
+      scope.cancel = function () {
         scope.close();
         defer.reject();
       };

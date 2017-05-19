@@ -1,4 +1,5 @@
 var address = require('address');
+// require('../dep/lazy-image/lazy-image.min');
 var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage', 'treeControl']);
 
 document.createElement('treecontrol');
@@ -41,7 +42,7 @@ var router = [
   ["components.pdf", require("./page/components/pdf/pdf.router.js")],
   ["components.tree", require("./page/components/tree/tree.router.js")],
   ["components.transfer", require("./page/components/transfer/transfer.router.js")],
-    ["components.upload", require("./page/components/upload/upload.router.js")]
+  ["components.upload", require("./page/components/upload/upload.router.js")]
 ];
 
 // 鏈接mongo配置
@@ -60,7 +61,7 @@ app.config(function ($provide, $controllerProvider, $httpProvider, $locationProv
   // 将 controllerProvider 挂载到app 上
   app.registerController = $controllerProvider.register;
 
-  console.log($provide)
+  // console.log($provide)
   // IE缓存
   if (!$httpProvider.defaults.headers.get) {
     $httpProvider.defaults.headers.get = {};
@@ -94,6 +95,7 @@ app.run(function ($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
 
     $log.log('app run $stateChangeSuccess');
     Login.checkHasLogin().then(function (data) {
+
       $log.log('checkAutoLogin', data);
       Api.User().get({
         t: +new Date()

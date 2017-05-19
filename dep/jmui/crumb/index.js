@@ -35,7 +35,7 @@ angular.module('jmui.crumbs', [])
         return attrs.templateUrl || tmpCrumbs;
       },
       scope: {
-        abstractProxyProperty: '@?'
+        abstractProxyProperty: '@'
       },
       link: function (scope, element, attrs) {
 
