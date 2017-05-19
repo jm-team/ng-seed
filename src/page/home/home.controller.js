@@ -11,6 +11,7 @@ function HomeCtrl($scope, Api, $modal, $state) {
 
 
   $scope.myInterval = 5000;
+
   var slides = $scope.slides = [];
   var images = ['http://img.jumore.com/group2/M00/00/04/ClgMDFkVbhiADr-NAAlRA9Jack0148_reduce.jpg',
   'http://file.uploadapi.jumore.com/newupload/jumoreyun.com/PC/2017/01/21/18/13/09/1871fd1465f3b8d2-jm.png',
@@ -26,6 +27,13 @@ function HomeCtrl($scope, Api, $modal, $state) {
   for (var i=0; i<4; i++) {
     $scope.addSlide(i);
   }
+
+
+  $scope.start = false;
+
+  $scope.startFn = function(){
+    $scope.start = true;
+  };
 
   vm.title = "Home Page";
   vm.desc = "这是主页";
