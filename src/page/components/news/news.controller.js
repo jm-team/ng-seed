@@ -18,7 +18,7 @@ app.registerController('newsCtrl',
 
     function query() {
       return News.query({
-        pageSize: 1
+        key:'12'
       }, function (data) {
         $scope.news = data;
         return data;
