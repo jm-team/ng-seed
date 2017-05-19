@@ -1,4 +1,5 @@
 var address = require('address');
+// require('../dep/lazy-image/lazy-image.min');
 var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage', 'treeControl']);
 
 document.createElement('treecontrol');
