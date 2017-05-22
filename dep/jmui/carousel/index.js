@@ -40,11 +40,7 @@ angular.module('jmui.carousel', [])
         });
       }
 
-
-
       element.addClass('jm-carousel');
-
-
 
       function init(){
         var oIndexs;
@@ -59,7 +55,7 @@ angular.module('jmui.carousel', [])
           indexs.push("<span class='"+className+"'></span>");
         });
 
-        oIndexs = angular.element('<div class="indexs"></div>').html(indexs.join(''));
+        oIndexs = angular.element('<div class="jm-carousel-indicators"></div>').html(indexs.join(''));
 
         oCarousel.append(oIndexs);
 
@@ -73,16 +69,22 @@ angular.module('jmui.carousel', [])
           }
         });
 
+        var carouselControl = ["<button class='carousel-control left'></button><button class='carousel-control right'></button>"];
 
-        oUl[0].addEventListener('transitionend', function(){
-          isAnimating = false;
-          endTime = new Date().getTime();
 
-          angular.forEach(oLists, function(iten, index){
-            oLists[index].style.transition = "none";
-          });
-          oLists[preIndex].style.left = "100%";
-        }, false);
+
+        if(typeof oUl[0].addEventListener === "function"){
+          oUl[0].addEventListener('transitionend', function(){
+            isAnimating = false;
+            endTime = new Date().getTime();
+
+            angular.forEach(oLists, function(iten, index){
+              oLists[index].style.transition = "none";
+            });
+            oLists[preIndex].style.left = "100%";
+          }, false);
+        }
+
 
         oNext.on('click', function(){
           if(!isAnimating){
