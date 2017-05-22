@@ -6,40 +6,22 @@ var objProxy = {};
 var proxyTarget = config.devServer.proxyTarget;
 
 /**
- * 根据config.devServer.proxyTarget的参数，动态配置webapi代理
+ * proxyTarget必须为数组对象
  */
-if (proxyTarget instanceof Array) {
-    /**
-     * api服务器地址
-     * example: proxyTarget: [
-     *              {pattern: '/webapi', address: address.SERVER_ADDRESS},
-     *              {pattern: '/dataserviceEN', address: address.JM_BIG_DATA_WEBAPI}
-     *            ]
-     */
-    for (var index in proxyTarget) {
-        var pattern = proxyTarget[index].pattern;
-        var proxyAddress = proxyTarget[index].address;
-        createProxy(objProxy, pattern, proxyAddress);
-    }
-} else {
-    /**
-     * api服务器地址
-     * example: proxyTarget: {pattern: '/webapi', address: address.SERVER_ADDRESS}
-     */
-    if (proxyTarget instanceof Object) {
-        var pattern = proxyTarget.pattern;
-        var proxyAddress = proxyTarget.address;
-        createProxy(objProxy, pattern, proxyAddress);
-    } else {
-        /**
-         * api服务器地址
-         * example: proxyTarget: address.SERVER_ADDRESS
-         */
-        var pattern = '/webapi';
-        var proxyAddress = config.devServer.proxyTarget;
-        createProxy(objProxy, pattern, proxyAddress);
-    }
+if (!Array.isArray(proxyTarget)) {
+    throw new Error(`The proxyTarget must be an array of objects!
+     * sample: 
+     *   proxyTarget: [
+     *     {pattern: '/webapi', address: address.SERVER_ADDRESS},
+     *     {pattern: '/dataserviceEN', address: address.JM_BIG_DATA_WEBAPI}
+     *   ]`)
 }
+
+// 构造代理对象
+proxyTarget.forEach(function (proxy) {
+    createProxy(objProxy, proxy.pattern, proxy.address);
+});
+
 
 /**
  * 配置代理项
@@ -63,5 +45,6 @@ function createProxy(objProxy, pattern, proxyAddress) {
         secure: false
     }
 }
+
 
 module.exports = objProxy;
