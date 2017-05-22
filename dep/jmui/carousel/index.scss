@@ -12,6 +12,7 @@
     img {
       width: 100%;
       height: 370px;
+      vertical-align: top;
     }
 
     .item {
@@ -73,7 +74,7 @@
     }
   }
 
-  .carousel-indicators {
+  .jm-carousel-indicators {
     position: absolute;
     bottom: 10px;
     left: 0;
@@ -95,8 +96,16 @@
 
     .active {
       transform: scale(2, 2);
-      background: rgba(12, 230, 23, .6);
+      background: #12d023;//rgba(12, 230, 23, .6);
     }
+  }
+
+
+  .carousel-control{
+    .left{
+
+    }
+    .right{}
   }
 
   &:hover .carousel-inner {
