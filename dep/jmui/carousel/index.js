@@ -12,8 +12,8 @@ angular.module('jmui.carousel', [])
     },
 
     link: function(scope, element, attrs){
-      var oNext = element.find('.next');
-      var oProvice = element.find('.provice');
+      var oNext = null;
+      var oProvice = null;
       var oUl = element.find('.jm-carousel-inner');
       var oCarousel = element;
       var interval = scope.$eval(attrs.interval) || 5000;
@@ -26,8 +26,11 @@ angular.module('jmui.carousel', [])
       var indexs = [];
       var isAnimating = false;
 
+      var isSupportTransition = !!window.TransitionEvent;
+
       var aIndexs = [];
       var endTime = 0;
+      var carouselControl = ["<button class='carousel-control provice'></button><button class='carousel-control next'></button>"];
 
       if(!element.attr('start')){
         setTimeout(init, 0);
@@ -57,49 +60,44 @@ angular.module('jmui.carousel', [])
 
         oIndexs = angular.element('<div class="jm-carousel-indicators"></div>').html(indexs.join(''));
 
-        oCarousel.append(oIndexs);
+        oCarousel.append(oIndexs).append(carouselControl.join());
+
 
         aIndexs = [].slice.apply(oIndexs.children());
 
+        oNext = element.find('.next');
+        oProvice = element.find('.provice');
+
         aIndexs.forEach(function(item, index){
           item.onclick = function(){
-            if(!isAnimating){
-              setCurrent(index, true)
-            }
+            setCurrent(index, true)
           }
         });
 
-        var carouselControl = ["<button class='carousel-control left'></button><button class='carousel-control right'></button>"];
-
-
-
         if(typeof oUl[0].addEventListener === "function"){
-          oUl[0].addEventListener('transitionend', function(){
+          oUl[0].addEventListener('transitionend', function(ev){
+
+            oLists.css('transition', 'none');
             isAnimating = false;
             endTime = new Date().getTime();
 
-            angular.forEach(oLists, function(iten, index){
-              oLists[index].style.transition = "none";
-            });
             oLists[preIndex].style.left = "100%";
           }, false);
         }
 
 
         oNext.on('click', function(){
-          if(!isAnimating){
-            setCurrent(currentIndex+1, true)
-          }
+          setCurrent(currentIndex+1, true);
         });
 
-        oProvice.on('click', function(){
-          if(!isAnimating){
-            setCurrent(currentIndex-1, false)
-          }
+        oProvice.on('click', function(ev){
+          ev.stopPropagation();
+          ev.preventDefault();
+          setCurrent(currentIndex-1, false)
         });
 
         oCarousel.on('mouseenter', function(){
-          clearTimeout(timer2)
+          clearTimeout(timer2);
         });
 
         oCarousel.on('mouseleave', function(){
@@ -112,6 +110,11 @@ angular.module('jmui.carousel', [])
 
 
       function setCurrent(index, isNext){
+
+        clearTimeout(timer);
+        if(isAnimating){
+          return ;
+        }
         if(preIndex === -1){
           angular.element(oLists[currentIndex]).addClass('active');
           oLists[currentIndex].style.left = "0";
@@ -120,8 +123,10 @@ angular.module('jmui.carousel', [])
           return ;
         }
 
+
         preIndex = currentIndex;
         currentIndex = index;
+
 
 
         if(isNext){
@@ -130,33 +135,33 @@ angular.module('jmui.carousel', [])
           }
           oLists[currentIndex].style.left = "100%";
         } else{
-
           if(currentIndex === -1){
             currentIndex = oLists.length - 1
           }
           oLists[currentIndex].style.left = "-100%";
         }
 
-        clearTimeout(timer);
-        timer = setTimeout(function(){
-          oLists[currentIndex].style.transition = "left .6s ease-in-out";
-          oLists[currentIndex].style.left = "0";
 
+        timer = setTimeout(function(){
           angular.element(oLists[currentIndex]).addClass('active');
           angular.element(aIndexs[currentIndex]).addClass('active');
 
           oLists[preIndex].style.transition = "left .6s ease-in-out";
-
           if(isNext){
             oLists[preIndex].style.left = "-100%";
           } else{
             oLists[preIndex].style.left = "100%";
           }
 
+          oLists[currentIndex].style.transition = "left .6s ease-in-out";
+          oLists[currentIndex].style.left = "0";
+
           angular.element(oLists[preIndex]).removeClass('active');
           angular.element(aIndexs[preIndex]).removeClass('active');
-          isAnimating = true;
-        },0)
+          if(isSupportTransition){
+            isAnimating = true;
+          }
+        },30);
       }
 
       function autoPlay(){
