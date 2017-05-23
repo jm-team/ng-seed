@@ -1,0 +1,93 @@
+<div class="col-md-24">
+  <h1>Datepicker <span class="small">日期选择器</span></h1>
+
+  <section class="markdown">
+    <p>日期选择器</p>
+  </section>
+
+  <div class="row">
+    <!--<div class="col-md-12">
+
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>alert 提示框。</h5>
+        </header>
+
+        <div class="ibox-content">
+          <div date-picker="start" view="year" date-change="vm.changeDate()" ></div>
+        </div>
+      </div>
+
+    </div>-->
+
+    <div class="col-md-12">
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>date-picker</h5>
+        </header>
+
+        <div class="ibox-content">
+          <button date-picker="start" min-view="date"></button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-12">
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>自定义模板</h5>
+        </header>
+
+        <div class="ibox-content">
+         <div class="input-append input-prepend" date-time-append>
+            <span class="add-on"><i class="icon-calendar"></i></span>
+            <input date-change="vm.changeDate" 
+                   class="form-control" 
+                   type="text" 
+                   auto-close="true" 
+                   date-time
+                   ng-model="vm.start" 
+                   min-view="hours" 
+                   required="true" 
+                   view="years">
+            <span class="add-on"><i class="icon-calendar"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>自定义模板111</h5>
+        </header>
+
+        <div class="ibox-content">
+         <div class="input-prepend" date-time-append>
+            <span class="add-on"><i class="icon-calendar"></i></span>
+            <input type="text" min-date="vm.mindate" class="form-control" 
+            auto-close="true" watch-direct-changes="true" ng-change="vm.changeDate()" date-time ng-model="start" required="true" view="year">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>date-range111</h5>
+        </header>
+
+        <div class="ibox-content">
+         <p class="input-group">
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2019-06-22'" datepicker-options="dateOptions"  close-text="Close" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event)"><i class="jm-icon jm-icon-play"></i></button>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

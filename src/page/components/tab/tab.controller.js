@@ -16,4 +16,10 @@ function TabCtrl($document){
     {title:'Tab2', content:'Content of Tab Pane 2'},
     {title:'Tab3', content:'Content of Tab Pane 3'}
   ]
+
+  vm.tabs1 = [
+    {title:'Tab1', content:[{'name':'li1-1'}, {'name':'li1-2'},{'name':'li1-3'}]},
+    {title:'Tab2', content:[{'name':'li2-1'}, {'name':'li2-2'},{'name':'li2-3'}]},
+    {title:'Tab3', content:[{'name':'li3-1'}, {'name':'li3-2'},{'name':'li3-3'}]}
+  ]
 }

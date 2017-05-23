@@ -70,10 +70,40 @@
 
         <jm-tabset align="vertical" position="right">
           <jm-tab heading="{{ tab.title }}" ng-repeat="tab in vm.tabs" on-select="select(arg)">
-            <p>{{ tab.content }}</p>
+            <!--<p>{{ tab.content }}</p>-->
+            <ul>
+              <li ng-repeat="item in tab.content">{{ item.name }}</li>
+            </ul>
           </jm-tab>
         </jm-tabset>
+
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>可以设置页签的位置</h5>
+      </div>
+
+      <div class="ibox-content">
+
+        <jm-tabset>
+          <jm-tab heading="{{ tab.title }}" ng-repeat="tab in vm.tabs1">
+            <!--<p>{{ tab.content }}</p>-->
+            <ul>
+              <li ng-repeat="item in tab.content">{{ item.name }}</li>
+            </ul>
+          </jm-tab>
+        </jm-tabset>
+        
       </div>
     </div>
   </div>
 </div>
+
+
+
+
