@@ -1,0 +1,128 @@
+[datepicker-popup-wrap] {
+  background-color: #fff;
+  position: absolute;
+  border: 1px solid #e4e4e4;
+  margin-top: 3px;
+  z-index: 10;
+  padding: 8px;
+
+  button{
+    outline: none;
+    border:none;
+    text-align: center;
+  }
+
+  .action-buttons{
+    color:#fff;
+  }
+  .action-buttons {
+    button{
+      height: 26px;
+    }
+  }
+}
+[datepicker-popup-wrap] table {
+  margin: 0;
+  width: 100%;
+  background:#fff;
+  outline: none;
+
+  .prev-button,
+  .next-button{
+    font-size: 18px;
+  }
+
+  span{
+    color:#646565;
+  }
+
+  button[disabled]{
+    span{
+      color: #999;
+    }
+  }
+
+  button{
+    border:none;
+    background: none;
+    text-align: center;
+    width: 100%;
+  }
+
+  > thead button{
+    padding: 8px 0;
+  }
+
+  .weeks{
+    color: #979898;
+    font-weight: normal;
+  }
+}
+
+
+[datepicker-popup-wrap] td,
+[datepicker-popup-wrap] th {
+  text-align: center;
+  color: #979898;
+}
+[datepicker-popup-wrap] .switch {
+  width: 145px;
+  color: #2c2e2f;
+}
+[datepicker-popup-wrap] span {
+  display: block;
+  text-align: center;
+}
+
+
+[datepicker-popup-wrap] [ng-switch-when] span{
+  padding: 5px;
+}
+[datepicker-popup-wrap] .active span{
+  background-color:#68b828;
+  color:#fff;
+}
+
+[datepicker-popup-wrap] [ng-switch-when] td span.active:hover {
+  background-color:#68b828;
+  color:#fff;
+}
+
+
+[datepicker-popup-wrap] [ng-switch-when] td {
+  padding: 0;
+  color:#646565;
+}
+[datepicker-popup-wrap] [ng-switch-when="day"]{
+  
+  .today{
+    background: #5bc0de;
+    color: #fff;
+  }
+
+  span{
+    padding:8px;
+  }
+  > td span:hover{
+    color: #2c2e2f;
+    background: #eee;
+  }
+
+  > td[disabled]{
+    span{
+      color: #999;
+    }
+    span:hover{
+      color: #999;
+      background:none;
+    }
+  }
+} 
+
+[date-range] [datepicker-popup-wrap]{
+  position: relative;
+  margin: 0 10px;
+}
+
+
+

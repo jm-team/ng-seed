@@ -22,6 +22,7 @@ require('./autocomplete');
 require('./pdf');
 require('./upload');
 require('./carousel');
+require('./datepicker');
 
 angular.module('jmui', [
     'jmui.carousel',
@@ -45,5 +46,6 @@ angular.module('jmui', [
     'jmui.autoComplete',
     'jmui.pdf',
     'jmui.fineUploader',
-    'ng.ueditor'
+    'ng.ueditor',
+    'ui.bootstrap.datepicker'
 ]).value('version', '0.1');
