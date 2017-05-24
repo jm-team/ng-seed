@@ -1,1 +1,1 @@
-webpackJsonp([19,21],{FtvL:function(t,n,o){function e(){var t=this;t.accordions=[{title:"手风琴标题1",content:"手风琴内容1"},{title:"手风琴标题2",content:"手风琴内容2"},{title:"手风琴标题3",content:"手风琴内容3"}]}var c=o("eslX");c.registerController("AccordionCtrl",e)}});
+webpackJsonp([20,22],{FtvL:function(t,n,o){function e(){var t=this;t.accordions=[{title:"手风琴标题1",content:"手风琴内容1"},{title:"手风琴标题2",content:"手风琴内容2"},{title:"手风琴标题3",content:"手风琴内容3"}]}var c=o("eslX");c.registerController("AccordionCtrl",e)}});
