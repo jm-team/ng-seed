@@ -3,7 +3,7 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('newsCtrl',
   /*@ngInject*/
-  function ($scope, News, $modal, dialogs, $timeout) {
+  function ($scope, News, dialogs, $timeout) {
     var vm = this;
 
     vm.indexCrumb = {

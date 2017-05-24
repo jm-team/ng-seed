@@ -6,7 +6,7 @@ app.registerController('HomeCtrl', HomeCtrl);
 ///////////////////////////
 
 /*@ngInject*/
-function HomeCtrl($scope, Api, $modal, $state) {
+function HomeCtrl($scope, Api, $state) {
   var vm = $scope;
 
 
