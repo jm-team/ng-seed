@@ -15,7 +15,7 @@ var vendorFiles = [
     './dep/angular/angular-resource.min.js',
     './dep/angular/angular-animate.min.js',
     './dep/angular/angular-tree-control.js',
-    './dep/angular/ui-bootstrap-tpls.min.js',
+    // './dep/angular/ui-bootstrap-tpls.min.js',
     './dep/angular/angular-ui-router.min.js',
     './dep/angular/angular-locale_zh-cn.js',
     './dep/lazy-image/lazy-image.min.js',

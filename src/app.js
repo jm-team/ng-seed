@@ -1,6 +1,6 @@
 var address = require('address');
-// require('../dep/lazy-image/lazy-image.min');
-var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage', 'treeControl']);
+// require('../dep/lazy-image/lazy-image.min'); 'ui.bootstrap',
+var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce',  'jmui', 'afkl.lazyImage', 'treeControl']);
 
 document.createElement('treecontrol');
 document.createElement('treeitem');
@@ -42,7 +42,8 @@ var router = [
   ["components.pdf", require("./page/components/pdf/pdf.router.js")],
   ["components.tree", require("./page/components/tree/tree.router.js")],
   ["components.transfer", require("./page/components/transfer/transfer.router.js")],
-  ["components.upload", require("./page/components/upload/upload.router.js")]
+  ["components.upload", require("./page/components/upload/upload.router.js")],
+  ["components.datepicker", require("./page/components/datepicker/datepicker.router.js")],
 ];
 
 // 鏈接mongo配置
