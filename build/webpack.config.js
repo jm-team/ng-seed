@@ -128,7 +128,8 @@ module.exports = merge({
 
         new webpack.DllReferencePlugin({
             context: path.resolve(__dirname, '..'),
-            manifest: require('./vendor-manifest.json')
+            manifest: require('./vendor-manifest.json'),
+            sourceType: "window"
         }),
         // 自动插入打包后的css、js文件，
         new HtmlWebpackPlugin({

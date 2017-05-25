@@ -1,6 +1,16 @@
 {
-  "name": "vendor_e23251ccf706d99feec5",
+  "name": "vendor_6d31ab23729898cf8a35",
   "content": {
-    "./dep/angular/angular.min.js": 1
+    "./dep/angular/angular.min.js": 1,
+    "./dep/angular/angular-sanitize.min.js": 2,
+    "./dep/ng.element.js": 3,
+    "./dep/angular/angular-resource.min.js": 4,
+    "./dep/angular/angular-animate.min.js": 5,
+    "./dep/angular/angular-tree-control.js": 6,
+    "./dep/angular/angular-ui-router.min.js": 7,
+    "./dep/angular/angular-locale_zh-cn.js": 8,
+    "./dep/lazy-image/lazy-image.min.js": 9,
+    "./dep/bindonce.min.js": 10,
+    "./dep/security.js": 11
   }
 }

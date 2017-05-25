@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
@@ -14,17 +13,17 @@ module.exports = {
     entry: {
         vendor: [
             './dep/angular/angular.min.js',
-            // './dep/angular/angular-sanitize.min.js',
-            // './dep/angular/angular-resource.min.js',
-            // './dep/angular/angular-animate.min.js',
-            // './dep/angular/angular-tree-control.js',
-            // // './dep/angular/ui-bootstrap-tpls.min.js',
-            // './dep/angular/angular-ui-router.min.js',
-            // './dep/angular/angular-locale_zh-cn.js',
-            // './dep/lazy-image/lazy-image.min.js',
-            // './dep/bindonce.min.js',
-            // './dep/security.js',
-            // './dep/ng.element.js'
+            './dep/angular/angular-sanitize.min.js',
+            './dep/angular/angular-resource.min.js',
+            './dep/angular/angular-animate.min.js',
+            './dep/angular/angular-tree-control.js',
+            // './dep/angular/ui-bootstrap-tpls.min.js',
+            './dep/angular/angular-ui-router.min.js',
+            './dep/angular/angular-locale_zh-cn.js',
+            './dep/lazy-image/lazy-image.min.js',
+            './dep/bindonce.min.js',
+            './dep/security.js',
+            './dep/ng.element.js'
         ]
     },
     output: {
@@ -52,7 +51,7 @@ module.exports = {
     plugins: [
         new webpack.DllPlugin({
             path: path.join(__dirname, '.', '[name]-manifest.json'),
-            // libraryTarget: 'commonjs2',
+            libraryTarget: 'window',
             name: '[name]_[hash]'
         })
         // ,
