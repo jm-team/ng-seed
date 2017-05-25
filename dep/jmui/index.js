@@ -1,3 +1,4 @@
+require('../angular/angular.min.js');
 require('./index.scss');
 require('./accordion');
 require('./crumb');

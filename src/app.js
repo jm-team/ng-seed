@@ -1,6 +1,8 @@
 var address = require('address');
+var address = require('address');
 // require('../dep/lazy-image/lazy-image.min'); 'ui.bootstrap',
-var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce',  'jmui', 'afkl.lazyImage', 'treeControl']);
+require('../dep/angular/angular.min.js')
+var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'jmui', 'afkl.lazyImage', 'treeControl']);
 
 document.createElement('treecontrol');
 document.createElement('treeitem');

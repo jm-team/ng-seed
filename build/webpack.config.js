@@ -8,6 +8,15 @@ var webpackConfig;
 var devtool;
 var hash = chunkhash = '';
 
+// 获取带hash值的dll文件名称
+var glob = require('glob')
+var dllJsFilePath,
+    dllJsFileName
+dllJsFilePath = glob.sync(path.join(__dirname, '../src/vendor_*.dll.js'))[0]
+if (dllJsFilePath) {
+    dllJsFileName = path.basename(dllJsFilePath)
+}
+
 // 公共類庫文件 这里尽量用了min后的文件，以减少build速度，避免uglify高版本对ie8不兼容的问题。
 var vendorFiles = [
     './dep/angular/angular.min.js',
@@ -47,7 +56,7 @@ module.exports = merge({
      * 2. jmui需单独维护
      */
     entry: {
-        vendor: vendorFiles,  // 公共文件
+        // vendor: vendorFiles,  // 公共文件
         jmui: './dep/jmui', // 自定义组件库
         app: './src/main.js' // ng-app入口文件
     },
@@ -85,7 +94,7 @@ module.exports = merge({
             // 处理angularjs 模版片段
             {
                 test: /\.html$/,
-                loader: 'ngtemplate?module=ng&relativeTo='+(path.resolve(__dirname, '../'))+'!html?attrs=img:src div:url img:img-error div:img-error li:img-error span:img-error a:img-error',
+                loader: 'ngtemplate?module=ng&relativeTo=' + (path.resolve(__dirname, '../')) + '!html?attrs=img:src div:url img:img-error div:img-error li:img-error span:img-error a:img-error',
                 include: /(src|dep)/
             },
 
@@ -115,8 +124,12 @@ module.exports = merge({
         }, {
             from: './dep/jmui/ueditor',
             to: './js'
-        }]),
+        }, { from: './src/vendor_*.dll.js', to: './js' }]),
 
+        new webpack.DllReferencePlugin({
+            context: path.resolve(__dirname, '..'),
+            manifest: require('./vendor-manifest.json')
+        }),
         // 自动插入打包后的css、js文件，
         new HtmlWebpackPlugin({
             // 网站图标文件名不加hash
@@ -130,6 +143,9 @@ module.exports = merge({
 
             // 源文件
             template: 'index.html',
+
+            // dll公共文件名称
+            dllJsFileName: dllJsFileName,
 
             // 注入资源
             inject: true,
@@ -145,7 +161,7 @@ module.exports = merge({
             // chunk排序  'none' | 'auto' | 'dependency' | {function} - default: 'auto'
             // 如果chunk之间无依赖关系（没有使用webpack的require），需要通过函数手动控制
             chunksSortMode: function (chunk1, chunk2) {
-                var order = ['vender', 'jmui', 'app']; // 根据此数组索引进行排序
+                var order = ['jmui', 'app']; // 根据此数组索引进行排序
                 var order1 = order.indexOf(chunk1.names[0]);
                 var order2 = order.indexOf(chunk2.names[0]);
                 return order1 - order2;

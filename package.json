@@ -13,7 +13,8 @@
     "seed:jsdoc": "jsdoc -c ./scripts/jsdoc.conf.json",
     "seed:site": "node ./scripts/gh-pages.js",
     "seed:authors": "node ./scripts/authors.js",
-    "commitmsg": "validate-commit-msg"
+    "commitmsg": "validate-commit-msg",
+    "build:dll": "webpack --config build/webpack.dll.conf.js"
   },
   "config": {
     "validate-commit-msg": {
