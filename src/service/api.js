@@ -49,7 +49,7 @@ app.factory('Api', function ($resource, $http, Address) {
          * 获得用户信息
          */
         User: function () {
-            return $resource('/webapi/v1/getMsg');
+            return $resource('/webapi/v1/getMsg?t='+ new Date());
         }
     }
 });

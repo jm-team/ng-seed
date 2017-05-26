@@ -53,10 +53,7 @@ app.run(function ($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
     $log.log('app run $stateChangeSuccess');
     Login.checkHasLogin().then(function (data) {
 
-      $log.log('checkAutoLogin', data);
-      Api.User().get({
-        t: +new Date()
-      }, function (userData) {
+      Api.User().get(function (userData) {
         if (userData.id) {
           Auth.user = userData;
         } else {
