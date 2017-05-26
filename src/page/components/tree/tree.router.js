@@ -1,7 +1,8 @@
 /**
  * Created by Administrator on 2017/4/19 0019.
  */
-
+document.createElement('treecontrol');
+document.createElement('treeitem');
 var templateUrl = require('./tree.html');
 require('./tree.scss');
 
