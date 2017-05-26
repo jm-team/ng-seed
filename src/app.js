@@ -29,7 +29,7 @@ app.config(function ($provide, $controllerProvider, $httpProvider, $locationProv
   $httpProvider.defaults.headers.get['Expires'] = '0';
 
   // 优化路由地址，开启SEO
-  $locationProvider.html5Mode(false).hashPrefix('!');
+  $locationProvider.html5Mode(true).hashPrefix('!');
   $urlRouterProvider.when('', '/');
   $urlRouterProvider.otherwise('/404');
 
