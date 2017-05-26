@@ -22,6 +22,7 @@
 @mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
   @for $i from (1 + 1) through $grid-columns {
     $list: "#{$list}, .col-#{$class}-#{$i}";
+    // .col-sm-1,col += .col-sm-2....
   }
   #{$list} {
     float: left;
@@ -32,6 +33,7 @@
 @mixin calc-grid-column($index, $class, $type) {
   @if ($type == width) and ($index > 0) {
     .col-#{$class}-#{$index} {
+      // 1/24
       width: percentage(($index / $grid-columns));
     }
   }

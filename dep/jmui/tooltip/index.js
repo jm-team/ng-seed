@@ -201,10 +201,10 @@ angular.module('jmui.tooltip', [])
             angular.forEach(data, function (item, index) {
               var key = ngCtrl.resolveKeys[index];
               var insideKey = key.charAt(0).toUpperCase() + key.substr(1);
-              if(attrs.controllerName){
+              if (attrs.controllerName) {
                 // 创建的控制器时候 依赖注入到创建的控制器中
                 ngCtrl.locals[ngCtrl.resolveKeys[index]] = item;
-              }else{
+              } else {
                 // 当没有自定义控制器的时候 这个值是给自己的scope
                 // 下面的表达式类似 scope.tooltipTitle = item;
                 // 因为传入的 属性tooltip-title 可是html代码 ，

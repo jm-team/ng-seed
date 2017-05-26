@@ -44,17 +44,11 @@ angular.module('jmui.alert', [])
       },
       link: function (scope, element, attrs) {
         var type = attrs.type || 'success';
-        var closable = attrs.closable;
         var closeFn = scope.onClose || angular.noop;
         // 是否显示关闭按钮
-        scope.closable = true;
+        scope.closable = scope.$eval(attrs.closable);
         // 根据传入的类型添加相应风格的类
         element.addClass('jm-alert-' + type);
-
-        if (angular.equals(closable, "false")) {
-          scope.closable = false;
-        }
-
         scope.close = function ($event) {
           $animate.leave(element);
           // 执行关闭钩子函数

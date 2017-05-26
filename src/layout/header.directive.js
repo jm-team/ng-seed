@@ -10,8 +10,6 @@ app.directive('jmHeader', function (dialogs) {
         replace: true,
         controller: function ($scope, $state, User) {
             $scope.user = User.user;
-
-
             $scope.state = $state;
 
             // 弹出登录框
