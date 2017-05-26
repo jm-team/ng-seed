@@ -1,75 +1,64 @@
+const os = require('os')
 const path = require('path')
 const webpack = require('webpack')
+const RemoveWebpackPlugin = require('remove-webpack-plugin')
+const UglifyJsParallelPlugin = require('webpack-uglify-parallel')
 
-
-function resolve(dir) {
-    return path.join(__dirname, '..', dir)
-}
-
-// 获取执行环境，根据不同环境进行不同处理
-
-hash = '[hash:8].';
+console.log('=======================================')
+console.log('   请确保将新增的dll文件提交至git/svn   ')
+console.log('=======================================')
 
 module.exports = {
     entry: {
         vendor: [
-            'angular', 
-            'angular-sanitize', 
-            'angular-resource', 
+            'angular',
+            'angular-sanitize',
+            'angular-resource',
             'angular-animate',
             'angular-tree-control',
             'angular-ui-router',
-            'angular-lazy-image']
-        // vendor: [
-        //     './dep/angular/angular.min.js',
-        //     './dep/angular/angular-sanitize.min.js',
-        //     './dep/angular/angular-resource.min.js',
-        //     './dep/angular/angular-animate.min.js',
-
-        //     './dep/angular/angular-tree-control.js',
-        //     // './dep/angular/ui-bootstrap-tpls.min.js',
-        //     './dep/angular/angular-ui-router.min.js',
-        //     './dep/lazy-image/lazy-image.min.js',
-
-        //     // './dep/angular/angular-locale_zh-cn.js',
-        //     // './dep/bindonce.min.js',
-        //     // './dep/security.js',
-        //     // './dep/ng.element.js'
-        // ]
+            'angular-lazy-image'
+        ]
     },
     output: {
-        path: path.resolve(__dirname, '../src'),
-        filename: '[name]_[hash].dll.js',
-        library: '[name]_[hash]'
-    },
-    module: {
-        // noParse: /(min\.js)$/,
-        // loaders: [
-        //     // 处理angularjs 模版片段
-        //     {
-        //         test: /\.html$/,
-        //         loader: 'ngtemplate?module=ng&relativeTo=' + (path.resolve(__dirname, '../')) + '!html?attrs=img:src div:url img:img-error div:img-error li:img-error span:img-error a:img-error',
-        //         include: /(src|dep)/
-        //     },
-
-        //     // 处理html图片
-        //     {
-        //         test: /\.(gif|jpe?g|png|woff|svg|eot|ttf|pdf)\??.*$/,
-        //         loader: 'file-loader?name=img/[name].' + hash + '[ext]'
-        //     }
-        // ]
+        path: path.resolve(__dirname, '../dep'),
+        filename: 'vendor/[name].[hash:8].dll.js',
+        /**
+         * output.library
+         * 将会定义为 window.${output.library}
+         * 在这次的例子中，将会定义为`window.vendor_library`
+         */
+        library: '[name]_[hash:8]',
+        libraryTarget: 'umd',
+        umdNamedDefine: true
     },
     plugins: [
         new webpack.DllPlugin({
             path: path.join(__dirname, '.', '[name]-manifest.json'),
             libraryTarget: 'window',
-            name: '[name]_[hash]'
-        })
-        // ,
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //         warnings: false
-        //     }
-        // })
+            name: '[name]_[hash:8]' // 必须与output.library相同
+        }),
+
+        // 启用文件压缩混淆，第三方插件，通过cpu多核计算提高构建性能
+        new UglifyJsParallelPlugin({
+            workers: os.cpus().length,
+            fromString: true,
+            mangle: {
+                screw_ie8: false
+            },
+            output: {
+                comments: false, // 移除所有注释
+                screw_ie8: false // 默认为true，不支持ie8及以下
+            },
+            compressor: {
+                warnings: false,
+                screw_ie8: false,
+                drop_console: true,
+                drop_debugger: true
+            }
+        }),
+
+        // remove vendor.***.dll.js
+        new RemoveWebpackPlugin('./dep/vendor')
     ]
 }

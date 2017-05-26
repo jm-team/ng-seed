@@ -71,7 +71,7 @@ module.exports = {
         }),
         // 将webpack runtime 和 manifest 从vendor里抽出
         new webpack.optimize.CommonsChunkPlugin({
-            name: ["vendor", "manifest"], // vendor libs + extracted manifest
+            name: ["lib", "manifest"], // vendor libs + extracted manifest
             minChunks: Infinity
         }),
         // 根据模块依赖次数进行排序

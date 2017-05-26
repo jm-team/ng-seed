@@ -14,7 +14,7 @@ var hash = chunkhash = '';
 var glob = require('glob')
 var dllJsFilePath,
     dllJsFileName
-dllJsFilePath = glob.sync(path.join(__dirname, '../src/vendor_*.dll.js'))[0]
+dllJsFilePath = glob.sync(path.join(__dirname, '../dep/vendor/vendor.*.dll.js'))[0]
 if (dllJsFilePath) {
     dllJsFileName = path.basename(dllJsFilePath)
 }
@@ -111,7 +111,10 @@ module.exports = merge({
         }, {
             from: './dep/jmui/ueditor',
             to: './js'
-        }, { from: './src/vendor_*.dll.js', to: './js' }]),
+        }, {
+            from: './dep/vendor',
+            to: './js'
+        }]),
 
         new webpack.DllReferencePlugin({
             context: path.resolve(__dirname, '..'),
@@ -149,7 +152,7 @@ module.exports = merge({
             // chunk排序  'none' | 'auto' | 'dependency' | {function} - default: 'auto'
             // 如果chunk之间无依赖关系（没有使用webpack的require），需要通过函数手动控制
             chunksSortMode: function (chunk1, chunk2) {
-                var order = ['lib','jmui', 'app']; // 根据此数组索引进行排序
+                var order = ['lib', 'jmui', 'app']; // 根据此数组索引进行排序
                 var order1 = order.indexOf(chunk1.names[0]);
                 var order2 = order.indexOf(chunk2.names[0]);
                 return order1 - order2;
