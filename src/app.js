@@ -1,7 +1,4 @@
 var address = require('address');
-var address = require('address');
-// require('../dep/lazy-image/lazy-image.min'); 'ui.bootstrap',
-require('../dep/angular/angular.min.js')
 var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'jmui', 'afkl.lazyImage', 'treeControl']);
 
 document.createElement('treecontrol');
@@ -75,7 +72,7 @@ app.config(function ($provide, $controllerProvider, $httpProvider, $locationProv
   $httpProvider.defaults.headers.get['Expires'] = '0';
 
   // 优化路由地址，开启SEO
-  $locationProvider.html5Mode(true).hashPrefix('!');
+  $locationProvider.html5Mode(false).hashPrefix('!');
   $urlRouterProvider.when('', '/');
   $urlRouterProvider.otherwise('/404');
 

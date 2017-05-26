@@ -8,6 +8,8 @@ var webpackConfig;
 var devtool;
 var hash = chunkhash = '';
 
+// var json = require('./package.json');
+
 // 获取带hash值的dll文件名称
 var glob = require('glob')
 var dllJsFilePath,
@@ -16,22 +18,6 @@ dllJsFilePath = glob.sync(path.join(__dirname, '../src/vendor_*.dll.js'))[0]
 if (dllJsFilePath) {
     dllJsFileName = path.basename(dllJsFilePath)
 }
-
-// 公共類庫文件 这里尽量用了min后的文件，以减少build速度，避免uglify高版本对ie8不兼容的问题。
-var vendorFiles = [
-    './dep/angular/angular.min.js',
-    './dep/angular/angular-sanitize.min.js',
-    './dep/angular/angular-resource.min.js',
-    './dep/angular/angular-animate.min.js',
-    './dep/angular/angular-tree-control.js',
-    // './dep/angular/ui-bootstrap-tpls.min.js',
-    './dep/angular/angular-ui-router.min.js',
-    './dep/angular/angular-locale_zh-cn.js',
-    './dep/lazy-image/lazy-image.min.js',
-    './dep/bindonce.min.js',
-    './dep/security.js',
-    './dep/ng.element.js'
-];
 
 // 获取执行环境，根据不同环境进行不同处理
 var env = (process.env.NODE_ENV || '').trim();
@@ -56,7 +42,8 @@ module.exports = merge({
      * 2. jmui需单独维护
      */
     entry: {
-        // vendor: vendorFiles,  // 公共文件
+        // 公共類庫文件 这里尽量用了min后的文件，以减少build速度，避免uglify高版本对ie8不兼容的问题。
+        lib: './dep',  // 公共文件
         jmui: './dep/jmui', // 自定义组件库
         app: './src/main.js' // ng-app入口文件
     },
@@ -162,7 +149,7 @@ module.exports = merge({
             // chunk排序  'none' | 'auto' | 'dependency' | {function} - default: 'auto'
             // 如果chunk之间无依赖关系（没有使用webpack的require），需要通过函数手动控制
             chunksSortMode: function (chunk1, chunk2) {
-                var order = ['jmui', 'app']; // 根据此数组索引进行排序
+                var order = ['lib','jmui', 'app']; // 根据此数组索引进行排序
                 var order1 = order.indexOf(chunk1.names[0]);
                 var order2 = order.indexOf(chunk2.names[0]);
                 return order1 - order2;

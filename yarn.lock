@@ -87,7 +87,33 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/amdefine/download/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular@1.2.29:
+angular-animate@1.2.29:
+  version "1.2.29"
+  resolved "http://registry.npm.taobao.org/angular-animate/download/angular-animate-1.2.29.tgz#16fb318322fcb63a560df9731d6bdd02a0aea3bc"
+
+angular-lazy-image@0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/angular-lazy-image/-/angular-lazy-image-0.3.4.tgz#85e729a8641faaeeb3067a4534573a4bb971e1ea"
+
+angular-resource@1.2.29:
+  version "1.2.29"
+  resolved "http://registry.npm.taobao.org/angular-resource/download/angular-resource-1.2.29.tgz#e731c5e4fedef362a7af678dfdf3ea4cbf6d49d4"
+
+angular-sanitize@1.2.29:
+  version "1.2.29"
+  resolved "http://registry.npm.taobao.org/angular-sanitize/download/angular-sanitize-1.2.29.tgz#29441ed2b41cde0d6377fdc511fbf27382c07c22"
+
+angular-tree-control@0.2.28:
+  version "0.2.28"
+  resolved "https://registry.yarnpkg.com/angular-tree-control/-/angular-tree-control-0.2.28.tgz#6cf58d590ee8e0503bba899ae529ae4b8741083b"
+
+angular-ui-router@0.2.18:
+  version "0.2.18"
+  resolved "http://registry.npm.taobao.org/angular-ui-router/download/angular-ui-router-0.2.18.tgz#1dad70415c73d7046fd2e130df03d62fb7464360"
+  dependencies:
+    angular "^1.0.8"
+
+angular@1.2.29, angular@^1.0.8:
   version "1.2.29"
   resolved "http://registry.npm.taobao.org/angular/download/angular-1.2.29.tgz#4909377312037404612007f6efcf329b620b22af"
 

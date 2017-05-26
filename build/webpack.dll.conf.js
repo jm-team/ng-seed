@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 
+
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
@@ -12,19 +13,29 @@ hash = '[hash:8].';
 module.exports = {
     entry: {
         vendor: [
-            './dep/angular/angular.min.js',
-            './dep/angular/angular-sanitize.min.js',
-            './dep/angular/angular-resource.min.js',
-            './dep/angular/angular-animate.min.js',
-            './dep/angular/angular-tree-control.js',
-            // './dep/angular/ui-bootstrap-tpls.min.js',
-            './dep/angular/angular-ui-router.min.js',
-            './dep/angular/angular-locale_zh-cn.js',
-            './dep/lazy-image/lazy-image.min.js',
-            './dep/bindonce.min.js',
-            './dep/security.js',
-            './dep/ng.element.js'
-        ]
+            'angular', 
+            'angular-sanitize', 
+            'angular-resource', 
+            'angular-animate',
+            'angular-tree-control',
+            'angular-ui-router',
+            'angular-lazy-image']
+        // vendor: [
+        //     './dep/angular/angular.min.js',
+        //     './dep/angular/angular-sanitize.min.js',
+        //     './dep/angular/angular-resource.min.js',
+        //     './dep/angular/angular-animate.min.js',
+
+        //     './dep/angular/angular-tree-control.js',
+        //     // './dep/angular/ui-bootstrap-tpls.min.js',
+        //     './dep/angular/angular-ui-router.min.js',
+        //     './dep/lazy-image/lazy-image.min.js',
+
+        //     // './dep/angular/angular-locale_zh-cn.js',
+        //     // './dep/bindonce.min.js',
+        //     // './dep/security.js',
+        //     // './dep/ng.element.js'
+        // ]
     },
     output: {
         path: path.resolve(__dirname, '../src'),

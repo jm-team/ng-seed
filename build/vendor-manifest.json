@@ -1,16 +1,16 @@
 {
-  "name": "vendor_6d31ab23729898cf8a35",
+  "name": "vendor_2d54458115856fccb4f3",
   "content": {
-    "./dep/angular/angular.min.js": 1,
-    "./dep/angular/angular-sanitize.min.js": 2,
-    "./dep/ng.element.js": 3,
-    "./dep/angular/angular-resource.min.js": 4,
-    "./dep/angular/angular-animate.min.js": 5,
-    "./dep/angular/angular-tree-control.js": 6,
-    "./dep/angular/angular-ui-router.min.js": 7,
-    "./dep/angular/angular-locale_zh-cn.js": 8,
-    "./dep/lazy-image/lazy-image.min.js": 9,
-    "./dep/bindonce.min.js": 10,
-    "./dep/security.js": 11
+    "./node_modules/angular/index.js": 1,
+    "./node_modules/angular/angular.js": 2,
+    "./node_modules/angular-sanitize/index.js": 3,
+    "./node_modules/angular-sanitize/angular-sanitize.js": 4,
+    "./node_modules/angular-resource/index.js": 5,
+    "./node_modules/angular-resource/angular-resource.js": 6,
+    "./node_modules/angular-animate/index.js": 7,
+    "./node_modules/angular-animate/angular-animate.js": 8,
+    "./node_modules/angular-tree-control/angular-tree-control.js": 9,
+    "./node_modules/angular-ui-router/release/angular-ui-router.js": 10,
+    "./node_modules/angular-lazy-image/dist/lazy-image.js": 11
   }
 }

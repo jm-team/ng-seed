@@ -1,15 +1,3 @@
-require('../angular/angular.min.js');
-require('../angular/angular-sanitize.min.js');
-require('../angular/angular-resource.min.js');
-require('../angular/angular-animate.min.js');
-require('../angular/angular-tree-control.js');
-require('../angular/angular-ui-router.min.js');
-require('../angular/angular-locale_zh-cn.js');
-require('../lazy-image/lazy-image.min.js');
-require('../bindonce.min.js');
-require('../security.js');
-require('../ng.element.js');
-
 require('./index.scss');
 require('./accordion');
 require('./crumb');
