@@ -1,5 +1,5 @@
 var address = require('address');
-var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'jmui']);
+var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'afkl.lazyImage', 'pasvaz.bindonce', 'jmui']);
 
 // 路由配置
 var router = require('./app.router');

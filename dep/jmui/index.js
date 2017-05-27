@@ -11,7 +11,6 @@ require('./search');
 require('./anchor');
 require('./dialog');
 require('./loadScript');
-require('./ueditor/angular-ueditor');
 
 require('./switch');
 require('./alert');
@@ -24,9 +23,11 @@ require('./upload');
 require('./carousel');
 require('./datepicker');
 
+// require('../../node_modules/angular-tree-control/css/tree-control-attribute.css');
+require('angular-tree-control');
+require('./ueditor/angular-ueditor');
+
 angular.module('jmui', [
-    'afkl.lazyImage',
-    'treeControl',
     'jmui.carousel',
     'jmui.accordion',
     'jmui.crumbs',
@@ -49,5 +50,6 @@ angular.module('jmui', [
     'jmui.pdf',
     'jmui.fineUploader',
     'ng.ueditor',
-    'ui.bootstrap.datepicker'
+    'ui.bootstrap.datepicker',
+    'treeControl'
 ]).value('version', '0.1');

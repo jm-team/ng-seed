@@ -91,6 +91,10 @@ angular-animate@1.2.29:
   version "1.2.29"
   resolved "http://registry.npm.taobao.org/angular-animate/download/angular-animate-1.2.29.tgz#16fb318322fcb63a560df9731d6bdd02a0aea3bc"
 
+angular-bindonce@^0.3.1:
+  version "0.3.1"
+  resolved "http://registry.npm.taobao.org/angular-bindonce/download/angular-bindonce-0.3.1.tgz#af19574abd43f608b9236a302cc5ce49d71dc9c6"
+
 angular-lazy-image@0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/angular-lazy-image/-/angular-lazy-image-0.3.4.tgz#85e729a8641faaeeb3067a4534573a4bb971e1ea"

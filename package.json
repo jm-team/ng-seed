@@ -67,6 +67,7 @@
   "dependencies": {
     "angular": "1.2.29",
     "angular-animate": "1.2.29",
+    "angular-bindonce": "^0.3.1",
     "angular-lazy-image": "0.3.4",
     "angular-resource": "1.2.29",
     "angular-sanitize": "1.2.29",

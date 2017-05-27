@@ -1,12 +1,13 @@
+// dll
 require('angular');
 require('angular-sanitize');
 require('angular-resource');
 require('angular-animate');
-require('angular-tree-control');
 require('angular-ui-router');
 require('angular-lazy-image');
+require('angular-bindonce');
 
-require('./ng.element')
-require('./security')
-require('./bindonce')
-require('./angular-locale_zh-cn')
+// lib
+require('./ng.element');
+require('./security');
+require('./angular-locale_zh-cn');

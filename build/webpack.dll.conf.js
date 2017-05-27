@@ -15,9 +15,9 @@ module.exports = {
             'angular-sanitize',
             'angular-resource',
             'angular-animate',
-            'angular-tree-control',
             'angular-ui-router',
-            'angular-lazy-image'
+            'angular-lazy-image',
+            'bindonce'
         ]
     },
     output: {
