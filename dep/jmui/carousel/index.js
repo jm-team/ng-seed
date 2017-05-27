@@ -70,7 +70,12 @@ angular.module('jmui.carousel', [])
 
         aIndexs.forEach(function(item, index){
           item.onclick = function(){
-            setCurrent(index, true)
+            if(index > currentIndex){
+              setCurrent(index, true)
+            }else{
+              setCurrent(index, false)
+            }
+            // setCurrent(index, true)
           }
         });
 
