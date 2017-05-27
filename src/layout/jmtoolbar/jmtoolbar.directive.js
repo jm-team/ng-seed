@@ -46,9 +46,11 @@ app.directive('jmToolbar', function ($window, $timeout) {
             }
 
             // 对比当前位置是否大于指定的高度
+            // 如果大于就移除`ng-hide`类
+            // 否则就添加`ng-hide`类
             function contrast() {
                 var posY = currentYPosition();
-                element.toggleClass(attrs.togglelass || 'on', posY >= visibilityHeight);
+                element.toggleClass(attrs.toggleClass || 'ng-hide', posY >= visibilityHeight);
             }
 
             // 执行判断是否显示当前元素
