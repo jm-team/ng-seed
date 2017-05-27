@@ -70,7 +70,12 @@ angular.module('jmui.carousel', [])
 
         aIndexs.forEach(function(item, index){
           item.onclick = function(){
-            setCurrent(index, true)
+            if(index > currentIndex){
+              setCurrent(index, true)
+            }else{
+              setCurrent(index, false)
+            }
+            // setCurrent(index, true)
           }
         });
 
@@ -148,7 +153,7 @@ angular.module('jmui.carousel', [])
           // 这样会导致之后的left的赋值执行的时候 之前的赋值就无效了。
           // 这里使用getComputedStyle 强制浏览器渲染。
           // 参考： https://www.web-tinker.com/article/20286.html
-          if(angular.isFunction(getComputedStyle)){
+          if(angular.isFunction(window.getComputedStyle)){
             getComputedStyle(oLists[currentIndex]).left;
           }
 
