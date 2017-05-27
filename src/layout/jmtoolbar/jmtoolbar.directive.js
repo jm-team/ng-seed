@@ -9,6 +9,9 @@ app.directive('jmToolbar', function ($window, $timeout) {
         templateUrl: jmToolbar,
         link: function(scope, element, attrs){
             var visibilityHeight = scope.visibilityHeight || 800;
+            var elm = element[0];
+            var $topBtn = angular.element(elm.lastElementChild || elm.lastChild);
+            var $win = angular.element($window);
             var timer = null;
 
             // 计算滚动条当前位置
@@ -57,7 +60,7 @@ app.directive('jmToolbar', function ($window, $timeout) {
             contrast();
 
             // 点击执行滚动到指定目标位置
-            angular.element(element[0].lastElementChild).on('click', function ($event) {
+            $topBtn.on('click', function ($event) {
                 $event.preventDefault();
                 // scroll参考
                 // http://www.itnewb.com/tutorial/Creating-the-Smooth-Scroll-Effect-with-JavaScript
@@ -105,7 +108,7 @@ app.directive('jmToolbar', function ($window, $timeout) {
             });
 
             // 绑定scroll 事件
-            angular.element($window).on('scroll', function () {
+            $win.on('scroll', function () {
                 $timeout.cancel(timer);
                 timer = $timeout(contrast, 50);
             });
@@ -113,8 +116,8 @@ app.directive('jmToolbar', function ($window, $timeout) {
             //
             scope.$on('$destroy', function(){
                 $timeout.cancel(timer);
-                angular.element($window).off('scroll');
-                element.off('click');
+                $win.off('scroll');
+                $topBtn.off('click');
             });
         }
     };
