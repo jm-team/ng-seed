@@ -143,6 +143,15 @@ angular.module('jmui.carousel', [])
 
 
         timer = setTimeout(function(){
+          // 解决火狐浏览器 对使用JS操作CSS时渲染优化，
+          // 可能会对上面left的赋值不会立即渲染。
+          // 这样会导致之后的left的赋值执行的时候 之前的赋值就无效了。
+          // 这里使用getComputedStyle 强制浏览器渲染。
+          // 参考： https://www.web-tinker.com/article/20286.html
+          if(angular.isFunction(getComputedStyle)){
+            getComputedStyle(oLists[currentIndex]).left;
+          }
+
           angular.element(oLists[currentIndex]).addClass('active');
           angular.element(aIndexs[currentIndex]).addClass('active');
 
