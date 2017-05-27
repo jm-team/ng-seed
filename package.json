@@ -1,6 +1,6 @@
 {
   "name": "ng-seed",
-  "version": "0.7.2",
+  "version": "0.8.0-beta.1",
   "private": true,
   "description": "> angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、密码加密、服务接口跨域、SPA页面SEO等问题",
   "scripts": {
@@ -9,7 +9,7 @@
     "fecs:check": "fecs check src --reporter=baidu",
     "fecs:fix": "fecs format src --replace --safe=high",
     "seed": "npm run seed:changelog && npm run seed:jsdoc && npm run seed:authors && npm run seed:site",
-    "seed:changelog": "conventional-changelsog -p angular -i CHANGELOG.md -s -r 0",
+    "seed:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "seed:jsdoc": "jsdoc -c ./scripts/jsdoc.conf.json",
     "seed:site": "node ./scripts/gh-pages.js",
     "seed:authors": "node ./scripts/authors.js",
