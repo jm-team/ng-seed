@@ -115,8 +115,6 @@ angular.module('jmui.carousel', [])
 
 
         function setCurrent(index, isNext){
-
-          clearTimeout(timer);
           if(isAnimating){
             return ;
           }
@@ -146,36 +144,33 @@ angular.module('jmui.carousel', [])
             oLists[currentIndex].style.left = "-100%";
           }
 
+          // 解决火狐浏览器 对使用JS操作CSS时渲染优化，
+          // 可能会对上面left的赋值不会立即渲染。
+          // 这样会导致之后的left的赋值执行的时候 之前的赋值就无效了。
+          // 这里使用getComputedStyle 强制浏览器渲染。
+          // 参考： https://www.web-tinker.com/article/20286.html
+          if(angular.isFunction(window.getComputedStyle)){
+            getComputedStyle(oLists[currentIndex]).left;
+          }
 
-          timer = setTimeout(function(){
-            // 解决火狐浏览器 对使用JS操作CSS时渲染优化，
-            // 可能会对上面left的赋值不会立即渲染。
-            // 这样会导致之后的left的赋值执行的时候 之前的赋值就无效了。
-            // 这里使用getComputedStyle 强制浏览器渲染。
-            // 参考： https://www.web-tinker.com/article/20286.html
-            if(angular.isFunction(window.getComputedStyle)){
-              getComputedStyle(oLists[currentIndex]).left;
-            }
+          angular.element(oLists[currentIndex]).addClass('active');
+          angular.element(aIndexs[currentIndex]).addClass('active');
 
-            angular.element(oLists[currentIndex]).addClass('active');
-            angular.element(aIndexs[currentIndex]).addClass('active');
+          oLists[preIndex].style.transition = "left .6s ease-in-out";
+          if(isNext){
+            oLists[preIndex].style.left = "-100%";
+          } else{
+            oLists[preIndex].style.left = "100%";
+          }
 
-            oLists[preIndex].style.transition = "left .6s ease-in-out";
-            if(isNext){
-              oLists[preIndex].style.left = "-100%";
-            } else{
-              oLists[preIndex].style.left = "100%";
-            }
+          oLists[currentIndex].style.transition = "left .6s ease-in-out";
+          oLists[currentIndex].style.left = "0";
 
-            oLists[currentIndex].style.transition = "left .6s ease-in-out";
-            oLists[currentIndex].style.left = "0";
-
-            angular.element(oLists[preIndex]).removeClass('active');
-            angular.element(aIndexs[preIndex]).removeClass('active');
-            if(isSupportTransition){
-              isAnimating = true;
-            }
-          },30);
+          angular.element(oLists[preIndex]).removeClass('active');
+          angular.element(aIndexs[preIndex]).removeClass('active');
+          if(isSupportTransition){
+            isAnimating = true;
+          }
         }
 
         function autoPlay(){
