@@ -46,7 +46,7 @@ $link-hover-decoration: underline !default;
 //## 字体，行高和正文文本，标题等颜色
 
 // $font-family-sans-serif:  Arial, sans-serif,"Helvetica Neue", Helvetica,"Microsoft Yahei" !default;
-$font-family-sans-serif:  Arial, sans-serif, "Microsoft Yahei" !default;
+$font-family-sans-serif:  "Microsoft Yahei", Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** `<code>`，`<kbd>`和`<pre>`的默认等宽字体。
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;

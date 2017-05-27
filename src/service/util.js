@@ -1,24 +1,6 @@
 var app = require('app');
-console.log(app)
 app.factory('Util', function () {
-    var trim = (function(){
-        if (!String.prototype.trim) {
-            return function trim(value) {
-                return angular.isString(value) ? value.replace(/^\s\s*/, '').replace(/\s\s*$/, '') : value;
-            };
-        }
-        return function trim(value) {
-            return angular.isString(value) ? value.trim() : value;
-        };
-    })();
     return {
-        /**
-         * 字符串去空格
-         * @author zhoul
-         * @returns {string} 去除空格后的字符串
-         */
-        trim: trim,
-
         /**
          * 设置Cookie
          * @author zhoul
@@ -32,8 +14,6 @@ app.factory('Util', function () {
             oDate.setDate(oDate.getDate() + (date || 30));
             var sDate = ";expires=" + oDate;
             var Path = ";path=" + (path || "/");
-
-
             document.cookie = name + "=" + val + sDate + Path;
         },
 
@@ -84,7 +64,10 @@ app.factory('Util', function () {
          * 清除所有带canCancel参数的请求，
          * 用于取消路由已状态跳转，
          * 但是之前路由正在ajax还未返回结果请求。
-         *
+         * 
+         * @example 
+         *  Api.get({ canCancel: true, type:3 })
+         * 
          * @author zhoul
          * @param requests {Array} 需要取消请求的数组 [可选] 如果没有就清除所有在队列中的所有请求
          */

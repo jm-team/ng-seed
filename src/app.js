@@ -1,5 +1,5 @@
 var address = require('address');
-var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'jmui', 'afkl.lazyImage', 'treeControl']);
+var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'pasvaz.bindonce', 'jmui']);
 
 // 路由配置
 var router = require('./app.router');
@@ -14,6 +14,7 @@ app.constant('CENTER_ADDRESS', address.CENTER_ADDRESS);
 app.constant('USERCENTER_ADDRESS', address.USERCENTER_ADDRESS);
 app.constant('CDN_ADDRESS', address.CDN_ADDRESS);
 app.constant('IMG_ADDRESS', address.IMG_ADDRESS);
+
 
 // ng配置
 app.config(function ($provide, $controllerProvider, $httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
@@ -39,6 +40,8 @@ app.config(function ($provide, $controllerProvider, $httpProvider, $locationProv
   router.forEach(function (item) {
     $stateProvider.state.apply($stateProvider, item);
   });
+
+  $httpProvider.interceptors.push('httpInterceptor')
 });
 
 
@@ -53,10 +56,7 @@ app.run(function ($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
     $log.log('app run $stateChangeSuccess');
     Login.checkHasLogin().then(function (data) {
 
-      $log.log('checkAutoLogin', data);
-      Api.User().get({
-        t: +new Date()
-      }, function (userData) {
+      Api.User().get(function (userData) {
         if (userData.id) {
           Auth.user = userData;
         } else {
