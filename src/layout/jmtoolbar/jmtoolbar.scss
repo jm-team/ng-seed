@@ -28,7 +28,7 @@
     background-color: #9e9e9e; /* 雪碧图bug，不能这样定义background: #9e9e9e */
     opacity: 0.8;
     filter: alpha(opacity=80);
-    margin-bottom: 1px;
+    border-bottom: 1px solid #fff;
     cursor: pointer;
     overflow: hidden;
     a.link2 {
