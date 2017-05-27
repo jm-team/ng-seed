@@ -25,6 +25,8 @@ require('./carousel');
 require('./datepicker');
 
 angular.module('jmui', [
+    'afkl.lazyImage',
+    'treeControl',
     'jmui.carousel',
     'jmui.accordion',
     'jmui.crumbs',
