@@ -79,12 +79,7 @@ angular.module('jmui.AnchorSmoothScroll', [])
         // 如果大于就移除`ng-hide`类
         // 否则就添加`ng-hide`类
         function contrast() {
-          var posY = currentYPosition();
-          if (posY >= visibilityHeight) {
-            element.removeClass('ng-hide');
-          } else {
-            element.addClass('ng-hide');
-          }
+          element.toggleClass('ng-hide', currentYPosition() >= visibilityHeight);
         }
 
         // 执行判断是否显示当前元素
@@ -99,7 +94,6 @@ angular.module('jmui.AnchorSmoothScroll', [])
           var startY = currentYPosition();
           var stopY = elmYPosition(scope.targetId);
           var distance = stopY > startY ? stopY - startY : startY - stopY;
-
 
           if (distance < 100) {
             scrollTo(0, stopY);
