@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet --open --config ./build/webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./build/webpack.config.js",
+    "build:dll": "webpack --config build/webpack.dll.conf.js",
     "fecs:check": "fecs check src --reporter=baidu",
     "fecs:fix": "fecs format src --replace --safe=high",
     "seed": "npm run seed:changelog && npm run seed:jsdoc && npm run seed:authors && npm run seed:site",
@@ -13,8 +14,7 @@
     "seed:jsdoc": "jsdoc -c ./scripts/jsdoc.conf.json",
     "seed:site": "node ./scripts/gh-pages.js",
     "seed:authors": "node ./scripts/authors.js",
-    "commitmsg": "validate-commit-msg",
-    "build:dll": "webpack --config build/webpack.dll.conf.js"
+    "commitmsg": "validate-commit-msg"
   },
   "config": {
     "validate-commit-msg": {
