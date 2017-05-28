@@ -66,7 +66,7 @@ function replaceForGhPages(file, target, content) {
 
     fs.writeFileSync(file, data.replace(target, content))
 
-    console.log(`replace success ${file} ${target} => ${content}`)
+    console.log(`replace success ${file}: ${target} => ${content}`)
 
     // 异步读写文件处理方法
     /*fs.readFile(file, {encoding: 'utf8', flag: 'r'}, (err, data) => {

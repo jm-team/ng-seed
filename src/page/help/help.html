@@ -3,94 +3,21 @@
         <h2>{{title}}</h2>
         <h3>{{desc}}</h3>
         <pre>
-        <code>
-# ng-seed
-> angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、服务接口跨域、SPA页面SEO等问题
+        <!--<code>-->
+https://github.com/jm-team/ng-seed/wiki
 
-- [x] 开发阶段服务环境（webpack-dev-server），生产环境（nginx）
-- [x] css预处理（less、sass），css3后处理（postcss-autoprefixer）
-- [x] 图片合并（postcss-sprites）
-- [x] 文件按模块打包（webpack commonjs）
-- [x] 资源文件添加MD5命名，解决生产环境部署后的缓存问题（webpack *hash*）
-- [x] ng依赖注入自动添加，解决生产环境代码压缩问题(ng-annotate-webpack-plugin)
-- [x] 图片懒加载ng插件（ng-lazy-image）
-- [x] SPA页面路由（ui-router）
-- [x] SPA页面historyApi（webpack-dev-server、nginx配置）
-- [x] SPA页面SEO解决方案(Prerender.io)，爬取404页面设置status code为404
-- [x] 添加云詞例子[echarts-wordCloud](https://github.com/ecomfe/echarts-wordcloud)
-- [x] 添加滚动指令（/scroll）
-- [x] 搜索条件保存至URL (/search)
-- [x] 富文本编辑器（/ueditor）
 
-## Usage
 
-### 安装依赖包
-`npm install` or `npm i` or `cnpm i`
+## FAQ
 
-### 开发环境
-`npm run dev`
+### 第三方插件无法使用
+请确保在app模块下引入依赖的插件模块
+```js
+var app = angular.module('app', ['ui.router', 'ngResource','pasvaz.bindonce', 'ui.bootstrap', 'jmui', 'afkl.lazyImage']);
+```
 
-### 生产环境
-`npm run build`
-
-### 生产环境测试服务
-`npm run start`
-
-## ng-seed详解
-
-### 目录文件说明
-
-#### index.html
-1. index.html - 为SPA唯一入口文件，也是服务器上唯一的一个文件，因为其他文件都放于CND服务器上
-
-#### build/
-1. HashedModuleIdsPlugin.js - webpack2加入的，这里直接引入解决模块id不稳定的问题
-2. proxy.js - 根据config.dev.devServer参数生成完整代理配置
-3. server.js - 用于查看build之后的代码
-4. webpack.config.js - webpack通用配置项，根据开发、生产环境配置`./config/build.config.js`添加文件hash
-5. webpack-dev.js - 提供开发环境热更新服务，指定vendor模文件名为vendor.js，将不包含hash
-6. webpack-production.js - 生产环境打包，打包前删除dist目录，启用文件压缩混淆，未指定vendor模块文件名，将包含hash
-
-#### config/
-1. address.config.js - 配置项目依赖服务器地址
-2. build.config.js - `assetsPublicPath` - 配置引用资源的位置，用于配置CDN地址，读取address.config.js配置项 `CDN_ADDRESS`
-3. build.config.js - dev `devServer` - webpack热更新服务器配置，用于配置host访问地址，端口，服务接口反向代理(解决跨域问题)
-4. build.config.js - build `debug` - 用于配置调试压缩后的代码，true为开启调试模式，浏览器开发工具可查看到未压缩代码
-5. build.config.js - echarts `enabled` - 是否啓用echarts模塊
-
-#### dist/
-1. dist文件夹将放于CND服务器，所有引用dist目录下资源的地方，都需要可以动态配置域名：
-1.1. webpack设置publicPath打包时添加
-1.2. angular自定义filter 给资源地址加`CDN_ADDRESS`前缀：cdn
-2. dist/img/sprite - 该文件夹为雪碧图合成临时文件夹，可以忽略。webpack在生产环境下会重新生成添加hash的图片
-3. dist/dep/ie8supports.js - 目前为[卖塑郎项目](https://github.com/jm-team/MSL-V3/tree/master/static/dep/ie8supports)打包后的文件，用于兼容ie8、9，比较固定一般不会更改。
-
-#### doc/
-1. api.md - RESTful API设计规范的demo
-2. nginx.conf - nginx配置，用于在本地测试生产环境下代码
-3. server.js - Prerender.io的服务器配置，用于解决前台页面SEO的问题。注意单线程
-4. specification.md - 为angular项目规范
-
-#### src/
-1. css - 推荐使用sass来模块化css文件，css用到了postcss来实现雪碧图、autoprefixer兼容css3
-2. dep - 建议根据文件功能及来源分目录
-3. entry - index.html SPA入口文件，百度统计脚本放于页面底部
-4. img - sprite 雪碧图目录，在此文件夹下的图片将合并，子目录会单独合并为一张图片
-5. js - js目前根据功能进行目录划分，后期将考虑根据组件划分
-5.1. app.js - 配置项目使用常量、页面路由
-5.2. main.js - 页面入口js文件，用于引入页面使用的样式，脚本
-5.3. 文件夹按angular功能划分为 `controller/ directive/ filter/ router/ service/`
-5.4. component - 提取公用ng组件，方便后续代码维护与复用
-
-6. mock - json文件
-6.1. 用于开发阶段模拟接口数据
-6.2. 在前端固定将来会开发成接口的数据
-7. page - 页面目录结构需与js/router目录相互统一，common为公用指令模板目录。
-8. 注意一级子目录结构不可随意修改，二级子目录可根据项目复杂度设置多级目录
-
-## 注意事项（坑）
 ### svn git 使用细节
-1. .idea 文件夹需要设为ignore，避免影响到其他开发人员的WebStorm面板
+1. .idea 文件夹需要设为ignore，避免影响到其他开发人员的WebStorm面板（.vscode一样）
 2. node_modules 文件夹需要设为ignore，该文件夹包含文件过多，应由开发人员本地安装
 
 ### webStorm 使用细节
@@ -101,11 +28,31 @@
 1. build.config.js - `host`修改后不可随意提交，会导致其他开发人员更新后无法启动
 2. build.config.js - `port`多个项目启动时注意设置不同端口
 
-## end
-欢迎提出任何问题及建议
+### 代码build后,在IE8下报错
+1. 不支持保留字作为属性（`default`，`class`），在uglify版本v2.7.0以上，配置`screw_ie8: false`
+2. angular未定义, 在uglify版本v2.7.0以上，对象的方法加了多余的函数名，代码混淆后替代了angular
+3. 本地打包正常，运维打包异常
+> 使用yarn，使用yarn，使用yarn，只要固定了webpack的版本为1.13.2，其他模块都将采用webpack依赖的uglify， 版本为v2.6.4
 
-**[Back to top](#ng-seed)**
-        </code>
+### yarn安装失败
+1. 强烈建议使用淘宝镜像
+```
+yarn config set registry http://registry.npm.taobao.org
+```
+2. 指定node-sass的下载源
+```
+yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
+```
+3. phantomjs安装失败 指定phantomjs淘宝镜像
+```
+yarn config set phantomjs_cdnurl http://npm.taobao.org/mirrors/phantomjs
+```
+4. http(s)协议导致的其他模块下载异常
+http://registry.npm.taobao.org 改为 https://registry.npm.taobao.org, 浏览器直接访问下载异常的模块，查看是否可以正常打开
+
+> 安装失败请删除node_modules文件夹，再重新安装。可输入｀yarn config list｀查看修改的配置项是否正确
+
+            <!--</code>-->
     </pre>
     </div>
 </div>
