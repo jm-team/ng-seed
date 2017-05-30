@@ -1,0 +1,53 @@
+{
+  "authors": {
+    "exclude": [
+      ".local",
+      "ti10mylove@163.com",
+      "Yibang Yang",
+      "立",
+      "jumore.com"
+    ]
+  },
+  "gh-pages": {
+    "list": [
+      {
+        "filePath": "./index.html",
+        "target": "<base href=\"/\"/>",
+        "content": "<base href=\"/ng-seed/\"/>"
+      },
+      {
+        "filePath": "./config/build.config.js",
+        "target": "/dist/",
+        "content": "/ng-seed/"
+      },
+      {
+        "filePath": "./src/app.js",
+        "target": "html5Mode(true)",
+        "content": "html5Mode(false)"
+      }
+    ]
+  },
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc","closure"]
+  },
+  "source": {
+    "include":["src"],
+    "exclude":["src/component/ueditor"],
+    "includePattern": ".+\\.js(doc)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": [],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "opts": {
+    "template": "templates/default",
+    "encoding": "utf8",
+    "destination": "./doc/jsdoc/",
+    "package": "package.json",
+    "readme": "README.md",
+    "recurse": true
+  }
+}
