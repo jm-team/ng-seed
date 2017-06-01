@@ -89,6 +89,12 @@ module.exports = merge({
             {
                 test: /\.(gif|jpe?g|png|woff|svg|eot|ttf|pdf)\??.*$/,
                 loader: 'file-loader?name=img/[name].' + hash + '[ext]'
+            },
+
+            // markdown
+            {
+                test:   /\.md$/,
+                loader: 'raw'
             }
         ]
     },
