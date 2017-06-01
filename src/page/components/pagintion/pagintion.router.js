@@ -11,6 +11,9 @@ module.exports = {
         displayName: '分页'
     },
     resolve: {
+        mk: function($q){
+            return $q.when(marked(require('./index.md')));
+        },
         /*@ngInject*/
         loadCtrl: function ($q) {
             var defer = $q.defer();

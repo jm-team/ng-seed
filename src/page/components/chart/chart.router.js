@@ -1,5 +1,4 @@
 var templateUrl = require('./chart.html');
-
 module.exports = {
     title: '云詞',
     url: '^/chart',
@@ -10,6 +9,9 @@ module.exports = {
         displayName: '云詞'
     },
     resolve: {
+        mk: function($q){
+            return $q.when(marked(require('./index.md')));
+        },
         /*@ngInject*/
         loadCtrl: function ($q, $timeout) {
             var defer = $q.defer();
