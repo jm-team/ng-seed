@@ -8,7 +8,7 @@ app.directive('jmToolbar', function ($window, $timeout) {
         replace: true,
         templateUrl: jmToolbar,
         link: function(scope, element, attrs){
-            var visibilityHeight = scope.visibilityHeight || 800;
+            var visibilityHeight = attrs.visibilityHeight || 400;
             var elm = element[0];
             var $topBtn = angular.element(elm.lastElementChild || elm.lastChild);
             var $win = angular.element($window);
