@@ -23,15 +23,30 @@ $ yarn run start
 ```
 
 ## 功能清单
-[wiki:Features](https://github.com/jm-team/ng-seed/wiki/Features)
+[wiki: Features](https://github.com/jm-team/ng-seed/wiki/Features)
 ### TODO
 - [ ] 图片裁剪（cropper）
 
 ## 目录文件说明
-[wiki:Constructs](https://github.com/jm-team/ng-seed/wiki/Constructs)
+[wiki: Constructs](https://github.com/jm-team/ng-seed/wiki/Constructs)
 
 ## 注意事项（坑）
-[wiki:FAQ](https://github.com/jm-team/ng-seed/wiki/FAQ)
+[wiki: FAQ](https://github.com/jm-team/ng-seed/wiki/FAQ)
+
+## 依赖
+  
+```json
+{
+	"angular": "1.2.29",
+	"angular-animate": "1.2.29",
+	"angular-bindonce": "^0.3.1",
+	"angular-lazy-image": "0.3.4",
+	"angular-resource": "1.2.29",
+	"angular-sanitize": "1.2.29",
+	"angular-ui-router": "0.2.18",
+	"webpack": "1.13.2"
+}
+```
 
 ## End
 欢迎提出任何问题及建议
