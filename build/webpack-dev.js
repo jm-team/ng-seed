@@ -9,7 +9,7 @@ module.exports = {
             // 配置css的抽取器、加载器。'-loader'可以省去
             {
                 test: /\.scss$/i,
-                loader: 'style!css!sass'
+                loader: 'style!css!sass?config=sassLoaderConfig'
             }
         ]
     },
