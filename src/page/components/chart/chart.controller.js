@@ -3,8 +3,9 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('ChartCtrl',
     /*@ngInject*/
-    function ($scope, Api) {
+    function ($scope, Api, mk) {
         angular.extend($scope, {
+            mk:mk,
             title: 'Chart Page',
             desc: '圖表示例'
         });
@@ -390,4 +391,6 @@ app.registerController('ChartCtrl',
         $scope.$on("$destroy", function (event) {
             chart.dispose();
         });
+
+        hljs.initHighlightingOnLoad();
     });
