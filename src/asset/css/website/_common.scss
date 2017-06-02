@@ -4,32 +4,40 @@ html {
 
 body {
   background: #ececec;
-  position: relative;
-  min-height: 100%;
+  height: 100%;
   overflow-x: hidden;
-  //min-width: 1190px;
+  min-width: 1190px;
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 8px 0;
+  background-color: rgba(255, 255, 255, .4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+  transition: background-color 0.3s ease-in-out;
+  z-index: 9999;
+  border-collapse: separate;
+  zoom: 1;
 }
 
 #footer {
   text-align: center;
+  margin-top: -60px; /* 等于footer的高度 */
   padding: 15px 0;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
   background-color: #324057;
-
-
-  a{
+  line-height: 20px;
+  a {
     color: #fff;
   }
 }
 
 .page-container {
   background-color: #fff;
-  padding: 24px 0 60px;
-  border-radius: 4px;
-  position: relative;
+  padding-top: 74px;
+  padding-bottom: 60px;
+  min-height: 100%;
 }
 
 .jumbotron {
@@ -88,12 +96,6 @@ body {
 //  //transform: translate(100px, 0);
 //}
 
-#header {
-  padding: 8px 0;
-  margin-bottom: 15px;
-  background-color: #fff;
-}
-
 .flex-middle {
   display: flex;
   align-items: center;
@@ -148,6 +150,7 @@ body {
   background: #fff;
   width: 600px;
 }
+
 @media only screen and (max-width: 992px) and (min-width: 0) {
   .metismenu {
     float: none;
@@ -158,111 +161,111 @@ body {
     margin-bottom: 30px;
   }
 }
-  /* 导航 */
-  .navbar-static-side {
-    margin-bottom: 20px;
-    .metismenu {
 
-      a {
-        color: #a7b1c2;
-        padding-left: 48px;
+/* 导航 */
+.navbar-static-side {
+  margin-bottom: 20px;
+  .metismenu {
 
-        &:hover {
-          color: #108ee9;
-          background-color: transparent;
-        }
+    a {
+      color: #a7b1c2;
+      padding-left: 48px;
 
-        &.active {
-          color: #108ee9;
-          background-color: #ecf6fd;
-          border-right: 2px solid #108ee9;
-        }
+      &:hover {
+        color: #108ee9;
+        background-color: transparent;
+      }
+
+      &.active {
+        color: #108ee9;
+        background-color: #ecf6fd;
+        border-right: 2px solid #108ee9;
       }
     }
   }
+}
 
-  .markdown {
-    font-size: 14px;
-    color: rgba(0, 0, 0, .65);
-    h2 {
-      font-size: 28px;
-      color: rgba(0, 0, 0, .85);
-      margin-bottom: 24px;
-      line-height: 40px;
-      margin-top: 8px;
-    }
-
-    p {
-      margin: 1em 0;
-    }
+.markdown {
+  font-size: 14px;
+  color: rgba(0, 0, 0, .65);
+  h2 {
+    font-size: 28px;
+    color: rgba(0, 0, 0, .85);
+    margin-bottom: 24px;
+    line-height: 40px;
+    margin-top: 8px;
   }
 
-  /* ibox 通用box*/
-  .ibox {
-    margin-bottom: 25px;
-    margin-top: 0;
-    clear: both;
-    padding: 0;
+  p {
+    margin: 1em 0;
   }
+}
 
-  .ibox-title {
-    padding: 14px 15px 7px;
-    border-color: #e7eaec;
-    border-style: solid solid none;
-    border-width: 4px 1px 1px;
-    min-height: 48px;
-    background-color: #fff;
-  }
+/* ibox 通用box*/
+.ibox {
+  margin-bottom: 25px;
+  margin-top: 0;
+  clear: both;
+  padding: 0;
+}
 
-  .ibox-title h5 {
-    float: left;
-    margin: 0;
-    font-size: 14px;
-    text-overflow: ellipsis;
-    font-weight: 600;
-  }
+.ibox-title {
+  padding: 14px 15px 7px;
+  border-color: #e7eaec;
+  border-style: solid solid none;
+  border-width: 4px 1px 1px;
+  min-height: 48px;
+  background-color: #fff;
+}
 
+.ibox-title h5 {
+  float: left;
+  margin: 0;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+.ibox-tools {
+  float: right;
+}
+
+.ibox-tools a {
+  color: #c4c4c4;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.ibox-tools a.btn-primary {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
   .ibox-tools {
-    float: right;
+    float: none;
+    text-align: right;
+    display: block;
   }
+}
 
-  .ibox-tools a {
-    color: #c4c4c4;
-    margin-left: 5px;
-    cursor: pointer;
-  }
+.ibox-content {
+  background-color: #fff;
+  color: inherit;
+  border: 1px solid #e7eaec;
+  padding: 15px 20px 20px 20px;
+  clear: both;
+}
 
-  .ibox-tools a.btn-primary {
-    color: #fff;
-  }
+.ibox-content h1,
+.ibox-content h2,
+.ibox-content h3,
+.ibox-content h4,
+.ibox-content h5 {
+  margin-top: 5px;
+  /*font-weight: 300;*/
+}
 
-  @media (max-width: 768px) {
-    .ibox-tools {
-      float: none;
-      text-align: right;
-      display: block;
-    }
-  }
-
-  .ibox-content {
-    background-color: #fff;
-    color: inherit;
-    border: 1px solid #e7eaec;
-    padding: 15px 20px 20px 20px;
-    clear: both;
-  }
-
-  .ibox-content h1,
-  .ibox-content h2,
-  .ibox-content h3,
-  .ibox-content h4,
-  .ibox-content h5 {
-    margin-top: 5px;
-    /*font-weight: 300;*/
-  }
-
-
-  .breadcrumb{
-    background-color: #fff;
-  }
+.breadcrumb {
+  background-color: #fff;
+}
 
