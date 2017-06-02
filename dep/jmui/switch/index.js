@@ -1,4 +1,4 @@
-/*global require, angular*/
+/* global require, angular*/
 /**
  * [switch 开关组件]
  *

@@ -12,7 +12,7 @@ module.exports = {
 		assetsPublicPath: '/dist/',
         debug: true, // debug:true devtool:"#cheap-module-eval-source-map"
 		devServer: {
-			host: 'localhost', // 默认localhost <hostname/ip>: hostname or IP. 0.0.0.0 binds to all hosts.
+			host: '192.168.23.119', // 默认localhost <hostname/ip>: hostname or IP. 0.0.0.0 binds to all hosts.
 			port: 8081, // http://localhost:8081/
 			proxyTarget: [
 				{ pattern: '/webapi', address: address.SERVER_ADDRESS }

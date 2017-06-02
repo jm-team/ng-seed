@@ -1,17 +1,16 @@
 .jm-carousel {
   position: relative;
   height: 370px;
-  // overflow: hidden;
 
   .jm-carousel-inner {
     width: 100%;
-    height: 370px;
-    // overflow: hidden;
+    height: 100%;
+    overflow: hidden;
     position: relative;
 
     img {
       width: 100%;
-      height: 370px;
+      height: 100%;
       vertical-align: top;
     }
 

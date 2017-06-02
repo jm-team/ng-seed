@@ -4,12 +4,12 @@ app.factory('httpInterceptor', function ($q, $injector, Util) {
   var httpInterceptor;
   httpInterceptor = {
     responseError: function (response) {
-      // 拦截相应错误处理这里.....
+      // 拦截响应错误处理这里.....
       return $q.reject(response);
     },
 
     response: function (response) {
-      // 拦截相应成功处理这里.....
+      // 拦截响应成功处理这里.....
       return response;
     },
 
