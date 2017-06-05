@@ -8,7 +8,7 @@ var app = require('app');
 app.registerController('LazyimgCtrl', LazyimgCtrl);
 
 /*@ngInject*/
-function LazyimgCtrl() {
+function LazyimgCtrl(Static) {
   var vm = this;
 
   vm.data = [1, 2, 3, 4, 5];
@@ -38,6 +38,8 @@ function LazyimgCtrl() {
   function changeImage() {
     vm.runtimeImageSrc = changeImageUrl();
   }
+
+  vm.defaultImage = Static.defaultImage;//require("../../../asset/img/logo.png");
 
 }
 

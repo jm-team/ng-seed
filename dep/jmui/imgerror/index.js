@@ -20,7 +20,6 @@
         link: function (scope, element, attrs) {
           var defaultImg = attrs.imgError;
           var afklLazyImage = attrs.afklLazyImage;
-
           if (defaultImg) {
             if (afklLazyImage) {
               attrs.$observe('afklLazyImageLoaded', function (value) {

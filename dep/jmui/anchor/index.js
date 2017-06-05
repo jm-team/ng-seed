@@ -37,7 +37,8 @@ angular.module('jmui.AnchorSmoothScroll', [])
         // 指定滚动到ID为此参数的元素位置
         targetId: '@'
       },
-      link: function (scope, element) {
+      link: function (scope, element, attrs) {
+        console.log(attrs);
         var visibilityHeight = scope.visibilityHeight || 400;
         var timer = null;
 
@@ -79,7 +80,9 @@ angular.module('jmui.AnchorSmoothScroll', [])
         // 如果大于就移除`ng-hide`类
         // 否则就添加`ng-hide`类
         function contrast() {
-          element.toggleClass('ng-hide', currentYPosition() >= visibilityHeight);
+          if(visibilityHeight in attrs){
+            element.toggleClass('ng-hide', currentYPosition() >= visibilityHeight);
+          }
         }
 
         // 执行判断是否显示当前元素
