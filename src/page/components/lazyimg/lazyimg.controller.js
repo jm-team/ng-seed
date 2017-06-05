@@ -39,5 +39,7 @@ function LazyimgCtrl() {
     vm.runtimeImageSrc = changeImageUrl();
   }
 
+  vm.defaultImage = require("../../../asset/img/logo.png");
+
 }
 
