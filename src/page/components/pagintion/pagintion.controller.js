@@ -1,6 +1,6 @@
 var app = require('app');
 app.registerController('PagintionCtrl', PagintionCtrl);
-
+/*@ngInject*/
 function PagintionCtrl(mk) {
   var vm = this;
   vm.mk = mk;

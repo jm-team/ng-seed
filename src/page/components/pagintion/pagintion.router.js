@@ -11,6 +11,7 @@ module.exports = {
         displayName: '分页'
     },
     resolve: {
+        /*@ngInject*/
         mk: function($q){
             return $q.when(marked(require('./index.md')));
         },
