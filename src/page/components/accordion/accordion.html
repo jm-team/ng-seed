@@ -15,8 +15,7 @@
         <jm-accordions>
           <jm-accordion ng-repeat="item in vm.accordions">
             <header class="jm-accordion-title" ng-click="toggle($event)">
-              <i class="jm-icon jm-icon-enter"></i>
-              {{item.title}}
+              <i class="jm-icon jm-icon-enter"></i> {{item.title}}
             </header>
 
             <section class="jm-accordion-content" ng-show="open">

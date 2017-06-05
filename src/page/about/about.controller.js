@@ -6,4 +6,3 @@ app.registerController('AboutCtrl', AboutCtrl);
 function AboutCtrl() {
   var vm = this;
 }
-

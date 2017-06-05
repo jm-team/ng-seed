@@ -1,44 +1,37 @@
 <!--<p style="background: #01b5f3;color:#fff;width: 100%;">{{ search | json }}</p>-->
 <div>
-    <!--<button ng-click="pop()">POP</button>-->
+  <!--<button ng-click="pop()">POP</button>-->
 
-    <div class="form-group">
-        <ul class="nav nav-pills">
-            <li ng-repeat="list in base.categorys" ng-class="{'active':search.categoryId == list.categoryId}" ng-click="changeType(list, 'categoryId')">
-                <a href="javascript:;">{{ list.categoryName }}</a>
-            </li>
-        </ul>
-    </div>
+  <div class="form-group">
+    <ul class="nav nav-pills">
+      <li ng-repeat="list in base.categorys" ng-class="{'active':search.categoryId == list.categoryId}" ng-click="changeType(list, 'categoryId')">
+        <a href="javascript:;">{{ list.categoryName }}</a>
+      </li>
+    </ul>
+  </div>
 
-    <div class="form-group">
-        <ul class="nav nav-pills form-group">
-            <li ng-repeat="list in base.industrys" ng-class="{'active':search.industryId == list.industryId}" ng-click="changeType(list, 'industryId')">
-                <a href="javascript:;">{{ list.industryName }}</a>
-            </li>
-        </ul>
-    </div>
+  <div class="form-group">
+    <ul class="nav nav-pills form-group">
+      <li ng-repeat="list in base.industrys" ng-class="{'active':search.industryId == list.industryId}" ng-click="changeType(list, 'industryId')">
+        <a href="javascript:;">{{ list.industryName }}</a>
+      </li>
+    </ul>
+  </div>
 
-    <div class="highlights">
-        <ul class="list-unstyled">
-            <li ng-repeat="list in lists" class="form-group row">
-                <a href="" class="col-lg-6 col-sm-10 entry-img text-center">
+  <div class="highlights">
+    <ul class="list-unstyled">
+      <li ng-repeat="list in lists" class="form-group row">
+        <a href="" class="col-lg-6 col-sm-10 entry-img text-center">
                     <img src="http://themes.laborator.co/xenon/assets/images/highlights/highlights-bootstrap-3-3-1.png" alt="">
                 </a>
-                <div class="entry-description col-lg-18 col-sm-14">
-                    <h3 class="text-overflow">{{ list.title }}</h3>
-                    <p class="text-muted">{{ list.desc }}</p>
-                </div>
-            </li>
-        </ul>
+        <div class="entry-description col-lg-18 col-sm-14">
+          <h3 class="text-overflow">{{ list.title }}</h3>
+          <p class="text-muted">{{ list.desc }}</p>
+        </div>
+      </li>
+    </ul>
 
-        <jm-pagination 
-            total-page="numPages" 
-            boundary-links="1" 
-            on-select-page="selectPage(page)" 
-            previous-text="Previous" 
-            next-text="Next" 
-            max-size="2" 
-            current-Page="search.currentPage">
-        </jm-pagination>
-    </div>
+    <jm-pagination total-page="numPages" boundary-links="1" on-select-page="selectPage(page)" previous-text="Previous" next-text="Next" max-size="2" current-Page="search.currentPage">
+    </jm-pagination>
+  </div>
 </div>

@@ -5,7 +5,7 @@
           <span>Spot Price:Daily<span class="unit">(Unit:RMB)</span></span>
           <a class="more pull-right" href="#">more >></a>
       </h2>
-      
+
       <div class="jm-panel-body" bindonce="data">
         <div class="col-header jm-padding-l-55 jm-padding-r-55 group">
           <div class="col w30">Commodity</div>
@@ -16,8 +16,7 @@
         </div>
 
         <div scroll scrollable="scrollable" finish="finishRender" height="400">
-          <div ng-class-odd="'odd'" ng-class-even="'even'" class="data-list jm-padding-l-55 jm-padding-r-55 group" bindonce ng-repeat="row in data.dataList track by $index"
-            on-last-repeat="rendered">
+          <div ng-class-odd="'odd'" ng-class-even="'even'" class="data-list jm-padding-l-55 jm-padding-r-55 group" bindonce ng-repeat="row in data.dataList track by $index" on-last-repeat="rendered">
             <div class="col w30" bo-text="row.commodity" bo-title="row.commodity"></div>
             <div class="col w30" bo-text="row.sectors"></div>
             <div class="col w15" bo-text="row.dayPrice"></div>

@@ -6,7 +6,7 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('SwitchCtrl',
   /*@ngInject*/
-  function () {
+  function() {
     var vm = this;
     vm.on = true;
     vm.off = false;

@@ -7,29 +7,29 @@ app.registerController('TransferCtrl', TransferCtrl);
 
 /*@ngInject*/
 function TransferCtrl() {
-    var vm = this;
-    var dataSource = [];
-    var targetKeys = [];
+  var vm = this;
+  var dataSource = [];
+  var targetKeys = [];
 
-    for (var i = 0; i < 8; i++) {
-        dataSource.push({
-            key: i.toString(),
-            title: 'content' + (i + 1),
-            description: 'description of content' + (i + 1),
-            disabled: i % 3 < 1,
-        });
-    }
+  for (var i = 0; i < 8; i++) {
+    dataSource.push({
+      key: i.toString(),
+      title: 'content' + (i + 1),
+      description: 'description of content' + (i + 1),
+      disabled: i % 3 < 1,
+    });
+  }
 
-    for (var i = 0; i < 5; i++) {
-        targetKeys.push({
-            key: i.toString(),
-            title: 'content' + (i + 1),
-            description: 'description of content' + (i + 1),
-            disabled: i % 3 < 1,
-        });
-    }
+  for (var i = 0; i < 5; i++) {
+    targetKeys.push({
+      key: i.toString(),
+      title: 'content' + (i + 1),
+      description: 'description of content' + (i + 1),
+      disabled: i % 3 < 1,
+    });
+  }
 
-    vm.dataSource = dataSource;
-    vm.targetKeys = targetKeys;
-    vm.titles = ["Source", "Target"];
+  vm.dataSource = dataSource;
+  vm.targetKeys = targetKeys;
+  vm.titles = ["Source", "Target"];
 }

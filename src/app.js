@@ -2,14 +2,14 @@ var address = require('address');
 
 var marked = window.marked = require('marked')
 marked.setOptions({
-    renderer: new marked.Renderer(),
-    gfm: true,
-    tables: true,
-    breaks: false,
-    pedantic: false,
-    sanitize: true,
-    smartLists: true,
-    smartypants: false
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
 });
 
 var hljs = window.hljs = require('highlight.js');
@@ -33,7 +33,7 @@ app.constant('IMG_ADDRESS', address.IMG_ADDRESS);
 
 
 // ng配置
-app.config(function ($provide, $controllerProvider, $httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
+app.config(function($provide, $controllerProvider, $httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
   // 将 controllerProvider 挂载到app 上
   app.registerController = $controllerProvider.register;
   // IE缓存
@@ -53,7 +53,7 @@ app.config(function ($provide, $controllerProvider, $httpProvider, $locationProv
   $urlRouterProvider.when('/components', '/chart');
 
   // 配置路由
-  router.forEach(function (item) {
+  router.forEach(function(item) {
     $stateProvider.state.apply($stateProvider, item);
   });
 
@@ -61,18 +61,18 @@ app.config(function ($provide, $controllerProvider, $httpProvider, $locationProv
 });
 
 
-app.run(function ($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
+app.run(function($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
   $rootScope.$state = $state;
   // 路由切换成功
   //event, toState, toParams, formState, formParams, options
-  $rootScope.$on('$stateChangeSuccess', function () {
+  $rootScope.$on('$stateChangeSuccess', function() {
     // 百度统计pv量
     _hmt.push(['_trackPageview', $location.path()]);
 
     $log.log('app run $stateChangeSuccess');
-    Login.checkHasLogin().then(function (data) {
+    Login.checkHasLogin().then(function(data) {
 
-      Api.User().get(function (userData) {
+      Api.User().get(function(userData) {
         if (userData.id) {
           Auth.user = userData;
         } else {
@@ -81,7 +81,7 @@ app.run(function ($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
         $rootScope.$broadcast('userLoginFinished', userData);
       });
 
-    }, function (data) {
+    }, function(data) {
       // not login yet
       Auth.user = null;
       $rootScope.$broadcast('userLoginFinished', null);
@@ -94,13 +94,13 @@ app.run(function ($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
 
   // 路由切换开始
   // event, toState, toParams, formState, formParams, options
-  $rootScope.$on('$stateChangeStart', function () {
+  $rootScope.$on('$stateChangeStart', function() {
     $rootScope.isShowFooter = false;
     // 取消上一个路由中还在请求的并且可以取消的XHR
     Util.clearAll();
   });
 
-  $rootScope.$on('$viewContentLoaded', function () {
+  $rootScope.$on('$viewContentLoaded', function() {
     if ($rootScope.isFirstLoad) {
       $rootScope.isFirstLoad = false;
     } else {

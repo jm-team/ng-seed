@@ -4,10 +4,10 @@ app.registerController('CrumbCtrl', CrumbCtrl);
 
 /*@ngInject*/
 function CrumbCtrl() {
-    var vm = this;
+  var vm = this;
 
-    vm.indexCrumb = {
-        displayName:"首页",
-        router:"home"
-    };
+  vm.indexCrumb = {
+    displayName: "首页",
+    router: "home"
+  };
 }

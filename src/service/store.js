@@ -1,7 +1,7 @@
 var app = require('app');
 
 //Address - 环境地址配置
-app.factory('Address', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRESS) {
+app.factory('Address', function($location, SERVER_ADDRESS, $q, USERCENTER_ADDRESS) {
   return {
 
     localAddress: $location.absUrl(),
@@ -16,16 +16,16 @@ app.factory('Address', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRE
     API_ADDRESS: $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/webapi/v1',
 
     // 获取当前地址
-    getLocalAddress: function () {
+    getLocalAddress: function() {
       return $location.absUrl();
     },
 
     //获取登录地址
-    getLoginAddress: function () {
+    getLoginAddress: function() {
       return SERVER_ADDRESS + '/webapi/v1/login?successful=' + this.getLocalAddress();
     },
 
-    getLogoutAddress: function () {
+    getLogoutAddress: function() {
       return SERVER_ADDRESS + '/webapi/v1/logout?successful=' + this.getLocalAddress();
     }
 
@@ -35,14 +35,14 @@ app.factory('Address', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRE
 
 
 // 登录相关
-app.factory('Auth', function ($resource, $document, $q, $timeout, Address) {
+app.factory('Auth', function($resource, $document, $q, $timeout, Address) {
   return {
     /**
      * 获取非对称加密的数据接口
      * @author zhoul
      * @returns resource
      */
-    security: function () {
+    security: function() {
       return $resource(Address.API_ADDRESS + '/security');
     },
 
@@ -51,7 +51,7 @@ app.factory('Auth', function ($resource, $document, $q, $timeout, Address) {
      * @author zhoul
      * @returns resource
      */
-    auth: function () {
+    auth: function() {
       return $resource(Address.API_ADDRESS + '/doLogin');
     },
 
@@ -61,21 +61,23 @@ app.factory('Auth', function ($resource, $document, $q, $timeout, Address) {
      * @param opt {Object}  可选的参数对象
      * @returns promise
      */
-    isLogin: function (opt) {
+    isLogin: function(opt) {
       var options = angular.extend({}, opt);
       var defer = $q.defer();
       var $ = angular.element;
 
       // 用户已经登录回调
-      window.userLoginSuccessCallback = function (token) {
+      window.userLoginSuccessCallback = function(token) {
         oScript.remove();
         defer.resolve(token);
       }
 
       // 用户未登录回调
-      window.userNotLoginCallback = function () {
+      window.userNotLoginCallback = function() {
         oScript.remove();
-        defer.reject({error: 'ERROR'});
+        defer.reject({
+          error: 'ERROR'
+        });
       }
 
       var oScript = $(document.createElement('script'));
@@ -95,7 +97,7 @@ app.factory('Auth', function ($resource, $document, $q, $timeout, Address) {
      * @author zhoul
      * @returns promise
      */
-    submit: function (form, options) {
+    submit: function(form, options) {
       var defer = $q.defer();
       var str = '';
       var iframe = angular.element('<iframe></iframe>');
@@ -117,7 +119,7 @@ app.factory('Auth', function ($resource, $document, $q, $timeout, Address) {
 
 
       // 表单提交成功结果
-      iframe.on('load', function () {
+      iframe.on('load', function() {
         try {
           str = parent.document.getElementById(iframeName).contentWindow.document.body.innerHTML;
           defer.resolve(angular.fromJson(str));
@@ -127,12 +129,12 @@ app.factory('Auth', function ($resource, $document, $q, $timeout, Address) {
         iframe.remove();
       });
 
-      iframe.on('error', function () {
+      iframe.on('error', function() {
         iframe.remove();
       });
 
       // 使用延时 解决密码做加密后 model同步缓慢 提交的密码是非加密的密码
-      $timeout(function () {
+      $timeout(function() {
         form.submit();
       }, 0);
       return defer.promise;
@@ -141,17 +143,17 @@ app.factory('Auth', function ($resource, $document, $q, $timeout, Address) {
 });
 
 // 用户相关
-app.factory('User', function () {
+app.factory('User', function() {
   return {
     user: {},
-    setUser: function (user) {
+    setUser: function(user) {
       angular.extend(this.user, user);
     }
   }
 });
 
 // 静态资源引用（webpack 非HTML属性中）
-app.factory('Static', function(){
+app.factory('Static', function() {
   return {
     defaultImage: require("../asset/img/logo.png")
   }
