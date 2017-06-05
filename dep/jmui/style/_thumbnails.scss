@@ -1,9 +1,8 @@
 //
 // Thumbnails
 // --------------------------------------------------
-
-
 // Mixin and adjust the regular image class
+
 .thumbnail {
   display: block;
   padding: $thumbnail-padding;
@@ -20,19 +19,17 @@
     margin-left: auto;
     margin-right: auto;
   }
-
   // [converter] extracted a&:hover, a&:focus, a&.active to a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active
-
   // Image captions
   .caption {
     padding: $thumbnail-caption-padding;
     color: $thumbnail-caption-color;
   }
 }
-
 // Add a hover state for linked versions only
-a.thumbnail:hover,
+
+a.thumbnail.active,
 a.thumbnail:focus,
-a.thumbnail.active {
+a.thumbnail:hover {
   border-color: $link-color;
 }

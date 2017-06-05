@@ -12,12 +12,12 @@
  *
  *
  * @example
- * <div 
- *    jm-crumbs 
- *    abstract-proxy-property="data.breadcrumbProxy" 
+ * <div
+ *    jm-crumbs
+ *    abstract-proxy-property="data.breadcrumbProxy"
  *    index-crumb="{{vm.indexCrumb}}">
  * </div>
- * 
+ *
  * 路由中的配置 添加一个data 属性
  * data:{
  *   breadcrumbProxy: 'components.crumb',  // 路由地址
@@ -27,17 +27,17 @@
  */
 var tmpCrumbs = require('./crumb.html');
 angular.module('jmui.crumbs', [])
-// 面包屑
-  .directive('jmCrumbs', function ($state, $interpolate) {
+  // 面包屑
+  .directive('jmCrumbs', function($state, $interpolate) {
     return {
       restrict: 'AE',
-      templateUrl: function (element, attrs) {
+      templateUrl: function(element, attrs) {
         return attrs.templateUrl || tmpCrumbs;
       },
       scope: {
         abstractProxyProperty: '@'
       },
-      link: function (scope, element, attrs) {
+      link: function(scope, element, attrs) {
 
         scope.breadcrumbs = [];
 
@@ -45,13 +45,13 @@ angular.module('jmui.crumbs', [])
           updateBreadcrumbsArray();
         }
 
-        var stateChange = scope.$on('$stateChangeSuccess', function () {
+        var stateChange = scope.$on('$stateChangeSuccess', function() {
           scope.breadcrumbs = [];
           updateBreadcrumbsArray();
         });
 
         // 作用域销毁 接触监听
-        scope.$on('$destroy', function () {
+        scope.$on('$destroy', function() {
           stateChange();
         });
 
@@ -130,7 +130,7 @@ angular.module('jmui.crumbs', [])
           var proxyArray = str.split('.');
           var propertyObject = obj;
 
-          angular.forEach(proxyArray, function (item) {
+          angular.forEach(proxyArray, function(item) {
 
             if (angular.isObject(propertyObject) && angular.isDefined(propertyObject[item])) {
               propertyObject = propertyObject[item];

@@ -2,80 +2,80 @@
 @import "../style/mixins/_alerts";
 
 .jm-alert {
-    padding: $alert-padding;
-    margin-bottom: $line-height-computed;
-    border: 1px solid transparent;
-    border-radius: $alert-border-radius;
-    position: relative;
+  padding: $alert-padding;
+  margin-bottom: $line-height-computed;
+  border: 1px solid transparent;
+  border-radius: $alert-border-radius;
+  position: relative;
+  transition: opacity 0.5s linear;
 
-    transition: opacity .5s linear;
+  &.ng-enter.ng-enter-active,
+  &.ng-leave {
+    opacity: 1;
+  }
 
-    &.ng-enter.ng-enter-active,
-    &.ng-leave{
-        opacity: 1;
-    }
+  &.ng-enter,
+  &.ng-leave-active {
+    opacity: 0;
+  }
+  // Headings for larger alerts
+  h4 {
+    margin-top: 0;
+    // Specified for the h4 to prevent conflicts of changing $headings-color
+    color: inherit;
+  }
+  // Provide class for links that match alerts
+  .alert-link {
+    font-weight: $alert-link-font-weight;
+  }
+  // Improve alignment and spacing of inner content
+   > ul,
+  > p {
+    margin-bottom: 0;
+  }
 
-    &.ng-enter,
-    &.ng-leave-active{
-        opacity: 0;
-    }
+  > p + p {
+    margin-top: 5px;
+  }
 
+  .jm-alert__wrap {
+    display: table;
+  }
 
+  .jm-alert__content {
+    display: table-cell;
+    padding: 0 8px;
+  }
 
-    // Headings for larger alerts
-    h4 {
-        margin-top: 0;
-        // Specified for the h4 to prevent conflicts of changing $headings-color
-        color: inherit;
-    }
-    // Provide class for links that match alerts
-    .alert-link {
-        font-weight: $alert-link-font-weight;
-    }
-    // Improve alignment and spacing of inner content
-    > p,
-    > ul {
-        margin-bottom: 0;
-    }
-    > p + p {
-        margin-top: 5px;
-    }
-    .jm-alert__wrap {
-        display: table;
-    }
-    .jm-alert__content {
-        display: table-cell;
-        padding: 0 8px;
-    }
-    .jm-alert-icon {
-        display: table-cell;
-        vertical-align: middle;
-        font-size: 26px;
-    }
-    .jm-alert__close {
-        font-size: 16px;
-        color: #fff;
-        opacity: 1;
-        top: 12px;
-        right: 15px;
-        position: absolute;
-        cursor: pointer;
-    }
+  .jm-alert-icon {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 26px;
+  }
+
+  .jm-alert__close {
+    font-size: 16px;
+    color: #fff;
+    opacity: 1;
+    top: 12px;
+    right: 15px;
+    position: absolute;
+    cursor: pointer;
+  }
 }
 
 .jm-alert-success {
-    @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text);
+  @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text);
 }
 
 .jm-alert-info {
-    @include alert-variant($alert-info-bg, $alert-info-border, $alert-info-text);
+  @include alert-variant($alert-info-bg, $alert-info-border, $alert-info-text);
 }
 
 .jm-alert-warning {
-    @include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text);
+  @include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text);
 }
 
 .jm-alert-danger {
-    @include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
+  @include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
 }
-

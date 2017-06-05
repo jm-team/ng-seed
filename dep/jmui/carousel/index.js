@@ -3,15 +3,15 @@
  */
 require('./index.scss');
 angular.module('jmui.carousel', [])
-  .directive('jmCarousel', function(){
+  .directive('jmCarousel', function() {
     return {
-      restrict:'AE',
+      restrict: 'AE',
 
-      scope:{
-        interval:'@'
+      scope: {
+        interval: '@'
       },
 
-      link: function(scope, element, attrs){
+      link: function(scope, element, attrs) {
         var oNext = null;
         var oProvice = null;
         var oUl = element.find('.jm-carousel-inner');
@@ -32,11 +32,11 @@ angular.module('jmui.carousel', [])
         var endTime = 0;
         var carouselControl = ["<button class='carousel-control previous'></button><button class='carousel-control next'></button>"];
 
-        if(!element.attr('start')){
+        if (!element.attr('start')) {
           setTimeout(init, 0);
-        }else{
-          var s = attrs.$observe("start", function(val){
-            if(!!scope.$eval(val)){
+        } else {
+          var s = attrs.$observe("start", function(val) {
+            if (!!scope.$eval(val)) {
               setTimeout(init, 0);
               s();
             }
@@ -45,17 +45,17 @@ angular.module('jmui.carousel', [])
 
         element.addClass('jm-carousel');
 
-        function init(){
+        function init() {
           var oIndexs;
 
           oLists = element.find('.item');
-          if(oLists.length <= 1){
-            return ;
+          if (oLists.length <= 1) {
+            return;
           }
 
-          angular.forEach(oLists, function(value, index){
-            var className = "index-item"+ (!index ? ' active':'');
-            indexs.push("<span class='"+className+"'></span>");
+          angular.forEach(oLists, function(value, index) {
+            var className = "index-item" + (!index ? ' active' : '');
+            indexs.push("<span class='" + className + "'></span>");
           });
 
           oIndexs = angular.element('<div class="jm-carousel-indicators"></div>').html(indexs.join(''));
@@ -68,19 +68,19 @@ angular.module('jmui.carousel', [])
           oNext = element.find('.next');
           oProvice = element.find('.previous');
 
-          aIndexs.forEach(function(item, index){
-            item.onclick = function(){
-              if(index > currentIndex){
+          aIndexs.forEach(function(item, index) {
+            item.onclick = function() {
+              if (index > currentIndex) {
                 setCurrent(index, true)
-              }else{
+              } else {
                 setCurrent(index, false)
               }
               // setCurrent(index, true)
             }
           });
 
-          if(typeof oUl[0].addEventListener === "function"){
-            oUl[0].addEventListener('transitionend', function(ev){
+          if (typeof oUl[0].addEventListener === "function") {
+            oUl[0].addEventListener('transitionend', function(ev) {
 
               oLists.css('transition', 'none');
               isAnimating = false;
@@ -91,21 +91,21 @@ angular.module('jmui.carousel', [])
           }
 
 
-          oNext.on('click', function(){
-            setCurrent(currentIndex+1, true);
+          oNext.on('click', function() {
+            setCurrent(currentIndex + 1, true);
           });
 
-          oProvice.on('click', function(ev){
+          oProvice.on('click', function(ev) {
             ev.stopPropagation();
             ev.preventDefault();
-            setCurrent(currentIndex-1, false)
+            setCurrent(currentIndex - 1, false)
           });
 
-          oCarousel.on('mouseenter', function(){
+          oCarousel.on('mouseenter', function() {
             clearTimeout(timer2);
           });
 
-          oCarousel.on('mouseleave', function(){
+          oCarousel.on('mouseleave', function() {
             autoPlay();
           });
 
@@ -114,16 +114,16 @@ angular.module('jmui.carousel', [])
         }
 
 
-        function setCurrent(index, isNext){
-          if(isAnimating){
-            return ;
+        function setCurrent(index, isNext) {
+          if (isAnimating) {
+            return;
           }
-          if(preIndex === -1){
+          if (preIndex === -1) {
             angular.element(oLists[currentIndex]).addClass('active');
             oLists[currentIndex].style.left = "0";
             preIndex = currentIndex;
             currentIndex = index;
-            return ;
+            return;
           }
 
 
@@ -132,13 +132,13 @@ angular.module('jmui.carousel', [])
 
 
 
-          if(isNext){
-            if(currentIndex >= oLists.length){
+          if (isNext) {
+            if (currentIndex >= oLists.length) {
               currentIndex = 0;
             }
             oLists[currentIndex].style.left = "100%";
-          } else{
-            if(currentIndex === -1){
+          } else {
+            if (currentIndex === -1) {
               currentIndex = oLists.length - 1
             }
             oLists[currentIndex].style.left = "-100%";
@@ -149,11 +149,11 @@ angular.module('jmui.carousel', [])
           // 这样会导致之后的left的赋值执行的时候 之前的赋值就无效了。
           // 这里使用getComputedStyle 强制浏览器渲染。
           // 参考： https://www.web-tinker.com/article/20286.html
-          if(angular.isFunction(window.getComputedStyle)){
+          if (angular.isFunction(window.getComputedStyle)) {
             getComputedStyle(oLists[currentIndex]).left;
           }
 
-          if(oLists[currentIndex].currentStyle){
+          if (oLists[currentIndex].currentStyle) {
             oLists[currentIndex].currentStyle;
           }
 
@@ -161,9 +161,9 @@ angular.module('jmui.carousel', [])
           angular.element(aIndexs[currentIndex]).addClass('active');
 
           oLists[preIndex].style.transition = "left .6s ease-in-out";
-          if(isNext){
+          if (isNext) {
             oLists[preIndex].style.left = "-100%";
-          } else{
+          } else {
             oLists[preIndex].style.left = "100%";
           }
 
@@ -172,17 +172,17 @@ angular.module('jmui.carousel', [])
 
           angular.element(oLists[preIndex]).removeClass('active');
           angular.element(aIndexs[preIndex]).removeClass('active');
-          if(isSupportTransition){
+          if (isSupportTransition) {
             isAnimating = true;
           }
         }
 
-        function autoPlay(){
+        function autoPlay() {
           clearTimeout(timer2);
-          timer2 = setTimeout(function(){
-            setCurrent(currentIndex+1, true);
+          timer2 = setTimeout(function() {
+            setCurrent(currentIndex + 1, true);
             autoPlay()
-          },interval)
+          }, interval)
         }
       }
     }

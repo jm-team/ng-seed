@@ -1,8 +1,6 @@
 //
 // Buttons
 // --------------------------------------------------
-
-
 // Base styles
 // --------------------------------------------------
 
@@ -18,28 +16,28 @@
   border: 1px solid transparent;
   white-space: nowrap;
   color: #666;
-  outline:none;
+  outline: none;
   @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $btn-border-radius-base);
   @include user-select(none);
 
   &,
-  &:active,
-  &.active {
-    &:focus,
-    &.focus {
-     // @include tab-focus;
+  &.active,
+  &:active {
+    &.focus,
+    &:focus {
+      // @include tab-focus;
     }
   }
 
-  &:hover,
+  &.focus,
   &:focus,
-  &.focus {
+  &:hover {
     //color: $btn-default-color;
     text-decoration: none;
   }
 
-  &:active,
-  &.active {
+  &.active,
+  &:active {
     outline: 0;
     background-image: none;
   }
@@ -51,7 +49,6 @@
     @include opacity(.65);
     @include box-shadow(none);
   }
-
   // [converter] extracted a& to a.btn
 }
 
@@ -61,81 +58,83 @@ a.jm-btn {
     pointer-events: none; // Future-proof disabling of clicks on `<a>` elements
   }
 }
-
-
 // Alternate buttons
 // --------------------------------------------------
 
 .jm-btn-default {
   @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
 
-  &:hover{
+  &:hover {
     background: $btn-default-bg;
     border-color: $btn-default-border;
     color: $btn-default-color;
   }
 }
+
 .jm-btn-primary {
   @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
 // Success appears as green
+
 .jm-btn-success {
   @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
 }
 // Info appears as blue-green
+
 .jm-btn-info {
   @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
 }
 // Warning appears as orange
+
 .jm-btn-warning {
   @include button-variant($btn-warning-color, $btn-warning-bg, $btn-warning-border);
 }
 // Danger and error appear as red
+
 .jm-btn-danger {
   @include button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border);
 }
-
-
 // Link buttons
 // -------------------------
-
 // Make a button look and behave like a link
+
 .jm-btn-link {
   color: $link-color;
   font-weight: normal;
   border-radius: 0;
 
   &,
-  &:active,
   &.active,
+  &:active,
   &[disabled],
   fieldset[disabled] & {
     background-color: transparent;
     @include box-shadow(none);
   }
+
   &,
-  &:hover,
+  &:active,
   &:focus,
-  &:active {
+  &:hover {
     border-color: transparent;
   }
-  &:hover,
-  &:focus {
+
+  &:focus,
+  &:hover {
     color: $link-hover-color;
     text-decoration: $link-hover-decoration;
     background-color: transparent;
   }
+
   &[disabled],
   fieldset[disabled] & {
-    &:hover,
-    &:focus {
+    &:focus,
+    &:hover {
       color: $btn-link-disabled-color;
       text-decoration: none;
     }
   }
 }
-
-
 // Button Sizes
 // --------------------------------------------------
 
@@ -143,64 +142,67 @@ a.jm-btn {
   // line-height: ensure even-numbered height of button next to large input
   @include button-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large, $btn-border-radius-large);
 }
+
 .jm-btn-sm {
   // line-height: ensure proper height of button next to small input
   @include button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
 }
+
 .jm-btn-xs {
   @include button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
 }
-
-
 // button 固定尺寸
-.jm-btn-absolute-xs{
+
+.jm-btn-absolute-xs {
   @include button-absolute-size(auto, $btn-absolute-xs, $font-size-small, $btn-absolute-icon-xs);
   padding: 0 5px;
 }
-.jm-btn-absolute-sm{
+
+.jm-btn-absolute-sm {
   @include button-absolute-size(auto, $btn-absolute-sm, $font-size-small, $btn-absolute-icon-sm);
 }
-.jm-btn-absolute-md{
+
+.jm-btn-absolute-md {
   @include button-absolute-size(auto, $btn-absolute-md, $font-size-base, $btn-absolute-icon-md);
 }
-.jm-btn-absolute-lg{
+
+.jm-btn-absolute-lg {
   @include button-absolute-size(auto, $btn-absolute-lg, $font-size-base, $btn-absolute-icon-lg);
 }
-
 // icon button
-.jm-btn-circle-xs{
+
+.jm-btn-circle-xs {
   @include button-circle($btn-absolute-xs, $btn-absolute-xs, $btn-absolute-icon-xs, 50%);
 }
-.jm-btn-circle-sm{
+
+.jm-btn-circle-sm {
   @include button-circle($btn-absolute-sm, $btn-absolute-sm, $btn-absolute-icon-sm, 50%);
 }
-.jm-btn-circle-md{
+
+.jm-btn-circle-md {
   @include button-circle($btn-absolute-md, $btn-absolute-md, $btn-absolute-icon-md, 50%);
 }
-.jm-btn-circle-lg{
+
+.jm-btn-circle-lg {
   @include button-circle($btn-absolute-lg, $btn-absolute-lg, $btn-absolute-icon-lg, 50%);
 }
 
-
-.jm-btn-radius-sm{
+.jm-btn-radius-sm {
   @include button-circle($btn-absolute-sm, $btn-absolute-sm, $btn-absolute-icon-sm, $border-radius-large);
 }
-.jm-btn-radius-md{
+
+.jm-btn-radius-md {
   @include button-circle($btn-absolute-md, $btn-absolute-md, $btn-absolute-icon-md, $border-radius-large);
 }
-.jm-btn-radius-lg{
+
+.jm-btn-radius-lg {
   @include button-circle($btn-absolute-lg, $btn-absolute-lg, $btn-absolute-icon-lg, $border-radius-large);
 }
-
-
 // 3D 按钮尺寸
-.jm-btn-dim-lg{
+
+.jm-btn-dim-lg {
   @include button-dim(90px, 90px,42px);
 }
-
-
-
-
 // Block button
 // --------------------------------------------------
 
@@ -208,16 +210,16 @@ a.jm-btn {
   display: block;
   width: 100%;
 }
-
 // Vertically space out multiple block buttons
+
 .jm-btn-block + .jm-btn-block {
   margin-top: 5px;
 }
-
 // Specificity overrides
-input[type="submit"],
+
+input[type="button"],
 input[type="reset"],
-input[type="button"] {
+input[type="submit"] {
   &.jm-btn-block {
     width: 100%;
   }

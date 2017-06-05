@@ -2,17 +2,18 @@
 // Pager pagination
 // --------------------------------------------------
 
-
 .pager {
   padding-left: 0;
   margin: $line-height-computed 0;
   list-style: none;
   text-align: center;
   @include clearfix;
+
   li {
     display: inline;
-    > a,
-    > span {
+
+     > span,
+    > a {
       display: inline-block;
       padding: 5px 14px;
       background-color: $pager-bg;
@@ -20,32 +21,32 @@
       border-radius: $pager-border-radius;
     }
 
-    > a:hover,
-    > a:focus {
+     > a:focus,
+    > a:hover {
       text-decoration: none;
       background-color: $pager-hover-bg;
     }
   }
 
   .next {
-    > a,
-    > span {
+     > span,
+    > a {
       float: right;
     }
   }
 
   .previous {
-    > a,
-    > span {
+     > span,
+    > a {
       float: left;
     }
   }
 
   .disabled {
-    > a,
-    > a:hover,
-    > a:focus,
-    > span {
+     > a:focus,
+     > a:hover,
+     > span,
+    > a {
       color: $pager-disabled-color;
       background-color: $pager-bg;
       cursor: $cursor-disabled;

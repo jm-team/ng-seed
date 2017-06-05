@@ -7,7 +7,7 @@
     right: 0;
     bottom: 0;
     z-index: 1050;
-    transition: .35s linear all; 
+    transition: .35s linear all;
 }
 
 .dialog-wrap .dialog{
@@ -16,7 +16,7 @@
     transform: translate(-50%, 15%);
 }
 .dialog-wrap.ng-enter .dialog,.dialog-wrap.ng-leave .dialog{
-    transition: inherit; 
+    transition: inherit;
 }
 .dialog-wrap.ng-enter .dialog,
 .dialog-wrap.ng-leave.ng-leave-active .dialog{
@@ -24,7 +24,7 @@
    transform: translate(-50%, 5%);
 }
 .dialog-wrap.ng-enter.ng-enter-active .dialog,
-.dialog-wrap.ng-leave .dialog{ 
+.dialog-wrap.ng-leave .dialog{
     opacity: 1;
     transform:translate(-50%, 15%);
 }

@@ -1,6 +1,6 @@
 <div class="jm-page clearfix" ng-if="totalPage>1">
-    <div class="p-wrap">
-		<span class="p-nums">
+  <div class="p-wrap">
+    <span class="p-nums">
 			<a href="javascript:void(0)" ng-show="directionLinks" class="pn-prev" ng-disabled="currentPage == 1"
                ng-click="selectPrevious($event)">
 				<em ng-bind="previousText || '&lt; 上一页'"></em>
@@ -24,11 +24,11 @@
 			</a>
 		</span>
 
-        <span class="p-skip" ng-if="inputLinks">
+    <span class="p-skip" ng-if="inputLinks">
 			<em>共 <b>{{ totalPage }}</b> 页 &nbsp;&nbsp; 到第</em>
 			<input type="text" class="jm-form-control" name="pageNum" ng-keyup="inputKeyUp($event, currentPage)"
                    ng-model="currentPage"><em>页</em>
 			<a class="btn btn-default" ng-click="setPage($event, currentPage)">确定</a>
 		</span>
-    </div>
+  </div>
 </div>

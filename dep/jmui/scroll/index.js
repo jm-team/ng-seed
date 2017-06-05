@@ -4,7 +4,7 @@
  *
  * @author zhoul
  * @description
- * 
+ *
  * scroll 无缝滚动：
  *  指令属性详细：
  *      1) height: 容器高度
@@ -18,16 +18,16 @@
  *
  */
 angular.module('jmui.scroll', [])
-  .directive('onLastRepeat', ['$timeout', function ($timeout) {
-    return function (scope, element, attrs) {
+  .directive('onLastRepeat', ['$timeout', function($timeout) {
+    return function(scope, element, attrs) {
       if (scope.$last) {
-        $timeout(function () {
+        $timeout(function() {
           scope.$emit(attrs.onLastRepeat);
         });
       }
     };
   }])
-  .directive('scroll', ['$timeout', function ($timeout) {
+  .directive('scroll', ['$timeout', function($timeout) {
     return {
       restrict: 'AE',
       scope: {
@@ -35,7 +35,7 @@ angular.module('jmui.scroll', [])
         finish: "=",
         scrollable: '='
       },
-      link: function (scope, element, attrs) {
+      link: function(scope, element, attrs) {
         var timer = null;
         var top;
         var half;
@@ -53,23 +53,23 @@ angular.module('jmui.scroll', [])
           "top": "0"
         });
 
-        watchFn = scope.$watch('finish', function (value, oldVal) {
+        watchFn = scope.$watch('finish', function(value, oldVal) {
           if (!value || !scope.scrollable || oldVal === value) {
             return false;
           }
-          $timeout(function () {
+          $timeout(function() {
             top = 0;
             half = element[0].offsetHeight / 2;
             if (element[0].offsetHeight > scope.height) {
               auto();
             }
 
-            element.on('mouseleave', function () {
+            element.on('mouseleave', function() {
               if (element[0].offsetHeight > scope.height) {
                 auto();
               }
             });
-            element.on('mouseenter', function () {
+            element.on('mouseenter', function() {
               clearInterval(timer);
             });
           }, 0);
@@ -89,14 +89,14 @@ angular.module('jmui.scroll', [])
 
         function auto() {
           clearInterval(timer);
-          timer = setInterval(function () {
+          timer = setInterval(function() {
             move();
           }, 50);
         }
 
         scope.$on(
           "$destroy",
-          function (event) {
+          function(event) {
             clearInterval(timer);
             watchFn();
           }

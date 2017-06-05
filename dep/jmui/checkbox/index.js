@@ -14,16 +14,16 @@
  *
  *  指令方法详细
  *      1) onChange(arg): 数据源改变的时候
- *        arg: { 
+ *        arg: {
  *          $event: $event,  事件对象
  *          checked: checked 是否选中
  *        ｝
  * @example
- * <div 
- *  jm-checkbox 
+ * <div
+ *  jm-checkbox
  *  checked="vm.checked2"
  *  on-change="change(arg)"
- *  ng-disabled="true" 
+ *  ng-disabled="true"
  *  view-value="Javascript">
  * </div>
  *
@@ -33,7 +33,7 @@ var tmpCheckbox = require('./checkbox.html');
 angular.module('jmui.checkbox', [])
 
   // 复选框
-  .directive('jmCheckbox', function () {
+  .directive('jmCheckbox', function() {
     return {
       restrict: 'AE',
       templateUrl: tmpCheckbox,
@@ -45,15 +45,20 @@ angular.module('jmui.checkbox', [])
         viewValue: '@',
         className: '@'
       },
-      link: function (scope, element, attrs) {
+      link: function(scope, element, attrs) {
 
         scope.disabled = false;
 
-        scope.change = function ($event, checked) {
-          (scope.onChange || angular.noop)({arg: {$event: $event, checked: checked}});
+        scope.change = function($event, checked) {
+          (scope.onChange || angular.noop)({
+            arg: {
+              $event: $event,
+              checked: checked
+            }
+          });
         };
 
-        var observe = attrs.$observe('ngDisabled', function (val) {
+        var observe = attrs.$observe('ngDisabled', function(val) {
           scope.disabled = scope.$eval(val);
           if (!scope.disabled) {
             element.removeAttr('disabled')
@@ -61,7 +66,7 @@ angular.module('jmui.checkbox', [])
         });
 
         // 作用域销毁 执行解除observe
-        scope.$on('$destroy', function(){
+        scope.$on('$destroy', function() {
           observe();
         });
       }
@@ -69,36 +74,36 @@ angular.module('jmui.checkbox', [])
   })
 
   /**
- * [jmCheckboxGroup 复选框组组件]
- *
- * @author zhoul
- * @description
- *  基于jmCheckbox
- *  可以操作options中每一项的disabled来控制是否禁用
- *  jmCheckboxGroup 复选框组组件：
- *  指令属性详细：
- *      1) options: 显示的复选框数组
- *          {
- *            disabled: Boolean,  控制当前项是否禁用
- *            title: String,      checkbox显示的值 
- *          }
- *      2) checkeds: 一组选中的值 
- *
- *  指令方法详细
- *      1) onChange(arg): 数据源改变的时候
- *        arg: { 
- *          checkeds: 当前选中的一组值
- *        ｝
- * @example
- * <div 
- *  jm-checkbox-group 
- *  on-change="vm.onChange()" 
- *  options="vm.options4" 
- *  checkeds="vm.checkeds4">
- * </div>
- *
- */
-  .directive('jmCheckboxGroup', function () {
+   * [jmCheckboxGroup 复选框组组件]
+   *
+   * @author zhoul
+   * @description
+   *  基于jmCheckbox
+   *  可以操作options中每一项的disabled来控制是否禁用
+   *  jmCheckboxGroup 复选框组组件：
+   *  指令属性详细：
+   *      1) options: 显示的复选框数组
+   *          {
+   *            disabled: Boolean,  控制当前项是否禁用
+   *            title: String,      checkbox显示的值
+   *          }
+   *      2) checkeds: 一组选中的值
+   *
+   *  指令方法详细
+   *      1) onChange(arg): 数据源改变的时候
+   *        arg: {
+   *          checkeds: 当前选中的一组值
+   *        ｝
+   * @example
+   * <div
+   *  jm-checkbox-group
+   *  on-change="vm.onChange()"
+   *  options="vm.options4"
+   *  checkeds="vm.checkeds4">
+   * </div>
+   *
+   */
+  .directive('jmCheckboxGroup', function() {
     return {
       restrict: 'AE',
       scope: {
@@ -107,13 +112,13 @@ angular.module('jmui.checkbox', [])
         checkeds: '='
       },
       template: '<div jm-checkbox on-change="toggleOption(arg, opt)" ng-repeat="opt in options" checked="opt.checked"  view-value="{{opt.title}}" ng-disabled="{{opt.disabled}}"></div>',
-      link: function (scope) {
+      link: function(scope) {
 
         // 构造checkbox 数据
         function getOptions(options) {
           var newOptions = [];
 
-          angular.forEach(options, function (option) {
+          angular.forEach(options, function(option) {
             if (typeof option === 'string') {
               newOptions.push({
                 title: option,
@@ -133,14 +138,14 @@ angular.module('jmui.checkbox', [])
 
         // 对选中的checkbox 做标记
         // 以便在view中展示勾选效果
-        angular.forEach(scope.options, function (item) {
+        angular.forEach(scope.options, function(item) {
           if (scope.checkeds.indexOf(item.value) !== -1) {
             item.checked = true;
           }
         });
 
         // 切换选中/非选中
-        scope.toggleOption = function (arg, opt) {
+        scope.toggleOption = function(arg, opt) {
           if (angular.isArray(scope.checkeds)) {
             if (arg.checked) {
               scope.checkeds.push(opt.value)
@@ -151,7 +156,9 @@ angular.module('jmui.checkbox', [])
           }
 
           // 执行改变钩子函数
-          (scope.onChange || angular.noop)({checkeds: scope.checkeds});
+          (scope.onChange || angular.noop)({
+            checkeds: scope.checkeds
+          });
         }
       }
     }

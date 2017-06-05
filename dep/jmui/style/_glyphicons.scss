@@ -6,312 +6,588 @@
 // inline element with the appropriate classes, like so:
 //
 // <a href="#"><span class="glyphicon glyphicon-star"></span> Star</a>
-
 @at-root {
   // Import the fonts
   @font-face {
     font-family: 'jm-icon';
-    src: url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.eot'), '#{$icon-font-path}#{$icon-font-name}.eot'));
-
-
-    src: url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.eot?#iefix'), '#{$icon-font-path}#{$icon-font-name}.eot?#iefix')) format('embedded-opentype'),
-         url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.woff2'), '#{$icon-font-path}#{$icon-font-name}.woff2')) format('woff2'),
-         url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.woff'), '#{$icon-font-path}#{$icon-font-name}.woff')) format('woff'),
-         url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.ttf'), '#{$icon-font-path}#{$icon-font-name}.ttf')) format('truetype'),
-         url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.svg##{$icon-font-svg-id}'), '#{$icon-font-path}#{$icon-font-name}.svg##{$icon-font-svg-id}')) format('svg');
+    src: url("if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.eot'), '#{$icon-font-path}#{$icon-font-name}.eot')");
+    src: url("if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.eot?#iefix'), '#{$icon-font-path}#{$icon-font-name}.eot?#iefix')") format('embedded-opentype'), url("if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.woff2'), '#{$icon-font-path}#{$icon-font-name}.woff2')") format('woff2'), url("if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.woff'), '#{$icon-font-path}#{$icon-font-name}.woff')") format('woff'), url("if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.ttf'), '#{$icon-font-path}#{$icon-font-name}.ttf')") format('truetype'), url("if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.svg##{$icon-font-svg-id}'), '#{$icon-font-path}#{$icon-font-name}.svg##{$icon-font-svg-id}')") format('svg');
   }
 }
-
 // Catchall baseclass
+
 .jm-icon {
-  font-family:"jm-icon" !important;
-  font-size:16px;
-  font-style:normal;
+  font-family: "jm-icon" !important;
+  font-size: 16px;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.jm-icon-add:before { content: "\e775"; }
-
-.jm-icon-attachment:before { content: "\e776"; }
-
-.jm-icon-back2top:before { content: "\e778"; }
-
-.jm-icon-close:before { content: "\e779"; }
-
-.jm-icon-costincluded:before { content: "\e77a"; }
-
-.jm-icon-costnotincluded:before { content: "\e77b"; }
-
-.jm-icon-discoverline:before { content: "\e77c"; }
-
-.jm-icon-discovershape:before { content: "\e77d"; }
-
-.jm-icon-earth:before { content: "\e77e"; }
-
-.jm-icon-ensure:before { content: "\e77f"; }
-
-.jm-icon-guide2:before { content: "\e780"; }
-
-.jm-icon-guidepost:before { content: "\e781"; }
-
-.jm-icon-help:before { content: "\e782"; }
-
-.jm-icon-homeline:before { content: "\e783"; }
-
-.jm-icon-homeshape:before { content: "\e784"; }
-
-.jm-icon-like2line:before { content: "\e785"; }
-
-.jm-icon-sign:before { content: "\e786"; }
-
-.jm-icon-announcement:before { content: "\e787"; }
-
-.jm-icon-chef:before { content: "\e788"; }
-
-.jm-icon-clock:before { content: "\e789"; }
-
-.jm-icon-down:before { content: "\e78a"; }
-
-.jm-icon-enter:before { content: "\e78b"; }
-
-.jm-icon-expression:before { content: "\e78c"; }
-
-.jm-icon-guide:before { content: "\e78d"; }
-
-.jm-icon-internationalflight:before { content: "\e78f"; }
-
-.jm-icon-like:before { content: "\e790"; }
-
-.jm-icon-myline:before { content: "\e792"; }
-
-.jm-icon-myshape:before { content: "\e793"; }
-
-.jm-icon-passport:before { content: "\e794"; }
-
-.jm-icon-process:before { content: "\e795"; }
-
-.jm-icon-screen:before { content: "\e796"; }
-
-.jm-icon-search:before { content: "\e797"; }
-
-.jm-icon-ship:before { content: "\e798"; }
-
-.jm-icon-add2:before { content: "\e799"; }
-
-.jm-icon-map:before { content: "\e79b"; }
-
-.jm-icon-message:before { content: "\e79c"; }
-
-.jm-icon-orderlist:before { content: "\e79d"; }
-
-.jm-icon-parkinglot:before { content: "\e79e"; }
-
-.jm-icon-passenger:before { content: "\e79f"; }
-
-.jm-icon-play:before { content: "\e7a0"; }
-
-.jm-icon-refresh:before { content: "\e7a1"; }
-
-.jm-icon-refund:before { content: "\e7a2"; }
-
-.jm-icon-selectseat:before { content: "\e7a3"; }
-
-.jm-icon-switch:before { content: "\e7a4"; }
-
-.jm-icon-ticket:before { content: "\e7a5"; }
-
-.jm-icon-time:before { content: "\e7a6"; }
-
-.jm-icon-timetable:before { content: "\e7a7"; }
-
-.jm-icon-up:before { content: "\e7a8"; }
-
-.jm-icon-vacation:before { content: "\e7a9"; }
-
-.jm-icon-wangwang:before { content: "\e7aa"; }
-
-.jm-icon-breakfast:before { content: "\e7ab"; }
-
-.jm-icon-broadband:before { content: "\e7ac"; }
-
-.jm-icon-bus:before { content: "\e7ad"; }
-
-.jm-icon-bussiness:before { content: "\e7ae"; }
-
-.jm-icon-calendar:before { content: "\e7af"; }
-
-.jm-icon-china:before { content: "\e7b0"; }
-
-.jm-icon-collect:before { content: "\e7b1"; }
-
-.jm-icon-crown:before { content: "\e7b2"; }
-
-.jm-icon-detail:before { content: "\e7b3"; }
-
-.jm-icon-endorse:before { content: "\e7b4"; }
-
-.jm-icon-exit:before { content: "\e7b5"; }
-
-.jm-icon-failed:before { content: "\e7b6"; }
-
-.jm-icon-flight:before { content: "\e7b7"; }
-
-.jm-icon-food:before { content: "\e7b8"; }
-
-.jm-icon-hint:before { content: "\e7b9"; }
-
-.jm-icon-hotel:before { content: "\e7ba"; }
-
-.jm-icon-information2:before { content: "\e7bb"; }
-
-.jm-icon-internationalattraction:before { content: "\e7bc"; }
-
-.jm-icon-journeyline:before { content: "\e7bd"; }
-
-.jm-icon-journeyshape:before { content: "\e7be"; }
-
-.jm-icon-lamp:before { content: "\e7bf"; }
-
-.jm-icon-loaction:before { content: "\e7c0"; }
-
-.jm-icon-meeting:before { content: "\e7c1"; }
-
-.jm-icon-more2:before { content: "\e7c2"; }
-
-.jm-icon-nationalattraction:before { content: "\e7c3"; }
-
-.jm-icon-nationglattraction2:before { content: "\e7c4"; }
-
-.jm-icon-navigation:before { content: "\e7c5"; }
-
-.jm-icon-order:before { content: "\e7c6"; }
-
-.jm-icon-phone:before { content: "\e7c7"; }
-
-.jm-icon-pool:before { content: "\e7c8"; }
-
-.jm-icon-reduce:before { content: "\e7c9"; }
-
-.jm-icon-reminder:before { content: "\e7ca"; }
-
-.jm-icon-sale:before { content: "\e7cb"; }
-
-.jm-icon-scan:before { content: "\e7cc"; }
-
-.jm-icon-setting:before { content: "\e7cd"; }
-
-.jm-icon-more:before { content: "\e7ce"; }
-
-.jm-icon-activity:before { content: "\e7cf"; }
-
-.jm-icon-back2:before { content: "\e7d0"; }
-
-.jm-icon-diamond:before { content: "\e7d2"; }
-
-.jm-icon-discovery2line:before { content: "\e7d3"; }
-
-.jm-icon-shop:before { content: "\e7d5"; }
-
-.jm-icon-shopping:before { content: "\e7d6"; }
-
-.jm-icon-shower:before { content: "\e7d8"; }
-
-.jm-icon-sing:before { content: "\e7d9"; }
-
-.jm-icon-succed:before { content: "\e7da"; }
-
-.jm-icon-taxi:before { content: "\e7db"; }
-
-.jm-icon-train:before { content: "\e7dc"; }
-
-.jm-icon-training:before { content: "\e7dd"; }
-
-.jm-icon-unpaidorder:before { content: "\e7de"; }
-
-.jm-icon-washmachine:before { content: "\e7df"; }
-
-.jm-icon-wifi:before { content: "\e7e0"; }
-
-.jm-icon-add2journey:before { content: "\e7e1"; }
-
-.jm-icon-home2shape:before { content: "\e7e5"; }
-
-.jm-icon-information:before { content: "\e7e6"; }
-
-.jm-icon-journey2line:before { content: "\e7e7"; }
-
-.jm-icon-journey2shape:before { content: "\e7e8"; }
-
-.jm-icon-left:before { content: "\e7e9"; }
-
-.jm-icon-like2shape:before { content: "\e7ea"; }
-
-.jm-icon-my2line:before { content: "\e7eb"; }
-
-.jm-icon-left1:before { content: "\e7f4"; }
-
-.jm-icon-travelheadlines:before { content: "\e81e"; }
-
-.jm-icon-weekendtrip:before { content: "\e81f"; }
-
-.jm-icon-lightoff:before { content: "\e829"; }
-
-.jm-icon-lighton:before { content: "\e82a"; }
-
-.jm-icon-share-copy:before { content: "\e82d"; }
-
-.jm-icon-icon2:before { content: "\e82f"; }
-
-.jm-icon-icon21:before { content: "\e830"; }
-
-.jm-icon-camera:before { content: "\e832"; }
-
-.jm-icon-back:before { content: "\e833"; }
-
-.jm-icon-delete:before { content: "\e836"; }
-
-.jm-icon-111:before { content: "\e841"; }
-
-.jm-icon-fullscreen:before { content: "\e845"; }
-
-.jm-icon-pause:before { content: "\e847"; }
-
-.jm-icon-shoppingcart2line:before { content: "\e849"; }
-
-.jm-icon-select:before { content: "\e84a"; }
-
-.jm-icon-selectcity:before { content: "\e84d"; }
-
-.jm-icon-selectmethod:before { content: "\e850"; }
-
-.jm-icon-selectlocal:before { content: "\e851"; }
-
-.jm-icon-fill_recommend:before { content: "\e852"; }
-
-.jm-icon-filllocalplay:before { content: "\e85a"; }
-
-.jm-icon-trave_days:before { content: "\e85e"; }
-
-.jm-icon-transfer:before { content: "\e85f"; }
-
-.jm-icon-weidenglu:before { content: "\e860"; }
-
-.jm-icon-yijianfankui:before { content: "\e861"; }
-
-.jm-icon-youhuiquan:before { content: "\e862"; }
-
-.jm-icon-gouwuche:before { content: "\e863"; }
-
-.jm-icon-huidaodingbu:before { content: "\e864"; }
-
-.jm-icon-saoyisao:before { content: "\e865"; }
-
-.jm-icon-xihuan:before { content: "\e86f"; }
-
-.jm-icon-xihuan1:before { content: "\e870"; }
-
-.jm-icon-zan:before { content: "\e871"; }
-
-.jm-icon-zan1:before { content: "\e872"; }
-
+.jm-icon-add:before {
+  content: "\e775";
+}
+
+.jm-icon-attachment:before {
+  content: "\e776";
+}
+
+.jm-icon-back2top:before {
+  content: "\e778";
+}
+
+.jm-icon-close:before {
+  content: "\e779";
+}
+
+.jm-icon-costincluded:before {
+  content: "\e77a";
+}
+
+.jm-icon-costnotincluded:before {
+  content: "\e77b";
+}
+
+.jm-icon-discoverline:before {
+  content: "\e77c";
+}
+
+.jm-icon-discovershape:before {
+  content: "\e77d";
+}
+
+.jm-icon-earth:before {
+  content: "\e77e";
+}
+
+.jm-icon-ensure:before {
+  content: "\e77f";
+}
+
+.jm-icon-guide2:before {
+  content: "\e780";
+}
+
+.jm-icon-guidepost:before {
+  content: "\e781";
+}
+
+.jm-icon-help:before {
+  content: "\e782";
+}
+
+.jm-icon-homeline:before {
+  content: "\e783";
+}
+
+.jm-icon-homeshape:before {
+  content: "\e784";
+}
+
+.jm-icon-like2line:before {
+  content: "\e785";
+}
+
+.jm-icon-sign:before {
+  content: "\e786";
+}
+
+.jm-icon-announcement:before {
+  content: "\e787";
+}
+
+.jm-icon-chef:before {
+  content: "\e788";
+}
+
+.jm-icon-clock:before {
+  content: "\e789";
+}
+
+.jm-icon-down:before {
+  content: "\e78a";
+}
+
+.jm-icon-enter:before {
+  content: "\e78b";
+}
+
+.jm-icon-expression:before {
+  content: "\e78c";
+}
+
+.jm-icon-guide:before {
+  content: "\e78d";
+}
+
+.jm-icon-internationalflight:before {
+  content: "\e78f";
+}
+
+.jm-icon-like:before {
+  content: "\e790";
+}
+
+.jm-icon-myline:before {
+  content: "\e792";
+}
+
+.jm-icon-myshape:before {
+  content: "\e793";
+}
+
+.jm-icon-passport:before {
+  content: "\e794";
+}
+
+.jm-icon-process:before {
+  content: "\e795";
+}
+
+.jm-icon-screen:before {
+  content: "\e796";
+}
+
+.jm-icon-search:before {
+  content: "\e797";
+}
+
+.jm-icon-ship:before {
+  content: "\e798";
+}
+
+.jm-icon-add2:before {
+  content: "\e799";
+}
+
+.jm-icon-map:before {
+  content: "\e79b";
+}
+
+.jm-icon-message:before {
+  content: "\e79c";
+}
+
+.jm-icon-orderlist:before {
+  content: "\e79d";
+}
+
+.jm-icon-parkinglot:before {
+  content: "\e79e";
+}
+
+.jm-icon-passenger:before {
+  content: "\e79f";
+}
+
+.jm-icon-play:before {
+  content: "\e7a0";
+}
+
+.jm-icon-refresh:before {
+  content: "\e7a1";
+}
+
+.jm-icon-refund:before {
+  content: "\e7a2";
+}
+
+.jm-icon-selectseat:before {
+  content: "\e7a3";
+}
+
+.jm-icon-switch:before {
+  content: "\e7a4";
+}
+
+.jm-icon-ticket:before {
+  content: "\e7a5";
+}
+
+.jm-icon-time:before {
+  content: "\e7a6";
+}
+
+.jm-icon-timetable:before {
+  content: "\e7a7";
+}
+
+.jm-icon-up:before {
+  content: "\e7a8";
+}
+
+.jm-icon-vacation:before {
+  content: "\e7a9";
+}
+
+.jm-icon-wangwang:before {
+  content: "\e7aa";
+}
+
+.jm-icon-breakfast:before {
+  content: "\e7ab";
+}
+
+.jm-icon-broadband:before {
+  content: "\e7ac";
+}
+
+.jm-icon-bus:before {
+  content: "\e7ad";
+}
+
+.jm-icon-bussiness:before {
+  content: "\e7ae";
+}
+
+.jm-icon-calendar:before {
+  content: "\e7af";
+}
+
+.jm-icon-china:before {
+  content: "\e7b0";
+}
+
+.jm-icon-collect:before {
+  content: "\e7b1";
+}
+
+.jm-icon-crown:before {
+  content: "\e7b2";
+}
+
+.jm-icon-detail:before {
+  content: "\e7b3";
+}
+
+.jm-icon-endorse:before {
+  content: "\e7b4";
+}
+
+.jm-icon-exit:before {
+  content: "\e7b5";
+}
+
+.jm-icon-failed:before {
+  content: "\e7b6";
+}
+
+.jm-icon-flight:before {
+  content: "\e7b7";
+}
+
+.jm-icon-food:before {
+  content: "\e7b8";
+}
+
+.jm-icon-hint:before {
+  content: "\e7b9";
+}
+
+.jm-icon-hotel:before {
+  content: "\e7ba";
+}
+
+.jm-icon-information2:before {
+  content: "\e7bb";
+}
+
+.jm-icon-internationalattraction:before {
+  content: "\e7bc";
+}
+
+.jm-icon-journeyline:before {
+  content: "\e7bd";
+}
+
+.jm-icon-journeyshape:before {
+  content: "\e7be";
+}
+
+.jm-icon-lamp:before {
+  content: "\e7bf";
+}
+
+.jm-icon-loaction:before {
+  content: "\e7c0";
+}
+
+.jm-icon-meeting:before {
+  content: "\e7c1";
+}
+
+.jm-icon-more2:before {
+  content: "\e7c2";
+}
+
+.jm-icon-nationalattraction:before {
+  content: "\e7c3";
+}
+
+.jm-icon-nationglattraction2:before {
+  content: "\e7c4";
+}
+
+.jm-icon-navigation:before {
+  content: "\e7c5";
+}
+
+.jm-icon-order:before {
+  content: "\e7c6";
+}
+
+.jm-icon-phone:before {
+  content: "\e7c7";
+}
+
+.jm-icon-pool:before {
+  content: "\e7c8";
+}
+
+.jm-icon-reduce:before {
+  content: "\e7c9";
+}
+
+.jm-icon-reminder:before {
+  content: "\e7ca";
+}
+
+.jm-icon-sale:before {
+  content: "\e7cb";
+}
+
+.jm-icon-scan:before {
+  content: "\e7cc";
+}
+
+.jm-icon-setting:before {
+  content: "\e7cd";
+}
+
+.jm-icon-more:before {
+  content: "\e7ce";
+}
+
+.jm-icon-activity:before {
+  content: "\e7cf";
+}
+
+.jm-icon-back2:before {
+  content: "\e7d0";
+}
+
+.jm-icon-diamond:before {
+  content: "\e7d2";
+}
+
+.jm-icon-discovery2line:before {
+  content: "\e7d3";
+}
+
+.jm-icon-shop:before {
+  content: "\e7d5";
+}
+
+.jm-icon-shopping:before {
+  content: "\e7d6";
+}
+
+.jm-icon-shower:before {
+  content: "\e7d8";
+}
+
+.jm-icon-sing:before {
+  content: "\e7d9";
+}
+
+.jm-icon-succed:before {
+  content: "\e7da";
+}
+
+.jm-icon-taxi:before {
+  content: "\e7db";
+}
+
+.jm-icon-train:before {
+  content: "\e7dc";
+}
+
+.jm-icon-training:before {
+  content: "\e7dd";
+}
+
+.jm-icon-unpaidorder:before {
+  content: "\e7de";
+}
+
+.jm-icon-washmachine:before {
+  content: "\e7df";
+}
+
+.jm-icon-wifi:before {
+  content: "\e7e0";
+}
+
+.jm-icon-add2journey:before {
+  content: "\e7e1";
+}
+
+.jm-icon-home2shape:before {
+  content: "\e7e5";
+}
+
+.jm-icon-information:before {
+  content: "\e7e6";
+}
+
+.jm-icon-journey2line:before {
+  content: "\e7e7";
+}
+
+.jm-icon-journey2shape:before {
+  content: "\e7e8";
+}
+
+.jm-icon-left:before {
+  content: "\e7e9";
+}
+
+.jm-icon-like2shape:before {
+  content: "\e7ea";
+}
+
+.jm-icon-my2line:before {
+  content: "\e7eb";
+}
+
+.jm-icon-left1:before {
+  content: "\e7f4";
+}
+
+.jm-icon-travelheadlines:before {
+  content: "\e81e";
+}
+
+.jm-icon-weekendtrip:before {
+  content: "\e81f";
+}
+
+.jm-icon-lightoff:before {
+  content: "\e829";
+}
+
+.jm-icon-lighton:before {
+  content: "\e82a";
+}
+
+.jm-icon-share-copy:before {
+  content: "\e82d";
+}
+
+.jm-icon-icon2:before {
+  content: "\e82f";
+}
+
+.jm-icon-icon21:before {
+  content: "\e830";
+}
+
+.jm-icon-camera:before {
+  content: "\e832";
+}
+
+.jm-icon-back:before {
+  content: "\e833";
+}
+
+.jm-icon-delete:before {
+  content: "\e836";
+}
+
+.jm-icon-111:before {
+  content: "\e841";
+}
+
+.jm-icon-fullscreen:before {
+  content: "\e845";
+}
+
+.jm-icon-pause:before {
+  content: "\e847";
+}
+
+.jm-icon-shoppingcart2line:before {
+  content: "\e849";
+}
+
+.jm-icon-select:before {
+  content: "\e84a";
+}
+
+.jm-icon-selectcity:before {
+  content: "\e84d";
+}
+
+.jm-icon-selectmethod:before {
+  content: "\e850";
+}
+
+.jm-icon-selectlocal:before {
+  content: "\e851";
+}
+
+.jm-icon-fill_recommend:before {
+  content: "\e852";
+}
+
+.jm-icon-filllocalplay:before {
+  content: "\e85a";
+}
+
+.jm-icon-trave_days:before {
+  content: "\e85e";
+}
+
+.jm-icon-transfer:before {
+  content: "\e85f";
+}
+
+.jm-icon-weidenglu:before {
+  content: "\e860";
+}
+
+.jm-icon-yijianfankui:before {
+  content: "\e861";
+}
+
+.jm-icon-youhuiquan:before {
+  content: "\e862";
+}
+
+.jm-icon-gouwuche:before {
+  content: "\e863";
+}
+
+.jm-icon-huidaodingbu:before {
+  content: "\e864";
+}
+
+.jm-icon-saoyisao:before {
+  content: "\e865";
+}
+
+.jm-icon-xihuan:before {
+  content: "\e86f";
+}
+
+.jm-icon-xihuan1:before {
+  content: "\e870";
+}
+
+.jm-icon-zan:before {
+  content: "\e871";
+}
+
+.jm-icon-zan1:before {
+  content: "\e872";
+}

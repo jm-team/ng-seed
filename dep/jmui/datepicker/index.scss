@@ -6,123 +6,124 @@
   z-index: 10;
   padding: 8px;
 
-  button{
+  button {
     outline: none;
-    border:none;
+    border: none;
     text-align: center;
   }
 
-  .action-buttons{
-    color:#fff;
-  }
   .action-buttons {
-    button{
+    color: #fff;
+  }
+
+  .action-buttons {
+    button {
       height: 26px;
     }
   }
 }
+
 [datepicker-popup-wrap] table {
   margin: 0;
   width: 100%;
-  background:#fff;
+  background: #fff;
   outline: none;
 
-  .prev-button,
-  .next-button{
+  .next-button,
+  .prev-button {
     font-size: 18px;
   }
 
-  span{
-    color:#646565;
+  span {
+    color: #646565;
   }
 
-  button[disabled]{
-    span{
+  button[disabled] {
+    span {
       color: #999;
     }
   }
 
-  button{
-    border:none;
+  button {
+    border: none;
     background: none;
     text-align: center;
     width: 100%;
   }
 
-  > thead button{
+  > thead button {
     padding: 8px 0;
   }
 
-  .weeks{
+  .weeks {
     color: #979898;
     font-weight: normal;
   }
 }
-
 
 [datepicker-popup-wrap] td,
 [datepicker-popup-wrap] th {
   text-align: center;
   color: #979898;
 }
+
 [datepicker-popup-wrap] .switch {
   width: 145px;
   color: #2c2e2f;
 }
+
 [datepicker-popup-wrap] span {
   display: block;
   text-align: center;
 }
 
-
-[datepicker-popup-wrap] [ng-switch-when] span{
+[datepicker-popup-wrap] [ng-switch-when] span {
   padding: 5px;
 }
-[datepicker-popup-wrap] .active span{
-  background-color:#68b828;
-  color:#fff;
+
+[datepicker-popup-wrap] .active span {
+  background-color: #68b828;
+  color: #fff;
 }
 
 [datepicker-popup-wrap] [ng-switch-when] td span.active:hover {
-  background-color:#68b828;
-  color:#fff;
+  background-color: #68b828;
+  color: #fff;
 }
-
 
 [datepicker-popup-wrap] [ng-switch-when] td {
   padding: 0;
-  color:#646565;
+  color: #646565;
 }
-[datepicker-popup-wrap] [ng-switch-when="day"]{
-  
-  .today{
+
+[datepicker-popup-wrap] [ng-switch-when="day"] {
+  .today {
     background: #5bc0de;
     color: #fff;
   }
 
-  span{
-    padding:8px;
+  span {
+    padding: 8px;
   }
-  > td span:hover{
+
+  > td span:hover {
     color: #2c2e2f;
     background: #eee;
   }
 
-  > td[disabled]{
-    span{
+  > td[disabled] {
+    span {
       color: #999;
     }
-    span:hover{
+
+    span:hover {
       color: #999;
-      background:none;
+      background: none;
     }
   }
-} 
+}
 
-[date-range] [datepicker-popup-wrap]{
+[date-range] [datepicker-popup-wrap] {
   position: relative;
   margin: 0 10px;
 }
-
-
-

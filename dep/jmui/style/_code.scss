@@ -1,17 +1,16 @@
 //
 // Code (inline and block)
 // --------------------------------------------------
-
-
 // Inline and block code styles
+
 code,
 kbd,
 pre,
 samp {
   font-family: $font-family-monospace;
 }
-
 // Inline code
+
 code {
   padding: 2px 4px;
   font-size: 90%;
@@ -19,8 +18,8 @@ code {
   background-color: $code-bg;
   border-radius: $border-radius-base;
 }
-
 // User input typically entered via keyboard
+
 kbd {
   padding: 2px 4px;
   font-size: 90%;
@@ -36,8 +35,8 @@ kbd {
     box-shadow: none;
   }
 }
-
 // Blocks of code
+
 pre {
   display: block;
   padding: (($line-height-computed - 1) / 2);
@@ -50,7 +49,6 @@ pre {
   background-color: $pre-bg;
   border: 1px solid $pre-border-color;
   border-radius: $border-radius-base;
-
   // Account for some code outputs that place code tags in pre tags
   code {
     padding: 0;
@@ -61,8 +59,8 @@ pre {
     border-radius: 0;
   }
 }
-
 // Enable scrollable blocks of code
+
 .pre-scrollable {
   max-height: $pre-scrollable-max-height;
   overflow-y: scroll;

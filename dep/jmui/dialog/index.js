@@ -176,7 +176,10 @@ angular
      */
     Dialogs.prototype.modal = function (conf) {
       var config = conf || {};
-      var scope = this.scope = $rootScope.$new();
+      var scope = this.scope = $rootScope.$new(true);
+
+      console.log(scope);
+
       var defer = $q.defer();
       var self = this;
       var method = config.method;

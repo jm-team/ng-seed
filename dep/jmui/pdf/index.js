@@ -4,9 +4,9 @@
  *
  * @author zhoul
  * @description
- *  组件基于pdfobject.js 
+ *  组件基于pdfobject.js
  *  https://github.com/pipwerks/PDFObject
- * 
+ *
  * pdf预览组件：
  *  指令属性详细：
  *      1) url: pdf 地址
@@ -18,7 +18,7 @@
 
 require('expose-loader?PDFObject!./pdfobject.js');
 angular.module("jmui.pdf", [])
-  .directive('jmPdf', function () {
+  .directive('jmPdf', function() {
     // 判断是否是IE
     // IE 在没有安装PDF 阅读软件或者浏览器调用不出pdf阅读软件的时候
     // 应该显示pdf 文件地址链接
@@ -33,10 +33,10 @@ angular.module("jmui.pdf", [])
     return {
       restrict: 'AE',
       scope: {},
-      link: function (scope, element, attrs) {
+      link: function(scope, element, attrs) {
         var iframe = null;
 
-        attrs.$observe('url', function (newValue) {
+        attrs.$observe('url', function(newValue) {
           if (PDFObject.supportsPDFs) {
             PDFObject.embed(newValue, element[0], {
               fallbackLink: "<p class='noSupport'>您的浏览器不支持在线预览PDF， 您可以 <a target='_blank' href='" + newValue + "'>下载这个PDF</a></p>"
@@ -59,7 +59,7 @@ angular.module("jmui.pdf", [])
           }
         });
 
-        scope.$on('$destory', function () {
+        scope.$on('$destory', function() {
           var ifra = angular.element(iframe);
           if (angular.isObject(ifra) && angular.isFunction(ifra.remove)) {
             ifra.remove();

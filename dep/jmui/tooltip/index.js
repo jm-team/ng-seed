@@ -2,7 +2,7 @@
 require('./tooltip.scss');
 // 文字提示
 angular.module('jmui.tooltip', [])
-  .directive('jmTooltip', function ($http, $rootScope, $window, $document, $timeout, $templateCache, $compile, $sce, $q, $controller) {
+  .directive('jmTooltip', function($http, $rootScope, $window, $document, $timeout, $templateCache, $compile, $sce, $q, $controller) {
     return {
       restrict: 'AE',
       require: '^jmTooltip',
@@ -15,7 +15,7 @@ angular.module('jmui.tooltip', [])
         resolve: '=',
         tooltipTitle: '@'
       },
-      controller: function ($scope, $element, $attrs) {
+      controller: function($scope, $element, $attrs) {
         var tpl = "<h4 ng-if='title' class='title' ng-bind-html='title'></h4><div class='tooltip-content' ng-bind-html='content'></div>",
           templateUrl = $scope.template,
           self = this,
@@ -37,7 +37,7 @@ angular.module('jmui.tooltip', [])
         this.opened = false;
         this.locals = {};
         this.resolveKeys = [];
-        this.resolve = function () {
+        this.resolve = function() {
           var resolves = $scope.resolve,
             arrResolves = [],
             attr;
@@ -54,13 +54,13 @@ angular.module('jmui.tooltip', [])
         };
 
         // 获取内容
-        this.getTpl = function (templateUrl) {
+        this.getTpl = function(templateUrl) {
           var defer = $q.defer();
           // 判断是否有`templateUrl`
           if (templateUrl) {
             $http.get(templateUrl, {
               cache: $templateCache
-            }).then(function (response) {
+            }).then(function(response) {
               defer.resolve(response.data);
             });
           } else {
@@ -70,7 +70,7 @@ angular.module('jmui.tooltip', [])
         };
 
         // 添加/显示元素
-        this.create = function () {
+        this.create = function() {
 
           this.content = $scope.content = $scope.childScope.content = $sce.trustAsHtml($scope.tooltipContent);
           this.title = $scope.title = $scope.childScope.title = $sce.trustAsHtml($scope.tooltipTitle);
@@ -79,7 +79,7 @@ angular.module('jmui.tooltip', [])
           if (this.el) {
             return $q.when(this.el);
           } else {
-            return this.getTpl(templateUrl).then(function (data) {
+            return this.getTpl(templateUrl).then(function(data) {
               var ctrl;
               self.locals.tooltip = self;
               self.locals.$scope = $scope.childScope;
@@ -100,18 +100,18 @@ angular.module('jmui.tooltip', [])
               this.el = $compile(angular.element("<div class='tooltip ng-hide'>" + data + "</div>"))(this.locals.$scope || $scope);
               this.el
                 .addClass($scope.popperClass)
-                .on('click', function ($event) {
+                .on('click', function($event) {
                   $event.stopPropagation();
                 });
 
               if (trigger === 'mouseenter') {
                 this.el
-                  .on('mouseenter', function () {
+                  .on('mouseenter', function() {
                     $timeout.cancel($scope.timer1);
                   })
-                  .on('mouseleave', function () {
-                    $scope.timer2 = $timeout(function () {
-                      $scope.$apply(function () {
+                  .on('mouseleave', function() {
+                    $scope.timer2 = $timeout(function() {
+                      $scope.$apply(function() {
                         self.hide();
                         console.log('mouseleave');
                       });
@@ -119,8 +119,8 @@ angular.module('jmui.tooltip', [])
                   })
               }
 
-              documentClick = $scope.$on('document.click', function () {
-                $scope.$apply(function () {
+              documentClick = $scope.$on('document.click', function() {
+                $scope.$apply(function() {
                   self.hide();
                 });
               });
@@ -132,7 +132,7 @@ angular.module('jmui.tooltip', [])
         };
 
         // 显示`tooltip`
-        this.show = function ($event) {
+        this.show = function($event) {
           this.el.removeClass('ng-hide');
           this.opened = true;
           onShowFn({
@@ -145,7 +145,7 @@ angular.module('jmui.tooltip', [])
         };
 
         // 隐藏`tooltip`
-        this.hide = function ($event) {
+        this.hide = function($event) {
           this.el.addClass('ng-hide');
           this.el.removeClass('in');
           this.opened = false;
@@ -160,7 +160,7 @@ angular.module('jmui.tooltip', [])
 
         // 删除`tooltip`
         // 移除DOM、 作用域、重置`opened`状态、取消监听`body`点击事件
-        this.destroy = function () {
+        this.destroy = function() {
           if (angular.isObject(this.el) && angular.isFunction(this.el.remove)) {
             this.el.remove();
             this.el = null;
@@ -173,7 +173,7 @@ angular.module('jmui.tooltip', [])
         };
 
         // 显示/隐藏切换
-        this.toggleShow = function () {
+        this.toggleShow = function() {
           if (this.opened) {
             this.hide();
           } else {
@@ -183,28 +183,28 @@ angular.module('jmui.tooltip', [])
         };
 
         // 作用域删除 删除DOM
-        $scope.$on('$destroy', function () {
+        $scope.$on('$destroy', function() {
           this.destroy();
         }.bind(this));
       },
-      link: function (scope, element, attrs, ngCtrl) {
+      link: function(scope, element, attrs, ngCtrl) {
         var trigger = attrs.trigger || 'mouseenter';
         scope.childScope = $rootScope.$new();
 
-        element.on(trigger, function ($event) {
+        element.on(trigger, function($event) {
           $event.stopPropagation();
           $event.preventDefault();
 
           // 获取依赖
-          ngCtrl.resolve().then(function (data) {
+          ngCtrl.resolve().then(function(data) {
             // 将依赖保存
-            angular.forEach(data, function (item, index) {
+            angular.forEach(data, function(item, index) {
               var key = ngCtrl.resolveKeys[index];
               var insideKey = key.charAt(0).toUpperCase() + key.substr(1);
-              if(attrs.controllerName){
+              if (attrs.controllerName) {
                 // 创建的控制器时候 依赖注入到创建的控制器中
                 ngCtrl.locals[ngCtrl.resolveKeys[index]] = item;
-              }else{
+              } else {
                 // 当没有自定义控制器的时候 这个值是给自己的scope
                 // 下面的表达式类似 scope.tooltipTitle = item;
                 // 因为传入的 属性tooltip-title 可是html代码 ，
@@ -215,10 +215,10 @@ angular.module('jmui.tooltip', [])
               }
             });
             return data;
-          }).then(function () {
+          }).then(function() {
             // 创建`tooltip`
             return ngCtrl.create();
-          }).then(function (el) {
+          }).then(function(el) {
 
             // 延迟关闭 用于按钮和`tooltip`之间来回移入
             $timeout.cancel(scope.timer2);
@@ -230,7 +230,7 @@ angular.module('jmui.tooltip', [])
             }
 
             // 计算位置
-            $timeout(function () {
+            $timeout(function() {
               var $elOffset = el.getOffset();
               var offset = element.getOffset();
               el.css({
@@ -244,12 +244,11 @@ angular.module('jmui.tooltip', [])
         });
 
         // 相对应需要隐藏的事件
-        element.on(ngCtrl.events[trigger], function ($event) {
-          scope.timer1 = $timeout(function () {
+        element.on(ngCtrl.events[trigger], function($event) {
+          scope.timer1 = $timeout(function() {
             ngCtrl.hide($event);
           }, 60);
         });
       }
     };
   });
-

@@ -4,11 +4,11 @@
  * type="text/javascript-lazy"
  */
 angular.module('jmui.loadScript', [])
-  .directive('script', [function () {
+  .directive('script', [function() {
     return {
       restrict: 'E',
       scope: false,
-      link: function (scope, element, attrs) {
+      link: function(scope, element, attrs) {
         if (attrs.type !== 'text/javascript-lazy') {
           return false;
         }

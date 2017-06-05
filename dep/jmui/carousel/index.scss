@@ -29,7 +29,6 @@
         // left: 0;
       }
     }
-
   }
 
   .carousel-control {
@@ -49,7 +48,7 @@
     opacity: 0;
     filter:alpha(opacity=0);
     outline: none;
-    transition: opacity .5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 
     &.next {
       left: auto;
@@ -69,6 +68,7 @@
       border-left: 4px solid #fff;
       border-bottom: 4px solid #fff;
     }
+
     &.next::before {
       transform: translate(-75%, -50%) rotate(-135deg);
     }
@@ -91,7 +91,7 @@
       border-radius: 100%;
       margin-right: 10px;
       vertical-align: middle;
-      transition: all .6s ease-in-out;
+      transition: all 0.6s ease-in-out;
     }
 
     .active {
