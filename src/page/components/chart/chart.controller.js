@@ -3,9 +3,8 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('ChartCtrl',
     /*@ngInject*/
-    function ($scope, Api, mk) {
+    function ($scope, Api) {
         angular.extend($scope, {
-            mk:mk,
             title: 'Chart Page',
             desc: '圖表示例'
         });
