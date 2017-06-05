@@ -153,6 +153,10 @@ angular.module('jmui.carousel', [])
             getComputedStyle(oLists[currentIndex]).left;
           }
 
+          if(oLists[currentIndex].currentStyle){
+            oLists[currentIndex].currentStyle;
+          }
+
           angular.element(oLists[currentIndex]).addClass('active');
           angular.element(aIndexs[currentIndex]).addClass('active');
 
