@@ -4177,6 +4177,10 @@ omggif@^1.0.5:
   version "1.0.8"
   resolved "http://registry.npm.taobao.org/omggif/download/omggif-1.0.8.tgz#178f37b2ab0b3d7b46ed3a0e46bd0790b58d3530"
 
+on-build-webpack@^0.1.0:
+  version "0.1.0"
+  resolved "http://registry.npm.taobao.org/on-build-webpack/download/on-build-webpack-0.1.0.tgz#a287c0e17766e6141926e5f2cbb0d8bb53b76814"
+
 on-finished@~2.3.0:
   version "2.3.0"
   resolved "http://registry.npm.taobao.org/on-finished/download/on-finished-2.3.0.tgz#20f1336481b083cd75337992a16971aa2d906947"

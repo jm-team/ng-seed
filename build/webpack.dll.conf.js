@@ -3,6 +3,8 @@ const path = require('path')
 const webpack = require('webpack')
 const RemoveWebpackPlugin = require('remove-webpack-plugin')
 const UglifyJsParallelPlugin = require('webpack-uglify-parallel')
+const WebpackOnBuildPlugin = require('on-build-webpack')
+const exec = require('child_process').exec
 
 console.log('=======================================')
 console.log('   请确保将新增的dll文件提交至git/svn   ')
@@ -17,7 +19,7 @@ module.exports = {
             'angular-animate',
             'angular-ui-router',
             'angular-lazy-image',
-            'bindonce'
+            'angular-bindonce'
         ]
     },
     output: {
@@ -59,6 +61,11 @@ module.exports = {
         }),
 
         // remove vendor.***.dll.js
-        new RemoveWebpackPlugin('./dep/vendor')
+        new RemoveWebpackPlugin('./dep/vendor'),
+        // 将新增的dll文件提交至git
+        new WebpackOnBuildPlugin(function(stats) {
+            // Do whatever you want...
+            exec('git add -A')
+        })
     ]
 }

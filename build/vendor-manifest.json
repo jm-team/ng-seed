@@ -1,5 +1,5 @@
 {
-  "name": "vendor_32292824",
+  "name": "vendor_265ecf80",
   "content": {
     "./node_modules/angular/index.js": 1,
     "./node_modules/angular/angular.js": 2,
@@ -9,8 +9,8 @@
     "./node_modules/angular-resource/angular-resource.js": 6,
     "./node_modules/angular-animate/index.js": 7,
     "./node_modules/angular-animate/angular-animate.js": 8,
-    "./node_modules/angular-tree-control/angular-tree-control.js": 9,
-    "./node_modules/angular-ui-router/release/angular-ui-router.js": 10,
-    "./node_modules/angular-lazy-image/dist/lazy-image.js": 11
+    "./node_modules/angular-ui-router/release/angular-ui-router.js": 9,
+    "./node_modules/angular-lazy-image/dist/lazy-image.js": 10,
+    "./node_modules/angular-bindonce/bindonce.js": 11
   }
 }
