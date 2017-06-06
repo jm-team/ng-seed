@@ -21,7 +21,7 @@ app.factory('Api', function($resource, $http, Address) {
     },
 
     GridDataList: function() {
-      return $resource(__webpack_require__.p + 'mock / gridData.json ');
+      return $resource(__webpack_require__.p + 'mock/gridData.json');
     },
 
     // 获取Search
