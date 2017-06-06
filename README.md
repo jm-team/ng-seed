@@ -27,7 +27,7 @@ $ yarn run start
 ### TODO
 - [ ] 图片裁剪（cropper）
 
-## 目录文件说明
+## 文件目录说明
 [wiki: Constructs](https://github.com/jm-team/ng-seed/wiki/Constructs)
 
 ## 注意事项（坑）
