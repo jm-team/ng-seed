@@ -28,8 +28,6 @@ app.factory('Address', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRE
     getLogoutAddress: function () {
       return SERVER_ADDRESS + '/webapi/v1/logout?successful=' + this.getLocalAddress();
     }
-
-
   };
 });
 
@@ -70,23 +68,23 @@ app.factory('Auth', function ($resource, $document, $q, $timeout, Address) {
       window.userLoginSuccessCallback = function (token) {
         oScript.remove();
         defer.resolve(token);
-      }
+      };
 
       // 用户未登录回调
       window.userNotLoginCallback = function () {
         oScript.remove();
-        defer.reject({error: 'ERROR'});
-      }
+        defer.reject({
+          error: 'ERROR'
+        });
+      };
 
       var oScript = $(document.createElement('script'));
       oScript.attr({
         src: options.src,
         id: 'hasLogin'
       });
-
-
       $document.find('#hasLogin').remove();
-      $document.find('body').append(oScript)
+      $document.find('body').append(oScript);
       return defer.promise;
     },
 
@@ -151,8 +149,8 @@ app.factory('User', function () {
 });
 
 // 静态资源引用（webpack 非HTML属性中）
-app.factory('Static', function(){
+app.factory('Static', function () {
   return {
     defaultImage: require("../asset/img/logo.png")
   }
-})
+});

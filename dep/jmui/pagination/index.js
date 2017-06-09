@@ -45,7 +45,7 @@ document.createElement('jm-Pagination');
 angular.module('jmui.pagination', [])
 
   .directive('jmPagination',
-    function ($parse) {
+    function($parse) {
       var watchItemsPerPageFn = angular.noop;
       var watchTotalPageFn = angular.noop;
       var watchCurrentPageFn = angular.noop;
@@ -63,7 +63,7 @@ angular.module('jmui.pagination', [])
           // 页码改变回调方法
           onSelectPage: '&'
         },
-        controller: function ($scope, $element, $attrs) {
+        controller: function($scope, $element, $attrs) {
           // 配置屬性
           angular.extend($scope, {
             pages: [],
@@ -86,7 +86,7 @@ angular.module('jmui.pagination', [])
              * page初始化
              * @returns {$scope}
              */
-            init: function () {
+            init: function() {
               var self = this;
 
               if ($attrs.itemsPerPage) {
@@ -94,7 +94,7 @@ angular.module('jmui.pagination', [])
               }
 
               // 每页大小改变
-              this.$parent.$watch($parse($attrs.itemsPerPage), function (value) {
+              this.$parent.$watch($parse($attrs.itemsPerPage), function(value) {
                 if (value) {
                   self.itemsPerPage = parseInt(value, 10);
                   $scope.totalPage = self.calculateTotalPage();
@@ -102,13 +102,13 @@ angular.module('jmui.pagination', [])
               });
 
               // 监视总页数改变 总页数改变初始化分页
-              $scope.$watch('totalPage', function () {
+              $scope.$watch('totalPage', function() {
                 $scope.makePage($scope.currentPage, $scope.totalPage);
               });
 
               // 当前页改变重新计算分页
-              $scope.$watch('currentPage', function(newVal, oldVal){
-                if(newVal !== oldVal){
+              $scope.$watch('currentPage', function(newVal, oldVal) {
+                if (newVal !== oldVal) {
                   $scope.makePage($scope.currentPage, $scope.totalPage);
                 }
               });
@@ -120,7 +120,7 @@ angular.module('jmui.pagination', [])
              * 计算总页码
              * @returns {number} 计算后的总页码
              */
-            calculateTotalPage: function () {
+            calculateTotalPage: function() {
               var totalPage = $scope.itemsPerPage < 1 ? 1 : Math.ceil($scope.totalItems / this.itemsPerPage);
               return Math.max(totalPage || 0, 1);
             },
@@ -131,7 +131,7 @@ angular.module('jmui.pagination', [])
              * @param {number} totalPages  总页码
              * @returns {$scope}
              */
-            makePage: function (currentPage, totalPages) {
+            makePage: function(currentPage, totalPages) {
               var maxSize = $scope.maxSize;
               var start = 2;
 
@@ -174,7 +174,7 @@ angular.module('jmui.pagination', [])
              * @param {object} $event 事件对象
              * @returns {$scope}
              */
-            selectPrevious: function ($event) {
+            selectPrevious: function($event) {
               var p = $scope.currentPage - 1;
 
               $event.preventDefault();
@@ -191,7 +191,7 @@ angular.module('jmui.pagination', [])
              * @param {object} $event 事件对象
              * @returns {$scope}
              */
-            selectNext: function ($event) {
+            selectNext: function($event) {
               var p = $scope.currentPage + 1;
 
               $event.preventDefault();
@@ -208,7 +208,7 @@ angular.module('jmui.pagination', [])
              * @param {number} p      页码
              * @returns {$scope}
              */
-            setPage: function ($event, p) {
+            setPage: function($event, p) {
               var ngInput = $element.find('input') || null;
 
               $event.preventDefault();
@@ -240,7 +240,7 @@ angular.module('jmui.pagination', [])
              * @param {number} p      输入框中的页码
              * @returns {$scope}
              */
-            inputKeyUp: function ($event, p) {
+            inputKeyUp: function($event, p) {
               var keyCode = $event.keyCode;
 
               if (keyCode === 13) {
@@ -253,7 +253,7 @@ angular.module('jmui.pagination', [])
           // 初始化
           $scope.init();
 
-          $scope.$on('$destory', function(){
+          $scope.$on('$destory', function() {
             watchItemsPerPageFn();
             watchCurrentPageFn();
             watchTotalPageFn();
@@ -261,5 +261,3 @@ angular.module('jmui.pagination', [])
         }
       };
     })
-
-

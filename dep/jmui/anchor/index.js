@@ -15,16 +15,16 @@
  *      1) onScrollFinsh(): 滚动结束回掉函数
  *
  * @example
- * <button 
- *    class="jm-btn jm-btn-primary" 
- *    on-scroll-finsh="scrollFinsh()" 
+ * <button
+ *    class="jm-btn jm-btn-primary"
+ *    on-scroll-finsh="scrollFinsh()"
  *    jm-anchor-smooth-scroll visibility-height="0">
  *      到顶部
  * </button>
  *
  */
 angular.module('jmui.AnchorSmoothScroll', [])
-  .directive('jmAnchorSmoothScroll', function ($window, $timeout) {
+  .directive('jmAnchorSmoothScroll', function($window, $timeout) {
     return {
       restrict: 'A',
       scope: {
@@ -37,7 +37,7 @@ angular.module('jmui.AnchorSmoothScroll', [])
         // 指定滚动到ID为此参数的元素位置
         targetId: '@'
       },
-      link: function (scope, element, attrs) {
+      link: function(scope, element, attrs) {
         console.log(attrs);
         var visibilityHeight = scope.visibilityHeight || 400;
         var timer = null;
@@ -80,7 +80,7 @@ angular.module('jmui.AnchorSmoothScroll', [])
         // 如果大于就移除`ng-hide`类
         // 否则就添加`ng-hide`类
         function contrast() {
-          if(visibilityHeight in attrs){
+          if (visibilityHeight in attrs) {
             element.toggleClass('ng-hide', currentYPosition() >= visibilityHeight);
           }
         }
@@ -89,7 +89,7 @@ angular.module('jmui.AnchorSmoothScroll', [])
         contrast();
 
         // 点击执行滚动到指定目标位置
-        element.on('click', function ($event) {
+        element.on('click', function($event) {
           $event.preventDefault();
           // scroll参考
           // http://www.itnewb.com/tutorial/Creating-the-Smooth-Scroll-Effect-with-JavaScript
@@ -134,15 +134,15 @@ angular.module('jmui.AnchorSmoothScroll', [])
           // 执行结束
           setTimeout(onFinsh, timer * speed);
         });
-        
+
         // 绑定scroll 事件
-        angular.element($window).on('scroll', function () {
+        angular.element($window).on('scroll', function() {
           $timeout.cancel(timer);
           timer = $timeout(contrast, 50);
         });
 
-        // 
-        scope.$on('$destroy', function(){
+        //
+        scope.$on('$destroy', function() {
           $timeout.cancel(timer);
           angular.element($window).off('scroll');
           element.off('click');

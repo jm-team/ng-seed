@@ -14,8 +14,7 @@
         </header>
 
         <div class="ibox-content">
-          <span jm-tooltip
-                tooltip-content="prompt text">
+          <span jm-tooltip tooltip-content="prompt text">
             当鼠标划过的时候显示 tooltip
           </span>
         </div>
@@ -30,10 +29,7 @@
         </header>
 
         <div class="ibox-content">
-          <span
-              jm-tooltip
-              tooltip-title="Tooltip 标题"
-              tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
+          <span jm-tooltip tooltip-title="Tooltip 标题" tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
             带有标题和内容的tooltip
           </span>
         </div>
@@ -49,31 +45,18 @@
         <div class="ibox-content">
 
           <p>
-            <span
-              jm-tooltip
-              trigger="mouseenter"
-              tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
+            <span jm-tooltip trigger="mouseenter" tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
               鼠标划过显示
             </span>
           </p>
           <p>
-            <button
-                class="jm-btn jm-btn-danger"
-              jm-tooltip
-              trigger="click"
-              tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
+            <button class="jm-btn jm-btn-danger" jm-tooltip trigger="click" tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
               鼠标点击显示
             </button>
           </p>
 
           <p>
-            <input
-                jm-tooltip
-                ng-click="$event.stopPropagation()"
-                class="form-control"
-                trigger="focus"
-                value="获取焦点展示"
-                tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
+            <input jm-tooltip ng-click="$event.stopPropagation()" class="form-control" trigger="focus" value="获取焦点展示" tooltip-content="这是一段内容,这是一段内容,这是一段内容,这是一段内容">
           </p>
         </div>
       </div>
@@ -89,20 +72,12 @@
 
           <p>
             <!--controller-name="TooltipCtrl" controller-as="vm" -->
-            <button class="jm-btn jm-btn-primary"
-                    jm-tooltip
-                    template="{{vm.template}}">展示的模板是自定义的
+            <button class="jm-btn jm-btn-primary" jm-tooltip template="{{vm.template}}">展示的模板是自定义的
             </button>
           </p>
 
           <p>
-            <button class="jm-btn jm-btn-primary"
-                    template="{{vm.template2}}"
-                    jm-tooltip
-                    controller-name="TooltipTestCtrl"
-                    controller-as="vm"
-                    tooltip-title="模板上的标题4"
-                    tooltip-content="模板内容">展示带有单独作用域的自定义模板
+            <button class="jm-btn jm-btn-primary" template="{{vm.template2}}" jm-tooltip controller-name="TooltipTestCtrl" controller-as="vm" tooltip-title="模板上的标题4" tooltip-content="模板内容">展示带有单独作用域的自定义模板
             </button>
           </p>
         </div>
@@ -118,10 +93,7 @@
         <div class="ibox-content">
 
           <p>
-            <button class="jm-btn jm-btn-primary"
-                    jm-tooltip
-                    trigger="click"
-                    resolve="resolve" >有依赖的tooltip
+            <button class="jm-btn jm-btn-primary" jm-tooltip trigger="click" resolve="resolve">有依赖的tooltip
             </button>
           </p>
 

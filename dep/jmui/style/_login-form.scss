@@ -1,103 +1,103 @@
-.form-wrap{
-    padding: 15px; 
+.form-wrap {
+  padding: 15px;
 }
 
 .pop-form-header {
-    position: relative;
-    padding: 12px 0;
-    border-bottom: 2px solid #2f8ae5;
+  position: relative;
+  padding: 12px 0;
+  border-bottom: 2px solid #2f8ae5;
 }
 
 .pop-form .pop-form-title {
-    height: 33px;
-    line-height: 33px;
-    font-size: 16px;
-    color: #646464;
-    text-align: center;
-    margin: 0;
+  height: 33px;
+  line-height: 33px;
+  font-size: 16px;
+  color: #646464;
+  text-align: center;
+  margin: 0;
 }
 
 .pop-form .pop-form-title {
-    height: 33px;
-    line-height: 33px;
-    font-size: 16px;
-    color: #646464;
-    text-align: center;
+  height: 33px;
+  line-height: 33px;
+  font-size: 16px;
+  color: #646464;
+  text-align: center;
 }
 
 .verfication-code {
-    width: 100px;
-    height: 34px;
-    padding-left: 15px;
+  width: 100px;
+  height: 34px;
+  padding-left: 15px;
 }
 
 .verfication-code img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .verfication-code-wrap {
-    display: table;
-    width: 100%;
+  display: table;
+  width: 100%;
 }
 
 .error-group {
-    border: 1px solid red;
-    color: red;
-    line-height: 30px;
-    padding-left: 8px;
-    height: 30px;
-    overflow: hidden;
+  border: 1px solid red;
+  color: red;
+  line-height: 30px;
+  padding-left: 8px;
+  height: 30px;
+  overflow: hidden;
 }
 
-#login-form .login-user,
-#login-form .login-pass {
-    position: relative;
+#login-form .login-pass,
+#login-form .login-user {
+  position: relative;
 }
 
-#login-form .login-user input,
-#login-form .login-pass input {
-    padding-left: 45px;
+#login-form .login-pass input,
+#login-form .login-user input {
+  padding-left: 45px;
 }
 
-#login-form .login-user:before,
-#login-form .login-pass:before {
-    font-family: 'Glyphicons Halflings';
-    position: absolute;
-    top: 50%;
-    font-size: 14px;
-    color: #999;
-    left: 15px;
-    z-index: 2;
-    transform: translateY(-50%);
+#login-form .login-pass:before,
+#login-form .login-user:before {
+  font-family: 'Glyphicons Halflings';
+  position: absolute;
+  top: 50%;
+  font-size: 14px;
+  color: #999;
+  left: 15px;
+  z-index: 2;
+  transform: translateY(-50%);
 }
 
 #login-form .login-user:before {
-    content: "\e008";
+  content: "\e008";
 }
 
 #login-form .login-pass:before {
-    content: "\e033";
+  content: "\e033";
 }
 
 .verification-code {
-    height: 100%;
+  height: 100%;
 }
 
 #login-form .reg {
-    color: #fc6921;
+  color: #fc6921;
 }
 
 #loginFrame {
-    display: none;
+  display: none;
 }
 
 .jm-close {
-    font-size: 27px;
-    position: absolute;
-    cursor: pointer;
-    color: #b7b7b7;
-    font-weight: bold;
-    top: 10px;
-    right: 25px;
+  font-size: 27px;
+  position: absolute;
+  cursor: pointer;
+  color: #b7b7b7;
+  font-weight: bold;
+  top: 10px;
+  right: 25px;
 }

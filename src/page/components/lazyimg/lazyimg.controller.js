@@ -1,4 +1,3 @@
-
 /**
  * Created by Administrator on 2017/4/19 0019.
  */
@@ -39,7 +38,6 @@ function LazyimgCtrl(Static) {
     vm.runtimeImageSrc = changeImageUrl();
   }
 
-  vm.defaultImage = Static.defaultImage;//require("../../../asset/img/logo.png");
+  vm.defaultImage = Static.defaultImage; //require("../../../asset/img/logo.png");
 
 }
-

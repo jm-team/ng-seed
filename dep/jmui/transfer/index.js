@@ -4,7 +4,7 @@ var tpl = require('./index.html');
 
 // 穿梭框
 angular.module('jmui.transfer', [])
-  .directive('jmTransfer', function () {
+  .directive('jmTransfer', function() {
 
     return {
       restrict: 'AE',
@@ -13,7 +13,7 @@ angular.module('jmui.transfer', [])
         source: '=',
         targetKeys: '='
       },
-      controller: function ($scope) {
+      controller: function($scope) {
 
         $scope.sourceCheckeds = [];
         $scope.targetCheckeds = [];
@@ -21,11 +21,11 @@ angular.module('jmui.transfer', [])
 
         function transfer(sourceArr, arrChecks, targetArr) {
           var arr = [];
-          var newArr = $scope[sourceArr].filter(function (item) {
+          var newArr = $scope[sourceArr].filter(function(item) {
             return !item.checked;
           });
 
-          angular.forEach($scope[sourceArr], function (item) {
+          angular.forEach($scope[sourceArr], function(item) {
             if (item.checked) {
               item.checked = false;
               arr.push(item);
@@ -36,17 +36,17 @@ angular.module('jmui.transfer', [])
           $scope[targetArr] = $scope[targetArr].concat(arr)
         }
 
-        $scope.lessTarget = function () {
+        $scope.lessTarget = function() {
           $scope.targetAll = false;
           transfer('targetKeys', 'targetCheckeds', 'source');
         };
 
-        $scope.addTarget = function () {
+        $scope.addTarget = function() {
           $scope.sourceAll = false;
           transfer('source', 'sourceCheckeds', 'targetKeys');
         };
 
-        $scope.onChange = function (source) {
+        $scope.onChange = function(source) {
           var sourceData = $scope.source;
           var checkedSource = $scope.sourceCheckeds;
 
@@ -55,13 +55,13 @@ angular.module('jmui.transfer', [])
             checkedSource = $scope.targetCheckeds;
           }
 
-          var l = sourceData.filter(function (item) {
+          var l = sourceData.filter(function(item) {
             return !item.disabled
           }).length;
           $scope[source === 'target' ? 'targetAll' : 'sourceAll'] = (l === checkedSource.length);
         };
 
-        $scope.changeAll = function (arg, source) {
+        $scope.changeAll = function(arg, source) {
           var sourceData = $scope.source;
           var arr = $scope.sourceCheckeds;
 
@@ -71,7 +71,7 @@ angular.module('jmui.transfer', [])
           }
 
           if (arg.checked) {
-            sourceData.map(function (item) {
+            sourceData.map(function(item) {
               if (!item.disabled) {
                 item.checked = true;
                 if (arr.indexOf(item.title) === -1) {
@@ -80,7 +80,7 @@ angular.module('jmui.transfer', [])
               }
             });
           } else {
-            sourceData.map(function (item) {
+            sourceData.map(function(item) {
               if (!item.disabled) {
                 item.checked = false;
               }

@@ -4,8 +4,8 @@
  *
  * @author zhoul
  * @description
- * 
- * 
+ *
+ *
  * rate 评级组件：
  *  指令属性详细：
  *      1) texts: 说明的文字数组
@@ -16,7 +16,7 @@
  *      6）colors： icon 的颜色数组，共有 3 个元素，为 3 个分段所对应的颜色
  *      7）jm-icon-star-off：未选中的icon类名
  *      8）jm-icon-star-on：选中的icon类名
- * 
+ *
  *  指令方法详细
  *      1) onChange(arg): 选择页码的回调
  *          arg:{
@@ -38,7 +38,7 @@
  */
 require("./index.scss");
 angular.module("jmui.rate", [])
-  .directive('jmRate', function ($timeout) {
+  .directive('jmRate', function($timeout) {
     return {
       restrict: 'AE',
       template: '<div><ul class="jm-rate"><li ng-class="{}" ng-disabled="disabled" ng-mouseenter="hover($index)" ng-mouseleave="out($index)" class="jm-rate-star" ng-click="choose($event, $index)" ng-repeat="item in max track by $index"><i class="jm-icon {{ jmIconStarOff }}"></i></li></ul> <span class="jm-rate__text" ng-show="showText">{{ text }}</span>  </div>',
@@ -54,7 +54,7 @@ angular.module("jmui.rate", [])
     function jmRateCtrl($scope, $attrs) {
 
       // 监听是否禁用了`switch`
-      $attrs.$observe('disabled', function (newVal, oldVal) {
+      $attrs.$observe('disabled', function(newVal, oldVal) {
         $scope.disabled = newVal;
       });
 
@@ -99,7 +99,7 @@ angular.module("jmui.rate", [])
       scope.jmIconStarOff = attrs.jmIconStarOff;
       scope.jmIconStarOn = attrs.jmIconStarOn;
 
-      $timeout(function () {
+      $timeout(function() {
         aLi = element.find('.jm-rate-star')
           .css({
             color: voidColor
@@ -113,7 +113,7 @@ angular.module("jmui.rate", [])
 
 
       // 监听model
-      watchFn = scope.$watch('model', function (newVal, oldVal) {
+      watchFn = scope.$watch('model', function(newVal, oldVal) {
         if (newVal && newVal !== oldVal) {
           change('model');
           isChoose = true;
@@ -144,7 +144,7 @@ angular.module("jmui.rate", [])
       function change(type) {
         $timeout.cancel(timer);
         aLi.removeClass('hover');
-        angular.forEach(aLi, function (li, index) {
+        angular.forEach(aLi, function(li, index) {
           var $li = angular.element(li);
           var $el = $li.find('i');
           if (scope[type] >= index) {
@@ -192,7 +192,7 @@ angular.module("jmui.rate", [])
           change("model");
           return;
         }
-        timer = $timeout(function () {
+        timer = $timeout(function() {
           scope.val = -1;
           console.log('out');
           aLi.removeClass('on').css({
@@ -202,7 +202,7 @@ angular.module("jmui.rate", [])
         }, 30);
       }
 
-      scope.$on('$destroy', function(){
+      scope.$on('$destroy', function() {
         watchFn();
       });
     }

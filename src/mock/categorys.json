@@ -1,19 +1,19 @@
 [{
-	"categoryId": 0,
-	"categoryName": "全部"
-},{
-	"categoryId": 10000,
-	"categoryName": "分类一"
-},{
-	"categoryId": 10001,
-	"categoryName": "分类二"
-},{
-	"categoryId": 10002,
-	"categoryName": "分类三"
-},{
-	"categoryId": 10003,
-	"categoryName": "分类四"
-},{
-	"categoryId": 10004,
-	"categoryName": "分类五"
+  "categoryId": 0,
+  "categoryName": "全部"
+}, {
+  "categoryId": 10000,
+  "categoryName": "分类一"
+}, {
+  "categoryId": 10001,
+  "categoryName": "分类二"
+}, {
+  "categoryId": 10002,
+  "categoryName": "分类三"
+}, {
+  "categoryId": 10003,
+  "categoryName": "分类四"
+}, {
+  "categoryId": 10004,
+  "categoryName": "分类五"
 }]

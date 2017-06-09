@@ -1,20 +1,20 @@
 var templateUrl = require('./crumb.html');
 
 module.exports = {
-  url:'^/crumb',
+  url: '^/crumb',
   // abstract: true,
   templateUrl: templateUrl,
   controller: 'CrumbCtrl',
   controllerAs: 'vm',
-  data:{
+  data: {
     breadcrumbProxy: 'components.crumb',
     displayName: '面包屑'
   },
   resolve: {
     /*@ngInject*/
-    loadCtrl: function ($q) {
+    loadCtrl: function($q) {
       var defer = $q.defer();
-      require.ensure([], function (require) {
+      require.ensure([], function(require) {
         defer.resolve(require('./crumb.controller.js'));
       }, 'crumb');
       return defer.promise;

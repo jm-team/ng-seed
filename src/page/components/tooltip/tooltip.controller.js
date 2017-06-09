@@ -9,7 +9,7 @@ app.registerController('TooltipTestCtrl', TooltipTestCtrl);
 // 调用Api 服务
 app.registerController('TooltipCtrl',
   /*@ngInject*/
-  function ($scope, $timeout, $q) {
+  function($scope, $timeout, $q) {
     var vm = this;
     var resolve;
 
@@ -17,13 +17,13 @@ app.registerController('TooltipCtrl',
     vm.template2 = tpl2;
 
     $scope.resolve = {
-      content: function () {
+      content: function() {
         return "123"
       },
 
-      title: function () {
+      title: function() {
         var defer = $q.defer();
-        $timeout(function () {
+        $timeout(function() {
           console.log('title promise');
           defer.resolve('title promise')
         }, 1000);
@@ -51,7 +51,7 @@ function TooltipTestCtrl($interval, tooltip) {
     $interval.cancel(interval);
     vm.closing = 1;
     $event.stopPropagation();
-    var interval = $interval(function () {
+    var interval = $interval(function() {
       if (vm.time === 0) {
         $interval.cancel(interval);
         tooltip.destroy();

@@ -1,112 +1,113 @@
 /* pagination */
+
 .jm-page {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .jm-page .p-wrap {
-    float: right;
+  float: right;
 }
 
 .jm-page .p-nums {
-    float: left;
+  float: left;
 }
 
 .jm-page .p-skip {
-    float: left;
-    margin-left: 20px;
+  float: left;
+  margin-left: 20px;
 }
 
 .jm-page .p-skip .jm-form-control {
-    float: left;
-    width: 24px;
-    height: 24px;
-    margin: 0 3px;
-    line-height: 24px;
-    font-size: 14px;
-    text-align: center;
-    border: 1px solid #ddd;
+  float: left;
+  width: 24px;
+  height: 24px;
+  margin: 0 3px;
+  line-height: 24px;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid #ddd;
 }
 
 .jm-page .pn-break {
-    float: left;
-    height: 36px;
-    line-height: 36px;
-    padding: 0 8px;
-    margin-right: 5px;
-    font-size: 14px;
-    color: #ccc;
-    font-family: Arial;
+  float: left;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 8px;
+  margin-right: 5px;
+  font-size: 14px;
+  color: #ccc;
+  font-family: Arial;
 }
 
-.jm-page .pn-prev, .jm-page .pn-next {
-    vertical-align: middle;
+.jm-page .pn-next,
+.jm-page .pn-prev {
+  vertical-align: middle;
 }
 
 .jm-page .p-nums a {
-    color: #333;
-    border: 1px solid #ddd;
-    background: #f7f7f7;
-    float: left;
-    padding: 0 8px;
-    line-height: 24px;
-    font-size: 14px;
-    margin-right: 5px;
+  color: #333;
+  border: 1px solid #ddd;
+  background: #f7f7f7;
+  float: left;
+  padding: 0 8px;
+  line-height: 24px;
+  font-size: 14px;
+  margin-right: 5px;
 }
 
 .jm-page .p-nums a[disabled] {
-    color: #ccc;
-    border-color: #ddd;
+  color: #ccc;
+  border-color: #ddd;
 }
 
 .jm-page .p-nums a.active {
-    border: 0 none;
-    padding: 1px 15px;
-    background: 0 0;
-    filter: none;
-    color: #e4393c;
-    cursor: default;
+  border: 0 none;
+  padding: 1px 15px;
+  background: 0 0;
+  filter: none;
+  color: #e4393c;
+  cursor: default;
 }
 
 .jm-page .p-nums i {
-    color: #aaa;
-    font-family: "宋体";
-    font-size: 16px;
-    padding: 0 5px;
+  color: #aaa;
+  font-family: "宋体";
+  font-size: 16px;
+  padding: 0 5px;
 }
 
 .jm-page .pn-prev i {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 .jm-page .pn-next i {
-    padding-right: 0;
+  padding-right: 0;
 }
 
 .jm-page .p-skip .btn {
-    float: left;
-    height: 24px;
-    margin-left: 10px;
-    font-size: 14px;
-    line-height: 1;
+  float: left;
+  height: 24px;
+  margin-left: 10px;
+  font-size: 14px;
+  line-height: 1;
 }
 
 .jm-page em {
-    float: left;
-    line-height: 24px;
-    font-style: normal;
+  float: left;
+  line-height: 24px;
+  font-style: normal;
 }
 
 .jm-page .p-skip .btn-default {
-    display: inline-block;
-    border-radius: 2px;
-    background: #F7F7F7;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    border: 1px solid #DDD;
-    padding: 4px 10px 5px;
-    color: #666;
-    background-color: #f7f7f7;
-    background-repeat: repeat-x;
+  display: inline-block;
+  border-radius: 2px;
+  background: #F7F7F7;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid #DDD;
+  padding: 4px 10px 5px;
+  color: #666;
+  background-color: #f7f7f7;
+  background-repeat: repeat-x;
 }
-

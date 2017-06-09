@@ -19,26 +19,25 @@
 
 .media-object {
   display: block;
-
   // Fix collapse in webkit from max-width: 100% and display: table-cell.
   &.img-thumbnail {
     max-width: none;
   }
 }
 
-.media-right,
-.media > .pull-right {
+.media > .pull-right,
+.media-right {
   padding-left: 10px;
 }
 
-.media-left,
-.media > .pull-left {
+.media > .pull-left,
+.media-left {
   padding-right: 10px;
 }
 
+.media-body,
 .media-left,
-.media-right,
-.media-body {
+.media-right {
   display: table-cell;
   vertical-align: top;
 }
@@ -50,16 +49,16 @@
 .media-bottom {
   vertical-align: bottom;
 }
-
 // Reset margins on headings for tighter default spacing
+
 .media-heading {
   margin-top: 0;
   margin-bottom: 5px;
 }
-
 // Media list variation
 //
 // Undo default ul/ol styles
+
 .media-list {
   padding-left: 0;
   list-style: none;

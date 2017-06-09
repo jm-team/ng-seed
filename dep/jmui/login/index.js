@@ -1,5 +1,5 @@
 angular.module('jmui.login', [])
-  .factory('Login', function ($q, $resource, Address, USERCENTER_ADDRESS) {
+  .factory('Login', function($q, $resource, Address, USERCENTER_ADDRESS) {
     return {
       /**
        * check user is login
@@ -7,12 +7,17 @@ angular.module('jmui.login', [])
        * @returns {*|promise|{then, catch, finally}|jQuery.promise}
        * reference: https://www.html5rocks.com/zh/tutorials/speed/script-loading/
        */
-      checkHasLogin: function (obj) {
-        var obj = angular.extend({params:{serviceContext:'/webapi'}, path:'/hasLogin'}, obj);
+      checkHasLogin: function(obj) {
+        var obj = angular.extend({
+          params: {
+            serviceContext: '/webapi'
+          },
+          path: '/hasLogin'
+        }, obj);
         var params = '?';
 
-        angular.forEach(obj.params, function(value, key){
-          params += key+'='+value+'&';
+        angular.forEach(obj.params, function(value, key) {
+          params += key + '=' + value + '&';
         });
 
         var defer = $q.defer();
@@ -65,8 +70,7 @@ angular.module('jmui.login', [])
             script.onload = script.onreadystatechange = stateChange;
             script.src = src;
             head.appendChild(script);
-          }
-          else if (firstScript.readyState) { // IE<10
+          } else if (firstScript.readyState) { // IE<10
             // 创建一个脚本并添加进待执行队列中
             script = document.createElement('script');
             // 监听状态改变
@@ -77,8 +81,7 @@ angular.module('jmui.login', [])
 
             // 不能使用 appendChild，在低版本 IE 中如果元素没有闭合会有 bug
             head.insertBefore(script, head.firstChild);
-          }
-          else { // 退化使用延迟加载
+          } else { // 退化使用延迟加载
             document.write('<script src="' + src + '" defer></' + 'script>');
           }
 

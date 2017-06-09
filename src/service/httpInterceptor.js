@@ -1,19 +1,19 @@
 //  拦截器
 var app = require('app');
-app.factory('httpInterceptor', function ($q, $injector, Util) {
+app.factory('httpInterceptor', function($q, $injector, Util) {
   var httpInterceptor;
   httpInterceptor = {
-    responseError: function (response) {
+    responseError: function(response) {
       // 拦截响应错误处理这里.....
       return $q.reject(response);
     },
 
-    response: function (response) {
+    response: function(response) {
       // 拦截响应成功处理这里.....
       return response;
     },
 
-    request: function (config) {
+    request: function(config) {
       // 拦截请求处理这里.....
       console.log('拦截请求处理')
 
@@ -27,7 +27,7 @@ app.factory('httpInterceptor', function ($q, $injector, Util) {
       return config;
     },
 
-    requestError: function (config) {
+    requestError: function(config) {
       // 拦截请求失败处理这里.....
       return $q.reject(config);
     }

@@ -1,31 +1,31 @@
 [{
-	"categoryId": "",
-	"categoryName": "全部",
-	"industryId": "",
-	"industryName": "全部"
-},{
-	"categoryId": 10000,
-	"categoryName": "分类一",
-	"industryId": 100,
-	"industryName": "行业1"
-},{
-	"categoryId": 10001,
-	"categoryName": "分类二",
-	"industryId": 101,
-	"industryName": "行业2"
-},{
-	"categoryId": 10002,
-	"categoryName": "分类三",
-	"industryId": 102,
-	"industryName": "行业3"
-},{
-	"categoryId": 10003,
-	"categoryName": "分类四",
-	"industryId": 103,
-	"industryName": "行业4"
-},{
-	"categoryId": 10004,
-	"categoryName": "分类五",
-	"industryId": 104,
-	"industryName": "行业5"
+  "categoryId": "",
+  "categoryName": "全部",
+  "industryId": "",
+  "industryName": "全部"
+}, {
+  "categoryId": 10000,
+  "categoryName": "分类一",
+  "industryId": 100,
+  "industryName": "行业1"
+}, {
+  "categoryId": 10001,
+  "categoryName": "分类二",
+  "industryId": 101,
+  "industryName": "行业2"
+}, {
+  "categoryId": 10002,
+  "categoryName": "分类三",
+  "industryId": 102,
+  "industryName": "行业3"
+}, {
+  "categoryId": 10003,
+  "categoryName": "分类四",
+  "industryId": 103,
+  "industryName": "行业4"
+}, {
+  "categoryId": 10004,
+  "categoryName": "分类五",
+  "industryId": 104,
+  "industryName": "行业5"
 }]

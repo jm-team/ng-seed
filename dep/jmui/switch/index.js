@@ -13,8 +13,8 @@
                 name="checked"
                 ng-model="vm.on">
             </jm-switch>
- * 
- * 
+ *
+ *
  * switch 开关组件:
  *  指令属性详细：
  *      1) width: 组件宽度
@@ -25,10 +25,10 @@
  *      6) off-color: switch 关闭时的背景色
  *      7) name: switch 对应的 name 属性
  *      7) disabled: 是否禁用
- * 
+ *
  * 指令方法：
  *    1）onChange(arg): 开关值改变回调
- *        arg:{ 
+ *        arg:{
  *          event: $event,
  *          model: $scope.ngModel
  *        }
@@ -49,7 +49,7 @@ require('./index.scss');
 document.createElement('jm-switch');
 // 滚动条柔和的滚动到指定的锚点位置
 angular.module('jmui.switch', [])
-  .directive('jmSwitch', function ($sce) {
+  .directive('jmSwitch', function($sce) {
     return {
       restrict: 'AE',
       templateUrl: tmpl,
@@ -58,7 +58,7 @@ angular.module('jmui.switch', [])
         onChange: '&',
         ngModel: '='
       },
-      controller: function ($scope, $element, $attrs) {
+      controller: function($scope, $element, $attrs) {
         var width = parseInt($attrs.width, 10) || 58;
         var onColor = $attrs.onColor || "#13ce66";
         var offColor = $attrs.offColor || "#ff4949";
@@ -77,12 +77,12 @@ angular.module('jmui.switch', [])
         $scope.onText = $sce.trustAsHtml($attrs.onText);
         $scope.offText = $sce.trustAsHtml($attrs.offText);
 
-        if(iconOnName){
-          leftIcon.addClass('jm-icon jm-icon-'+iconOnName)
+        if (iconOnName) {
+          leftIcon.addClass('jm-icon jm-icon-' + iconOnName)
         }
 
-        if(iconOffName){
-          rightIcon.addClass('jm-icon jm-icon-'+iconOffName)
+        if (iconOffName) {
+          rightIcon.addClass('jm-icon jm-icon-' + iconOffName)
         }
 
         // 设置`switch`宽度
@@ -99,10 +99,10 @@ angular.module('jmui.switch', [])
           });
           eBtn.css(model ? {
             left: transOffX + 'px',
-            top:transY+'px'
+            top: transY + 'px'
           } : {
             left: "2px",
-            top:transY+'px'
+            top: transY + 'px'
           });
         }
 
@@ -110,14 +110,14 @@ angular.module('jmui.switch', [])
         setCoreStyle($scope.ngModel);
 
         // 监听`switch` 是否开启
-        var watchModel = $scope.$watch('ngModel', function (newVal, oldVal) {
+        var watchModel = $scope.$watch('ngModel', function(newVal, oldVal) {
           if (newVal !== oldVal) {
             setCoreStyle(newVal);
           }
         });
 
         // 监听是否禁用了`switch`
-        var observerDisabled = $attrs.$observe('disabled', function (newVal, oldVal) {
+        var observerDisabled = $attrs.$observe('disabled', function(newVal, oldVal) {
           $scope.disabled = newVal;
           if (newVal !== oldVal) {
             if (newVal) {
@@ -131,14 +131,14 @@ angular.module('jmui.switch', [])
         });
 
         // `switch`值改变
-        $scope.change = function ($event) {
+        $scope.change = function($event) {
           $scope.onChange({
             event: $event,
             model: $scope.ngModel
           });
         };
 
-        $scope.$on('$destory', function () {
+        $scope.$on('$destory', function() {
           watchModel();
           observerDisabled();
         });

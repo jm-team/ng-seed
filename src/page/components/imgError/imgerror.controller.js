@@ -8,7 +8,6 @@ function ImgErrorCtrl(Static) {
   var vm = this;
 
   vm.jpg = "1.jpg"
-  vm.defaultImage = Static.defaultImage;  //.require("../../../asset/img/logo.png");
- 
-}
+  vm.defaultImage = Static.defaultImage; //.require("../../../asset/img/logo.png");
 
+}

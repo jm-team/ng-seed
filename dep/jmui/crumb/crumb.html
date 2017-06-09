@@ -1,6 +1,5 @@
 <ol class="breadcrumb">
-  <li ng-repeat="crumb in breadcrumbs"
-      ng-class="{ active: $last }">
+  <li ng-repeat="crumb in breadcrumbs" ng-class="{ active: $last }">
 
     <a ui-sref="{{ crumb.router }}" ng-if="!$last">{{ crumb.displayName }}&nbsp;</a>
 

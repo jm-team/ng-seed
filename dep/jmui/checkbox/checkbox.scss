@@ -1,4 +1,4 @@
-.jm-checkbox-wrapper{
+.jm-checkbox-wrapper {
   cursor: pointer;
   font-size: 12px;
   display: inline-block;
@@ -6,24 +6,23 @@
   color: #333;
   margin-bottom: 0;
 
-  &.jm-checkbox-disabled{
-
+  &.jm-checkbox-disabled {
     transition: none;
-     .jm-checkbox-inner{
-       background-color: #f3f3f3;
-       border-color:#d9d9d9;
 
-       &:after{
-         color: #999;
-       }
-     }
+    .jm-checkbox-inner {
+      background-color: #f3f3f3;
+      border-color: #d9d9d9;
+
+      &:after {
+        color: #999;
+      }
+    }
     color: #999;
-
     cursor: not-allowed;
   }
 }
 
-.jm-checkbox{
+.jm-checkbox {
   white-space: normal;
   cursor: pointer;
   outline: none;
@@ -32,18 +31,19 @@
   position: relative;
   vertical-align: text-bottom;
 
-  &+span{
+  &+span {
     padding-left: 8px;
     padding-right: 8px;
   }
-  .jm-checkbox-input{
+
+  .jm-checkbox-input {
     position: absolute;
-    left:0;
+    left: 0;
     z-index: 1;
     cursor: pointer;
     opacity: 0;
     filter:alpha(opacity=0);
-    top:0;
+    top: 0;
     bottom: 0;
     right: 0;
     width: 100%;
@@ -52,34 +52,34 @@
   }
 }
 
-.jm-checkbox-checked .jm-checkbox-inner{
+.jm-checkbox-checked .jm-checkbox-inner {
   background-color: #108ee9;
   border-color: #108ee9;
-  &:after{
+
+  &:after {
     display: block;
     //transform: rotate(45deg) scale(1);
     //transition: all .2s cubic-bezier(.12,.4,.29,1.46) .1s;
   }
 }
 
-.jm-checkbox-inner{
-  top:0;
-  left:0;
-
+.jm-checkbox-inner {
+  top: 0;
+  left: 0;
   display: block;
   width: 14px;
   height: 14px;
-  border:1px solid #d9d9d9;
+  border: 1px solid #d9d9d9;
   border-radius: 2px;
   background-color: #fff;
-  transition: all .3s;
+  transition: all 0.3s;
 
-  &:after{
+  &:after {
     color: #fff;
     //transform: rotate(45deg) scale(0);
-    left:1px;
-    top:0;
-    content:'✔';
+    left: 1px;
+    top: 0;
+    content: '✔';
     //transition: all .1s cubic-bezier(.71,-.46,.88,.6);
   }
 }
