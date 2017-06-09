@@ -27,13 +27,24 @@
       }
     ]
   },
+  "page": {
+    "tplPath": "./scripts/.tpl/",
+    "outPath": "./src/page/"
+  },
   "tags": {
     "allowUnknownTags": true,
-    "dictionaries": ["jsdoc","closure"]
+    "dictionaries": [
+      "jsdoc",
+      "closure"
+    ]
   },
   "source": {
-    "include":["src"],
-    "exclude":["src/component/ueditor"],
+    "include": [
+      "src"
+    ],
+    "exclude": [
+      "src/component/ueditor"
+    ],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
   },
