@@ -7,6 +7,7 @@ var HashedModuleIdsPlugin = require('./HashedModuleIdsPlugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractSASS = new ExtractTextPlugin('css/[name].[contenthash:8].css');
 var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
+var ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 var os = require('os');
 var UglifyJsParallelPlugin = require('webpack-uglify-parallel');
@@ -104,7 +105,8 @@ module.exports = {
         // 构建前删除dist文件夹
         new RemoveWebpackPlugin('./dist/'),
         // 第三方的ChunkHash计算插件，把从js中抽取的css文件进行单独的hash计算
-        new WebpackChunkHash()
+        new WebpackChunkHash(),
+        new ImageminPlugin({ test: 'img/**' })
 
     ]
 };
