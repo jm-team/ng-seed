@@ -1,3 +1,39 @@
+<a name="0.8.0-beta.2"></a>
+# [0.8.0-beta.2](https://github.com/jm-team/ng-seed/compare/v0.8.0-beta.1...v0.8.0-beta.2) (2017-06-09)
+
+
+### Bug Fixes
+
+*  修改幻灯片在IE8下问题 ([2d68e9f](https://github.com/jm-team/ng-seed/commit/2d68e9f))
+*  放弃IE8 下实现圆角的效果 ([4a1f83c](https://github.com/jm-team/ng-seed/commit/4a1f83c))
+*  解决幻灯片在火狐下上一张的时候 动画切换问题 ([7430312](https://github.com/jm-team/ng-seed/commit/7430312))
+* jmui carousel fix scss comment bug ([f9a9266](https://github.com/jm-team/ng-seed/commit/f9a9266))
+* scss config precision 9 ([855546d](https://github.com/jm-team/ng-seed/commit/855546d))
+* 修改单词错误 ([f74cfa1](https://github.com/jm-team/ng-seed/commit/f74cfa1))
+* 修改字体默认顺序 ([ddc4687](https://github.com/jm-team/ng-seed/commit/ddc4687))
+* 修改滑动方向 ([f3c5178](https://github.com/jm-team/ng-seed/commit/f3c5178))
+* 修改错误图片显示默认图片的方式 ([f22ba74](https://github.com/jm-team/ng-seed/commit/f22ba74))
+* **jmtoolbar:** visibility-height ([d909924](https://github.com/jm-team/ng-seed/commit/d909924))
+* 去除setTimeout ([5ff0a34](https://github.com/jm-team/ng-seed/commit/5ff0a34))
+* 幻灯片demo BUG修改 ([88d39d1](https://github.com/jm-team/ng-seed/commit/88d39d1))
+* 添加 http 拦截器 ，幻灯片样式修改 ([16646d9](https://github.com/jm-team/ng-seed/commit/16646d9))
+* 添加 打包 需要的[@ngInject](https://github.com/ngInject) ([0cff556](https://github.com/jm-team/ng-seed/commit/0cff556))
+* 添加懒加载和tree的模块依赖 ([2ff4960](https://github.com/jm-team/ng-seed/commit/2ff4960))
+* 解决firefox 向上选择的时候 有时候会出现 两个动画元素错乱 ([3044a78](https://github.com/jm-team/ng-seed/commit/3044a78))
+* 解决去除ui-bootstrap 后， 删除依赖ui-bootstarp中的服务 ([77ac985](https://github.com/jm-team/ng-seed/commit/77ac985))
+
+
+### Features
+
+* add imagemin-webpack-plugin ([74d0b83](https://github.com/jm-team/ng-seed/commit/74d0b83))
+* add jmToolbar ([31305b0](https://github.com/jm-team/ng-seed/commit/31305b0))
+* DllPlugin ([9f4920a](https://github.com/jm-team/ng-seed/commit/9f4920a))
+* jm ng:page pageName ([1190c57](https://github.com/jm-team/ng-seed/commit/1190c57))
+* simplify proxy code ([c469399](https://github.com/jm-team/ng-seed/commit/c469399))
+* 添加拦截器 和 取消一些路由跳转后可以取消还未完成的请求服务 ([6626a44](https://github.com/jm-team/ng-seed/commit/6626a44))
+
+
+
 <a name="0.7.2"></a>
 ## [0.7.2](https://github.com/jm-team/ng-seed/compare/v0.7.1...v0.7.2) (2017-05-19)
 
