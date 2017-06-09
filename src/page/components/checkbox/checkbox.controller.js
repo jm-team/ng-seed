@@ -3,7 +3,7 @@ var app = require('app');
 // 调用Api 服务
 app.registerController('CheckboxCtrl',
   /*@ngInject*/
-  function($timeout) {
+  function() {
     var vm = this;
 
     vm.checked1 = true;
@@ -21,7 +21,7 @@ app.registerController('CheckboxCtrl',
 
     vm.options = ['Apple', 'Pear', 'Orange'];
 
-    vm.checkeds = ['Apple']
+    vm.checkeds = ['Apple'];
 
     vm.options2 = [{
         title: 'HTML',
@@ -37,7 +37,7 @@ app.registerController('CheckboxCtrl',
       }
     ];
 
-    vm.checkeds2 = ['JavaScript', 'CSS']
+    vm.checkeds2 = ['JavaScript', 'CSS'];
 
     vm.options3 = [{
         title: 'Angular',
@@ -55,7 +55,7 @@ app.registerController('CheckboxCtrl',
       }
     ];
 
-    vm.checkeds3 = ['React', 'Angular']
+    vm.checkeds3 = ['React', 'Angular'];
 
 
     // 全选
@@ -83,7 +83,7 @@ app.registerController('CheckboxCtrl',
         disabled: true
       }
     ];
-    vm.checkeds4 = ['React', 'Angular']
+    vm.checkeds4 = ['React', 'Angular'];
 
     vm.onChange = function() {
       var l = vm.options4.filter(function(item) {
@@ -94,14 +94,14 @@ app.registerController('CheckboxCtrl',
     };
 
     vm.selectAll = function(arg) {
-      var selecteds = []
+      var selecteds = [];
       if (arg.checked) {
         vm.options4.forEach(function(item) {
           if (!item.disabled) {
             item.checked = true;
             selecteds.push(item.value);
           }
-        })
+        });
 
         vm.checkeds4 = selecteds;
 
@@ -111,7 +111,7 @@ app.registerController('CheckboxCtrl',
             item.checked = false;
             selecteds.push(item.value);
           }
-        })
+        });
         vm.checkeds4 = [];
       }
     }

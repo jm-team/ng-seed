@@ -15,11 +15,11 @@ function AutoCompleteCtrl($q) {
   vm.value = null;
   vm.tplUrl = custTpl;
 
-  vm.handleChange = function() {
+  vm.handleChange = function () {
     return searchResult(vm.keyword);
   };
 
-  vm.select = function(arg) {
+  vm.select = function (arg) {
     console.log(arg);
     vm.value = arg.item;
   };
@@ -31,13 +31,12 @@ function AutoCompleteCtrl($q) {
 
   function searchResult(query) {
     return $q.when((new Array(getRandomInt(5))).join('.').split('.')
-      .map(function(item, idx) {
+      .map(function (item, idx) {
         return {
           query: query,
           category: query + idx,
           count: getRandomInt(200, 100),
         }
       }))
-
   }
 }

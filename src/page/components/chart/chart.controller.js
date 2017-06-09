@@ -81,12 +81,12 @@ app.registerController('ChartCtrl',
       "text": 2592,
       "icon": 2782,
       "dimension": 478,
+      "xAxis": 89459,
       "inRange": 1060,
       "animationEasing": 2983,
       "animationDurationUpdate": 2259,
       "animationDelayUpdate": 2236,
       "animationEasingUpdate": 2213,
-      "xAxis": 89459,
       "angleAxis": 5469,
       "showTitle": 484,
       "dataView": 2754,
@@ -386,10 +386,8 @@ app.registerController('ChartCtrl',
 
     chart.setOption(option);
 
-
     $scope.$on("$destroy", function(event) {
       chart.dispose();
     });
 
-    hljs.initHighlightingOnLoad();
   });
