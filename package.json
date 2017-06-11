@@ -75,7 +75,8 @@
     "angular-ui-router": "0.2.18",
     "echarts": "^3.3.2",
     "echarts-wordcloud": "^1.0.3",
-    "file-uploader": "^1.0.0"
+    "file-uploader": "^1.0.0",
+    "sharp": "^0.18.1"
   },
   "optionalDependencies": {
     "conventional-changelog": "^1.1.3",

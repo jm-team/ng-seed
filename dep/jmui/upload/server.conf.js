@@ -20,6 +20,7 @@ var fs = require("fs"),
     rimraf = require("rimraf"),
     mkdirp = require("mkdirp"),
     multiparty = require('multiparty'),
+    sharp = require('sharp'),
 
     // paths/constants
     fileInputName = process.env.FILE_INPUT_NAME || "qqfile",
@@ -34,6 +35,8 @@ function onUpload(req, res) {
     form.parse(req, function (err, fields, files) {
         var partIndex = fields.qqpartindex;
 
+        console.log(fields)
+
         // text/plain is required to ensure support for IE9 and older
         res.set("Content-Type", "text/plain");
 
@@ -43,6 +46,17 @@ function onUpload(req, res) {
             onChunkedUpload(fields, files[fileInputName][0], res);
         }
     });
+}
+
+function getCropOption(fields) {
+    if (!fields.left && !fields.top && !fields.width && !fields.height) return null
+
+    return {
+        left: Math.round(fields.left[0]),
+        top: Math.round(fields.top[0]),
+        width: Math.round(fields.width[0]),
+        height: Math.round(fields.height[0])
+    }
 }
 
 function onDeleteFile(req, res) {
@@ -68,6 +82,9 @@ function onSimpleUpload(fields, file, res) {
     file.name = fields.qqfilename;
 
     if (isValid(file.size)) {
+
+        var cropOption = getCropOption(fields)
+
         moveUploadedFile(file, uuid, function () {
                 responseData.success = true;
                 res.send(responseData);
@@ -75,7 +92,7 @@ function onSimpleUpload(fields, file, res) {
             function () {
                 responseData.error = "Problem copying the file!";
                 res.send(responseData);
-            });
+            }, cropOption);
     } else {
         failWithTooBigFile(responseData, res);
     }
@@ -93,6 +110,9 @@ function onChunkedUpload(fields, file, res) {
     file.name = fields.qqfilename;
 
     if (isValid(size)) {
+
+        var cropOption = getCropOption(fields)
+
         storeChunk(file, uuid, index, totalParts, function () {
                 if (index < totalParts - 1) {
                     responseData.success = true;
@@ -111,7 +131,7 @@ function onChunkedUpload(fields, file, res) {
             function (reset) {
                 responseData.error = "Problem storing the chunk!";
                 res.send(responseData);
-            });
+            }, cropOption);
     } else {
         failWithTooBigFile(responseData, res);
     }
@@ -127,7 +147,7 @@ function isValid(size) {
     return maxFileSize === 0 || size < maxFileSize;
 }
 
-function moveFile(destinationDir, sourceFile, destinationFile, success, failure) {
+function moveFile(destinationDir, sourceFile, destinationFile, success, failure, cropOption) {
     mkdirp(destinationDir, function (error) {
         var sourceStream, destStream;
 
@@ -138,34 +158,61 @@ function moveFile(destinationDir, sourceFile, destinationFile, success, failure)
             sourceStream = fs.createReadStream(sourceFile);
             destStream = fs.createWriteStream(destinationFile);
 
-            sourceStream
-                .on("error", function (error) {
-                    console.error("Problem copying file: " + error.stack);
-                    destStream.end();
-                    failure();
-                })
-                .on("end", function () {
-                    destStream.end();
-                    success();
-                })
-                .pipe(destStream);
+            if (cropOption) {
+                console.log(cropOption)
+                var pipeline = sharp().extract({
+                    left: cropOption.left,
+                    top: cropOption.top,
+                    width: cropOption.width,
+                    height: cropOption.height
+                }).toBuffer(function (err, outputBuffer, info) {
+                    // outputBuffer contains 200px high JPEG image data,
+                    // auto-rotated using EXIF Orientation tag
+                    // info.width and info.height contain the dimensions of the resized image
+                });
+
+                sourceStream.pipe(pipeline)
+                    .on("error", function (error) {
+                        console.error("Problem copying file: " + error.stack);
+                        destStream.end();
+                        failure();
+                    })
+                    .on("end", function () {
+                        destStream.end();
+                        success();
+                    })
+                    .pipe(destStream);
+            } else {
+                sourceStream
+                    .on("error", function (error) {
+                        console.error("Problem copying file: " + error.stack);
+                        destStream.end();
+                        failure();
+                    })
+                    .on("end", function () {
+                        destStream.end();
+                        success();
+                    })
+                    .pipe(destStream);
+            }
+
         }
     });
 }
 
-function moveUploadedFile(file, uuid, success, failure) {
+function moveUploadedFile(file, uuid, success, failure, cropOption) {
     var destinationDir = uploadedFilesPath + uuid + "/",
         fileDestination = destinationDir + file.name;
 
-    moveFile(destinationDir, file.path, fileDestination, success, failure);
+    moveFile(destinationDir, file.path, fileDestination, success, failure, cropOption);
 }
 
-function storeChunk(file, uuid, index, numChunks, success, failure) {
+function storeChunk(file, uuid, index, numChunks, success, failure, cropOption) {
     var destinationDir = uploadedFilesPath + uuid + "/" + chunkDirName + "/",
         chunkFilename = getChunkFilename(index, numChunks),
         fileDestination = destinationDir + chunkFilename;
 
-    moveFile(destinationDir, file.path, fileDestination, success, failure);
+    moveFile(destinationDir, file.path, fileDestination, success, failure, cropOption);
 }
 
 function combineChunks(file, uuid, success, failure) {

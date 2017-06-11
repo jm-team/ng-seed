@@ -250,3 +250,30 @@ fieldset legend {
     right: 5px;
     cursor: pointer;
 }
+
+// croper
+.dialog-wrap .dialog {
+    top: 30%;
+    margin-top: 120px;
+}
+
+.cropper-dialog {
+    .dialog-title {
+        padding: 10px 0;
+    }
+    .dialog-icon-close {
+        top: 5px;
+        right: 15px;
+        cursor: pointer;
+    }
+    .dialog-content {
+        min-height: 200px;
+        min-width: 500px;
+    }
+    .dialog-footer {
+        padding: 10px;
+    }
+    .img-crop-container img {
+        max-width: 100%;
+    }
+}

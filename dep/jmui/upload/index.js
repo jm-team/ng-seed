@@ -23,6 +23,9 @@
     require("./fine-uploader/fine-uploader-new.scss");
     require("./index.scss");
     var qq = require('./fine-uploader/fine-uploader.js');
+    var cropperDialogTemp = require('./cropper-dialog.html')
+    require('./cropper/cropper.scss')
+    var Cropper = require('./cropper/cropper.js')
 
     function isTouchDevice() {
         return "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
@@ -70,12 +73,33 @@
     }
 
     angular.module("jmui.fineUploader", [])
-        .directive("fineUploader", function ($compile, $interpolate) {
+        .directive('croppingImageOnload', function () {
+            return {
+                restrict: 'A',
+                link: function (scope, element, attrs) {
+                    element.on('load', function () {
+
+                        scope.$emit('cropperImageLoaded', this)
+
+                    });
+                    element.on('error', function () {
+                        console.log('image could not be loaded');
+                    });
+                }
+            };
+        })
+        .directive("fineUploader", function ($compile, $interpolate, dialogs) {
             return {
                 restrict: "A",
                 replace: true,
+                scope: {},
                 link: function ($scope, element, attrs) {
 
+                    $scope.hasPickedFile = false;
+                    $scope.cropImgSrc = null;
+                    $scope.croppedResult = null;
+
+                    $scope.autoUpload = (attrs.autoUpload === "false") ? false : true;
                     var endpoint = attrs.uploadServer,
                         notAvailablePlaceholderPath = attrs.notAvailablePlaceholder,
                         waitingPlaceholderPath = attrs.waitingPlaceholder,
@@ -87,6 +111,7 @@
                         // previewDialog = document.querySelector('.large-preview'),
 
                         uploader = new qq.FineUploader({
+                            autoUpload: $scope.autoUpload,
                             debug: true,
                             element: element[0],
                             template: template,
@@ -135,18 +160,106 @@
                             callbacks: {
                                 onSubmitted: function (id, name) {
                                     var fileEl = this.getItemByFileId(id),
-                                        thumbnailEl = fileEl.querySelector('.thumbnail-button');
+                                        thumbnailImg = fileEl.querySelector('.qq-thumbnail-selector');
+
+                                    angular.element(thumbnailImg).on('load', function () {
+                                        $scope.hasPickedFile = true;
+                                        $scope.cropImgSrc = this.src;
+                                        $scope.$apply();
+                                    });
 
                                     // thumbnailEl.addEventListener('click', function () {
-                                    //     openLargerPreview($scope, uploader, previewDialog, largePreviewSize, id);
+                                    //     // openLargerPreview($scope, uploader, previewDialog, largePreviewSize, id);
                                     // });
+                                },
+                                onUpload: function (id, name) {
+                                    if ($scope.croppedResult) {
+                                        this.setParams($scope.croppedResult, id)
+                                    }
+
+                                    $scope.hasPickedFile = false;
+                                    $scope.cropImgSrc = null;
+                                    $scope.croppedResult = null;
+
                                 }
                             }
                         });
 
+
                     //dialogPolyfill.registerDialog(previewDialog);
                     // $scope.closePreview = closePreview.bind(this, previewDialog);
                     bindToRenderedTemplate($compile, $scope, $interpolate, element);
+
+                    $scope.triggerUpload = function () {
+
+                        if (!$scope.autoUpload) {
+                            console.log('croppedResult', $scope.croppedResult)
+                            uploader.uploadStoredFiles();
+                        }
+
+                    }
+
+                    $scope.triggerCrop = function () {
+                        var _parentScope = $scope;
+                        var src = $scope.cropImgSrc;
+
+                        dialogs.modal({
+                            /*@ngInject*/
+                            controller: function cropperDialog($scope, dialogs) {
+                                $scope.cropImgSrc = src;
+
+                                $scope.cropper = null;
+
+                                $scope.getCropBoxData = function () {
+                                    console.log('crroped')
+                                    var result = $scope.cropper.getCropBoxData()
+                                    console.log(result)
+                                    _parentScope.croppedResult = result
+                                    dialogs.close()
+                                    //_parentScope.hasPickedFile = false
+                                }
+
+                                $scope.$on('cropperImageLoaded', function (event, image) {
+
+                                    var options = {
+                                        // aspectRatio: 16 / 9,
+                                        // preview: '.img-preview',
+                                        build: function () {
+                                            console.log('build');
+                                        },
+                                        built: function () {
+                                            console.log('built');
+                                        },
+                                        cropstart: function (data) {
+                                            console.log('cropstart', data.action);
+                                        },
+                                        cropmove: function (data) {
+                                            console.log('cropmove', data.action);
+                                        },
+                                        cropend: function (data) {
+                                            console.log('cropend', data.action);
+                                        },
+                                        crop: function (data) {
+                                            console.log('crop');
+                                            // dataX.value = Math.round(data.x);
+                                            // dataY.value = Math.round(data.y);
+                                            // dataHeight.value = Math.round(data.height);
+                                            // dataWidth.value = Math.round(data.width);
+                                            // dataRotate.value = !isUndefined(data.rotate) ? data.rotate : '';
+                                            // dataScaleX.value = !isUndefined(data.scaleX) ? data.scaleX : '';
+                                            // dataScaleY.value = !isUndefined(data.scaleY) ? data.scaleY : '';
+                                        },
+                                        zoom: function (data) {
+                                            console.log('zoom', data.ratio);
+                                        }
+                                    };
+                                    $scope.cropper = new Cropper(image, options);
+                                })
+                            },
+                            templateUrl: cropperDialogTemp
+                        })
+
+                    }
                 }
             }
         });

@@ -5,6 +5,16 @@
       <h1>Upload上传</h1>
     </header>
 
+    <fieldset>
+      <legend>服务端剪裁上传文件</legend>
+
+      <div fine-uploader auto-upload="false" upload-server="/uploads" max-file-size="512000" large-preview-size="500" allowed-mimes="image/jpeg, image/png"
+        allowed-extensions='{{["jpeg", "jpg", "png"]}}' template="0-server-crop-upload-template"></div>
+
+      <p class="comments">只能上传jpg/png文件，且不超过500kb</p>
+      <div class="code-example"></div>
+    </fieldset>
+
 
     <fieldset>
       <legend>点击上传多个文件</legend>
@@ -58,6 +68,44 @@
       <div class="code-example"></div>
     </fieldset>
   </section>
+
+  <!-- 服务端剪裁上传文件
+    ====================================================================== -->
+  <script type="text/template" id="0-server-crop-upload-template">
+    <div class="qq-uploader-selector">
+      <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+      </div>
+
+      <ul class="qq-upload-list-selector file-list">
+        <li>
+          <div class="qq-progress-bar-container-selector">
+            <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+          </div>
+
+          <a href="#">
+            <span class="qq-upload-spinner-selector jm-icon-loading jm-icon jm-margin-r-10px"></span>
+            <span class="jm-icon-file jm-icon jm-margin-r-10px"></span>
+            <span class="qq-upload-file-selector"></span>
+          </a>
+
+          <span class="qq-upload-delete-selector jm-upload-btn-delete">删除</span>
+
+          <img class="qq-thumbnail-selector" qq-max-size="500" qq-server-scale style="display:none;">
+
+        </li>
+      </ul>
+
+
+      <div class="qq-upload-button-selector jm-btn">
+        <div>选择文件</div>
+      </div>
+
+      <button type="button" class="jm-btn" ng-click="triggerCrop()" ng-disabled="!hasPickedFile">剪裁</button>
+
+      <button type="button" class="jm-btn" ng-click="triggerUpload()" ng-disabled="!hasPickedFile">上传</button>
+    </div>
+  </script>
 
   <!-- 多个文件上传
     ====================================================================== -->
