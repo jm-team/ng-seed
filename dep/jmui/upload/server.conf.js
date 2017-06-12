@@ -52,8 +52,8 @@ function getCropOption(fields) {
     if (!fields.left && !fields.top && !fields.width && !fields.height) return null
 
     return {
-        left: Math.round(fields.left[0]),
-        top: Math.round(fields.top[0]),
+        left: Math.round(fields.x[0]),
+        top: Math.round(fields.y[0]),
         width: Math.round(fields.width[0]),
         height: Math.round(fields.height[0])
     }

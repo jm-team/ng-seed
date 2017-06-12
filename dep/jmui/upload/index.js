@@ -166,8 +166,8 @@
                                         $scope.hasPickedFile = true;
                                         $scope.cropImgSrc = this.src;
                                         $scope.$apply();
+                                        $scope.triggerCrop();
                                     });
-
                                     // thumbnailEl.addEventListener('click', function () {
                                     //     // openLargerPreview($scope, uploader, previewDialog, largePreviewSize, id);
                                     // });
@@ -210,9 +210,9 @@
 
                                 $scope.cropper = null;
 
-                                $scope.getCropBoxData = function () {
+                                $scope.getData = function () {
                                     console.log('crroped')
-                                    var result = $scope.cropper.getCropBoxData()
+                                    var result = $scope.cropper.getData()
                                     console.log(result)
                                     _parentScope.croppedResult = result
                                     dialogs.close()
@@ -222,6 +222,9 @@
                                 $scope.$on('cropperImageLoaded', function (event, image) {
 
                                     var options = {
+                                        preview: '#crop-preview',
+                                        viewMode: 1,
+                                        dragMode: 'move',
                                         // aspectRatio: 16 / 9,
                                         // preview: '.img-preview',
                                         build: function () {

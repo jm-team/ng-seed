@@ -91,17 +91,16 @@
 
           <span class="qq-upload-delete-selector jm-upload-btn-delete">删除</span>
 
-          <img class="qq-thumbnail-selector" qq-max-size="500" qq-server-scale style="display:none;">
-
+          <img class="qq-thumbnail-selector" qq-max-size="" qq-server-scale  style="display: none;">
+          <div id="crop-preview" style="width: 100px; height: 100px;overflow: hidden"></div>
         </li>
       </ul>
-
 
       <div class="qq-upload-button-selector jm-btn">
         <div>选择文件</div>
       </div>
 
-      <button type="button" class="jm-btn" ng-click="triggerCrop()" ng-disabled="!hasPickedFile">剪裁</button>
+      <!--<button type="button" class="jm-btn" ng-click="triggerCrop()" ng-disabled="!hasPickedFile">剪裁</button>-->
 
       <button type="button" class="jm-btn" ng-click="triggerUpload()" ng-disabled="!hasPickedFile">上传</button>
     </div>
