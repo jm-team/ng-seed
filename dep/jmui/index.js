@@ -25,7 +25,7 @@ require('./datepicker');
 
 // require('../../node_modules/angular-tree-control/css/tree-control-attribute.css');
 require('angular-tree-control');
-require('./ueditor/angular-ueditor');
+require('./ueditor');
 
 angular.module('jmui', [
   'jmui.carousel',
