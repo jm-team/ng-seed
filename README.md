@@ -24,8 +24,6 @@ $ yarn run start
 
 ## 功能清单
 [wiki: Features](https://github.com/jm-team/ng-seed/wiki/Features)
-### TODO
-- [ ] 图片裁剪（cropper）
 
 ## 文件目录说明
 [wiki: Constructs](https://github.com/jm-team/ng-seed/wiki/Constructs)
