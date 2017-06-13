@@ -17,216 +17,263 @@
 
 // Dependencies
 var fs = require("fs"),
-  rimraf = require("rimraf"),
-  mkdirp = require("mkdirp"),
-  multiparty = require('multiparty'),
+    rimraf = require("rimraf"),
+    mkdirp = require("mkdirp"),
+    multiparty = require('multiparty'),
+    sharp = require('sharp'),
 
-  // paths/constants
-  fileInputName = process.env.FILE_INPUT_NAME || "qqfile",
-  uploadedFilesPath = process.env.UPLOADED_FILES_DIR || "./uploads/",
-  chunkDirName = "chunks",
-  maxFileSize = process.env.MAX_FILE_SIZE || 0; // in bytes, 0 for unlimited
+    // paths/constants
+    fileInputName = process.env.FILE_INPUT_NAME || "qqfile",
+    uploadedFilesPath = process.env.UPLOADED_FILES_DIR || "./uploads/",
+    chunkDirName = "chunks",
+    maxFileSize = process.env.MAX_FILE_SIZE || 0; // in bytes, 0 for unlimited
 
 
 function onUpload(req, res) {
-  var form = new multiparty.Form();
+    var form = new multiparty.Form();
 
-  form.parse(req, function(err, fields, files) {
-    var partIndex = fields.qqpartindex;
+    form.parse(req, function (err, fields, files) {
+        var partIndex = fields.qqpartindex;
 
-    // text/plain is required to ensure support for IE9 and older
-    res.set("Content-Type", "text/plain");
+        console.log(fields)
 
-    if (partIndex == null) {
-      onSimpleUpload(fields, files[fileInputName][0], res);
-    } else {
-      onChunkedUpload(fields, files[fileInputName][0], res);
+        // text/plain is required to ensure support for IE9 and older
+        res.set("Content-Type", "text/plain");
+
+        if (partIndex == null) {
+            onSimpleUpload(fields, files[fileInputName][0], res);
+        } else {
+            onChunkedUpload(fields, files[fileInputName][0], res);
+        }
+    });
+}
+
+function getCropOption(fields) {
+    if (!fields.left && !fields.top && !fields.width && !fields.height) return null
+
+    return {
+        left: Math.round(fields.x[0]),
+        top: Math.round(fields.y[0]),
+        width: Math.round(fields.width[0]),
+        height: Math.round(fields.height[0])
     }
-  });
 }
 
 function onDeleteFile(req, res) {
-  var uuid = req.params.uuid,
-    dirToDelete = uploadedFilesPath + uuid;
+    var uuid = req.params.uuid,
+        dirToDelete = uploadedFilesPath + uuid;
 
-  rimraf(dirToDelete, function(error) {
-    if (error) {
-      console.error("Problem deleting file! " + error);
-      res.status(500);
-    }
+    rimraf(dirToDelete, function (error) {
+        if (error) {
+            console.error("Problem deleting file! " + error);
+            res.status(500);
+        }
 
-    res.send();
-  });
+        res.send();
+    });
 }
 
 function onSimpleUpload(fields, file, res) {
-  var uuid = fields.qquuid,
-    responseData = {
-      success: false
-    };
+    var uuid = fields.qquuid,
+        responseData = {
+            success: false
+        };
 
-  file.name = fields.qqfilename;
+    file.name = fields.qqfilename;
 
-  if (isValid(file.size)) {
-    moveUploadedFile(file, uuid, function() {
-        responseData.success = true;
-        res.send(responseData);
-      },
-      function() {
-        responseData.error = "Problem copying the file!";
-        res.send(responseData);
-      });
-  } else {
-    failWithTooBigFile(responseData, res);
-  }
+    if (isValid(file.size)) {
+
+        var cropOption = getCropOption(fields)
+
+        moveUploadedFile(file, uuid, function () {
+                responseData.success = true;
+                res.send(responseData);
+            },
+            function () {
+                responseData.error = "Problem copying the file!";
+                res.send(responseData);
+            }, cropOption);
+    } else {
+        failWithTooBigFile(responseData, res);
+    }
 }
 
 function onChunkedUpload(fields, file, res) {
-  var size = parseInt(fields.qqtotalfilesize),
-    uuid = fields.qquuid,
-    index = fields.qqpartindex,
-    totalParts = parseInt(fields.qqtotalparts),
-    responseData = {
-      success: false
-    };
+    var size = parseInt(fields.qqtotalfilesize),
+        uuid = fields.qquuid,
+        index = fields.qqpartindex,
+        totalParts = parseInt(fields.qqtotalparts),
+        responseData = {
+            success: false
+        };
 
-  file.name = fields.qqfilename;
+    file.name = fields.qqfilename;
 
-  if (isValid(size)) {
-    storeChunk(file, uuid, index, totalParts, function() {
-        if (index < totalParts - 1) {
-          responseData.success = true;
-          res.send(responseData);
-        } else {
-          combineChunks(file, uuid, function() {
-              responseData.success = true;
-              res.send(responseData);
+    if (isValid(size)) {
+
+        var cropOption = getCropOption(fields)
+
+        storeChunk(file, uuid, index, totalParts, function () {
+                if (index < totalParts - 1) {
+                    responseData.success = true;
+                    res.send(responseData);
+                } else {
+                    combineChunks(file, uuid, function () {
+                            responseData.success = true;
+                            res.send(responseData);
+                        },
+                        function () {
+                            responseData.error = "Problem conbining the chunks!";
+                            res.send(responseData);
+                        });
+                }
             },
-            function() {
-              responseData.error = "Problem conbining the chunks!";
-              res.send(responseData);
-            });
-        }
-      },
-      function(reset) {
-        responseData.error = "Problem storing the chunk!";
-        res.send(responseData);
-      });
-  } else {
-    failWithTooBigFile(responseData, res);
-  }
+            function (reset) {
+                responseData.error = "Problem storing the chunk!";
+                res.send(responseData);
+            }, cropOption);
+    } else {
+        failWithTooBigFile(responseData, res);
+    }
 }
 
 function failWithTooBigFile(responseData, res) {
-  responseData.error = "Too big!";
-  responseData.preventRetry = true;
-  res.send(responseData);
+    responseData.error = "Too big!";
+    responseData.preventRetry = true;
+    res.send(responseData);
 }
 
 function isValid(size) {
-  return maxFileSize === 0 || size < maxFileSize;
+    return maxFileSize === 0 || size < maxFileSize;
 }
 
-function moveFile(destinationDir, sourceFile, destinationFile, success, failure) {
-  mkdirp(destinationDir, function(error) {
-    var sourceStream, destStream;
+function moveFile(destinationDir, sourceFile, destinationFile, success, failure, cropOption) {
+    mkdirp(destinationDir, function (error) {
+        var sourceStream, destStream;
 
-    if (error) {
-      console.error("Problem creating directory " + destinationDir + ": " + error);
-      failure();
-    } else {
-      sourceStream = fs.createReadStream(sourceFile);
-      destStream = fs.createWriteStream(destinationFile);
+        if (error) {
+            console.error("Problem creating directory " + destinationDir + ": " + error);
+            failure();
+        } else {
+            sourceStream = fs.createReadStream(sourceFile);
+            destStream = fs.createWriteStream(destinationFile);
 
-      sourceStream
-        .on("error", function(error) {
-          console.error("Problem copying file: " + error.stack);
-          destStream.end();
-          failure();
-        })
-        .on("end", function() {
-          destStream.end();
-          success();
-        })
-        .pipe(destStream);
-    }
-  });
+            if (cropOption) {
+                console.log(cropOption)
+                var pipeline = sharp().extract({
+                    left: cropOption.left,
+                    top: cropOption.top,
+                    width: cropOption.width,
+                    height: cropOption.height
+                }).toBuffer(function (err, outputBuffer, info) {
+                    // outputBuffer contains 200px high JPEG image data,
+                    // auto-rotated using EXIF Orientation tag
+                    // info.width and info.height contain the dimensions of the resized image
+                });
+
+                sourceStream.pipe(pipeline)
+                    .on("error", function (error) {
+                        console.error("Problem copying file: " + error.stack);
+                        destStream.end();
+                        failure();
+                    })
+                    .on("end", function () {
+                        destStream.end();
+                        success();
+                    })
+                    .pipe(destStream);
+            } else {
+                sourceStream
+                    .on("error", function (error) {
+                        console.error("Problem copying file: " + error.stack);
+                        destStream.end();
+                        failure();
+                    })
+                    .on("end", function () {
+                        destStream.end();
+                        success();
+                    })
+                    .pipe(destStream);
+            }
+
+        }
+    });
 }
 
-function moveUploadedFile(file, uuid, success, failure) {
-  var destinationDir = uploadedFilesPath + uuid + "/",
-    fileDestination = destinationDir + file.name;
+function moveUploadedFile(file, uuid, success, failure, cropOption) {
+    var destinationDir = uploadedFilesPath + uuid + "/",
+        fileDestination = destinationDir + file.name;
 
-  moveFile(destinationDir, file.path, fileDestination, success, failure);
+    moveFile(destinationDir, file.path, fileDestination, success, failure, cropOption);
 }
 
-function storeChunk(file, uuid, index, numChunks, success, failure) {
-  var destinationDir = uploadedFilesPath + uuid + "/" + chunkDirName + "/",
-    chunkFilename = getChunkFilename(index, numChunks),
-    fileDestination = destinationDir + chunkFilename;
+function storeChunk(file, uuid, index, numChunks, success, failure, cropOption) {
+    var destinationDir = uploadedFilesPath + uuid + "/" + chunkDirName + "/",
+        chunkFilename = getChunkFilename(index, numChunks),
+        fileDestination = destinationDir + chunkFilename;
 
-  moveFile(destinationDir, file.path, fileDestination, success, failure);
+    moveFile(destinationDir, file.path, fileDestination, success, failure, cropOption);
 }
 
 function combineChunks(file, uuid, success, failure) {
-  var chunksDir = uploadedFilesPath + uuid + "/" + chunkDirName + "/",
-    destinationDir = uploadedFilesPath + uuid + "/",
-    fileDestination = destinationDir + file.name;
+    var chunksDir = uploadedFilesPath + uuid + "/" + chunkDirName + "/",
+        destinationDir = uploadedFilesPath + uuid + "/",
+        fileDestination = destinationDir + file.name;
 
 
-  fs.readdir(chunksDir, function(err, fileNames) {
-    var destFileStream;
+    fs.readdir(chunksDir, function (err, fileNames) {
+        var destFileStream;
 
-    if (err) {
-      console.error("Problem listing chunks! " + err);
-      failure();
-    } else {
-      fileNames.sort();
-      destFileStream = fs.createWriteStream(fileDestination, {
-        flags: "a"
-      });
+        if (err) {
+            console.error("Problem listing chunks! " + err);
+            failure();
+        } else {
+            fileNames.sort();
+            destFileStream = fs.createWriteStream(fileDestination, {
+                flags: "a"
+            });
 
-      appendToStream(destFileStream, chunksDir, fileNames, 0, function() {
-          rimraf(chunksDir, function(rimrafError) {
-            if (rimrafError) {
-              console.log("Problem deleting chunks dir! " + rimrafError);
-            }
-          });
-          success();
-        },
-        failure);
-    }
-  });
+            appendToStream(destFileStream, chunksDir, fileNames, 0, function () {
+                    rimraf(chunksDir, function (rimrafError) {
+                        if (rimrafError) {
+                            console.log("Problem deleting chunks dir! " + rimrafError);
+                        }
+                    });
+                    success();
+                },
+                failure);
+        }
+    });
 }
 
 function appendToStream(destStream, srcDir, srcFilesnames, index, success, failure) {
-  if (index < srcFilesnames.length) {
-    fs.createReadStream(srcDir + srcFilesnames[index])
-      .on("end", function() {
-        appendToStream(destStream, srcDir, srcFilesnames, index + 1, success, failure);
-      })
-      .on("error", function(error) {
-        console.error("Problem appending chunk! " + error);
+    if (index < srcFilesnames.length) {
+        fs.createReadStream(srcDir + srcFilesnames[index])
+            .on("end", function () {
+                appendToStream(destStream, srcDir, srcFilesnames, index + 1, success, failure);
+            })
+            .on("error", function (error) {
+                console.error("Problem appending chunk! " + error);
+                destStream.end();
+                failure();
+            })
+            .pipe(destStream, {
+                end: false
+            });
+    } else {
         destStream.end();
-        failure();
-      })
-      .pipe(destStream, {
-        end: false
-      });
-  } else {
-    destStream.end();
-    success();
-  }
+        success();
+    }
 }
 
 function getChunkFilename(index, count) {
-  var digits = new String(count).length,
-    zeros = new Array(digits + 1).join("0");
+    var digits = new String(count).length,
+        zeros = new Array(digits + 1).join("0");
 
-  return (zeros + index).slice(-digits);
+    return (zeros + index).slice(-digits);
 }
 
 module.exports = {
-  onUpload: onUpload,
-  onDeleteFile: onDeleteFile
+    onUpload: onUpload,
+    onDeleteFile: onDeleteFile
 }

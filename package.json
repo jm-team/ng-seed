@@ -81,7 +81,8 @@
     "echarts-wordcloud": "^1.0.3",
     "file-uploader": "^1.0.0",
     "marked": "^0.3.6",
-    "raw-loader": "^0.5.1"
+    "raw-loader": "^0.5.1",
+    "sharp": "^0.18.1"
   },
   "optionalDependencies": {
     "conventional-changelog": "^1.1.3",

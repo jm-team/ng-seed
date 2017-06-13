@@ -1,239 +1,279 @@
 /*******************************************
   common
 *******************************************/
+
 .main-content header {
-  margin: 40px 40px 0;
+    margin: 40px 40px 0 40px;
 }
 
 fieldset {
-  display: block;
-  margin: 40px;
-  padding: 35px 40px 40px;
-  border-radius: 4px;
-  color: #666666;
+    display: block;
+    margin: 40px;
+    padding: 35px 40px 40px;
+    border-radius: 4px;
+    color: #666666;
 }
 
 fieldset legend {
-  font-size: 20px;
-  font-weight: bold;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .file-list {
-  width: 360px;
-  margin-bottom: 34px;
+    width: 360px;
+    margin-bottom: 34px;
 }
 
 .file-list li {
-  position: relative;
-  border-radius: 4px;
-  transition: all 0.5s cubic-bezier(.55, 0, .1, 1);
+    position: relative;
+    border-radius: 4px;
+    transition: all .5s cubic-bezier(.55, 0, .1, 1);
 }
 
 .file-list li:hover {
-  background-color: #eef1f6;
+    background-color: #eef1f6;
 }
 
 .file-list li:hover .jm-upload-btn-delete {
-  display: block;
+    display: block;
 }
 
 .file-list a {
-  font-size: 14px;
-  color: #777;
-  line-height: 32px;
-  display: block;
-  margin-right: 40px;
-  overflow: hidden;
-  padding-left: 4px;
-  text-overflow: ellipsis;
-  transition: color 0.3s;
-  white-space: nowrap;
+    font-size: 14px;
+    color: #777;
+    line-height: 32px;
+    display: block;
+    margin-right: 40px;
+    overflow: hidden;
+    padding-left: 4px;
+    text-overflow: ellipsis;
+    transition: color .3s;
+    white-space: nowrap;
 }
 
 .file-list a:hover {
-  color: #20a0ff;
+    color: #20a0ff;
 }
 
 .file-list li+li {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .comments {
-  font-size: 14px;
-  color: #bababa;
-  margin-top: 10px;
+    font-size: 14px;
+    color: #bababa;
+    margin-top: 10px;
 }
 
 .jm-margin-r-10px {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .jm-upload-plus {
-  font-size: 26px;
+    font-size: 26px;
 }
 
 .jm-btn {
-  display: inline-block;
-  min-width: 77px;
-  height: 36px;
-  line-height: 36px;
-  padding: 0 23px;
-  font-size: 16px;
-  color: #fff;
-  background: #0080cb;
-  border: 0;
-  border-radius: 3px;
-  cursor: pointer;
+    display: inline-block;
+    min-width: 77px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 23px;
+    font-size: 16px;
+    color: #fff;
+    background: #0080cb;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .jm-btn:hover {
-  background: #4db3ff;
-  border-color: #4db3ff;
+    background: #4db3ff;
+    border-color: #4db3ff;
 }
 
 .jm-upload-btn-delete {
-  height: 32px;
-  line-height: 32px;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  margin-top: -16px;
-  font-size: 12px;
-  color: #20a0ff;
-  cursor: pointer;
-  display: none;
+    height: 32px;
+    line-height: 32px;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -16px;
+    font-size: 12px;
+    color: #20a0ff;
+    cursor: pointer;
+    display: none;
 }
 
 .thumbnail50-50 {
-  width: 50px;
-  height: 50px;
-  vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
 }
 
 .thumbnail100-100 {
-  width: 100px;
-  height: 100px;
-  vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
 }
 
 .thumbnail150-150 {
-  width: 150px;
-  height: 150px;
-  vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    vertical-align: middle;
 }
+
+
 /*******************************************
   单个图片
 *******************************************/
+
 .jm-single-upload-placeholder {
-  width: 150px;
-  height: 150px;
-  border-radius: 4px;
-  border: 1px dashed #ddd;
-  background: #f9f9f9;
-  text-align: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 4px;
+    border: 1px dashed #ddd;
+    background: #f9f9f9;
+    text-align: center;
 }
 
 .jm-single-upload-placeholder .file-list {
-  width: 150px;
+    width: 150px;
 }
 
 .jm-single-upload-placeholder .file-list a {
-  margin-right: 0;
-  padding-left: 0;
+    margin-right: 0;
+    padding-left: 0;
 }
 
 .jm-single-upload-btn-text {
-  margin-top: 16px;
-  font-size: 14px;
+    margin-top: 16px;
+    font-size: 14px;
 }
 
 .jm-single-upload-content {
-  margin-top: 50px;
+    margin-top: 50px;
 }
+
+
 /*******************************************
   拖拽上传
 *******************************************/
+
 .jm-drag-zone {
-  width: 333px;
-  height: 150px;
-  background: #f9f9f9;
-  text-align: center;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  position: relative;
-  outline: none;
+    width: 333px;
+    height: 150px;
+    background: #f9f9f9;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    position: relative;
+    outline: none;
 }
 
 .jm-drag-zone:hover {
-  border-color: #20a0ff;
+    border-color: #20a0ff;
 }
 
 .margin-bottom-10px {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .jm-icon-upload {
-  display: block;
-  width: 48px;
-  height: 36px;
-  margin: 40px auto 25px;
-  background: url("./img/icon-drag-cloud.png") no-repeat;
+    display: block;
+    width: 48px;
+    height: 36px;
+    margin: 40px auto 25px;
+    background: url(./img/icon-drag-cloud.png) no-repeat;
 }
 
 .jm-dragger-text em {
-  color: #0080cb;
+    color: #0080cb;
 }
+
+
 /*******************************************
   照片墙
 *******************************************/
+
 .pic-wall-list li {
-  float: left;
-  position: relative;
+    float: left;
+    position: relative;
 }
 
 .jm-pic-wall-placeholder {
-  width: 100px;
-  height: 100px;
-  border-radius: 2px;
-  border: 1px dashed #ddd;
-  background: #f9f9f9;
-  text-align: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 2px;
+    border: 1px dashed #ddd;
+    background: #f9f9f9;
+    text-align: center;
 }
 
 .jm-pic-wall-upload-content {
-  padding-top: 25px;
+    padding-top: 25px;
 }
 
 .pic-wall-list .jm-upload-btn-delete {
-  height: 32px;
-  line-height: 32px;
-  position: absolute;
-  right: 15px;
-  top: 80%;
-  margin-top: -16px;
-  font-size: 12px;
-  color: #20a0ff;
-  cursor: pointer;
-  display: none;
+    height: 32px;
+    line-height: 32px;
+    position: absolute;
+    right: 15px;
+    top: 80%;
+    margin-top: -16px;
+    font-size: 12px;
+    color: #20a0ff;
+    cursor: pointer;
+    display: none;
 }
 
 .pic-wall-list li:hover .jm-upload-btn-delete {
-  display: block;
+    display: block;
 }
+
+
 /*******************************************
   图片预览
 *******************************************/
+
 .large-preview {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .large-preview button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+// croper
+.dialog-wrap .dialog {
+    top: 30%;
+    margin-top: 120px;
+}
+
+.cropper-dialog {
+    .dialog-title {
+        padding: 10px 0;
+    }
+    .dialog-icon-close {
+        top: 5px;
+        right: 15px;
+        cursor: pointer;
+    }
+    .dialog-content {
+        min-height: 200px;
+        min-width: 500px;
+    }
+    .dialog-footer {
+        padding: 10px;
+    }
+    .img-crop-container img {
+        max-width: 100%;
+    }
 }

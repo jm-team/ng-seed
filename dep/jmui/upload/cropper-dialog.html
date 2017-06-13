@@ -1,0 +1,18 @@
+<div class="cropper-dialog">
+  <div class="dialog-box">
+    <div class="dialog-header">
+      <div class="dialog-title">剪裁</div>
+      <span class="dialog-icon-close" ng-click="close()">&times;</span>
+    </div>
+    <div class="dialog-content">
+      <div class="img-crop-container">
+        <img id="crop-image" cropping-image-onload ng-src="{{cropImgSrc}}" alt="Picture">
+      </div>
+    </div>
+    <div class="dialog-footer">
+      <button class="jm-btn" ng-click="getData()">剪裁</button>
+      <button class="jm-btn" ng-click="close()">取消</button>
+    </div>
+
+  </div>
+</div>
