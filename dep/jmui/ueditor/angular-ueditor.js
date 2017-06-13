@@ -1,5 +1,5 @@
-require("./ueditor.config.js");
-require("./ueditor.all.min.js");
+require("../../ueditor/ueditor.config.js");
+require("../../ueditor/ueditor.all.min.js");
 /**
  Created by Dio on 17-9.
  http://inhu.net

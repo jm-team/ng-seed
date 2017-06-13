@@ -124,8 +124,8 @@ module.exports = merge({
             from: './src/asset/img/system',
             to: './img/system'
         }, {
-            from: './dep/jmui/ueditor',
-            to: './js'
+            from: './dep/ueditor',
+            to: './dep/ueditor'
         }, {
             from: './dep/vendor',
             to: './js'

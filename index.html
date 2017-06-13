@@ -32,17 +32,21 @@
     <%=htmlWebpackPlugin.files.webpackManifest%>
 
 
-        <!-- SEO脚本 efe 百度统计代码 -->
-        <script>
-            var _hmt = _hmt || [];
-            (function () {
-                var hm = document.createElement("script");
-                hm.src = "https://hm.baidu.com/hm.js?92de84cc51276413aeb4fa8d45b3b14c";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
-            })();
-        </script>
-        <script src="<%= htmlWebpackPlugin.options.assetsPublicPath %>js/<%= htmlWebpackPlugin.options.dllJsFileName %>"></script>
+    <!-- SEO脚本 efe 百度统计代码 -->
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?92de84cc51276413aeb4fa8d45b3b14c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script src="<%= htmlWebpackPlugin.options.assetsPublicPath %>js/<%= htmlWebpackPlugin.options.dllJsFileName %>"></script>
+    <script>
+        // 配置ueditor路径
+        window.UEDITOR_HOME_URL = '<%= htmlWebpackPlugin.options.assetsPublicPath %>dep/ueditor/';
+    </script>
 </body>
 
 </html>
