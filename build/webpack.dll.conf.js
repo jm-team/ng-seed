@@ -37,7 +37,7 @@ module.exports = {
     plugins: [
         new webpack.DllPlugin({
             path: path.join(__dirname, '.', '[name]-manifest.json'),
-            libraryTarget: 'window',
+            libraryTarget: 'umd',
             name: '[name]_[hash:8]' // 必须与output.library相同
         }),
 

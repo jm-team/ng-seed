@@ -81,8 +81,12 @@ module.exports = merge({
             // 处理angularjs 模版片段
             {
                 test: /\.html$/,
-                loader: 'ngtemplate?module=ng&relativeTo=' + (path.resolve(__dirname, '../')) + '!html?attrs=img:src div:url img:img-error div:img-error li:img-error span:img-error a:img-error',
-                include: /(src|dep)/
+                loader: 'ngtemplate?module=ng&relativeTo=' + (path.resolve(__dirname, '../')) + '!html?attrs=img:src div:url',
+                include: [
+                  path.resolve(__dirname, "../src"),
+                  path.resolve(__dirname, "../dep")
+                ], // http://webpack.github.io/docs/configuration.html#module-loaders
+                exclude: path.resolve(__dirname, '../index.html')
             },
 
             // 处理html图片
