@@ -61,7 +61,7 @@ app.directive('tjPage', function() {
     restrict: 'AE',
     controller: function() {
       this.isTJPage = true;
-    }
+    },
   };
 }).directive('a', function(TJ) {
   return {
@@ -69,11 +69,16 @@ app.directive('tjPage', function() {
     require: '^?tjPage',
     replace: true,
     link: function(scope, element, attrs, tjPageController) {
-        tjPageController && tjPageController.isTJPage &&
-        element.on('click', function(e) {
-          // 统计流向
-          TJ.save({ from: TJ.formUrl, target: e.target.getAttribute('href') }, true);
-        });
+      tjPageController && tjPageController.isTJPage &&
+      element.on('click', function(e) {
+        // 统计流向
+        TJ.save({ from: TJ.formUrl, target: e.target.getAttribute('href') },
+          true);
+      });
+
+      scope.$on('$destroy', function() {
+        element.off('click');
+      });
     },
   };
 });
