@@ -1,4 +1,13 @@
+@function zeroize($i) {
+  @if ($i < 10) {
+    @return '0' + $i
+  } @else {
+    @return $i
+  }
+}
+
 .float-nav {
+  display: none;
   opacity: 0;
   filter: alpha(opacity=0);
   transition: opacity 0.5s;
@@ -60,32 +69,10 @@
       width: 21px;
       margin: 0 auto;
     }
-    &.nav01 i {
-      background: url('./sprite/float-nav_02.png');
-    }
-    &.nav02 i {
-      background: url('./sprite/float-nav_04.png');
-    }
-    &.nav03 i {
-      background: url('./sprite/float-nav_06.png');
-    }
-    &.nav04 i {
-      background: url('./sprite/float-nav_08.png');
-    }
-    &.nav05 i {
-      background: url('./sprite/float-nav01.png');
-    }
-    &.nav06 i {
-      background: url('./sprite/float-nav_12.png');
-    }
-    &.nav07 i {
-      background: url('./sprite/float-nav_14.png');
-    }
-    &.nav08 i {
-      background: url('./sprite/float-nav_15.png');
-    }
-    &.nav09 i {
-      background: url('./sprite/float-nav_16.png');
+    @for $i from 1 through 9 {
+      &.nav#{zeroize($i)} i {
+        background: url('./sprite/float-nav#{zeroize($i)}.png')
+      }
     }
     a.link, span {
       position: absolute;

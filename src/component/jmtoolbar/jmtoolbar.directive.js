@@ -2,15 +2,16 @@ var app = require('app');
 var jmToolbar = require('./jmtoolbar.html');
 require('./jmtoolbar.scss');
 
-app.directive('jmToolbar', function ($window, $timeout) {
+app.directive('jmToolbar', function($window, $timeout) {
     return {
         restrict: 'AE',
         replace: true,
         templateUrl: jmToolbar,
-        link: function(scope, element, attrs){
+        link: function(scope, element, attrs) {
             var visibilityHeight = attrs.visibilityHeight || 400;
             var elm = element[0];
-            var $topBtn = angular.element(elm.lastElementChild || elm.lastChild);
+            var $topBtn = angular.element(
+                elm.lastElementChild || elm.lastChild);
             var $win = angular.element($window);
             var timer = null;
 
@@ -22,7 +23,8 @@ app.directive('jmToolbar', function ($window, $timeout) {
                 }
 
                 // Internet Explorer 6 - standards mode
-                if (document.documentElement && document.documentElement.scrollTop) {
+                if (document.documentElement &&
+                    document.documentElement.scrollTop) {
                     return document.documentElement.scrollTop;
                 }
 
@@ -41,7 +43,8 @@ app.directive('jmToolbar', function ($window, $timeout) {
                 }
                 var y = elm.offsetTop;
                 var node = elm;
-                while (node.offsetParent && node.offsetParent !== document.body) {
+                while (node.offsetParent &&
+                node.offsetParent !== document.body) {
                     node = node.offsetParent;
                     y += node.offsetTop;
                 }
@@ -53,22 +56,38 @@ app.directive('jmToolbar', function ($window, $timeout) {
             // 否则就添加`ng-hide`类
             function contrast() {
                 var posY = currentYPosition();
-                element.toggleClass(attrs.toggleClass || 'ng-hide', posY >= visibilityHeight);
+                var isShow = posY >= visibilityHeight;
+
+                if (isShow) {
+                    element[0].style.display = 'block';
+                    window.getComputedStyle && getComputedStyle(element[0]).left; // css hack
+                }
+
+                element.toggleClass(attrs.toggleClass || 'ng-hide', isShow);
             }
 
+            // 动画结束隐藏元素
+            element.on('transitionend', function() {
+                var posY = currentYPosition();
+
+                if (posY < visibilityHeight) {
+                    element[0].style.display = 'none';
+                }
+            });
             // 执行判断是否显示当前元素
             contrast();
 
             // 点击执行滚动到指定目标位置
-            $topBtn.on('click', function ($event) {
+            $topBtn.on('click', function($event) {
                 $event.preventDefault();
                 // scroll参考
                 // http://www.itnewb.com/tutorial/Creating-the-Smooth-Scroll-Effect-with-JavaScript
-                var onFinsh = angular.isFunction(scope.onScrollFinsh) ? scope.onScrollFinsh : angular.noop;
+                var onFinsh = angular.isFunction(scope.onScrollFinsh)
+                    ? scope.onScrollFinsh
+                    : angular.noop;
                 var startY = currentYPosition();
                 var stopY = elmYPosition(scope.targetId);
                 var distance = stopY > startY ? stopY - startY : startY - stopY;
-
 
                 if (distance < 100) {
                     scrollTo(0, stopY);
@@ -85,7 +104,8 @@ app.directive('jmToolbar', function ($window, $timeout) {
                 var i = startY;
                 if (stopY > startY) {
                     for (startY; i < stopY; i += step) {
-                        setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
+                        setTimeout('window.scrollTo(0, ' + leapY + ')',
+                            timer * speed);
                         leapY += step;
                         if (leapY > stopY) {
                             leapY = stopY;
@@ -94,7 +114,8 @@ app.directive('jmToolbar', function ($window, $timeout) {
                     }
                 } else {
                     for (startY; i > stopY; i -= step) {
-                        setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
+                        setTimeout('window.scrollTo(0, ' + leapY + ')',
+                            timer * speed);
                         leapY -= step;
                         if (leapY < stopY) {
                             leapY = stopY;
@@ -108,17 +129,17 @@ app.directive('jmToolbar', function ($window, $timeout) {
             });
 
             // 绑定scroll 事件
-            $win.on('scroll', function () {
+            $win.on('scroll', function() {
                 $timeout.cancel(timer);
                 timer = $timeout(contrast, 50);
             });
 
             //
-            scope.$on('$destroy', function(){
+            scope.$on('$destroy', function() {
                 $timeout.cancel(timer);
                 $win.off('scroll');
                 $topBtn.off('click');
             });
-        }
+        },
     };
 });
