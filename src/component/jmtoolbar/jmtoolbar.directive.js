@@ -61,6 +61,9 @@ app.directive('jmToolbar', function($window, $timeout) {
                 if (isShow) {
                     element[0].style.display = 'block';
                     window.getComputedStyle && getComputedStyle(element[0]).left; // css hack
+                } else if(element[0].style.transition === undefined) {
+                    // ie8、9 不支持transition
+                    element[0].style.display = 'none'
                 }
 
                 element.toggleClass(attrs.toggleClass || 'ng-hide', isShow);
