@@ -17,7 +17,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.scss$/i,
-                loader: extractSASS.extract(['css', 'sass?config=sassLoaderConfig!postcss'])
+                loader: extractSASS.extract(['css', 'postcss!sass?config=sassLoaderConfig'])
             },
 
         ]
