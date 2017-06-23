@@ -1,128 +1,127 @@
 @function zeroize($i) {
-  @if ($i < 10) {
-    @return '0' + $i
-  } @else {
+    @if ($i < 10) {
+        $i: '0' + $i
+    }
     @return $i
-  }
 }
 
 .float-nav {
-  display: none;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  transition: opacity 0.5s;
-  position: fixed;
-  width: 36px;
-  left: 50%;
-  bottom: 80px;
-  margin-left: 610px;
-  padding: 0;
-  z-index: 999;
-  list-style: none;
-  overflow: hidden;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
-  &:hover {
-    overflow: visible;
-    li {
-      background: #6e6e6e;
-      &.nav09 {
-        background: #9e9e9e;
-      }
-    }
-  }
-  &.on {
-    opacity: 1;
-    filter: alpha(opacity=100);
+    display: none;
+    opacity: 0;
+    filter: alpha(opacity=0);
     transition: opacity 0.5s;
-  }
-  li {
+    position: fixed;
+    width: 36px;
+    left: 50%;
+    bottom: 80px;
+    margin-left: 610px;
+    padding: 0;
+    z-index: 999;
     list-style: none;
-    position: relative;
-    height: 37px;
-    text-align: center;
-    line-height: 16px;
-    font-size: 14px;
-    color: #fff;
-    background-color: #9e9e9e; /* 雪碧图bug，不能这样定义background: #9e9e9e */
-    opacity: 0.8;
-    filter: alpha(opacity=80);
-    border-bottom: 1px solid #fff;
-    cursor: pointer;
-    a.link2 {
-      display: block;
-      padding: 8px 0 7px 0;
-    }
-    &.mb2 {
-      height: 40px;
-      padding-top: 4px;
-    }
-    &.nav09 {
-      background: #bcbcbc;
-      opacity: 1;
-      filter: alpha(opacity=100);
-      border-bottom: 0;
-    }
-    i {
-      display: inline-block;
-      height: 21px;
-      width: 21px;
-      margin: 0 auto;
-    }
-    @for $i from 1 through 9 {
-      &.nav#{zeroize($i)} i {
-        background: url('./sprite/float-nav#{zeroize($i)}.png')
-      }
-    }
-    a.link, span {
-      position: absolute;
-      opacity: 0;
-      filter: alpha(opacity=0);
-      transition: all 0.3s;
-      right: 60px;
-      top: 0;
-      width: 70px;
-      height: 36px;
-      line-height: 36px;
-      text-align: center;
-      color: #fff;
-      background: #6e6e6e;
-      z-index: 0;
-      text-decoration: none;
-      &:before {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 0;
-        top: 12px;
-        right: -6px;
-        border-top: 6px solid transparent;
-        border-left: 6px solid #6e6e6e;
-        border-bottom: 6px solid transparent;
-      }
-    }
-    &.nav08 span {
-      width: 110px;
-    }
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
     &:hover {
-      background: #2788e8;
-      opacity: 1;
-      filter: alpha(opacity=100);
-      &.mb2 {
-        background: #6e6e6e;
-        cursor: default;
-        opacity: 0.8;
-        filter: alpha(opacity=80);
-      }
-      a.link, span {
-        right: 36px;
+        overflow: visible;
+        li {
+            background: #6e6e6e;
+            &.nav09 {
+                background: #9e9e9e;
+            }
+        }
+    }
+    &.on {
         opacity: 1;
         filter: alpha(opacity=100);
-        transition: all 0.5s;
-      }
+        transition: opacity 0.5s;
     }
-    &.nav09:hover {
-      background: #3f3f3f;
+    li {
+        list-style: none;
+        position: relative;
+        height: 37px;
+        text-align: center;
+        line-height: 16px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #9e9e9e; /* 雪碧图bug，不能这样定义background: #9e9e9e */
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        border-bottom: 1px solid #fff;
+        cursor: pointer;
+        a.link2 {
+            display: block;
+            padding: 8px 0 7px 0;
+        }
+        &.mb2 {
+            height: 40px;
+            padding-top: 4px;
+        }
+        &.nav09 {
+            background: #bcbcbc;
+            opacity: 1;
+            filter: alpha(opacity=100);
+            border-bottom: 0;
+        }
+        i {
+            display: inline-block;
+            height: 21px;
+            width: 21px;
+            margin: 0 auto;
+        }
+        @for $i from 1 through 9 {
+            &.nav#{zeroize($i)} i {
+                background: url('./sprite/float-nav#{zeroize($i)}.png')
+            }
+        }
+        a.link, span {
+            position: absolute;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            transition: all 0.3s;
+            right: 60px;
+            top: 0;
+            width: 70px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            color: #fff;
+            background: #6e6e6e;
+            z-index: 0;
+            text-decoration: none;
+            &:before {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 0;
+                top: 12px;
+                right: -6px;
+                border-top: 6px solid transparent;
+                border-left: 6px solid #6e6e6e;
+                border-bottom: 6px solid transparent;
+            }
+        }
+        &.nav08 span {
+            width: 110px;
+        }
+        &:hover {
+            background: #2788e8;
+            opacity: 1;
+            filter: alpha(opacity=100);
+            &.mb2 {
+                background: #6e6e6e;
+                cursor: default;
+                opacity: 0.8;
+                filter: alpha(opacity=80);
+            }
+            a.link, span {
+                right: 36px;
+                opacity: 1;
+                filter: alpha(opacity=100);
+                transition: all 0.5s;
+            }
+        }
+        &.nav09:hover {
+            background: #3f3f3f;
+        }
     }
-  }
 }
