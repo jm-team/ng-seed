@@ -137,7 +137,7 @@ app.directive('jmToolbar', function($window, $timeout) {
                 timer = $timeout(contrast, 50);
             });
 
-            //
+            // 解除绑定防止内存泄露
             scope.$on('$destroy', function() {
                 $timeout.cancel(timer);
                 $win.off('scroll');
