@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline --quiet --open --config ./build/webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./build/webpack.config.js",
+    "start": "node ./server.js",
     "build:dll": "webpack --config build/webpack.dll.conf.js",
     "fecs:check": "fecs check src --reporter=baidu",
     "fecs:fix": "fecs format src --replace --safe=high",
