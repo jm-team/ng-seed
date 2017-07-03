@@ -2275,6 +2275,7 @@
                 }
             },
             _uploadStoredFiles: function() {
+              debugger;
                 var idToUpload, stillSubmitting, self = this;
                 while (this._storedIds.length) {
                     idToUpload = this._storedIds.shift();

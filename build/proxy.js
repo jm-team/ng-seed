@@ -10,7 +10,7 @@ var proxyTarget = config.devServer.proxyTarget;
  */
 if (!Array.isArray(proxyTarget)) {
     throw new Error(`The proxyTarget must be an array of objects!
-     * sample: 
+     * sample:
      *   proxyTarget: [
      *     {pattern: '/webapi', address: address.SERVER_ADDRESS},
      *     {pattern: '/dataserviceEN', address: address.JM_BIG_DATA_WEBAPI}
@@ -39,7 +39,12 @@ function createProxy(objProxy, pattern, proxyAddress) {
          */
         // pathRewrite: {'^/api' : ''},
         bypass: function (req, res, proxyOptions) {
-            // console.log(req.url);
+          // console.log("======================")
+          // console.log(req.url)
+          // console.log(res.req);
+          // console.log(proxyOptions)
+          // console.log(req.url.replace('/dove', ''))
+         // return proxyOptions.target + req.url.replace('/dove/', '');
         },
         changeOrigin: true,
         secure: false

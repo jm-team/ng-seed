@@ -10,7 +10,7 @@ angular.module('jmui.login', [])
       checkHasLogin: function(obj) {
         var obj = angular.extend({
           params: {
-            serviceContext: '/webapi'
+            serviceContext: ''
           },
           path: '/hasLogin'
         }, obj);

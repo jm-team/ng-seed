@@ -1,269 +1,230 @@
-/**
- * AngularJS directive for Fine Uploader UI jQuery (traditional endpoints).
- * Maintained by Widen Enterprises.
- *
- * This example:
- *  - Delegates error messages to the dialog element.
- *  - Generates client-side pre-upload image previews (where supported).
- *  - Allows files to be excluded based on extension and MIME type (where supported).
- *  - Determines the most appropriate upload button and drop zone text based on browser capabilities.
- *  - Renders larger image preview on-demand in a dialog element.
- *  - Keeps an aggregate progress bar up-to-date based on upload status for all files.
- *  - Enables delete file support.
- *  - Ensure newly submitted files are added to the top of the visible list.
- *  - Enables chunking & auto-resume support.
- *
- * Requirements:
- *  - Fine Uploader 5.4 or 5.5
- *  - Dialog element polyfill 0.4.2
- *  - AngularJS 1.5
- */
+var qq = require("./fine-uploader/fine-uploader.core.js");
 
-(function () {
-    require("./fine-uploader/fine-uploader-new.scss");
-    require("./index.scss");
-    var qq = require('./fine-uploader/fine-uploader.js');
-    var cropperDialogTemp = require('./cropper-dialog.html')
-    require('./cropper/cropper.scss')
-    var Cropper = require('./cropper/cropper.js')
+angular
+  .module("jmui.fineUploader", [])
 
-    function isTouchDevice() {
-        return "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
-    }
-
-    function initButtonText($scope) {
-        var input = document.createElement("input");
-
-        input.setAttribute("multiple", "true");
-
-        if (input.multiple === true && !qq.android()) {
-            $scope.uploadButtonText = "Select Files";
-        } else {
-            $scope.uploadButtonText = "Select a File";
-        }
-    }
-
-    function initDropZoneText($scope, $interpolate) {
-        if (qq.supportedFeatures.folderDrop && !isTouchDevice()) {
-            $scope.dropZoneText = "Drop Files or Folders Here";
-        } else if (qq.supportedFeatures.fileDrop && !isTouchDevice()) {
-            $scope.dropZoneText = "Drop Files Here";
-        } else {
-            $scope.dropZoneText = $scope.$eval($interpolate("Press '{{uploadButtonText}}'"));
-        }
-    }
-
-    function bindToRenderedTemplate($compile, $scope, $interpolate, element) {
-        $compile(element.contents())($scope);
-
-        initButtonText($scope);
-        initDropZoneText($scope, $interpolate);
-    }
-
-    function openLargerPreview($scope, uploader, modal, size, fileId) {
-        uploader.drawThumbnail(fileId, new Image(), size).then(function (image) {
-            $scope.largePreviewUri = image.src;
-            $scope.$apply();
-            modal.showModal();
+  .factory('uploadService', function ($http, $log) {
+    return {
+      // 获取上传参数
+      getParams: function (conf) {
+        var config = conf || {};
+        return $http({
+          method: config.method || "get",
+          url: config.url || "/getUploadToken",
+          params: config.params || {}
+        }).then(function (data) {
+          return data.data || {};
+        }, function () {
+          $log.log("获取上传参数失败");
         });
-    }
+      },
 
-    function closePreview(modal) {
-        modal.close();
-    }
-
-    angular.module("jmui.fineUploader", [])
-        .directive('croppingImageOnload', function () {
-            return {
-                restrict: 'A',
-                link: function (scope, element, attrs) {
-                    element.on('load', function () {
-
-                        scope.$emit('cropperImageLoaded', this)
-
-                    });
-                    element.on('error', function () {
-                        console.log('image could not be loaded');
-                    });
-                }
-            };
-        })
-        .directive("fineUploader", function ($compile, $interpolate, dialogs) {
-            return {
-                restrict: "A",
-                replace: true,
-                scope: {},
-                link: function ($scope, element, attrs) {
-
-                    $scope.hasPickedFile = false;
-                    $scope.cropImgSrc = null;
-                    $scope.croppedResult = null;
-
-                    $scope.autoUpload = (attrs.autoUpload === "false") ? false : true;
-                    var endpoint = attrs.uploadServer,
-                        notAvailablePlaceholderPath = attrs.notAvailablePlaceholder,
-                        waitingPlaceholderPath = attrs.waitingPlaceholder,
-                        acceptFiles = attrs.allowedMimes,
-                        sizeLimit = attrs.maxFileSize,
-                        largePreviewSize = parseInt(attrs.largePreviewSize),
-                        allowedExtensions = JSON.parse(attrs.allowedExtensions),
-                        template = attrs.template,
-                        // previewDialog = document.querySelector('.large-preview'),
-
-                        uploader = new qq.FineUploader({
-                            autoUpload: $scope.autoUpload,
-                            debug: true,
-                            element: element[0],
-                            template: template,
-                            request: {
-                                endpoint: endpoint
-                            },
-
-                            validation: {
-                                acceptFiles: acceptFiles,
-                                allowedExtensions: allowedExtensions,
-                                sizeLimit: sizeLimit
-                            },
-
-                            deleteFile: {
-                                endpoint: endpoint,
-                                enabled: true
-                            },
-
-                            thumbnails: {
-                                placeholders: {
-                                    notAvailablePath: notAvailablePlaceholderPath,
-                                    waitingPath: waitingPlaceholderPath
-                                }
-                            },
-
-                            display: {
-                                prependFiles: true
-                            },
-
-                            failedUploadTextDisplay: {
-                                mode: "custom"
-                            },
-
-                            retry: {
-                                enableAuto: true
-                            },
-
-                            chunking: {
-                                enabled: true
-                            },
-
-                            resume: {
-                                enabled: true
-                            },
-
-                            callbacks: {
-                                onSubmitted: function (id, name) {
-                                    var fileEl = this.getItemByFileId(id),
-                                        thumbnailImg = fileEl.querySelector('.qq-thumbnail-selector');
-
-                                    angular.element(thumbnailImg).on('load', function () {
-                                        $scope.hasPickedFile = true;
-                                        $scope.cropImgSrc = this.src;
-                                        $scope.$apply();
-                                        $scope.triggerCrop();
-                                    });
-                                    // thumbnailEl.addEventListener('click', function () {
-                                    //     // openLargerPreview($scope, uploader, previewDialog, largePreviewSize, id);
-                                    // });
-                                },
-                                onUpload: function (id, name) {
-                                    if ($scope.croppedResult) {
-                                        this.setParams($scope.croppedResult, id)
-                                    }
-
-                                    $scope.hasPickedFile = false;
-                                    $scope.cropImgSrc = null;
-                                    $scope.croppedResult = null;
-
-                                }
-                            }
-                        });
-
-
-                    //dialogPolyfill.registerDialog(previewDialog);
-                    // $scope.closePreview = closePreview.bind(this, previewDialog);
-                    bindToRenderedTemplate($compile, $scope, $interpolate, element);
-
-                    $scope.triggerUpload = function () {
-
-                        if (!$scope.autoUpload) {
-                            console.log('croppedResult', $scope.croppedResult)
-                            uploader.uploadStoredFiles();
-                        }
-
-                    }
-
-                    $scope.triggerCrop = function () {
-                        var _parentScope = $scope;
-                        var src = $scope.cropImgSrc;
-
-                        dialogs.modal({
-                            /*@ngInject*/
-                            controller: function cropperDialog($scope, dialogs) {
-                                $scope.cropImgSrc = src;
-
-                                $scope.cropper = null;
-
-                                $scope.getData = function () {
-                                    console.log('crroped')
-                                    var result = $scope.cropper.getData()
-                                    console.log(result)
-                                    _parentScope.croppedResult = result
-                                    dialogs.close()
-                                    //_parentScope.hasPickedFile = false
-                                }
-
-                                $scope.$on('cropperImageLoaded', function (event, image) {
-
-                                    var options = {
-                                        preview: '#crop-preview',
-                                        viewMode: 1,
-                                        dragMode: 'move',
-                                        // aspectRatio: 16 / 9,
-                                        // preview: '.img-preview',
-                                        build: function () {
-                                            console.log('build');
-                                        },
-                                        built: function () {
-                                            console.log('built');
-                                        },
-                                        cropstart: function (data) {
-                                            console.log('cropstart', data.action);
-                                        },
-                                        cropmove: function (data) {
-                                            console.log('cropmove', data.action);
-                                        },
-                                        cropend: function (data) {
-                                            console.log('cropend', data.action);
-                                        },
-                                        crop: function (data) {
-                                            console.log('crop');
-                                            // dataX.value = Math.round(data.x);
-                                            // dataY.value = Math.round(data.y);
-                                            // dataHeight.value = Math.round(data.height);
-                                            // dataWidth.value = Math.round(data.width);
-                                            // dataRotate.value = !isUndefined(data.rotate) ? data.rotate : '';
-                                            // dataScaleX.value = !isUndefined(data.scaleX) ? data.scaleX : '';
-                                            // dataScaleY.value = !isUndefined(data.scaleY) ? data.scaleY : '';
-                                        },
-                                        zoom: function (data) {
-                                            console.log('zoom', data.ratio);
-                                        }
-                                    };
-                                    $scope.cropper = new Cropper(image, options);
-                                })
-                            },
-                            templateUrl: cropperDialogTemp
-                        })
-
-                    }
-                }
-            }
+      getUploadFileUrl: function (config) {
+        return $http({
+          url: config.url || "/getFile",
+          params: config.params || {}
+        }).then(function (data) {
+          return angular.fromJson(eval("(" + data.data + ")"));
         });
-})();
+      },
+
+      // 获取上传成功后获取图片路径
+      /*通过fileExt可以直接指定允许的后缀，通过fileType则可以批量指定允许的后缀，但需要注意指定fileType的时候不会提示允许上传的文件类型，请在placeholder中说明下*/
+      UPLOAD_FILE_TYPE_INFO: {
+        // 图片
+        'image': ['.jpeg', '.jpg', '.bmp', '.gif', '.png', '.tif', '.rgb', '.dib', '.eps', '.jpe', '.pcx', '.bmp', '.gif', '.pdf'],
+        // 只允许图片（有此属性时不会再判断其它属性，哪怕逗号分隔定义了多个也不行）
+        'only-image': ['.jpeg', '.jpg', '.bmp', '.gif', '.png', '.tif', '.rgb', '.dib', '.eps', '.jpe', '.pcx', '.bmp', '.gif', '.pdf'],
+        // 文档
+        'doc': ['.doc', '.docx', '.pdf'],
+        // 只允许文档（有此属性时不会再判断其它属性，哪怕逗号分隔定义了多个也不行）
+        'only-doc': ['.doc', '.docx', '.pdf'],
+        // excel
+        'excel': ['.xls', '.xlsx', '.pdf']
+      }
+    }
+  })
+
+  .directive('upload', function ($q, uploadService) {
+    return {
+      restrict: 'AE',
+      required: '?ngModel',
+      scope: {
+        // 文件列表
+        files: '=',
+
+        // 上传成功之后的回调
+        onComplete: '&'
+      },
+      link: function (scope, element, attrs, ngModel) {
+        var elem = element.find('.jm-upload')[0];
+
+        var isFileList = true;
+        var fileQueueAuto = true;
+
+        if (scope.$eval(attrs.isFileList) === false) {
+          isFileList = false;
+        }
+
+        if (scope.$eval(attrs.fileQueueAuto) === false) {
+          fileQueueAuto = false;
+        }
+
+        // 上传地址 (String) => "/upload"
+        var endpoint = attrs.uploadServer || "/upload.do?action=upload";
+
+        // input file accept属性值 (String) => "image/jpeg, image/gif"
+        var acceptFiles = attrs.acceptFiles || "image/*";
+
+        // 每一个文件上传的最大尺寸 (integer) => 512000 (单位： 字节)
+        var sizeLimit = attrs.sizeLimit;
+
+        // 服务端验证限制上传文件类型 (Array) => ["image/jpeg", "image/gif"]
+        var allowedExtensionsServer = uploadService.UPLOAD_FILE_TYPE_INFO[attrs.fileType || 'image'];
+
+        // 控件验证
+        var allowedExtensions = allowedExtensionsServer.map(function (item) { return item.substr(1) });
+
+        // input title (String) => "图片上传"
+        var fileInputTitle = attrs.fileInputTitle || "图片上传";
+
+        // input name (String) => "filename"
+        var fileInputName = attrs.fileInputName || "file";
+
+        // 文件上传的其他参数
+        var params = scope.params || {};
+
+        // 文件上传需要获取参数的地址
+        var paramsUrl = attrs.paramsUrl || '';
+
+        var upload = new qq.FineUploaderBasic({
+          debug: true,
+          button: elem,
+          autoUpload: fileQueueAuto,
+          request: {
+            customHeaders: {},
+            endpoint: endpoint,
+            uuidName: 'uuid',
+            inputName: "file"
+          },
+          validation: {
+            allowedExtensions: allowedExtensions,
+            // sizeLimit: sizeLimit,
+            acceptFiles: acceptFiles || null
+          },
+
+          // multiple: fileMulti,
+          text: {
+            fileInputTitle: fileInputTitle
+          },
+          callbacks: {
+            onSubmit: function (id, name) {
+              var _this = this;
+
+              return uploadService.getParams().then(function (data) {
+                _this.setParams(angular.extend({
+                  token: data.uploadToken || '',
+                  fileType: allowedExtensionsServer,
+                  fileSize: sizeLimit,
+                  maxImageSize: 200,
+                  addScript: (elem.style.transition === undefined ? 'true' : '')
+                }, params, data));
+                return data;
+              });
+            },
+            onSubmitted: function (id, name) { },
+            onComplete: function (id, name, responseJSON, maybeXhr) {
+              var _this = this;
+              uploadService.getUploadFileUrl({
+                params: {
+                  uuid: responseJSON.fileUUIDs[0]
+                }
+              }).then(function (data) {
+
+                var file = {
+                  path: data.filePaths[0],
+                  id: id,
+                  name: name,
+                }
+
+                if (isFileList) {
+                  var _file = scope.files.filter(function(item){
+                    return item.id === id;
+                  })[0];
+                  debugger;
+                  scope.files.push(file);
+                } else {
+                  scope.files[0] = file;
+                }
+
+                scope.onComplete({
+                  arg: {
+                    file: file,
+                    context: _this
+                  }
+                });
+              });
+            },
+            onAllComplete: function (successful, failed) { },
+            onCancel: function (id, name) { },
+            onUpload: function (id, name) {
+              console.log('upload')
+              console.log(name)
+            },
+            onUploadChunk: function (id, name, chunkData) { },
+            onUploadChunkSuccess: function (id, chunkData, responseJSON, xhr) { },
+            onResume: function (id, fileName, chunkData) { },
+            onProgress: function (id, name, loaded, total) { },
+            onTotalProgress: function (loaded, total) { },
+            onError: function (id, name, reason, maybeXhrOrXdr) {
+              console.log(reason)
+            },
+            onAutoRetry: function (id, name, attemptNumber) { },
+            onManualRetry: function (id, name) { },
+            onValidateBatch: function (fileOrBlobData) { },
+            onValidate: function (fileOrBlobData) { },
+            onSubmitDelete: function (id) { },
+            onDelete: function (id) { },
+            onDeleteComplete: function (id, xhrOrXdr, isError) { },
+            onPasteReceived: function (blob) { },
+            onStatusChange: function (id, oldStatus, newStatus) { },
+            onSessionRequestComplete: function (response, success, xhrOrXdr) { }
+          },
+          // messages: {
+          //   typeError: "{file} has an invalid extension. Valid extension(s): {extensions}.",
+          //   sizeError: "{file} is too large, maximum file size is {sizeLimit}.",
+          //   minSizeError: "{file} is too small, minimum file size is {minSizeLimit}.",
+          //   emptyError: "{file} is empty, please select files again without it.",
+          //   noFilesError: "No files to upload.",
+          //   tooManyItemsError: "Too many items ({netItems}) would be uploaded.  Item limit is {itemLimit}.",
+          //   maxHeightImageError: "Image is too tall.",
+          //   maxWidthImageError: "Image is too wide.",
+          //   minHeightImageError: "Image is not tall enough.",
+          //   minWidthImageError: "Image is not wide enough.",
+          //   retryFailTooManyItems: "Retry failed - you have reached your file limit.",
+          //   onLeave: "The files are being uploaded, if you leave now the upload will be canceled.",
+          //   unsupportedBrowserIos8Safari: "Unrecoverable error - this browser does not permit file uploading of any kind due to serious bugs in iOS8 Safari.  Please use iOS8 Chrome until Apple fixes these issues."
+          // },
+          display: {
+            prependFiles: true
+          },
+          classes: {
+            buttonHover: "qq-upload-button-hover",
+            buttonFocus: "qq-upload-button-focus"
+          },
+          retry: {
+            enableAuto: false
+          },
+          resume: {
+            enabled: false
+          },
+          cors: {
+            expected: true,
+            allowXdr: true
+          }
+        });
+
+        // upload.uploadStoredFiles();
+      }
+    }
+  })

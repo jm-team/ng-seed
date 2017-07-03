@@ -1,4 +1,4 @@
-<div>
+<!--<div>
 
   <section class="main-content">
     <header>
@@ -62,11 +62,11 @@
       <p class="comments">只能上传jpg/png文件，且不超过500kb</p>
       <div class="code-example"></div>
     </fieldset>
-  </section>
+  </section>-->
 
-  <!-- 服务端剪裁上传文件
+<!-- 服务端剪裁上传文件
     ====================================================================== -->
-  <script type="text/template" id="0-server-crop-upload-template">
+<!--<script type="text/template" id="0-server-crop-upload-template">
     <div class="qq-uploader-selector">
       <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
         <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
@@ -95,15 +95,15 @@
         <div>选择文件</div>
       </div>
 
-      <!--<button type="button" class="jm-btn" ng-click="triggerCrop()" ng-disabled="!hasPickedFile">剪裁</button>-->
+      <button type="button" class="jm-btn" ng-click="triggerCrop()" ng-disabled="!hasPickedFile">剪裁</button>
 
       <button type="button" class="jm-btn" ng-click="triggerUpload()" ng-disabled="!hasPickedFile">上传</button>
     </div>
-  </script>
+  </script>-->
 
-  <!-- 多个文件上传
+<!-- 多个文件上传
     ====================================================================== -->
-  <script type="text/template" id="1-multiple-upload-template">
+<!--<script type="text/template" id="1-multiple-upload-template">
     <div class="qq-uploader-selector">
       <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
         <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
@@ -130,11 +130,11 @@
         <div>上传</div>
       </div>
     </div>
-  </script>
+  </script>-->
 
-  <!-- 图片列表上传
+<!-- 图片列表上传
     ====================================================================== -->
-  <script type="text/template" id="2-pic-list-upload-template">
+<!--<script type="text/template" id="2-pic-list-upload-template">
     <div class="qq-uploader-selector">
       <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
         <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
@@ -161,12 +161,12 @@
         <div>上传</div>
       </div>
     </div>
-  </script>
+  </script>-->
 
 
-  <!-- 单个图片上传
+<!-- 单个图片上传
     ====================================================================== -->
-  <script type="text/template" id="3-pic-single-upload-template">
+<!--<script type="text/template" id="3-pic-single-upload-template">
     <div class="qq-uploader-selector">
       <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
         <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
@@ -186,12 +186,12 @@
         </ul>
       </div>
     </div>
-  </script>
+  </script>-->
 
 
-  <!-- 拖拽上传
+<!-- 拖拽上传
     ====================================================================== -->
-  <script type="text/template" id="4-drag-upload-template">
+<!--<script type="text/template" id="4-drag-upload-template">
     <div class="qq-uploader-selector">
       <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
         <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
@@ -232,12 +232,12 @@
       </ul>
 
     </div>
-  </script>
+  </script>-->
 
 
-  <!-- 照片墙
+<!-- 照片墙
     ====================================================================== -->
-  <script type="text/template" id="5-pic-wall-template">
+<!--<script type="text/template" id="5-pic-wall-template">
     <div class="qq-uploader-selector">
       <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
         <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
@@ -266,8 +266,60 @@
       </div>
 
     </div>
-  </script>
+  </script>-->
 
 
 
+<!--</div>-->
+
+<style>
+  .source {
+    padding: 24px;
+  }
+
+  .jm-upload {
+    display: inline-block;
+    text-align: center;
+  }
+  .jm-upload--picture-card{
+    background-color: #fbfdff;
+    border: 1px dashed #c0ccda;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 148px;
+    height: 148px;
+    cursor: pointer;
+    line-height: 146px;
+    vertical-align: top;
+  }
+  .jm-upload--picture-card i{
+    font-size: 28px;
+    color: #8c939d;
+  }
+
+  .jm-upload img{
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+  }
+
+</style>
+
+<div>
+  <section class="main-content">
+    <header>
+      <h1>Upload上传</h1>
+    </header>
+  </section>
+
+  <div>
+    <div class="source">
+      <div class="file-upload-box" is-file-list="true" upload files="files" on-complete="onComplete(arg)">
+        <div class="jm-upload jm-upload--picture-card">
+          <i class="jm-icon-add jm-icon" ng-if="files.length < 1"></i>
+          <img ng-if="files.length > 0" ng-src="{{ files[0].path|cdnImg}}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

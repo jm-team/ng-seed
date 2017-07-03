@@ -10,6 +10,10 @@ app.factory('httpInterceptor', function($q, $injector, Util) {
 
     response: function(response) {
       // 拦截响应成功处理这里.....
+
+      if(response.config.url === "/getUploadToken"){
+        response.data = angular.fromJson(eval("("+response.data+")"));
+      }
       return response;
     },
 

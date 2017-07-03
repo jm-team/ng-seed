@@ -14,12 +14,24 @@ app.filter('cdn', function($sce, CDN_ADDRESS) {
     if (url) {
       return $sce.trustAsResourceUrl(url + input);
     } else {
-      if (cdnAddr) {
-        return $sce.trustAsResourceUrl(cdnAddr + input);
-      } else {
-        return $sce.trustAsResourceUrl(CDN_ADDRESS + input);
-      }
+      return $sce.trustAsResourceUrl(CDN_ADDRESS + input);
     }
+  }
+
+  return fn;
+});
+
+app.filter('cdnImg', function($sce, IMG_ADDRESS) {
+  /**
+   * cdn 过滤器处理
+   * @author zhoul
+   * @param   {string} input   需要处理的url
+   * @param   {string} url     普通地址
+   * @param   {string} cdnAddr 自定义cdn地址
+   * @returns {string} 处理后的url
+   */
+  function fn(input) {
+    return $sce.trustAsResourceUrl(IMG_ADDRESS + input);
   }
 
   return fn;
@@ -31,6 +43,7 @@ app.filter('imgSystem', function($sce, IMG_ADDRESS) {
     if (__webpack_require__ && __webpack_require__.p) {
       return $sce.trustAsResourceUrl(__webpack_require__.p + input);
     } else {
+
       return $sce.trustAsResourceUrl(IMG_ADDRESS + input);
     }
   };
