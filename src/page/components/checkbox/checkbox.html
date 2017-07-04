@@ -54,7 +54,9 @@
 
       <div class="ibox-content">
         <p>当前选中的有: {{ vm.checkeds }}</p>
-        <div jm-checkbox-group options="vm.options" checkeds="vm.checkeds"></div>
+        <div jm-checkbox-group max="2" options="vm.options" checkeds="vm.checkeds"></div>
+
+        <p><button ng-click="vm.addCheckbox()">手动添加</button></p>
 
         <p>当前选中的有: {{ vm.checkeds2 }}</p>
         <div jm-checkbox-group options="vm.options2" checkeds="vm.checkeds2"></div>

@@ -15,6 +15,12 @@ app.registerController('CheckboxCtrl',
       vm.disabled = !vm.disabled;
     };
 
+    vm.addCheckbox = function(){
+      if(vm.checkeds.indexOf('pear') === -1){
+        vm.checkeds.push('Pear');
+      }
+    }
+
     vm.checkToggle = function() {
       vm.checked = !vm.checked;
     };
