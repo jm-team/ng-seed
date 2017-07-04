@@ -103,12 +103,13 @@ angular.module('jmui.checkbox', [])
    * </div>
    *
    */
-  .directive('jmCheckboxGroup', function() {
+  .directive('jmCheckboxGroup', function($timeout) {
     return {
       restrict: 'AE',
       scope: {
         options: '=',
         onChange: '&',
+        max:'@',
         checkeds: '='
       },
       template: '<div jm-checkbox on-change="toggleOption(arg, opt)" ng-repeat="opt in options" checked="opt.checked"  view-value="{{opt.title}}" ng-disabled="{{opt.disabled}}"></div>',
@@ -136,23 +137,56 @@ angular.module('jmui.checkbox', [])
 
         scope.options = getOptions(scope.options);
 
-        // 对选中的checkbox 做标记
-        // 以便在view中展示勾选效果
-        angular.forEach(scope.options, function(item) {
-          if (scope.checkeds.indexOf(item.value) !== -1) {
-            item.checked = true;
+        function initCheck(){
+          // 对选中的checkbox 做标记
+          // 以便在view中展示勾选效果
+          angular.forEach(scope.options, function(item) {
+            if (scope.checkeds.indexOf(item.value) !== -1) {
+              item.checked = true;
+            }else{
+              item.checked = false;
+            }
+          });
+
+          max();
+        }
+
+        scope.$watch('checkeds', function(newVal, oldVal){
+          if(angular.isArray(newVal)){
+            initCheck()
           }
-        });
+        }, true);
+
+
+        function max(){
+          // 最大选中
+          if(scope.checkeds.length >= scope.max){
+            angular.forEach(scope.options, function(item) {
+              if(!item.checked){
+                item.disabled = true;
+              }
+            });
+          }else{
+            angular.forEach(scope.options, function(item) {
+              item.disabled = false;
+            });
+          }
+        }
 
         // 切换选中/非选中
         scope.toggleOption = function(arg, opt) {
           if (angular.isArray(scope.checkeds)) {
             if (arg.checked) {
-              scope.checkeds.push(opt.value)
+              scope.checkeds.push(opt.value);
             } else {
               var index = scope.checkeds.indexOf(opt.value);
               scope.checkeds.splice(index, 1);
             }
+
+            $timeout(function(){
+                max();
+            }, 100);
+
           }
 
           // 执行改变钩子函数
