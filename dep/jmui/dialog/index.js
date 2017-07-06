@@ -242,11 +242,11 @@ angular
       };
 
       scope.close = function () {
-        self.close();
+        scope.cancel();
       };
 
       scope.cancel = function () {
-        scope.close();
+        self.close();
         defer.reject();
       };
       return defer.promise;
