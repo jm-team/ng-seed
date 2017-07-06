@@ -7,7 +7,7 @@
 > 参考：https://github.com/jm-team/ng-seed
 
 ## 一、目录规范
-查看[README.md#目录文件说明](https://github.com/jm-team/ng-seed/#目录文件说明)
+查看[目录文件说明](https://github.com/jm-team/ng-seed/wiki/Constructs)
 
 ## 二、第三方库和服务
 
