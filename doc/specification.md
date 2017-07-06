@@ -7,7 +7,7 @@
 > 参考：https://github.com/jm-team/ng-seed
 
 ## 一、目录规范
-查看[README.md#目录文件说明](https://github.com/jm-team/ng-seed/#目录文件说明)
+查看[目录文件说明](https://github.com/jm-team/ng-seed/wiki/Constructs)
 
 ## 二、第三方库和服务
 
@@ -85,7 +85,7 @@
 3. 根据需求做图片base64位
 
 ## 五、CSS样式表
-1. 减少样式选择器层级
+1. 减少样式选择器层级(≤4)
 2. 合并压缩CSS样式表
 3. 添加md5 防止样式改变缓存问题
 4. 尽可能不要用通配选择符
