@@ -70,7 +70,7 @@ app.run(function($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
     _hmt.push(['_trackPageview', $location.path()]);
 
     $log.log('app run $stateChangeSuccess');
-    Login.checkHasLogin().then(function(data) {
+    Login.checkHasLogin({_t: new Date().getTime()}).then(function(data) {
 
       Api.User().get(function(userData) {
         if (userData.id) {

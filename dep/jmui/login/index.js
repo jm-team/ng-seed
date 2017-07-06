@@ -7,17 +7,21 @@ angular.module('jmui.login', [])
        * @returns {*|promise|{then, catch, finally}|jQuery.promise}
        * reference: https://www.html5rocks.com/zh/tutorials/speed/script-loading/
        */
-      checkHasLogin: function(obj) {
-        var obj = angular.extend({
-          params: {
-            serviceContext: ''
-          },
-          path: '/hasLogin'
-        }, obj);
-        var params = '?';
+      checkHasLogin: function(arg){
+        var query = angular.extend({
+           serviceContext: ''
+        }, arg);
 
+        var obj = {
+          params: query,
+          path: '/hasLogin'
+        };
+        
+       var params = '?';
         angular.forEach(obj.params, function(value, key) {
-          params += key + '=' + value + '&';
+          if(value){
+            params += key + '=' + value + '&';
+          }
         });
 
         var defer = $q.defer();
