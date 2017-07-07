@@ -3,31 +3,35 @@ angular.module('jmui.login', [])
     return {
       /**
        * check user is login
-       * @param obj   {Object} {path:'/hasLogin', params:{serviceContext:'/webapi',...}}
+       * @param obj   {Object} {serviceContext:'/webapi',...}
+       * @param servicePath   {String} '/hasLogin' 基本不可能改的
        * @returns {*|promise|{then, catch, finally}|jQuery.promise}
        * reference: https://www.html5rocks.com/zh/tutorials/speed/script-loading/
        */
-      checkHasLogin: function(arg){
-        var query = angular.extend({
-           serviceContext: ''
-        }, arg);
-
-        var obj = {
-          params: query,
-          path: '/hasLogin'
+      checkHasLogin: function(obj, servicePath){
+        var defer = $q.defer();
+        var head = document.head || document.documentElement;
+        var script, src;
+        var path = servicePath || '/hasLogin';
+        var params = '?';
+        var query = {
+          serviceContext: ''
         };
-        
-       var params = '?';
-        angular.forEach(obj.params, function(value, key) {
+
+        angular.extend(query, obj);
+
+        angular.forEach(query, function(value, key) {
           if(value){
             params += key + '=' + value + '&';
           }
         });
 
-        var defer = $q.defer();
-        var script,
-          head = document.head || document.documentElement,
-          src = (USERCENTER_ADDRESS + obj.path + params);
+        // 必须添加时间戳，以解决IE缓存问题
+        params += '_t=' + (+new Date);
+
+        // 判断是否登录URL，原理JSONP
+        src = USERCENTER_ADDRESS + path + params;
+
         // 用户未登录
         window.userNotLoginCallback = userNotLoginCallback;
 
@@ -36,7 +40,7 @@ angular.module('jmui.login', [])
 
         /**
          * load has login script dynamically
-         * @param token
+         * @param src
          */
         loadScript(src);
 
