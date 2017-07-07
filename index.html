@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
-    <title>Ng-seed</title>
+    <title ng-bind="SEO.pageTitle">Ng-seed</title>
+    <meta name="keywords" content="{{ SEO.pageKeywords }}">
+    <meta name="description" content="{{ SEO.pageDescription }}">
 
     <!-- ie9及以下不支持placeholder， ie8不支持html5、自定义标签指令、console等
         参考： https://github.com/jm-team/MSL-V3/tree/master/static/dep/ie8supports -->

@@ -63,11 +63,30 @@ app.config(function($provide, $controllerProvider, $httpProvider, $locationProvi
 
 app.run(function($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
   $rootScope.$state = $state;
+
+  // 初始化 SEO
+  // TODO: DEFAULT_SEO 放在服务中
+  $rootScope.DEFAULT_SEO = {
+    pageTitle: 'Ng-seeeeeeeeeeeeeeeeed',
+    pageKeywords: 'Angular seed project built with webpack',
+    pageDescription: 'angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、密码加密、服务接口跨域、SPA页面SEO等问题'
+  };
+
+  $rootScope.SEO = angular.extend({}, $rootScope.DEFAULT_SEO);
+
   // 路由切换成功
   //event, toState, toParams, formState, formParams, options
-  $rootScope.$on('$stateChangeSuccess', function() {
+  $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, formState, formParams, options) {
     // 百度统计pv量
     _hmt.push(['_trackPageview', $location.path()]);
+    // 页面路由的title
+    if(toState.title) {
+      $rootScope.SEO.pageTitle = toState.title + '_Ng-seed';
+    } else {
+      $rootScope.SEO.pageTitle = $rootScope.DEFAULT_SEO.pageTitle;
+    }
+    // for SEO
+    window.prerenderReady = true;
 
     $log.log('app run $stateChangeSuccess');
     Login.checkHasLogin().then(function(data) {
@@ -98,6 +117,8 @@ app.run(function($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
     $rootScope.isShowFooter = false;
     // 取消上一个路由中还在请求的并且可以取消的XHR
     Util.clearAll();
+    // for SEO
+    window.prerenderReady = false;
   });
 
   $rootScope.$on('$viewContentLoaded', function() {

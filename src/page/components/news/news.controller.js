@@ -43,7 +43,8 @@ app.registerController('newsCtrl',
 
 app.registerController('newsDetailCtrl',
   /*@ngInject*/
-  function($scope, news, News) {
+  function($rootScope, $scope, news) {
+    $rootScope.SEO.pageTitle = news.title;
     $scope.news = news;
   });
 
