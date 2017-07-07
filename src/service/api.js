@@ -1,5 +1,8 @@
 var app = require('app');
 
+// 鏈接mongo配置
+app.constant('API_SERVER', 'https://api.mongolab.com/api/1/databases/ng-seed/collections');
+app.constant('API_KEY', 'mcnzRO1RdVBHxWEOVbtiIxD04i8H0syJ');
 /* 新闻api接口 */
 app.factory('News', function ($resource, API_SERVER, API_KEY) {
   return $resource(API_SERVER + '/news/:id', {

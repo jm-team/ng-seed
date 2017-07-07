@@ -1,6 +1,4 @@
-var address = require('address');
-
-var marked = window.marked = require('marked')
+var marked = window.marked = require('marked');
 marked.setOptions({
   renderer: new marked.Renderer(),
   gfm: true,
@@ -16,21 +14,8 @@ var hljs = window.hljs = require('highlight.js');
 
 
 var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'afkl.lazyImage', 'pasvaz.bindonce', 'jmui']);
-
 // 路由配置
 var router = require('./app.router');
-
-// 鏈接mongo配置
-app.constant('API_SERVER', 'https://api.mongolab.com/api/1/databases/ng-seed/collections');
-app.constant('API_KEY', 'mcnzRO1RdVBHxWEOVbtiIxD04i8H0syJ');
-
-// 服务地址配置
-app.constant('SERVER_ADDRESS', address.SERVER_ADDRESS);
-app.constant('CENTER_ADDRESS', address.CENTER_ADDRESS);
-app.constant('USERCENTER_ADDRESS', address.USERCENTER_ADDRESS);
-app.constant('CDN_ADDRESS', address.CDN_ADDRESS);
-app.constant('IMG_ADDRESS', address.IMG_ADDRESS);
-
 
 // ng配置
 app.config(function($provide, $controllerProvider, $httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
@@ -61,22 +46,15 @@ app.config(function($provide, $controllerProvider, $httpProvider, $locationProvi
 });
 
 
-app.run(function($rootScope, $log, $state, $location, Util, Login, Api, Auth) {
+app.run(function($rootScope, $log, $state, $location, Util, Login, Api, Auth, DEFAULT_SEO) {
   $rootScope.$state = $state;
 
   // 初始化 SEO
-  // TODO: DEFAULT_SEO 放在服务中
-  $rootScope.DEFAULT_SEO = {
-    pageTitle: 'Ng-seeeeeeeeeeeeeeeeed',
-    pageKeywords: 'Angular seed project built with webpack',
-    pageDescription: 'angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、密码加密、服务接口跨域、SPA页面SEO等问题'
-  };
-
-  $rootScope.SEO = angular.extend({}, $rootScope.DEFAULT_SEO);
+  $rootScope.SEO = angular.extend({}, DEFAULT_SEO);
 
   // 路由切换成功
-  //event, toState, toParams, formState, formParams, options
-  $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, formState, formParams, options) {
+  // event, toState, toParams, formState, formParams, options
+  $rootScope.$on('$stateChangeSuccess', function(event, toState) {
     // 百度统计pv量
     _hmt.push(['_trackPageview', $location.path()]);
     // 页面路由的title
