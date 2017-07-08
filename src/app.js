@@ -1,18 +1,3 @@
-var marked = window.marked = require('marked');
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: true,
-  smartLists: true,
-  smartypants: false
-});
-
-var hljs = window.hljs = require('highlight.js');
-
-
 var app = angular.module('app', ['ui.router', 'ngResource', 'ngAnimate', 'afkl.lazyImage', 'pasvaz.bindonce', 'jmui']);
 // 路由配置
 var router = require('./app.router');
@@ -61,7 +46,7 @@ app.run(function($rootScope, $log, $state, $location, Util, Login, Api, Auth, DE
     if(toState.title) {
       $rootScope.SEO.pageTitle = toState.title + '_Ng-seed';
     } else {
-      $rootScope.SEO.pageTitle = $rootScope.DEFAULT_SEO.pageTitle;
+      $rootScope.SEO.pageTitle = DEFAULT_SEO.pageTitle;
     }
     // for SEO
     window.prerenderReady = true;
