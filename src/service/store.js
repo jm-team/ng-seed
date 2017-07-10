@@ -1,4 +1,21 @@
 var app = require('app');
+var address = require('address');
+
+// 服务地址配置
+// app.constant('SERVER_ADDRESS', address.SERVER_ADDRESS);
+// app.constant('CENTER_ADDRESS', address.CENTER_ADDRESS);
+// app.constant('USERCENTER_ADDRESS', address.USERCENTER_ADDRESS);
+// app.constant('CDN_ADDRESS', address.CDN_ADDRESS);
+// app.constant('IMG_ADDRESS', address.IMG_ADDRESS);
+angular.forEach(address, function (v, k) {
+  app.constant(k, v);
+});
+// SEO默认值
+app.constant('DEFAULT_SEO', {
+  pageTitle: 'Ng-seeeeeeeeeeeeeeeeed',
+  pageKeywords: 'Angular seed project built with webpack',
+  pageDescription: 'angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、密码加密、服务接口跨域、SPA页面SEO等问题'
+});
 
 //Address - 环境地址配置
 app.factory('Address', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRESS) {
