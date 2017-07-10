@@ -46,6 +46,8 @@
     </script>
     <script src="<%= htmlWebpackPlugin.options.assetsPublicPath %>js/<%= htmlWebpackPlugin.options.dllJsFileName %>"></script>
     <script>
+        // for SEO
+        window.prerenderReady = false;
         // 配置ueditor路径
         window.UEDITOR_HOME_URL = '<%= htmlWebpackPlugin.options.assetsPublicPath %>dep/ueditor/';
     </script>
