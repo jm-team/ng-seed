@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 var prerender = require('./lib');
 
+// https://github.com/prerender/prerender#options
 var server = prerender({
-    workers: process.env.PRERENDER_NUM_WORKERS || 1,
-    iterations: process.env.PRERENDER_NUM_ITERATIONS || 1
+    // workers: process.env.PRERENDER_NUM_WORKERS, // os.cpus().length
+    // iterations: process.env.PRERENDER_NUM_ITERATIONS // 40
 });
 
 
