@@ -107,7 +107,7 @@ module.exports = merge({
         /**
          * _variables.scss 67 line
          * $line-height-base:        1.428571429 !default; // 20/14
-         * fix: precisiont为defaul(5)时，在chrome浏览器下1.42857*14px高度只有19px
+         * fix: precision为default(5)时，在chrome浏览器下1.42857*14px高度只有19px
          */
         precision: 9
     },
