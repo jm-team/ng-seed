@@ -43,11 +43,10 @@ app.run(function($rootScope, $log, $state, $location, Util, Login, Api, Auth, DE
     // 百度统计pv量
     _hmt.push(['_trackPageview', $location.path()]);
     // 页面路由的title
-    if(toState.title) {
-      $rootScope.SEO.pageTitle = toState.title + '_Ng-seed';
-    } else {
-      $rootScope.SEO.pageTitle = DEFAULT_SEO.pageTitle;
-    }
+    $rootScope.SEO.title = toState.title ? (toState.title + '_Ng-seed') : DEFAULT_SEO.title;
+    $rootScope.SEO.keywords = toState.keywords ? (toState.keywords + ',keywords') : DEFAULT_SEO.keywords;
+    $rootScope.SEO.description = toState.description ? (toState.description + '_description') : DEFAULT_SEO.description;
+
     // for SEO
     window.prerenderReady = true;
 

@@ -12,9 +12,9 @@ angular.forEach(address, function (v, k) {
 });
 // SEO默认值
 app.constant('DEFAULT_SEO', {
-  pageTitle: 'Ng-seeeeeeeeeeeeeeeeed',
-  pageKeywords: 'Angular seed project built with webpack',
-  pageDescription: 'angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、密码加密、服务接口跨域、SPA页面SEO等问题'
+  title: 'Ng-seeeeeeeeeeeeeeeeed',
+  keywords: 'angularjs,angularjs-seed,ng-seed,ie8,webpack',
+  description: 'angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、密码加密、服务接口跨域、SPA页面SEO等问题'
 });
 
 //Address - 环境地址配置
