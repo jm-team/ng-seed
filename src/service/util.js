@@ -1,4 +1,5 @@
 var app = require('app');
+
 app.factory('Util', function() {
   return {
     /**
@@ -84,6 +85,5 @@ app.factory('Util', function() {
       }
     }
   }
-
 
 });

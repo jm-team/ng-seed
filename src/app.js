@@ -20,6 +20,7 @@ app.config(function($provide, $controllerProvider, $httpProvider, $locationProvi
   $urlRouterProvider.when('', '/');
   $urlRouterProvider.otherwise('/404');
 
+  // TODO: demo 项目中须修改
   $urlRouterProvider.when('/components', '/chart');
 
   // 配置路由

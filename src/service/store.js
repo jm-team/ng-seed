@@ -10,14 +10,15 @@ var address = require('address');
 angular.forEach(address, function (v, k) {
   app.constant(k, v);
 });
-// SEO默认值
+
+// SEO默认值   // TODO: demo 项目中须修改
 app.constant('DEFAULT_SEO', {
   title: 'Ng-seeeeeeeeeeeeeeeeed',
   keywords: 'angularjs,angularjs-seed,ng-seed,ie8,webpack',
   description: 'angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、密码加密、服务接口跨域、SPA页面SEO等问题'
 });
 
-//Address - 环境地址配置
+//Address - 环境地址配置 // TODO: demo 项目中须修改
 app.factory('Address', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRESS) {
   return {
 
@@ -47,7 +48,6 @@ app.factory('Address', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRE
     }
   };
 });
-
 
 // 登录相关
 app.factory('Auth', function ($resource, $document, $q, $timeout, Address) {

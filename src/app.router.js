@@ -4,7 +4,7 @@ var routers = [
   ["about", require("./page/about/about.router.js")],
   ["help", require("./page/help/help.router.js")],
 
-  // components
+  // components TODO: demo 项目中须修改
   ["components", require("./page/components/components.router.js")],
   ["components.chart", require("./page/components/chart/chart.router.js")],
 

@@ -1,6 +1,6 @@
 /**
  * @title address.config
- * @desc 配置依赖服务器地址
+ * @desc 配置依赖服务器地址 // TODO: demo 项目中须修改
  * @type {{SERVER_ADDRESS: string, CENTER_ADDRESS: string, USERCENTER_ADDRESS: string, CDN_ADDRESS: string}}
  */
 

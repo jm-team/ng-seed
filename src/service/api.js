@@ -1,9 +1,9 @@
 var app = require('app');
 
-// 鏈接mongo配置
+// 鏈接mongo配置 // TODO: demo 项目中须修改
 app.constant('API_SERVER', 'https://api.mongolab.com/api/1/databases/ng-seed/collections');
 app.constant('API_KEY', 'mcnzRO1RdVBHxWEOVbtiIxD04i8H0syJ');
-/* 新闻api接口 */
+// 新闻api接口 // TODO: demo 项目中须修改
 app.factory('News', function ($resource, API_SERVER, API_KEY) {
   return $resource(API_SERVER + '/news/:id', {
     id: '@id',
@@ -15,6 +15,7 @@ app.factory('News', function ($resource, API_SERVER, API_KEY) {
     });
 });
 
+// TODO: demo 项目中须修改
 app.factory('Api', function ($resource, $http, Address, SERVER_ADDRESS) {
   return {
     Lines: function () {
