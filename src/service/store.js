@@ -31,21 +31,7 @@ app.factory('Address', function ($location, SERVER_ADDRESS, $q, USERCENTER_ADDRE
     USERCENTER_ADDRESS: USERCENTER_ADDRESS,
 
     // API 请求基础地址
-    API_ADDRESS: $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/webapi/v1',
-
-    // 获取当前地址
-    getLocalAddress: function () {
-      return $location.absUrl();
-    },
-
-    //获取登录地址
-    getLoginAddress: function () {
-      return SERVER_ADDRESS + '/webapi/v1/login?successful=' + this.getLocalAddress();
-    },
-
-    getLogoutAddress: function () {
-      return SERVER_ADDRESS + '/webapi/v1/logout?successful=' + this.getLocalAddress();
-    }
+    API_ADDRESS: $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/webapi/v1'
   };
 });
 
