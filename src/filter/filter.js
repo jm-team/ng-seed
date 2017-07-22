@@ -4,56 +4,43 @@ var app = require('app');
 app.filter('cdn', function($sce, CDN_ADDRESS) {
   /**
    * cdn 过滤器处理
-   * @author zhoul
    * @param   {string} input   需要处理的url
-   * @param   {string} url     普通地址
-   * @param   {string} cdnAddr 自定义cdn地址
+   * @param   {string} origin     普通地址 / 自定义cdn地址
    * @returns {string} 处理后的url
    */
-  function fn(input, url, cdnAddr) {
-    if (url) {
-      return $sce.trustAsResourceUrl(url + input);
+  function fn(input, origin) {
+    if (!input || /^https?:\/\//.test(input)) {
+      return input;
     } else {
-      return $sce.trustAsResourceUrl(CDN_ADDRESS + input);
+      return $sce.trustAsResourceUrl((origin || CDN_ADDRESS) + input);
     }
   }
 
   return fn;
 });
 
-app.filter('cdnImg', function($sce, IMG_ADDRESS) {
-  /**
-   * cdn 过滤器处理
-   * @author zhoul
-   * @param   {string} input   需要处理的url
-   * @param   {string} url     普通地址
-   * @param   {string} cdnAddr 自定义cdn地址
-   * @returns {string} 处理后的url
-   */
-  function fn(input) {
-    return $sce.trustAsResourceUrl(IMG_ADDRESS + input);
-  }
-
-  return fn;
-});
-
-// 图片服务器地址
-app.filter('imgSystem', function($sce, IMG_ADDRESS) {
-  return function(input) {
-    if (__webpack_require__ && __webpack_require__.p) {
-      return $sce.trustAsResourceUrl(__webpack_require__.p + input);
-    } else {
-
-      return $sce.trustAsResourceUrl(IMG_ADDRESS + input);
+app.filter('imgOrigin', function($sce, IMG_ADDRESS) {
+    /**
+     * cdn 过滤器处理
+     * @param   {string} input   需要处理的url
+     * @param   {string} origin     普通地址 / 自定义cdn地址
+     * @returns {string} 处理后的url
+     */
+    function fn(input, origin) {
+        if (!input || /^https?:\/\//.test(input)) {
+            return input;
+        } else {
+            return $sce.trustAsResourceUrl((origin || IMG_ADDRESS) + input);
+        }
     }
-  };
+
+    return fn;
 });
 
 // HTML 代码检测
 app.filter('to_trusted', function($sce) {
   /**
    * 对html代码安全检测
-   * @author zhoul
    * @param   {string} text 需要处理的html
    * @returns {string} 处理后的html
    */
@@ -68,7 +55,6 @@ app.filter('to_trusted', function($sce) {
 app.filter('cut_str', function() {
   /**
    * 字符串截取
-   * @author zhoul
    * @param   {string} str 需要截取的字符串
    * @param   {number} L   需要截取的长度字符 一个中文是2个字符
    * @returns {string}     截取后的字符串
@@ -109,7 +95,6 @@ app.filter('light', function() {
 
   /**
    * 字符串匹配后高亮
-   * @author zhoul
    * @param   {string} value 需要匹配的字符串
    * @param   {string} str   匹配的字符串
    * @returns {string}    处理后的字符串

@@ -317,7 +317,7 @@
       <div class="file-upload-box" is-file-list="true" upload files="files" on-complete="onComplete(arg)">
         <div class="jm-upload jm-upload--picture-card">
           <i class="jm-icon-add jm-icon" ng-if="files.length < 1"></i>
-          <img ng-if="files.length > 0" ng-src="{{ files[0].path|cdnImg}}" alt="">
+          <img ng-if="files.length > 0" ng-src="{{ files[0].path|imgOrigin}}" alt="">
         </div>
       </div>
     </div>
