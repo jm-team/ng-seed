@@ -154,6 +154,7 @@ app.factory('User', function () {
 // 静态资源引用（webpack 非HTML属性中）
 app.factory('Static', function () {
   return {
-    defaultImage: require("../asset/img/logo.png")
+    defaultImage: require("../asset/img/logo.png"),
+    pdfUrl: require("../asset/img/system/1.pdf")
   }
 });

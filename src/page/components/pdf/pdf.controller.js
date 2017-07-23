@@ -6,6 +6,8 @@ var app = require('app');
 app.registerController('PdfCtrl', PdfCtrl);
 
 /*@ngInject*/
-function PdfCtrl($state) {
+function PdfCtrl(Static) {
   var vm = this;
+
+  vm.pdfUrl = Static.pdfUrl;
 }

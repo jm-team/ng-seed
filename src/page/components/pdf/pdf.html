@@ -1,30 +1,34 @@
 <div class="col-md-24">
-  <h1>Pdf <span class="small">pdf</span></h1>
+    <h1>Pdf <span class="small">pdf</span></h1>
 
-  <section class="markdown">
-    <p>pdf组件。</p>
-  </section>
+    <section class="markdown">
+        <p>pdf组件。</p>
+    </section>
 
-  <div class="row">
-    <div class="col-md-24">
+    <div class="row">
+        <div class="col-md-24">
 
-      <div class="ibox">
-        <header class="ibox-title">
-          <h5>基础用法</h5>
-        </header>
+            <div class="ibox">
+                <header class="ibox-title">
+                    <h5>基础用法</h5>
+                </header>
 
-        <div class="ibox-content">
-          <h3>通过html-loader div:url和file-loader实现文件引入，有hash命名</h3>
-          <div style="height:600px;" jm-pdf url="../../../asset/img/system/1.pdf">
-          </div>
+                <div class="ibox-content">
+                    <h3>[推荐] 通过Static服务实现文件引入，有hash命名</h3>
+                    <div style="height:600px;" jm-pdf url="{{vm.pdfUrl}}">
+                    </div>
 
-          <h3>通过imgOrigin filter实现文件引入，无hash命名</h3>
-          <p>system文件夹通过webpack copy 插件直接复制到dist目录下</p>
-          <div style="height:600px;" jm-pdf url="{{'/dist/img/system/1.pdf' | cdn}}">
-          </div>
+                    <h3>通过html-loader div:url和file-loader实现文件引入，有hash命名</h3>
+                    <div style="height:600px;" jm-pdf url="../../../asset/img/system/1.pdf">
+                    </div>
+
+                    <h3>通过imgOrigin filter实现文件引入，无hash命名</h3>
+                    <p>system文件夹通过webpack copy 插件直接复制到dist目录下</p>
+                    <div style="height:600px;" jm-pdf url="{{'/dist/img/system/1.pdf' | cdn}}">
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
-
     </div>
-  </div>
 </div>
