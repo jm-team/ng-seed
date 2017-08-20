@@ -37,5 +37,6 @@ var routers = [
   ["components.transfer", require("./page/components/transfer/transfer.router.js")],
   ["components.upload", require("./page/components/upload/upload.router.js")],
   ["components.datepicker", require("./page/components/datepicker/datepicker.router.js")],
+  ["components.share", require("./page/components/share/share.router.js")]
 ];
 module.exports = routers;

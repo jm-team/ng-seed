@@ -1,0 +1,103 @@
+<div class="col-md-24">
+  <h1>Share <span class="small">分享插件</span></h1>
+
+  <section class="markdown">
+    <p>分享插件。</p>
+  </section>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>最简单的用法。</h5>
+        </header>
+
+        <div class="ibox-content">
+          <jm-share></jm-share>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+        <header class="ibox-title">
+          <h5>彩色底部icon 模式</h5>
+        </header>
+
+        <div class="ibox-content">
+          <jm-share icon-style="box"></jm-share>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+
+        <header class="ibox-title">
+          <h5>可定制分享应用</h5>
+        </header>
+        <div class="ibox-content">
+
+          <jm-share networks="weibo,wechat,douban"></jm-share>
+
+          <jm-share networks="qzone,renren,twitter"></jm-share>
+
+          <jm-share networks="weibo,wechat,douban" icon-style="box"></jm-share>
+
+          <jm-share networks="pinterest,renren,facebook" icon-style="box"></jm-share>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+
+        <header class="ibox-title">
+          <h5>分享插件方向</h5>
+          <p>垂直方向只有在 icon-style="box"的时候才会有效</p>
+        </header>
+        <div class="ibox-content">
+
+          <jm-share  text="水平排列"></jm-share>
+
+          <jm-share box-form="vertical" position="topCenter" icon-style="box" text="垂直向上"></jm-share>
+
+          <jm-share box-form="vertical" networks="pinterest,renren,facebook" icon-style="box" text="垂直向下"></jm-share>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="ibox">
+
+        <header class="ibox-title">
+          <h5>分享插件位置</h5>
+        </header>
+        <div class="ibox-content">
+          <jm-share networks="pinterest,renren,facebook" icon-style="box" position="bottomCenter" text="下居中"></jm-share>
+          <!-- , top / middle / bottom + Left / Center / Right -->
+          
+          <jm-share networks="pinterest,renren,facebook" icon-style="box" text="上居中" position="topCenter"></jm-share>
+
+          <jm-share networks="pinterest,renren,facebook" icon-style="box" text="左居中" position="middleLeft">左居中</jm-share>
+
+          <jm-share networks="pinterest,renren,facebook" icon-style="box" text="右居中" position="middleRight">右居中</jm-share>
+
+          <jm-share networks="pinterest,renren,facebook" text="左上" icon-style="box" position="topLeft">左上</jm-share>
+
+          <jm-share networks="pinterest,renren,facebook" text="左下" icon-style="box" position="bottomLeft">左下</jm-share>
+
+          <jm-share networks="pinterest,renren,facebook" text="右上" icon-style="box" position="topRight">右上</jm-share>
+
+          <jm-share networks="pinterest,renren,facebook" text="右下" icon-style="box" position="bottomRight">右下</jm-share>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
