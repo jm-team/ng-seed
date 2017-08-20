@@ -23,6 +23,8 @@ require('./upload');
 require('./carousel');
 require('./datepicker');
 
+require('./share');
+
 // require('../../node_modules/angular-tree-control/css/tree-control-attribute.css');
 require('angular-tree-control');
 require('./ueditor');
@@ -49,6 +51,7 @@ angular.module('jmui', [
   'jmui.autoComplete',
   'jmui.pdf',
   'jmui.fineUploader',
+  'jmui.share',
   'ng.ueditor',
   'ui.bootstrap.datepicker',
   'treeControl'
