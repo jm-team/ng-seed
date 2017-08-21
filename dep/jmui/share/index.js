@@ -46,7 +46,9 @@ angular.module('jmui.share', [])
 		link: function(scope, element, attrs) {
 			// 初始化分享指令
 			function initShare() {
-				new needShareButton(element[0]);
+				new needShareButton(element[0], {
+          init: scope.init
+        });
 
 				// 初始化后移除事件
 				if (scope.trigger) {
@@ -57,9 +59,12 @@ angular.module('jmui.share', [])
 			// 触发事件初始化分享指令(可选)
 			scope.trigger = attrs.trigger || false;
 
+      // 是否初始化显示
+      scope.init = attrs.init || false;
+
 			// 分享的应用
 			scope.networks = attrs.networks || 'QQ,Wechat,Weibo,QZone,Douban,Linkedin';
-			
+
 			// 分享插件的位置 默认下居中
 			scope.position = attrs.position || 'middle';
 

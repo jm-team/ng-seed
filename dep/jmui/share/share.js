@@ -74,8 +74,11 @@
 	// share button class
 	window.needShareButton = function(elem, options) {
 		// create element reference
+
+    var init = options.init || false;
 		var root = this;
 		root.elem = elem || 'need-share-button';
+
 
 		/* Helpers
 		 ***********************************************/
@@ -442,42 +445,45 @@
 				dropdownEl.className += ' need-share-button_dropdown-box-vertical';
 
 			// set dropdown position
-			setTimeout(function() {
-				switch (myoptions.position) {
-					case 'topLeft':
-						dropdownEl.className += ' need-share-button_dropdown-top-left';
-						break
-					case 'topRight':
-						dropdownEl.className += ' need-share-button_dropdown-top-right';
-						break
-					case 'topCenter':
-						dropdownEl.className += ' need-share-button_dropdown-top-center';
-						dropdownEl.style.marginLeft = -dropdownEl.offsetWidth / 2 + 'px';
-						break
-					case 'middleLeft':
-						dropdownEl.className += ' need-share-button_dropdown-middle-left';
-						dropdownEl.style.marginTop = -dropdownEl.offsetHeight / 2 + 'px';
-						break
-					case 'middleRight':
-						dropdownEl.className += ' need-share-button_dropdown-middle-right';
-						dropdownEl.style.marginTop = -dropdownEl.offsetHeight / 2 + 'px';
-						break
-					case 'bottomLeft':
-						dropdownEl.className += ' need-share-button_dropdown-bottom-left';
-						break
-					case 'bottomRight':
-						dropdownEl.className += ' need-share-button_dropdown-bottom-right';
-						break
-					case 'bottomCenter':
-						dropdownEl.className += ' need-share-button_dropdown-bottom-center';
-						dropdownEl.style.marginLeft = -dropdownEl.offsetWidth / 2 + 'px';
-						break
-					default:
-						dropdownEl.className += ' need-share-button_dropdown-bottom-center';
-						dropdownEl.style.marginLeft = -dropdownEl.offsetWidth / 2 + 'px';
-						break
-				}
-			}, 1);
+      if(!init){
+        setTimeout(function() {
+          switch (myoptions.position) {
+            case 'topLeft':
+              dropdownEl.className += ' need-share-button_dropdown-top-left';
+              break
+            case 'topRight':
+              dropdownEl.className += ' need-share-button_dropdown-top-right';
+              break
+            case 'topCenter':
+              dropdownEl.className += ' need-share-button_dropdown-top-center';
+              dropdownEl.style.marginLeft = -dropdownEl.offsetWidth / 2 + 'px';
+              break
+            case 'middleLeft':
+              dropdownEl.className += ' need-share-button_dropdown-middle-left';
+              dropdownEl.style.marginTop = -dropdownEl.offsetHeight / 2 + 'px';
+              break
+            case 'middleRight':
+              dropdownEl.className += ' need-share-button_dropdown-middle-right';
+              dropdownEl.style.marginTop = -dropdownEl.offsetHeight / 2 + 'px';
+              break
+            case 'bottomLeft':
+              dropdownEl.className += ' need-share-button_dropdown-bottom-left';
+              break
+            case 'bottomRight':
+              dropdownEl.className += ' need-share-button_dropdown-bottom-right';
+              break
+            case 'bottomCenter':
+              dropdownEl.className += ' need-share-button_dropdown-bottom-center';
+              dropdownEl.style.marginLeft = -dropdownEl.offsetWidth / 2 + 'px';
+              break
+            default:
+              dropdownEl.className += ' need-share-button_dropdown-bottom-center';
+              dropdownEl.style.marginLeft = -dropdownEl.offsetWidth / 2 + 'px';
+              break
+          }
+        }, 1);
+      }
+
 
 
 			// fill fropdown with buttons
@@ -506,7 +512,7 @@
       if(dropdownEl.addEventListener){
         dropdownEl.addEventListener('click', initShare);
       }else{
-        dropdownEl.detachEvent('click', initShare);
+        dropdownEl.attachEvent('click', initShare);
       }
 
 			el.appendChild(dropdownEl);
@@ -554,13 +560,20 @@
       }
     }
 
-    if(document.addEventListener){
-      document.addEventListener('click', closeShare);
-    } else {
-      document.detachEvent('click', closeShare);
+
+    if(init){
+      setTimeout(function(){
+        createDropdown(elem);
+      }, 100)
+    }else{
+      if(document.addEventListener){
+        document.addEventListener('click', closeShare);
+      } else {
+        document.attachEvent('click', closeShare);
+      }
     }
 
 	};
 
-	new needShareButton('.need-share-button');
+	// new needShareButton('.need-share-button');
 })();
