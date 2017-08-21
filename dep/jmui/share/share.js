@@ -7,6 +7,43 @@
 
 (function() {
 
+  // 设置 data-* 数据
+  function dataSet(el, obj){
+    for(var option in obj){
+      if(obj.hasOwnProperty(option)){
+        el.setAttribute('data-'+option, obj[option]);
+      }
+    }
+  }
+
+  // 获取 data-* 的属性
+  function dataGet(el, attr){
+    var attrs = el.attributes;
+    var expense = {}, i, j;
+    for (i = 0, j = attrs.length; i < j; i++) {
+      if(attrs[i].name.substring(0, 5) == 'data-') {
+        expense[toCamelCase(attrs[i].name)] = attrs[i].value;
+      }
+    }
+    if(attr){
+      return expense[attr];
+    }
+    return expense;
+  }
+
+  function toCamelCase(oldStr){
+    //attrs[i].name
+    var strArray = oldStr.substring(5).split('-');
+    var newStr = strArray[0];
+    var length = strArray.length;
+
+    for(var i = 1; i < length; i++){
+      var str = strArray[i];
+      newStr += str.charAt(0).toUpperCase() + (str.substr(1));
+    }
+    return newStr;
+  }
+
 	// find closest
 	function closest(elem, parent) {
 		if (typeof(parent) == 'string') {
@@ -367,8 +404,8 @@
 			ret.title = root.getTitle();
 			ret.image = root.getImage();
 			ret.description = root.getDescription();
-
-			for (var option in el.dataset) {
+      var options = dataGet(el)
+			for (var option in options) {
 				// replace only 'share-' prefixed data-attributes
 				if (option.match(/share/)) {
 					var new_option = option.replace(/share/, '');
@@ -376,7 +413,7 @@
 						continue;
 					}
 					new_option = new_option.charAt(0).toLowerCase() + new_option.slice(1);
-					var val = el.dataset[option];
+					var val = options[option];
 					if (new_option === 'networks') {
 						val = val.toLowerCase().split(',');
 					} else if (new_option === 'url' && val && val[0] === '/') {
@@ -450,49 +487,78 @@
 				network = myoptions.networks[network];
 				link.className = iconClass + network;
 				link.className += ' icon-' + network;
-				link.dataset.network = network;
+        dataSet(link, {network: network})
 				link.title = network;
 				dropdownEl.appendChild(link);
 			}
 
-			dropdownEl.addEventListener('click', function(event) {
-				if (closest(event.target, '.need-share-button_link')) {
-					event.preventDefault();
-					event.stopPropagation();
+      function initShare(event) {
+        var event = event || window.event;
+        if (closest(event.target, '.need-share-button_link')) {
+          event.preventDefault();
+          event.stopPropagation();
 
-					root.share[event.target.dataset.network](el);
-					return false;
-				}
-			});
+          root.share[dataGet(event.target, 'network')](el);
+          return false;
+        }
+      }
+
+      if(dropdownEl.addEventListener){
+        dropdownEl.addEventListener('click', initShare);
+      }else{
+        dropdownEl.detachEvent('click', initShare);
+      }
 
 			el.appendChild(dropdownEl);
 		}
 
 		// close on click outside
-		document.addEventListener('click', function(event) {
-			var openedEl = document.querySelector('.need-share-button-opened');
-			if (!closest(event.target, '.need-share-button-opened')) {
-				if (openedEl) {
-					openedEl.classList.remove('need-share-button-opened');
+    function closeShare(event) {
+      var event = event || window.event;
+      var openedEl = document.querySelector('.need-share-button-opened');
+      if (!closest(event.target, '.need-share-button-opened')) {
+        if (openedEl) {
+          if(openedEl.classList){
+            openedEl.classList.remove('need-share-button-opened');
+          }else{
+            angular.element(openedEl).removeClass('need-share-button-opened');
+          }
 
-					// hide wechat code image when close the dropdown.
-					if (openedEl.querySelector('.need-share-wechat-code-image')) {
-						openedEl.querySelector('.need-share-wechat-code-image').remove();
-					}
-				} else {
-					var el = closest(event.target, root.elem);
-					if (el) {
-						if (!el.classList.contains('need-share-button-opened')) {
-							createDropdown(el);
-							setTimeout(function() {
-								el.classList.add('need-share-button-opened');
-							}, 1);
 
-						}
-					}
-				}
-			}
-		});
+          // hide wechat code image when close the dropdown.
+          if (openedEl.querySelector('.need-share-wechat-code-image')) {
+            openedEl.querySelector('.need-share-wechat-code-image').remove();
+          }
+        } else {
+          var el = closest(event.target, root.elem);
+          if (el) {
+            if(el.classList){
+              if (!el.classList.contains('need-share-button-opened')) {
+                createDropdown(el);
+                setTimeout(function() {
+                  el.classList.add('need-share-button-opened');
+                }, 1);
+
+              }
+            }else{
+              if (!angular.element(el).hasClass('need-share-button-opened')) {
+                createDropdown(el);
+                setTimeout(function() {
+                  angular.element(el).addClass('need-share-button-opened');
+                }, 1);
+
+              }
+            }
+          }
+        }
+      }
+    }
+
+    if(document.addEventListener){
+      document.addEventListener('click', closeShare);
+    } else {
+      document.detachEvent('click', closeShare);
+    }
 
 	};
 
