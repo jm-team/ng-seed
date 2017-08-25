@@ -1,6 +1,6 @@
 {
   "name": "ng-seed",
-  "version": "0.8.0-beta.2",
+  "version": "0.8.0",
   "private": true,
   "description": "> angular项目基础框架，解决了前后端分离后，前端代码打包合并、资源文件CDN分离部署、单点登录、密码加密、服务接口跨域、SPA页面SEO等问题",
   "scripts": {

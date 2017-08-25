@@ -1,3 +1,35 @@
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/jm-team/ng-seed/compare/v0.8.0-beta.2...v0.8.0) (2017-08-25)
+
+
+### Bug Fixes
+
+* baidu snapshoot {{ SEO.pageDescription }} ([5666e5e](https://github.com/jm-team/ng-seed/commit/5666e5e))
+* demo ([046a860](https://github.com/jm-team/ng-seed/commit/046a860))
+* dll git add with path ([117975c](https://github.com/jm-team/ng-seed/commit/117975c))
+* hasLogin添加时间戳，这个很重要！ ([21b4fec](https://github.com/jm-team/ng-seed/commit/21b4fec))
+* jmtoolbar style display none ([ae9ffe8](https://github.com/jm-team/ng-seed/commit/ae9ffe8))
+* jmui.carousel banner can't show, if there is only one. ([57ec508](https://github.com/jm-team/ng-seed/commit/57ec508))
+* node-sass升级到4.5.3，解决nodejs8以上的版本下编译出错的问题 ([d7319ac](https://github.com/jm-team/ng-seed/commit/d7319ac))
+* ReferenceError window is not defined ([7998c98](https://github.com/jm-team/ng-seed/commit/7998c98))
+* sass-loader must before of postcss-loader ([378ca40](https://github.com/jm-team/ng-seed/commit/378ca40))
+* 修复dialog不支持遮罩触发回调 ([ae88f41](https://github.com/jm-team/ng-seed/commit/ae88f41))
+* 修改 兼容IE ([5e2fae9](https://github.com/jm-team/ng-seed/commit/5e2fae9))
+* 添加checkbox 个数限制以及控制器改变model ui 同步 ([cb6078c](https://github.com/jm-team/ng-seed/commit/cb6078c))
+* 添加显示默认 ([5f63e28](https://github.com/jm-team/ng-seed/commit/5f63e28))
+
+
+### Features
+
+* integrate cropper with fine uploader, and sharp for the node of the server side. ([3ce3bc3](https://github.com/jm-team/ng-seed/commit/3ce3bc3))
+* SEO ([ae1865d](https://github.com/jm-team/ng-seed/commit/ae1865d))
+* 埋点统计 ([5b6a806](https://github.com/jm-team/ng-seed/commit/5b6a806))
+* 添加分享插件 ([4770d53](https://github.com/jm-team/ng-seed/commit/4770d53))
+* 添加分享插件 ([ded32c5](https://github.com/jm-team/ng-seed/commit/ded32c5))
+* 添加分享路由 ([f6f3c1d](https://github.com/jm-team/ng-seed/commit/f6f3c1d))
+
+
+
 <a name="0.8.0-beta.2"></a>
 # [0.8.0-beta.2](https://github.com/jm-team/ng-seed/compare/v0.8.0-beta.1...v0.8.0-beta.2) (2017-06-09)
 
