@@ -1,1 +1,1 @@
-webpackJsonp([7,22],{a8pw:function(e,i,l){var n=l("eslX");n.registerController("SwitchCtrl",function(){function e(){i.disabled=!i.disabled}var i=this;i.on=!0,i.off=!1,i.disabled=!0,i.toggleDisabled=e})}});
+webpackJsonp([8,24],{a8pw:function(e,i,l){var n=l("eslX");n.registerController("SwitchCtrl",function(){function e(){i.disabled=!i.disabled}var i=this;i.on=!0,i.off=!1,i.disabled=!0,i.toggleDisabled=e})}});

@@ -1,1 +1,1 @@
-webpackJsonp([13,22],{tv0M:function(t,e,r){function a(t){var e=this;e.jpg="1.jpg",e.defaultImage=t.defaultImage}a.$inject=["Static"];var n=r("eslX");n.registerController("ImgErrorCtrl",a)}});
+webpackJsonp([15,24],{tv0M:function(t,e,r){function a(t){var e=this;e.jpg="1.jpg",e.defaultImage=t.defaultImage}a.$inject=["Static"];var n=r("eslX");n.registerController("ImgErrorCtrl",a)}});

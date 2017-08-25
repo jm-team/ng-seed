@@ -1,1 +1,1 @@
-webpackJsonp([10,22],{xh6Y:function(n,e,i){function t(n){var e=this;e.mk=n,e.numPages=5,e.currentPage=1,e.numPages2=20,e.currentPage2=8,hljs.initHighlightingOnLoad()}t.$inject=["mk"];var r=i("eslX");r.registerController("PagintionCtrl",t)}});
+webpackJsonp([12,24],{xh6Y:function(n,e,i){function t(n){var e=this;e.mk=n,e.numPages=5,e.currentPage=1,e.numPages2=20,e.currentPage2=8,hljs.initHighlightingOnLoad()}t.$inject=["mk"];var r=i("eslX");r.registerController("PagintionCtrl",t)}});
