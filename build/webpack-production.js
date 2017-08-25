@@ -77,7 +77,7 @@ module.exports = {
         }),
         // 根据模块依赖次数进行排序
         new webpack.optimize.OccurenceOrderPlugin(),
-        // 将模块Id转为hash值，解决模块id为数字时不稳定的问题，对应开发环境HashedModuleIdsPlugin
+        // 将模块Id转为hash值，解决模块id为数字时不稳定的问题，对应开发环境NamedModulesPlugin的作用
         new HashedModuleIdsPlugin(),
         // 将webpack runtime内嵌至index.html，需要和HtmlWebpackPlugin配合使用
         // 需在模板文件加上占位符 <%=htmlWebpackPlugin.files.webpackManifest%>
