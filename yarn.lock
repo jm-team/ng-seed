@@ -106,9 +106,9 @@ angular-ui-router@0.2.18:
   dependencies:
     angular "^1.0.8"
 
-angular@1.2.29, angular@^1.0.8:
-  version "1.2.29"
-  resolved "http://registry.npm.taobao.org/angular/download/angular-1.2.29.tgz#4909377312037404612007f6efcf329b620b22af"
+angular@1.7.9, angular@^1.0.8:
+  version "1.7.9"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.9.tgz#e52616e8701c17724c3c238cfe4f9446fd570bc4"
 
 ansi-escapes@^1.1.0:
   version "1.4.0"
