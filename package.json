@@ -42,7 +42,7 @@
     "imagemin-webpack-plugin": "^1.4.4",
     "inline-manifest-webpack-plugin": "^3.0.1",
     "json-loader": "^0.5.4",
-    "loader-utils": "^0.2.15",
+    "loader-utils": "^1.4.2",
     "ng-annotate": "^1.2.1",
     "ng-annotate-webpack-plugin": "^0.1.3",
     "ngtemplate-loader": "^1.3.1",
